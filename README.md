@@ -1,4 +1,4 @@
-# Another 100 Ideas for Computing
+# An Additional 100 Ideas for Computing
 
 # 1. Personal file archives
 
