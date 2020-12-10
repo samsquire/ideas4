@@ -7,3 +7,24 @@ My personal files inevitably leads to lots of small files which take forever to 
 # 2. Idea management software
 
 Society is composed of ideas, let's let everyone track the ideas they like.
+
+# Generating ideas
+
+ * marketplace
+ * schedule
+ * tree
+ * additive/combined
+ * auto
+ * mesh
+ * hooks
+
+# Incomplete thoughts and ideas 
+
+Scope magic
+
+Tree programming
+Fluent system
+Flow control
+
+Things written as communication protocols are easier to program and reason about. Concurrency too (see go and occam pi)
+Turn the GUI into a communication problem.
