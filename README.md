@@ -2,7 +2,7 @@
 
 # 1. Personal file archives
 
-My personal files inevitably leads to lots of small files which take forever to copy and never give us the full transfer speeds of our hardware. I propose a personal file manager which handles archiving for our files by letting us "log into" our files by unpacking them to fast media and lets us "repack" the files backup when we logout.
+My personal files inevitably leads to lots of small files which take forever to copy and are transferred very slowly by my hardware when copied. I propose a personal file manager which handles archiving for our files by letting us "log into" our files by unpacking them to fast media and lets us "repack" the files backup when we logout.
 
 # 2. Idea management software
 
