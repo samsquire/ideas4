@@ -8,6 +8,8 @@ My personal files inevitably leads to lots of small files which take forever to 
 
 Society is composed of ideas, let's let everyone track the ideas they like.
 
+# 3. 
+
 # Generating ideas
 
  * marketplace
