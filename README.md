@@ -8,9 +8,11 @@ My personal files inevitably leads to lots of small files which take forever to 
 
 Society is composed of ideas, let's let everyone track the ideas they like.
 
-# 3. Precalculation API
+# 3. Recalculation system
 
-# 4. End-to-end software CI integrated Framework
+# 4. 
+
+
 
 # 5. Software Subscriptions
 
