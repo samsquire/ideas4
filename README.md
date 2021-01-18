@@ -14,7 +14,7 @@ Society is composed of ideas, let's let everyone track the ideas they like.
 
 
 
-# 5. Software Subscriptions
+# 5. Permanent software / Software subscriptions
 
 # Generating ideas
 
