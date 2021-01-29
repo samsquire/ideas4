@@ -12,7 +12,11 @@ Society is composed of ideas, let's let everyone track the ideas they like.
 
 Drag and drop is too hard. What about picking an item up and then dropping it. There would be no need to click and hold the mouse.
 
-# 4. 
+# 4. Chronological news
+
+Each news topic should be tracked separately, I should be able to follow a news stream from beginning to end on a topic.
+
+# 5. 
 
 
 
