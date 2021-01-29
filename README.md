@@ -16,11 +16,9 @@ Drag and drop is too hard. What about picking an item up and then dropping it. T
 
 Each news topic should be tracked separately, I should be able to follow a news stream from beginning to end on a topic.
 
-# 5. 
-
-
-
 # 5. Permanent software / Software subscriptions
+
+# 6. 
 
 # Generating ideas
 
