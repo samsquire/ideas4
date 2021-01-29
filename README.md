@@ -8,9 +8,11 @@ My personal files inevitably leads to lots of small files which take forever to 
 
 Society is composed of ideas, let's let everyone track the ideas they like.
 
-# 3. 
+# 3. Pick up and drop
 
-# 4.
+Drag and drop is too hard. What about picking an item up and then dropping it. There would be no need to click and hold the mouse.
+
+# 4. 
 
 
 
