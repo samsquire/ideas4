@@ -22,6 +22,8 @@ Each news topic should be tracked separately, I should be able to follow a news 
 
 A program that reads your startup configuration and then lays out files on disk so everything is contiguous. So a simple program can be written to read all the files into the disk cache on startup and every read afterwards is instant.
 
+# 7. Automated API traversal
+
 # Generating ideas
 
  * marketplace
