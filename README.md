@@ -24,6 +24,10 @@ A program that reads your startup configuration and then lays out files on disk 
 
 # 7. Automated API traversal
 
+# 8. Server server
+
+Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
+
 # Generating ideas
 
  * marketplace
