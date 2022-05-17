@@ -37,6 +37,7 @@ Creating a performant server is difficult. The lessons from Nginx and Apache and
  * auto
  * mesh
  * hooks
+* Pattern matching
 
 # Incomplete thoughts and ideas 
 
