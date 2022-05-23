@@ -151,6 +151,22 @@ I think a continuation style can be used so that the provider of the data walks 
 
 So the walking of data is continuations between collaborating servers.
 
+# 14. Data scheduling and infinite tape abstraction
+
+I read somewhere that instruction selection is less of a cause of total performance of code compared with data layout. With data driven architecture we can use arrays of structures or structures of arrays for performance.
+
+Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, disk files. We need some method of paging this data and scheduling data to and from each area efficiently.
+
+Databases such as Postgres have heap managers. There is all sorts of clever things that can be done with readahead and prefetching and amortization.
+
+Surely these problems could be solved once in a profoundly effective way and exposed as a library.
+
+I also want to write my code the same way that scales for a 100 kilobyte file as a 10000 petabyte datastore. The approach I use should be scalable. The system can act as if memory is infinite but it's not, it's simply paged in efficiently from S3 or disk efficiently 
+
+I imagine this being implemented as a Policy that defines the relationship and speeds of each kind of media and the policy of when to page between them.
+
+You could have a common API for storage that works across all levels of storage.
+
 # Generating ideas
 
  * marketplace
