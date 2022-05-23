@@ -55,7 +55,7 @@ Our data access patterns determine how efficient our queries shall be.
  * Can generate SQL tables.
  * 
 
-This could be used for Query database and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
+This could be used for [ideas3 17. Query database](https://github.com/samsquire/ideas3#17-query-database) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
 
 # Generating ideas
 
