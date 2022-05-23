@@ -106,6 +106,13 @@ Here are some ideas that desktop computers could do.
 
  * **Advertising features to me** My desktop computer has installed various services and APIs. My desktop should advertise what features are available to me
 
+# 12. Work merging
+
+When a user does something on a computer their patterns of work often match other people's patterns with the same general data structure. We can match trees or data structures that are visible on the screen with actions that were similar for other users and allow users to benefit from work that other people did.
+
+For example, if you want to change your address with a company, this request looks the same to everyone. Everyone's address can be changed with one operation to change multiple individuals addresses in one operation.
+
+If someone is looping manually down a spreadsheet, we can represent the operations that the user is doing as events and pattern match the events to look for +1 or -1 operations on data. The computer can detect the repetition and carry out the action on the user's behalf: a smart macro recorder and replayer.
 
 # Generating ideas
 
