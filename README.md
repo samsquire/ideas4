@@ -30,6 +30,20 @@ Imagine an API as a graph and define a traversal of the API to get what you want
 
 Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
 
+# 9. Query for data structure
+
+If you're writing a compiler or programming language or business software you have a stored shape of data and relationships.
+
+Sometimes to solve particular problems you need data in a particular shape.
+
+What if you had a query language where you could retrieve a data structure?
+
+In compiled languages we have pointers and in interpreted languages such as Python and Java we have references between objects which are like pointers.
+
+We also have indexing Dara structures such as hashmaps and btrees. What if we could built up data structures by a query?
+
+We want a btree indexing these columns and these relations.
+
 # Generating ideas
 
  * marketplace
