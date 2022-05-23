@@ -116,6 +116,36 @@ For example, if you want to change your address with a company, this request loo
 
 If someone is looping manually down a spreadsheet, we can represent the operations that the user is doing as events and pattern match the events to look for +1 or -1 operations on data. The computer can detect the repetition and carry out the action on the user's behalf: a smart macro recorder and replayer.
 
+# 13. Window walk optimisation
+
+Imagine you want to find a job that is near your home transport wise, near a supermarket, doctors and that pays the most and has the cheapest house to buy or rent.
+
+You could open a browser for each of these queries but it's difficult to optimise these multiple queries manually.
+
+Or you want to book a holiday or organise the purchasing for an office. Or equip a datacentre with hardware.
+
+We can walk different web sites in an iterative hill climbing algorithm.
+
+ * Enumerate list of towns, cities and villages
+
+ * Enumerate houses to rent and to buy at lowest cost sorted first.
+
+ * Enumerate list of supermarkets near said houses and near job, sort by smallest range.
+
+ * Enumerate public transport options
+
+ * Enumerate jobs, sorted by most pay first
+
+Now walk all these datasets as an optimisation problem to find a list of efficient combinations of jobs, supermarkets, transport and housing.
+
+This is far better than manually cross referencing data in separate tabs.
+
+I think the walking of data can be distributed for efficiency. It doesn't make sense to walk each record one at a time. It's a lot of data to download.
+
+I think a continuation style can be used so that the provider of the data walks each sub iteration.
+
+So the walking of data is continuations between collaborating servers.
+
 # Generating ideas
 
  * marketplace
