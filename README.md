@@ -98,13 +98,15 @@ Here are some ideas that desktop computers could do.
 
  * **Log aggregation** Log errors and error dialogs to be automatically synced to the cloud where other they turn into community issues. Issues can be commented by other users.
 
- * **Errors** become things Errors become a thing in my desktop. They appear in the system tray and don’t go away so easily and they can be re-tried easily. They appear in an error viewer. You can then try solutions against the error to see if it works, it it works, the error will go away. You can see comments about the error and try known solutions to the error. Known solutions are gathered online.
+ * **Errors become things** Errors become a thing in my desktop. They appear in the system tray and don’t go away so easily and they can be re-tried easily. They appear in an error viewer. You can then try solutions against the error to see if it works, it it works, the error will go away. You can see comments about the error and try known solutions to the error. Known solutions are gathered online.
 
  * **Shared desktop sessions** It should be possible for multiple users to join a desktop session. The session is not single player, reserved for one person but possible for multiple people to join the same session.
 
  * **Cloud designer** Advertise cloud features to me and let me use cloud features in my home network such as S3.
 
  * **Advertising features to me** My desktop computer has installed various services and APIs. My desktop should advertise what features are available to me
+
+ * ****
 
 # 12. Work merging
 
@@ -123,7 +125,7 @@ If someone is looping manually down a spreadsheet, we can represent the operatio
  * auto
  * mesh
  * hooks
-* Pattern matching
+ * Pattern matching
 
 # Incomplete thoughts and ideas 
 
