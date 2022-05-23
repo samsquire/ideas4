@@ -157,7 +157,7 @@ I read somewhere that instruction selection is less of a cause of total performa
 
 Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, disk files. We need some method of paging this data and scheduling data to and from each area efficiently.
 
-Databases such as Postgres have heap managers. There is all sorts of clever things that can be done with readahead and prefetching and amortization.
+Databases such as Postgres have heap managers. Some software use arenas for memory management. There is all sorts of clever things that can be done with readahead and prefetching and amortization.
 
 Surely these problems could be solved once in a profoundly effective way and exposed as a library.
 
@@ -167,7 +167,8 @@ I imagine this being implemented as a Policy that defines the relationship hiera
 
 You could have a common API for storage that works across all levels of storage.
 
-This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](
+This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
+
 # Generating ideas
 
  * marketplace
