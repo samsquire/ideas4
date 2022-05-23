@@ -48,6 +48,10 @@ We want a btree indexing these columns and these relations.
 
 A format or data structure that represents an access pattern for data.
 
+For example, if you're going to be scanning items in sorted order, if you need to get data by a composite or single key, these are part of your access patterns.
+
+If you always fetch the children relations of a piece of data, you should serialise that and represent it.
+
 Our data access patterns determine how efficient our queries shall be.
 
  * Can be used to generate data structures.
@@ -56,8 +60,9 @@ Our data access patterns determine how efficient our queries shall be.
  * Can be used for generating sharding.
  * Can be used to parallelize queries.
  * Can be used for query planning.
+ * Can be used to denormalise queries.
 
-This could be used for [ideas3 17. Query database](https://github.com/samsquire/ideas3#17-query-database) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
+This could be used for implementing [ideas3 17. Query database](https://github.com/samsquire/ideas3#17-query-database) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
 
 # 11. Dream desktop
 
