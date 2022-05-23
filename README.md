@@ -169,6 +169,15 @@ You could have a common API for storage that works across all levels of storage.
 
 This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
 
+# 15. Mega tree
+
+I want a mega tree data structure which has the combination of these properties:
+
+ * Can be merged as a Conflict free Replicated Data Type (CRDT)
+ * Uses the Left Right concurrency pattern
+ * Can be used as a merkle tree
+
+
 # Generating ideas
 
  * marketplace
