@@ -163,9 +163,11 @@ Surely these problems could be solved once in a profoundly effective way and exp
 
 I also want to write my code the same way that scales for a 100 kilobyte file as a 10000 petabyte datastore. The approach I use should be scalable. The system can act as if memory is infinite but it's not, it's simply paged in efficiently from S3 or disk efficiently 
 
-I imagine this being implemented as a Policy that defines the relationship and speeds of each kind of media and the policy of when to page between them.
+I imagine this being implemented as a Policy that defines the relationship hierarchy and speeds of each kind of media and the policy of when to page between them.
 
 You could have a common API for storage that works across all levels of storage.
+
+This could be combined with [10. Access pattern serialization](
 
 # Generating ideas
 
