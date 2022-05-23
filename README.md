@@ -61,11 +61,8 @@ This could be used for [ideas3 17. Query database](https://github.com/samsquire/
 
 # 11. Dream desktop
 
-
-Dream desktop
-
 My computer should try benefit my life as much as possible. Modern desktops don’t even try. They don’t learn about me or give me advice. I want to give my demographics to my computer, my location, my salary and have the computer calculate things about me. We have all this untapped computer resource but most people only idle their computers.
-Here are some crazy ideas that desktop computers could do.
+Here are some ideas that desktop computers could do.
 
  * **Many remote indexes** – We’ve got spare resources on an average desktop. Synchronize my files with a remote server, then do some crazy indexes on the files for all sorts of combinations. Index my files contents for content based searches. It doesn’t matter if the indexing is expensive, because it’s on a different server.
 
