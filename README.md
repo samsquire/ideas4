@@ -40,7 +40,7 @@ What if you had a query language where you could retrieve a data structure?
 
 In compiled languages we have pointers and in interpreted languages such as Python and Java we have references between objects which are like pointers.
 
-We also have indexing Dara structures such as hashmaps and btrees. What if we could built up data structures by a query?
+We also have indexing Data structures such as hashmaps and btrees. What if we could built up data structures by a query?
 
 We want a btree indexing these columns and these relations.
 
