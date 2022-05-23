@@ -167,8 +167,7 @@ I imagine this being implemented as a Policy that defines the relationship hiera
 
 You could have a common API for storage that works across all levels of storage.
 
-This could be combined with [10. Access pattern serialization](
-
+This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](
 # Generating ideas
 
  * marketplace
