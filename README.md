@@ -44,6 +44,19 @@ We also have indexing Data structures such as hashmaps and btrees. What if we co
 
 We want a btree indexing these columns and these relations.
 
+# 10. Access pattern serialization
+
+A format or data structure that represents an access pattern for data.
+
+Our data access patterns determine how efficient our queries shall be.
+
+ * Can be used to generate data structures.
+ * Would be useful for designing NoSQL and Dynamodb keyspaces. 
+ * Can generate SQL tables.
+ * 
+
+This could be used for Query database and [9. Query for data structure]().
+
 # Generating ideas
 
  * marketplace
