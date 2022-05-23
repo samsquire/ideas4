@@ -53,7 +53,9 @@ Our data access patterns determine how efficient our queries shall be.
  * Can be used to generate data structures.
  * Would be useful for designing NoSQL and Dynamodb keyspaces. 
  * Can generate SQL tables.
- * 
+ * Can be used for generating sharding.
+ * Can be used to parallelize queries.
+ * Can be used for query planning.
 
 This could be used for [ideas3 17. Query database](https://github.com/samsquire/ideas3#17-query-database) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
 
