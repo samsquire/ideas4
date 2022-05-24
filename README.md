@@ -198,7 +198,7 @@ The pattern to iterating down a tree could be inferred.
 
 The distance function is fairly straightforward if there is a path from the current data item bring evaluated or searched then the system is nearer to the goal data.
 
-# Core algorithms should be written in a simple to understand language
+# 17. Core algorithms should be written in a simple to understand language
 
 The algorithms we depend on day-to-day should be written in a simple programming language with very little barrier to entry. I suggest things like the cost based optimiser, query optimisers and the operating system scheduler be written in languages like Python and lowered to C programming language.
 
