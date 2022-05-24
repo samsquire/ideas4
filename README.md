@@ -178,7 +178,7 @@ I want a mega tree data structure which has the combination of these properties:
  * Can be used as a merkle tree
  * Can be a persistent tree
 
-# 16. Data query generation
+# 16. Use A* for data query generation
 
 If I put some data into a data structure - is the computer clever enough to generate solutions that get nearer to accessing it?
 
@@ -193,6 +193,8 @@ We know where the data is in the data structure.
 There is a sequence of steps and iteration to get the query to fetch the data.
 
 For a tree we know which nodes we have to traverse in order to get to the data, so we can generate code that knows how to fetch children recursively and do a binary search on an array.
+
+If we want to fetch data that matches a predicate, we could create a graph traversal of the indexing functions, we can in effect trial indexing functions to see if they cheapen the retrieval process.
 
 The pattern to iterating down a tree could be inferred.
 
