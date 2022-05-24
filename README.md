@@ -196,6 +196,8 @@ For a tree we know which nodes we have to traverse in order to get to the data, 
 
 The pattern to iterating down a tree could be inferred.
 
+The distance function is fairly straightforward if there is a path from the current data item bring evaluated or searched then the system is nearer to the goal data.
+
 # Generating ideas
 
  * marketplace
