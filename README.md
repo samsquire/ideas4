@@ -212,13 +212,21 @@ If compilers and optimisers were written in Python you would have more people be
 
 As it stands to add code to these projects you need to be seriously skilled in low level programming 
 
+# 18. Data synchronization
+
+Data structures often leads to denormalisation for performance. We need to keep data synchronized for performance.
+
+If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexing-the-secret-sauce-behind-rocksets-fast-queries/) and index by column, value and row I need to store data three times which is storage costly but efficient in terms of retrieval. I need some process to keep the data synchronized.
+
+I propose a simple system that tracks all instances of data and keeps them integrated. This would be used between systems and keep then in sync.
+
 # Generating ideas
 
  * marketplace
  * schedule
  * tree
  * additive/combined
- * auto
+ * aut.
  * mesh
  * hooks
  * Pattern matching
