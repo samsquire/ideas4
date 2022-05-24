@@ -179,6 +179,7 @@ I want a mega tree data structure which has the combination of these properties:
  * Can be a persistent tree
  * Can act as a TreeMap
  * Can act as a prefix trie.
+ * Can be append only
 
 # 16. Use A* for data query generation
 
