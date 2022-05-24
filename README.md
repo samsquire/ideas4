@@ -176,7 +176,7 @@ I want a mega tree data structure which has the combination of these properties:
  * Can be merged as a Conflict free Replicated Data Type (CRDT)
  * Uses the Left Right concurrency pattern
  * Can be used as a merkle tree
-
+ * Can be a persistent tree
 
 # Generating ideas
 
