@@ -177,6 +177,8 @@ I want a mega tree data structure which has the combination of these properties:
  * Uses the Left Right concurrency pattern
  * Can be used as a merkle tree
  * Can be a persistent tree
+ * Can act as a TreeMap
+ * Can act as a prefix trie.
 
 # 16. Use A* for data query generation
 
