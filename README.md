@@ -178,6 +178,24 @@ I want a mega tree data structure which has the combination of these properties:
  * Can be used as a merkle tree
  * Can be a persistent tree
 
+# 16. Data query generation
+
+If I put some data into a data structure - is the computer clever enough to generate solutions that get nearer to accessing it?
+
+If I train a computer on binary search, btree and hashing functions and create graph traversals that represent the algorithms.
+
+If I have a keyspace that is lexicographically sorted or a HashMap or btree can a computer study an algorithm and turn it into a graph traversal and generalise the approach?
+
+Could I generate sequences of instructions that become generalised algorithms that fetch data?
+
+We know where the data is in the data structure.
+
+There is a sequence of steps and iteration to get the query to fetch the data.
+
+For a tree we know which nodes we have to traverse in order to get to the data, so we can generate code that knows how to fetch children recursively and fona binary search on an array.
+
+The pattern to iterating down a tree could be inferred.
+
 # Generating ideas
 
  * marketplace
