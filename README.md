@@ -192,7 +192,7 @@ We know where the data is in the data structure.
 
 There is a sequence of steps and iteration to get the query to fetch the data.
 
-For a tree we know which nodes we have to traverse in order to get to the data, so we can generate code that knows how to fetch children recursively and fona binary search on an array.
+For a tree we know which nodes we have to traverse in order to get to the data, so we can generate code that knows how to fetch children recursively and do a binary search on an array.
 
 The pattern to iterating down a tree could be inferred.
 
