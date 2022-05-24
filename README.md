@@ -186,7 +186,7 @@ If I train a computer on binary search, btree and hashing functions and create g
 
 If I have a keyspace that is lexicographically sorted or a HashMap or btree can a computer study an algorithm and turn it into a graph traversal and generalise the approach?
 
-Could I generate sequences of instructions that become generalised algorithms that fetch data?
+Could I generate sequences of instructions as graph traversals that become generalised algorithms that fetch data?
 
 We know where the data is in the data structure.
 
