@@ -174,7 +174,7 @@ This could be combined with [10. Access pattern serialization](https://github.co
 I want a mega tree data structure which has the combination of these properties:
 
  * Can be merged as a Conflict free Replicated Data Type (CRDT)
- * Uses the Left Right concurrency pattern
+ * Uses the Left Right concurrency pattern for each leaf and internal node
  * Can be used as a merkle tree
  * Can be a persistent tree
  * Can act as a TreeMap
