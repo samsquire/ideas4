@@ -215,7 +215,7 @@ As it stands to add code to these projects you need to be seriously skilled in l
 
 # 18. Data synchronization
 
-Data structures often leads to denormalisation for performance. We need to keep data synchronized for performance.
+Data structures often leads to denormalisation for performance. We need to keep data synchronized for performance and parallelism.
 
 If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexing-the-secret-sauce-behind-rocksets-fast-queries/) and index by column, value and row I need to store data three times which is storage costly but efficient in terms of retrieval. I need some process to keep the data synchronized.
 
