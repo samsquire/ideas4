@@ -229,7 +229,7 @@ Essentially combine CRDT technology with diff technology so merges are always se
 
 Assume there are two edits to the database and they both have previous versions A and B, find the common ancestor version of A and B which is S. Then diff3 can be used in a three way merge repeatedly between all versions from S to to and B.
 
-You can see my implementation of diff3 and three way merge in my [text-diff repository](https://github.com/samsquire/text-diff).
+You can see my implementation of diff3 and three way merge in my [text-diff repository](https://github.com/samsquire/text-diff). I implemented MerkleClocks in [merkle-crdt repository](https://github.com/samsquire/merkle-crdt). I would like to implement seamless merge in my applications.
 
 ```
 def diff3(a, b):
