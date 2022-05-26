@@ -221,11 +221,33 @@ If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexin
 
 I propose a simple system that tracks all instances of data and keeps them integrated. This would be used between systems and keep then in sync.
 
-# Merge database
+# 19. Merge database
 
 A distributed database that uses CRDTs to replicate and resolves concurrent edits with Myers algorithm for String Edit Sequence edit scripts.
 
 Essentially combine CRDT technology with diff technology so merges are always seamless.
+
+Assume there are two edits to the database and they both have previous versions A and B, find the common ancestor version of A and B which is S. Then diff3 can be used in a three way merge repeatedly between all versions from S to to and B.
+
+```
+left_sequence = versions between S and A
+right_sequence = versions between S and B
+last_left = S
+last_right = S
+for left, right in zip_longest(left_sequence, right_sequence):
+  if left:
+    a_changes = diff(last_left, right)
+    last_left = apply_changes(a_changes, last_left)
+  if right:
+    b_changes = diff(last_right, left)
+    last_right = apply_changes(b_changes, last_right)
+
+changes = diff(last_left, last_right)
+merged = apply_changes(changes, last_left)
+
+```
+
+
 
 # Generating ideas
 
