@@ -229,21 +229,32 @@ Essentially combine CRDT technology with diff technology so merges are always se
 
 Assume there are two edits to the database and they both have previous versions A and B, find the common ancestor version of A and B which is S. Then diff3 can be used in a three way merge repeatedly between all versions from S to to and B.
 
-```
-left_sequence = versions between S and A
-right_sequence = versions between S and B
-last_left = S
-last_right = S
-for left, right in zip_longest(left_sequence, right_sequence):
-  if left:
-    a_changes = diff(last_left, right)
-    last_left = apply_changes(a_changes, last_left)
-  if right:
-    b_changes = diff(last_right, left)
-    last_right = apply_changes(b_changes, last_right)
+You can see my implementation of diff3 and three way merge in my [text-diff repository](https://github.com/samsquire/text-diff).
 
-changes = diff(last_left, last_right)
-merged = apply_changes(changes, last_left)
+```
+def diff3(a, b):
+  a_history = get_history(a)
+  print(a_history)
+  b_history = get_history(b)
+  print(b_history)
+  S = common_ancestor(a_history, b_history)
+  print("common ancestor", S)
+  left_sequence = versions_from(S, a_history)
+  right_sequence = versions_from(S, b_history)
+  last_left = S
+  last_right = S
+  for left, right in zip_longest(left_sequence, right_sequence):
+    if left:
+      
+      last_left = merge_diffs(last_left, left.text, right.text)
+    if right:
+      
+      last_right = merge_diffs(last_right, left.text, right.text)
+      
+  merged = merge_diffs(last_left, last_left.text, last_right.text)
+
+  
+  return merged
 
 ```
 
