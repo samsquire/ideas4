@@ -221,6 +221,12 @@ If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexin
 
 I propose a simple system that tracks all instances of data and keeps them integrated. This would be used between systems and keep then in sync.
 
+# Merge database
+
+A distributed database that uses CRDTs to replicate and resolves concurrent edits with Myers algorithm for String Edit Sequence edit scripts.
+
+Essentially combine CRDT technology with diff technology so merges are always seamless.
+
 # Generating ideas
 
  * marketplace
