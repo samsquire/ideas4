@@ -258,7 +258,23 @@ def diff3(a, b):
 
 ```
 
+# 20. Lazzy arrange
 
+Many computer problems and algorithms can be solved with a sorting function and a set of statements that should be maintained over collections of objects.
+
+Unfortunately to maintain invariants requires custom code when data is changed or modified. Such as recalculating the hash of an object.
+
+If I want to arrange objects to maintain some complicated relationship or sorted relation or grouped by relation I need to write lots of custom code or use reactive features.
+
+This idea I thought of while writing the conflict detection of my diff algorithm. I thought maybe we could use the Rete algorithm to handle many invariants of many different objects at the same time efficiently.
+
+We often need to compare objects to sort them or group them.
+
+It's often useful to keep sorted views and grouped views of data in memory for efficient algorithms.
+
+If you could maintain lazily arranged data in memory this would be really powerful.
+
+Essentially I want materialised views over objects in memory.
 
 # Generating ideas
 
