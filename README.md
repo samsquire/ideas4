@@ -213,7 +213,7 @@ If compilers and optimisers were written in Python you would have more people be
 
 As it stands to add code to these projects you need to be seriously skilled in low level programming 
 
-# 18. Data synchronization
+# 18. Data structure synchronization
 
 Data structures often leads to denormalisation for performance. We need to keep data synchronized for performance and parallelism.
 
