@@ -258,7 +258,7 @@ def diff3(a, b):
 
 ```
 
-# 20. Lazzy arrange
+# 20. Lazy arrange
 
 Many computer problems and algorithms can be solved with a sorting function and a set of statements that should be maintained over collections of objects.
 
