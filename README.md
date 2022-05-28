@@ -276,6 +276,18 @@ If you could maintain lazily arranged data in memory this would be really powerf
 
 Essentially I want materialised views over objects in memory.
 
+This comes under the idea of truth maintenance.
+
+Once you define the arrangements you could calculate what is the most efficient source of truth based on the view generation steps.
+
+The invariants that need to be maintained over the data have an ordering. You might find one view is cheaper to prepare from the other than the other way around.
+
+It comes under the same theory as query optimisation and cost based planning and Object Relational Mapping.
+
+This could be combined with [Data Views](https://github.com/samsquire/ideas#90-views-of-data).
+
+This could be combined with [Query for data structure](
+
 # Generating ideas
 
  * marketplace
