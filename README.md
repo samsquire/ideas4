@@ -44,6 +44,8 @@ We also have indexing Data structures such as hashmaps and btrees. What if we co
 
 We want a btree indexing these columns and these relations.
 
+GraphQL is nearest to this idea. I want a linked list of this data or an object graph that looks like this.
+
 # 10. Access pattern serialization
 
 A format or data structure that represents an access pattern for data.
@@ -110,8 +112,6 @@ Here are some ideas that desktop computers could do.
  * **Cloud designer** Advertise cloud features to me and let me use cloud features in my home network such as S3.
 
  * **Advertising features to me** My desktop computer has installed various services and APIs. My desktop should advertise what features are available to me
-
- * ****
 
 # 12. Work merging
 
@@ -258,7 +258,7 @@ def diff3(a, b):
 
 ```
 
-# 20. Lazy arrange
+# 20. Lazy arrange or invariant maintenance
 
 Many computer problems and algorithms can be solved with a sorting function and a set of statements that should be maintained over collections of objects.
 
