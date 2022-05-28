@@ -451,15 +451,17 @@ The chain of code I am using to deploy cloud resources should have the capabilit
 
 Essentially I can use cloud resources as a fork/join.
 
-# 33. A chunker
+# 33. A generalised paging/chunking solution
 
-Many performance problems go away when you chunk something and manage it at a chunk level.
+Many performance problems go away when you chunk something and manage it at a chunk level. Such as pagination or Chrome Blink browser page painting tiles.
 
 But then you have two problems. You have a cache of chunks and schedule the chunks coming in.
 
 I was reading the PolarDb paper and it talks of the database pages used by the disaggregated database.
 
 I recognise that many problems are simpler when broken into pages of data. For example, memory management.
+
+We need to solve all these problems with an approach that works the same for every case. Advanced pager
 
 # Generating ideas
 
