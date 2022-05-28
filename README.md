@@ -320,8 +320,52 @@ We can enrich the data structure of a record travelling through the pipeline to 
  (-> person
  :stone-to-kilograms stone-to-kilograms (:kilograms-weight (* (:weight person) 6.3503)) (person :person requirements :calorific-requirements))
  :calorific-requirements (:requirements fat-sugar-protein (:kilograms-weight item) (item :item))
-(
+)
 ```
+
+# 24. List of lists as graph
+
+We often have a list of list of items with columns and references between lists.
+
+This list of lists with columns can be represented as a graph.
+
+This is what ORM software does for us. It maintains object graphs 
+
+# 25. Imperative graph traversal to query
+
+I like to change between a graph traversal with imperative code to a query and vice versa 
+
+It's quite complicated. But I think it can be done.
+
+If you turn a graph traversal into a set of reasons, you could generate a query.
+
+# 26. Sort method calls of pipeline
+
+Sometimes to change the behaviour of code we want to sort the data. Rather than be explicit of sorting, we can sort the method calls of a pipeline.
+
+
+
+```
+(defn sort-function [data-item function-a function-b
+ (if (in :pounds data-item
+  (if (= function-a :pounds-to-kilograms -1 1)
+  (if (= function-b :pounds-to-kilograms -1 1))
+ (if (in :lbs data-item)
+  (if (= function-a :lbs-to-kilogams -1 1)
+  (if (= function-b :lbs-to-kilogams -1 1)
+)
+(defn people-calorific-requirements []
+ (sort (sort-function (future-thread people-and-weights
+ (-> person
+ :stone-to-kilograms stone-to-kilograms (:kilograms-weight (* (:weight person) 6.3503)) (person :person requirements :calorific-requirements))
+ :stone-to-pounds stone-to-pounds (:stone-weight (* (:weight person) 14)) (person :person requirements :calorific-requirements))
+ :calorific-requirements (:requirements fat-sugar-protein (:kilograms-weight item) (item :item)))
+)
+```
+
+# Reverse pipeline and lineage finder
+
+This would be useful for machine learning. Imagine you have a complicated pipeline. What if you could feed in data at any stage and reverse the pipeline to find objects that match your inputs?
 
 # Generating ideas
 
