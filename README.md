@@ -370,9 +370,17 @@ Sometimes to change the behaviour of code we want to sort the data. Rather than 
 )
 ```
 
-# Reverse pipeline and lineage finder
+# 27. Reverse pipeline and lineage finder
 
 This would be useful for machine learning. Imagine you have a complicated pipeline. What if you could feed in data at any stage and reverse the pipeline to find objects that match your inputs?
+
+# 28. Static garbage collection
+
+But not how rust does it. What if you analysed the call stacks of a program and decide in between calls where to garbage collect. A bit like RAII.
+
+We want to restrain garbage collection until after the critical path. We can track what we need to free if we look at the relationships between passed around data.
+
+So a lifetime is defined as an overlapping callstacks of code and not necessarily at the end of a method.
 
 # Generating ideas
 
