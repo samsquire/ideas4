@@ -288,6 +288,24 @@ This could be combined with [Data Views](https://github.com/samsquire/ideas#90-v
 
 This could be combined with [Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure)
 
+# 21. Sort groups
+
+It is often useful to have a single relation that is sorted with a complicated ordering function that maintains the order according to various properties 
+
+It is common to sort on multiple columns of a record.
+
+What is also very useful is the ability to group records together based on these sort groups and iterate on groups separately while still being aware of the overall collection.
+
+A sort group is a relation arranged into a tree where each group is a column and is separately queryable. Traversal of the entire tree gives you the overall sorted list but there is efficient retrieval of individual columns members. I can loop over items of a status and user identifier know the index within the group or the overall collection. I can have a doubly linked list between records between items for fast retrieval.
+
+# 22. Flat map refer
+
+When we flat map it's often useful to refer to the group that the data came from. So I would abstract flat map to incorporate contextual information.
+
+When I write a clojure threading it's often useful to refer to the history lineage of the object that came before in the pipeline.
+
+[My algrebralang programming language design](HTTPS://GitHub.com/samsquire/algebralang) has features to do refer to methods in previous stages of the pipeline.
+
 # Generating ideas
 
  * marketplace
