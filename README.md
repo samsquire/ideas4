@@ -333,6 +333,7 @@ We can enrich the data structure of a record travelling through the pipeline to 
  * mesh
  * hooks
  * Pattern matching
+ * Merge
 
 # Incomplete thoughts and ideas 
 
