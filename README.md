@@ -409,8 +409,6 @@ This is the basis of [my programming language design algebralang](HTTPS://GitHub
 
 To implement this we need an efficient representation of loops and loop merging.
 
-# Algebraic optimisation
-
 The following is an implementation of travelling salesman problem in algebralang.
 
 ```
@@ -442,6 +440,10 @@ replace(pair, neighbours)
 ```
 
 I am yet to decide on the syntax for expanding a method n times but I used the * syntax go indicate this.
+
+# 31. Algebraic optimisation
+
+
 
 # Generating ideas
 
