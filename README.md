@@ -286,7 +286,7 @@ It comes under the same theory as query optimisation and cost based planning and
 
 This could be combined with [Data Views](https://github.com/samsquire/ideas#90-views-of-data).
 
-This could be combined with [Query for data structure](
+This could be combined with [Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure)
 
 # Generating ideas
 
