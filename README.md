@@ -306,6 +306,23 @@ When I write a clojure threading it's often useful to refer to the history linea
 
 [My algrebralang programming language design](HTTPS://GitHub.com/samsquire/algebralang) has features to do refer to methods in previous stages of the pipeline.
 
+# 23. Time travelling pipelines
+
+Imagine a recursive pipeline.
+
+You have an object that is going through a stream and you want each stage of the pipeline to be visible to future steps.
+
+We can enrich the data structure of a record travelling through the pipeline to refer to futures or promises to the preceding records have references to the outputs of early pipeline steps.
+
+```
+(defn people-calorific-requirements []
+(future-thread people-and-weights
+ (-> person
+ :stone-to-kilograms stone-to-kilograms (:kilograms-weight (* (:weight person) 6.3503)) (person :person requirements :calorific-requirements))
+ :calorific-requirements (:requirements fat-sugar-protein (:kilograms-weight item) (item :item))
+(
+```
+
 # Generating ideas
 
  * marketplace
