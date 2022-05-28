@@ -310,7 +310,7 @@ When I write a clojure threading it's often useful to refer to the history linea
 
 Imagine a recursive pipeline.
 
-You have an object that is going through a stream and you want each stage of the pipeline to be visible to future steps.
+You have an object that is going through a stream and you want each stage of the pipeline to be associated or collected with future values of that data's children.
 
 We can enrich the data structure of a record travelling through the pipeline to refer to futures or promises to the preceding records have references to the outputs of early pipeline steps.
 
