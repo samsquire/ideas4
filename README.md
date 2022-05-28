@@ -409,7 +409,37 @@ This is the basis of [my programming language design algebralang](HTTPS://GitHub
 
 To implement this we need an efficient representation of loops and loop merging.
 
+# Algebraic optimisation
 
+The following is an implementation of travelling salesman problem in algebralang.
+
+```
+tsp cities = {
+(array(name=pairs)=cities
+.permutations(name=pair, 2))
+.permutations(name=solution, previous=s[i][1], size=len(cities), value+=(solution[-1][1], solution[0][0]))
+thread(solution, rule(index, item)=(if item[i][0]==item[i-1][1] then item[i][0] else reject, item[i][1]))
+euclidean_distance(name=distance, pair[0], pair[1])
+euclidean_distance(name=solution_distance, solution)
+sort(name=per_order, distance, order=ascending)
+sort(name=solution_order, solution_distance, order=ascending)
+pairs = first(per_order, solution_order)
+= pairs
+}
+```
+
+A naive implementation of algebralang would do this algorithm slowly, there is a number of optimisations that can cause this algorithm to be faster. The computer should allow us to create additional relationships of the algebraic variables that allow the computer to optimise when to do which work.
+
+For example, we might want to include nearest neighbours. Rather than brute force.
+
+We can add the following.
+
+```
+pair_recursively(name=city_to_every_other, pair.source, pair.source)
+pair_recursively(name=distance_to_every_other_city, euclidean_distance($item[0], $item[1])) # returns [city, []]
+sort(name=neighbours, distance_to_every_other_city, input=$item[1] output=$item[0])
+replace(pair, neighbours)
+```
 
 # Generating ideas
 
