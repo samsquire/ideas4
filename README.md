@@ -38,7 +38,7 @@ Sometimes to solve particular problems you need data in a particular shape.
 
 What if you had a query language where you could retrieve a data structure?
 
-In compiled languages we have pointers and in interpreted languages such as Python and Java we have references between objects which are like pointers.
+In compiled languages we have pointers and in interpreted languages such as Python and Java we have references between objects which are similar to pointers.
 
 We also have indexing Data structures such as hashmaps and btrees. What if we could built up data structures by a query?
 
