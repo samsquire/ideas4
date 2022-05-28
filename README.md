@@ -382,6 +382,12 @@ We want to restrain garbage collection until after the critical path. We can tra
 
 So a lifetime is defined as an overlapping callstacks of code and not necessarily at the end of a method.
 
+# 29. Align data
+
+When I wrote my conflict handling of my diff algorithm it might hast been easier if I could align the data accordingly to groups.
+
+We can take two lists and align them into sections where they differ and where they are the same.
+
 # Generating ideas
 
  * marketplace
