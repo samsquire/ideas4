@@ -443,7 +443,7 @@ I am yet to decide on the syntax for expanding a method n times but I used the *
 
 # 31. Algebraic materialised view edits and optimisation
 
-This is an extension to the [9. Query for data structure] and [20. Lazy arrange or invariant maintenance]
+This is an extension to the [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure) and [20. Lazy arrange or invariant maintenance]
 
 # 32. Schedule within
 
