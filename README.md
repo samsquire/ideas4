@@ -441,6 +441,8 @@ sort(name=neighbours, distance_to_every_other_city, input=$item[1] output=$item[
 replace(pair, neighbours)
 ```
 
+I am yet to decide on the syntax for expanding a method n times but I used the * syntax go indicate this.
+
 # Generating ideas
 
  * marketplace
