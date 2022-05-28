@@ -441,7 +441,9 @@ replace(pair, neighbours)
 
 I am yet to decide on the syntax for expanding a method n times but I used the * syntax go indicate this.
 
-# 31. Algebraic optimisation
+# 31. Algebraic materialised view edits and optimisation
+
+This is an extension to the [9. Query for data structure] and [20. Lazy arrange or invariant maintenance]
 
 # 32. Schedule within
 
