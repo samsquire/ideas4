@@ -388,6 +388,29 @@ When I wrote my conflict handling of my diff algorithm it might hast been easier
 
 We can take two lists and align them into sections where they differ and where they are the same.
 
+# 30. Extending code without changing it efficiently
+
+Usually to extend code we need to change it. Or add parameters everywhere.
+
+I think there's a better thing we can do with compilers.
+
+
+A piece of code represents data flow from data items to output, it also represents changes in states.
+
+To extend a piece of code without changing it we need to interleave our extension code around the code being extended. We might need to mutate inputs or introduce divergence of types.
+
+What does divergence of types mean? There is an operation called associate which associates a set of lines of code with a variable or type at a place in the callstack history. Wherever the original variable appears we can also refer to the diverged type.
+
+We can also assign changes to the type when the original type changes.
+
+The callstack and code structure represents the inputs of what is being integrated against, we can use any local variable or parameter to write code that uses them. We can topologically sort these relationships to work out where the code needs to be inserted.
+
+This is the basis of [my programming language design algebralang](HTTPS://GitHub.com/samsquire/algebralang)
+
+To implement this we need an efficient representation of loops and loop merging.
+
+
+
 # Generating ideas
 
  * marketplace
