@@ -341,7 +341,7 @@ If you turn a graph traversal into a set of reasons, you could generate a query.
 
 # 26. Sort method calls of pipeline
 
-Sometimes to change the behaviour of code we want to sort the data. Rather than be explicit of sorting, we can sort the method calls of a pipeline.
+Sometimes to change the behaviour of code we want to sort the data. Rather than be explicit of sorting of the data, we can treat the pipeline as data and sort the method calls of a pipeline.
 
 
 
