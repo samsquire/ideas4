@@ -435,8 +435,8 @@ For example, we might want to include nearest neighbours. Rather than brute forc
 We can add the following.
 
 ```
-pair_recursively(name=city_to_every_other, pair.source, pair.source)
-pair_recursively(name=distance_to_every_other_city, euclidean_distance($item[0], $item[1])) # returns [city, []]
+pair_recursively(name=city_to_every_other, pair.source, pair.source) # returns [city, [every other city]]
+pair_recursively(name=distance_to_every_other_city, euclidean_distance($item[0], *$item[1]), output=$item[0], $item.value) # returns [city, [city, distance]]
 sort(name=neighbours, distance_to_every_other_city, input=$item[1] output=$item[0])
 replace(pair, neighbours)
 ```
