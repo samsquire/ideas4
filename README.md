@@ -403,7 +403,7 @@ What does divergence of types mean? There is an operation called associate which
 
 We can also assign changes to the type when the original type changes.
 
-The callstack and code structure represents the inputs of what is being integrated against, we can use any local variable or parameter to write code that uses them. We can topologically sort these relationships to work out where the code needs to be inserted.
+The callstack (all the methods being called and their parameters) and code structure represents the inputs or context of what is being extended against, we can use any local variable or parameter to write code that uses them. We can interleave code anywhere in the callstack. We can topologically sort these relationships to work out where the code needs to be inserted and automatically add parameters between methods.
 
 This is the basis of [my programming language design algebralang](HTTPS://GitHub.com/samsquire/algebralang)
 
