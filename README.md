@@ -302,13 +302,13 @@ A sort group is a relation arranged into a tree where each group is a column and
 
 When we flat map it's often useful to refer to the group that the data came from. So I would abstract flat map to incorporate contextual information.
 
-When I write a clojure threading it's often useful to refer to the history lineage of the object that came before in the pipeline.
-
 [My algrebralang programming language design](HTTPS://GitHub.com/samsquire/algebralang) has features to do refer to methods in previous stages of the pipeline.
 
 # 23. Time travelling pipelines
 
-Imagine a recursive pipeline.
+Imagine a recursive pipeline. You can visualize it as an ordered tree.
+
+When I write a clojure threading it's often useful to refer to the history lineage of the object that came before in the pipeline.
 
 You have an object that is going through a stream and you want each stage of the pipeline to be associated or collected with future values of that data's children.
 
