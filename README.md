@@ -443,6 +443,11 @@ I am yet to decide on the syntax for expanding a method n times but I used the *
 
 # 31. Algebraic optimisation
 
+# 32. Schedule within
+
+The chain of code I am using to deploy cloud resources should have the capability to send code to execute as if is running in the same thread.
+
+Essentially I can use cloud resources as a fork/join.
 
 
 # Generating ideas
