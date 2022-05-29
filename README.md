@@ -4,6 +4,8 @@ Welcome to the forth page of my Ideas for Computing.
 
 This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
+There is probably a masters or PhD idea in here somewhere!
+
  * See [100 Ideas for Computing](HTTPS://GitHub.com/samsquire/ideas), the first issue of this series.
  * See [ideas2, Another 85+ Ideas For Computing](HTTPS://GitHub.com/samsquire/ideas2)
  * See [ideas3, An Extra 100 Ideas for Computing](HTTPS://GitHub.com/samsquire/ideas3)
