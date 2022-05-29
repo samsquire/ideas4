@@ -485,6 +485,12 @@ You want to cross reference and update the coordinates as they impact eachother.
 
 If you merge one document in then all the offsets need to be updated to accommodate the new changes.
 
+# 37. Query over in memory data structure
+
+I want to query a data structure as I might a SQL database or a graph database.
+
+If I know the field I want, I can specify the structures I want and the traversals through the code to get to them.
+
 # Generating ideas
 
  * marketplace
