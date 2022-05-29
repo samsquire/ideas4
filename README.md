@@ -501,6 +501,20 @@ This would sacrifice CPU for memory latency as you fetch N keys from the btree a
 
 I think it's related to a fractal tree.
 
+# 39. Data structure mapping studio
+
+There should be a website or office suite software that offers views of data structures from one to another and the operations that can be done on them. These can be implemented as mappings.
+
+For example, each DevOps tool has some JSON or YAML that means something significant. An Nginx file can be parsed and turned into a graph data structure. Kubernetes means something
+
+All these representations should be built on top of rachother. I should be capable of interacting with  mapping as if it the real thing.
+
+Compilers, browsers and database servers should be publishing their internal data models and showing what the data graph looks like inside themselves at all stages of processing. So like compiler explorer I can see the internal model of the application.
+
+People could then learn how complicated programs work and even compose new behaviour on these data models.
+
+By defining Equivalencies we can create really powerful programs. This is materialised views on steroids.
+
 # Generating ideas
 
  * marketplace
