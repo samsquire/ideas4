@@ -471,9 +471,9 @@ Allow highlighted items to be sorted and mapped the graph visually.
 
 # 35. Nearest operator
 
-A high level functional function for composing queries over complicated nested data structures.
+A high level functional function for composing queries over complicated nested data structures where you ask for the nearest object near this value via object graph traversal or nearest XY coordinates.
 
-# 36. Adjust operator
+# 36. Adjust with respect to operator
 
 Imagine you are merging two documents and have an ordered list of changes and there are character indexes of each change in the source document and a character to insert.
 
@@ -481,10 +481,9 @@ If you insert a run of characters that run of characters could run into another 
 
 If the range overlaps with another range that is a merge that must be resolved by a person.
 
+You want to cross reference and update the coordinates as they impact eachother. 
 
-You want to cross reference the coordinates as they impact eachother. 
-
-Determining the nearest could be nearest as a graph Search or 
+If you merge one document in then all the offsets need to be updated to accommodate the new changes.
 
 # Generating ideas
 
