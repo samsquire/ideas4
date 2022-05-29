@@ -463,9 +463,11 @@ I recognise that many problems are simpler when broken into pages of data. For e
 
 We need to solve all these problems with an approach that works the same for every case. Advanced pager
 
-# 34. Graph sort
+# 34. Graph to query generation and sort
 
 Render a data structure as a graph and allow selections of different objects and fields and references/pointers.
+
+Work out the rule that caused everything to be selected based on user input such as an if statement like as a debugger condition or relation or mapping, then generate a query that matches that part of the data structure.
 
 Allow highlighted items to be sorted and mapped the graph visually.
 
@@ -491,13 +493,21 @@ I want to query a data structure as I might a SQL database or a graph database.
 
 If I know the field I want, I can specify the structures I want and the traversals through the code to get to them.
 
+# 38. Dense btree
+
+Combine a binary search with a btree and have multiple keys per node.
+
+This would sacrifice CPU for memory latency as you fetch N keys from the btree at a time.
+
+I think it's related to a fractal tree.
+
 # Generating ideas
 
  * marketplace
  * schedule
  * tree
  * additive/combined
- * aut.
+ * auto
  * mesh
  * hooks
  * Pattern matching
