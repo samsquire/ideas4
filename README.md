@@ -469,6 +469,23 @@ Render a data structure as a graph and allow selections of different objects and
 
 Allow highlighted items to be sorted and mapped the graph visually.
 
+# 35. Nearest operator
+
+A high level functional function for composing queries over complicated nested data structures.
+
+# 36. Adjust operator
+
+Imagine you are merging two documents and have an ordered list of changes and there are character indexes of each change in the source document and a character to insert.
+
+If you insert a run of characters that run of characters could run into another run of characters by the other document. So you need to group the inserts into ranges.
+
+If the range overlaps with another range that is a merge that must be resolved by a person.
+
+
+You want to cross reference the coordinates as they impact eachother. 
+
+Determining the nearest could be nearest as a graph Search or 
+
 # Generating ideas
 
  * marketplace
