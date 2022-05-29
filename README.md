@@ -515,6 +515,12 @@ People could then learn how complicated programs work and even compose new behav
 
 By defining Equivalencies we can create really powerful programs. This is materialised views on steroids.
 
+# 40. One for many
+
+If you know how to do something for one item, do you know by inferences know how to do it for all items at once?
+
+Could indexes be generated from a method to calculate something?
+
 # Generating ideas
 
  * marketplace
