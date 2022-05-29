@@ -463,6 +463,12 @@ I recognise that many problems are simpler when broken into pages of data. For e
 
 We need to solve all these problems with an approach that works the same for every case. Advanced pager
 
+# 34. Graph sort
+
+Render a data structure as a graph and allow selections of different objects and fields and references/pointers.
+
+Allow highlighted items to be sorted and mapped the graph visually.
+
 # Generating ideas
 
  * marketplace
