@@ -525,6 +525,10 @@ If you know how to do something for one item, do you know by inferences know how
 
 Could indexes be generated from a method to calculate something?
 
+You write a nested loop to find or collect together data from multiple sources, if you index each loop separately you can handle any number of items as a materialized view.
+
+# 41. 
+
 # Generating ideas
 
  * marketplace
