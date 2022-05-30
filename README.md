@@ -55,7 +55,7 @@ We want a btree indexing these columns and these relations.
 
 GraphQL is nearest to this idea. I want a linked list of this data or an object graph that looks like this.
 
-Can define an algebra that works with nested collections and has a price called associate which associates data of a source collection with another structure.
+Can define an algebra that works with nested collections and has a primitivd called associate which associates data of a source collection with another structure.
 
 # 10. Access pattern serialization
 
