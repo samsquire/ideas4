@@ -574,7 +574,15 @@ This can be combined with mega tree. We need a global Log object that everyone u
 
 When there is a change, the root object is changed. The problem is parallel updates to the root object, anyone who changes before the root is changed would be overwritten.
 
-We need to avoid last write wins as Left Right is not enough to protect the root. So we need multiversio conconvurrency control.
+We need to avoid last write wins as Left Right is not enough to protect the root. So we need multiversion conconcurrency control.
+
+Alternatively we can treat the MegaTree as being threadsafe and not regenerate the tree each time there is a change, so we have internode parallelism. The MegaTree would have a commit method.
+
+For append only illusion we can generate events walked up to the root and when we serialize we serialize new nodes but while in memory it can mutate.
+
+To extend merkle support we can change the hash atomically when children change.
+
+Can use postgres mintransaction maxttransaction to decide on key visibility.
 
 # 47. Loop selection and autoparallelization
 
