@@ -570,7 +570,11 @@ We can combine the use of persistent data structures with this idea to implement
 
 When I change a field, I should regenerate up to root a new record and append to the log for the data structure.
 
-This can be combined with mega tree.
+This can be combined with mega tree. We need a global Log object that everyone uses to access the root of the data structure.
+
+When there is a change, the root object is changed. The problem is parallel updates to the root object, anyone who changes before the root is changed would be overwritten.
+
+We need to avoid last write wins as Left Right is not enough to protect the root. So we need multiversio conconvurrency control.
 
 # 47. Loop selection and autoparallelization
 
