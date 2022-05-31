@@ -566,7 +566,7 @@ We want snapshot isolation in addition to the benefits of duplicate everything.
 
 I should only see what was last committed and changed but I don't want to lower parallelism or introduce locks that lower scalability. I also don't want to clone objects and reduce scalability.
 
-We can combine the use of persistent data structures with this idea to implement snapshot isolation.
+One approach is we can combine the use of persistent data structures with this idea to implement snapshot isolation.
 
 When I change a field, I should regenerate up to root a new record and append to the log for the data structure.
 
@@ -582,7 +582,7 @@ For append only illusion we can generate events walked up to the root and when w
 
 To extend merkle support we can change the hash atomically when children change.
 
-Can use postgres mintransaction maxttransaction to decide on key visibility.
+Can use postgres mintransaction maxttransaction to decide on key visibility and check active transactions to see if they are finished.
 
 # 47. Loop selection and autoparallelization
 
