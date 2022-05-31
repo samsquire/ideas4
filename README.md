@@ -560,7 +560,7 @@ When there's contention for the wrong data structure (ie it would be more effici
 # 45. Code pattern matching
 
 
-# 46. Snapshot isolation and dupicate everything
+# 46. Snapshot isolation and duplicate everything
 
 We want snapshot isolation in addition to the benefits of duplicate everything.
 
