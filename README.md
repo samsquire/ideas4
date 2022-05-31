@@ -535,9 +535,45 @@ Tokio is good for IO scheduling but not parallel scheduling.
 
 I think we can use the happens before relation to autoparallelize.
 
-We can sort variable use and automatically insert Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
+We can sort variable use and automatically insert Object.notify Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
-# 42.
+# 42. Direct concurrency and static scheduling
+
+# 43. Snapshot isolation with duplicate everything
+
+
+
+# 43. When language
+
+Use join calculus to be the interface of rete
+
+# 43. Generalized transactions
+
+We often want the semantics of all or none at all.
+
+# 44. Duplicate everything - store everything twice
+
+Store data in both arrays of structures and structures of arrays. Use the left right concurrency control pattern with each side so you get benefits of each.
+
+When there's contention for the wrong data structure (ie it would be more efficient to use arrays of structures), use the code for the other structures or arrays or arrays of structures.
+
+# 45. Code pattern matching
+
+
+# 46. Snapshot isolation and dupicate everything
+
+We want snapshot isolation in addition to the benefits of duplicate everything.
+
+I should only see what was last committed and changed but I don't want to lower parallelism or introduce locks that lower scalability. I also don't want to clone objects and reduce scalability.
+
+We can combine the use of persistent data structures with this idea to implement snapshot isolation.
+
+When I change a field, I should regenerate up to root a new record and append to the log for the data structure.
+
+This can be combined with mega tree.
+
+# 47. Loop selection and autoparallelization
+
 
 # Generating ideas
 
