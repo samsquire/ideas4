@@ -527,7 +527,17 @@ Could indexes be generated from a method to calculate something?
 
 You write a nested loop to find or collect together data from multiple sources, if you index each loop separately you can handle any number of items as a materialized view.
 
-# 41. 
+# 41. Happens before concurrency
+
+IO event loops are fairly complicated to use properly.
+
+Tokio is good for IO scheduling but not parallel scheduling.
+
+I think we can use the happens before relation to schedule code statically.
+
+We can sort variable use and automatically insert wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
+
+# 42. Static scheduling
 
 # Generating ideas
 
