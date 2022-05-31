@@ -533,11 +533,11 @@ IO event loops are fairly complicated to use properly.
 
 Tokio is good for IO scheduling but not parallel scheduling.
 
-I think we can use the happens before relation to schedule code statically.
+I think we can use the happens before relation to autoparallelize.
 
-We can sort variable use and automatically insert wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
+We can sort variable use and automatically insert Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
-# 42. Static scheduling
+# 42.
 
 # Generating ideas
 
