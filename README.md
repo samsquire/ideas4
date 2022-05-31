@@ -586,6 +586,13 @@ Can use postgres mintransaction maxttransaction to decide on key visibility and 
 
 # 47. Loop selection and autoparallelization
 
+When I create a thread for parallel work and I spend most of my time in my program in loops I need to partition the loops.
+
+How do we partition the loops efficiently?
+
+When we create the threads we specify named collections and partition them by thread index.
+
+For Java lists we can use sublists. For linked lists we can cut them in half 
 
 # Generating ideas
 
