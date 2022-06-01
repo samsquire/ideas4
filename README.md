@@ -675,9 +675,11 @@ We can adjust the chunk size dynamically at run time to see how long it takes fo
 
 We can exponentially grow the chunk size if it doesn't take long to run a chunk.
 
-# 49. Indepenfent data layout from structure
+# 49. Independent data layout from structure
 
 The layout of memory can be independent of the data structure.
+
+# 50. Partial order maintenance
 
 # Generating ideas
 
