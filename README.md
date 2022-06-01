@@ -631,6 +631,10 @@ while (chunkEnd < items.length) {
 }
 ```
 
+We can adjust the chunk size dynamically at run time to see how long it takes for a chunk to run.
+
+We can exponentially grow the chunk size if it doesn't take long to run a chunk.
+
 # Generating ideas
 
  * marketplace
