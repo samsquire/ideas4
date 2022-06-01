@@ -531,13 +531,53 @@ You write a nested loop to find or collect together data from multiple sources, 
 
 IO event loops are fairly complicated to use properly.
 
-Tokio is good for IO scheduling but not parallel scheduling.
+Tokio is good for IO scheduling but not parallel CPU scheduling.
 
 I think we can use the happens before relation to autoparallelize.
 
 We can sort variable use and automatically insert Object.notify Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
+```
+class Work extends Thread {
+ private List<WorkItems> workItems1;
+ private List<WorkItems> workItems2;
+
+ public Work(int size, List<WorkItem> workItems1, List<WorkItem> workItems2) {
+  this.stage1 = size;
+  this.stage2 = size;
+  this.workItems1 = workItems1;
+  this.workItems2 = workItems2;
+ }
+ 
+ public void run() {
+  
+  for (WorkItem workItem : workItems1) {
+    workItem.work1()
+  }
+  // Wait for other threads to synchronize
+  while (stage1 > 0) {
+    synchronized (workItems1) {
+      workItems1.notifyAll();
+      workItems1.wait();
+      workItems1.notifyAll();
+      stage1--;
+    }
+  }
+  
+  for (WorkItem workItem : workItems2) {
+    workItem.work()
+  }
+  workItems.notifyAll();
+  workItems.wait();
+  workItems.notifyAll()
+  
+
+}
+```
+
 # 42. Direct concurrency and static scheduling
+
+
 
 # 43. Snapshot isolation with duplicate everything
 
