@@ -577,7 +577,9 @@ class Work extends Thread {
 
 # 42. Direct concurrency and static scheduling
 
+It's easier to schedule code in advance of its execution.
 
+The traditional software development approach to control flow is callbacks, async/await.
 
 # 43. Snapshot isolation with duplicate everything
 
