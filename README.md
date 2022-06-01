@@ -594,6 +594,43 @@ When we create the threads we specify named collections and partition them by th
 
 For Java lists we can use sublists. For linked lists we can cut them in half 
 
+# 48. Loop rewriter - Avoid resource starvation by chunking loops
+
+Most of the processing goes on in loops. But loops occupy the CPU and don't give any other process CPU time.
+
+It's slow to call Thread.yield in every loop iteration. And it's slow to put an if statement in your loop.
+
+What we need is a loop rewriter
+
+We can rewrite the following
+
+```
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i < items.length; i++) {
+  sb.append(String.valueOf(i));
+  sb.append(items[i])
+}
+```
+
+To:
+
+```
+int chunkSize = items.length / 10000;
+int chunkStart = 0;
+int chunkEnd = chunkSize;
+
+while (chunkEnd < items.length) {
+  
+  for (int i = chunkStart; i < chunkEnd; i++) {
+    sb.append(String.valueOf(i));
+    sb.append(items[i]);
+  }
+  Thread.yield();
+  chunkEnd = min(chunkEnd + chunkSize, items.length);
+  chunkStart += chunkSize;
+}
+```
+
 # Generating ideas
 
  * marketplace
