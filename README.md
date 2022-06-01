@@ -527,7 +527,7 @@ Could indexes be generated from a method to calculate something?
 
 You write a nested loop to find or collect together data from multiple sources, if you index each loop separately you can handle any number of items as a materialized view.
 
-# 41. Happens before concurrency
+# 41. Happens before concurrency and Partial order maintenance
 
 IO event loops are fairly complicated to use properly.
 
@@ -579,7 +579,19 @@ class Work extends Thread {
 
 It's easier to schedule code in advance of its execution.
 
-The traditional software development approach to control flow is callbacks, async/await.
+The traditional software development approach to control flow of asynchronous systems is callbacks, async/await, events, SEDA or event loops.
+
+The problem with event loops is that work blocks the main thread and you don't have parallelism.
+
+Direct concurrency means scheduling in advance and driving ordering explicitly.
+
+Chaining together callbacks causes complexity.
+
+Rely on sorting to decide the control flow.
+
+```
+
+```
 
 # 43. Snapshot isolation with duplicate everything
 
@@ -681,7 +693,7 @@ We can exponentially grow the chunk size if it doesn't take long to run a chunk.
 
 The layout of memory can be independent of the data structure.
 
-# 50. Partial order maintenance
+# 50. 
 
 # Generating ideas
 
