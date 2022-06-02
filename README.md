@@ -814,8 +814,8 @@ Unmarshall
     If not InsertReserve.success
      If Error
       TakeMoney
-       If not TakeMoneyRequest.succes
-      Join(TakeMoney)
+       If not TakeMoneyRequest.success
+      Join(If not TakeMoneyRequest.success)
        If Error
         CreateOrder
          If not CreateOrderRequest.success
