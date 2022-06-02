@@ -796,9 +796,7 @@ This is turned into a state machine tree, like async await. And there are join n
 
 If I have 32 cores I shall have still have disruptors for each line arranged in a tree that looks like this:
 
-So I need 27 × 32 = 864 threads.
-
-If I am using Netty I'll also have threads that serve multiple network connections. But the work of a network transaction gets shifted out of netty and into the LMAX disruptor pipeline.
+So I need 27 × 32 = 864 threads this lets me pipeline every stage of the handler code!
 
 ```
 Unmarshall
@@ -858,7 +856,7 @@ We can coordinate busy waits so that when the system is busy, busy waits are use
 
 Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
 
-I plan to write this without depending on LMAX disruptor itself.
+I plan to write this without depending on LMAX disruptor itself. I started writing the Ringbuffer, which I ported from [Lock-Free Multi-Producer Multi-Consumer Queue on Ring Buffer](https://www.linuxjournal.com/content/lock-free-multi-producer-multi-consumer-queue-ring-buffer) by Alexander Krizhanovsky.
 
 # Generating ideas
 
