@@ -711,7 +711,7 @@ The runtime should schedule things for me and know the relationships between wha
 
 I want my CPU intensive code to be isolated from other CPU intensive code and my IO code to be isolated too.
 
-We can use the LMAX disruptor pattern and thread pools for efficient processing.
+We can use the LMAX disruptor pattern and dynamic thread pools for efficient processing.
 
 We want to handle multiple consumers and multiple producers. And scale by adding more of each.
 
