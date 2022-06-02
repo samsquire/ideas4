@@ -804,7 +804,7 @@ Unmarshall
   If not creditCardDetailsCheck.success
  CheckStockAvailability
   If not stockAvailabilityCheck.success
- Join(AddressCheck, CheckCreditCardDetails, CheckStockAvailability)
+ Join(If not addressCheck.success, If not creditCardDetailsCheck.success, If not stockAvailabilityCheck.success)
   If Error
    insertReserve
     If not InsertReserve.success
@@ -814,7 +814,8 @@ Unmarshall
       Join(TakeMoney)
        If Error
         CreateOrder
-        Join(CreateOrder)
+         If not CreateOrderRequest.success
+        Join(If not CreateOrderRequest.success)
          If Error
           CPUTask1
            If not CPUTask1.success
