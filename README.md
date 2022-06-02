@@ -774,6 +774,9 @@ If not CPUTask1.success:
 If not CPUTask2.success:
  User.addError("could not do CPUTask2")
  Error = True
+If not CreateProfile.success:
+ User.addError("could not create profile")
+ Error = True
 If Error:
  Return ErrorPage(User)
 Parallel {
@@ -789,9 +792,9 @@ Return OrderConfirmationPage(CreateOrderRequest)
 
 This is turned into a state machine, like async await. And there are join nodes inserted which wait for a collection of events.
 
-If I have 32 cores I shall have still have 23 disruptors arranged in a tree that looks like this:
+If I have 32 cores I shall have still have disruptors for each line arranged in a tree that looks like this:
 
-So I need 23 × 32 = 736 threads.
+So I need 27 × 32 = 864 threads.
 
 ```
 Unmarshall
@@ -814,14 +817,17 @@ Unmarshall
         Join(CreateOrder)
          If Error
           CPUTask1
+           If not CPUTask1.success
           CPUTask2
+           If not CPUTask1.success
           CreateProfile
-          Join(CPUTask, CPUTask2, CreateProfile)
+           If not CPUTask1.success
+          Join(If not CPUTask1.success, If not CPUTask2.success, If not CreateProfile.success)
            
          
 ````
 
-This generates over 18 while true threads which handle a disruptor events of that type.
+This generates over 27 while true threads which handle a disruptor events of that type.
 
 When a task finished, it runs the scheduler and decided what queues to place the callback event onto.
 
