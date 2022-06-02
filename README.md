@@ -825,6 +825,14 @@ I plan to write this without depending on LMAX disruptor itself. I [started writ
 
 For event playback, when something goes wrong, the server can be restarted and the requests replayed the same state can be recreated if all events are written to disk. We only need to fsync the first request that comes in, everything fans out from there.
 
+
+# 52. Rust compiler symbol trialler
+
+In Rust with async and lifetimes it's sometimes difficult to know what you need to do to get the code working.
+
+I propose a random generator of symbols and combinations of lifetimes and some heuristics to cause your code to compile.
+
+
 # Generating ideas
 
  * marketplace
