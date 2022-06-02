@@ -707,11 +707,13 @@ Everything is available to me.
 
 The runtime should schedule things for me and know the relationships between what runs when.
 
-# 51. Rewrite synchronous code into thread pools
+# 51. Rewrite synchronous code into LMAX disruptor thread pools
 
 I want my CPU intensive code to be isolated from other CPU intensive code.
 
 We can use the LMAX disruptor pattern and thread pools for efficient processing.
+
+We want to handle multiple consumers and multiple producers.
 
 When an IO event comes in, we generate an event that needs to be processed. This is written to the ring buffer.
 
