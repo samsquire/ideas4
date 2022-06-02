@@ -794,9 +794,9 @@ Return OrderConfirmationPage(CreateOrderRequest)
 
 This is turned into a state machine tree, like async await. And there are join nodes inserted which wait for a collection of events.
 
-If I have 32 cores I shall have still have disruptors for each line arranged in a tree that looks like this:
+If I have 32 cores and there are 27 pipeline steps so I need 27 × 32 = 864 threads this lets me pipeline every stage of the handler code!
 
-So I need 27 × 32 = 864 threads this lets me pipeline every stage of the handler code!
+I shall have still have disruptors for each line arranged in a tree that looks like this. The code above is rewritten into this style, each line goes inside the previous block. When a Parallel section is encountered, a Join is created at the same level and the parallel pipeline steps are linked to the join. Each pipeline step triggers its children.
 
 ```
 Unmarshall
