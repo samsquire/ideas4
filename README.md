@@ -699,7 +699,13 @@ We can exponentially grow the chunk size if it doesn't take long to run a chunk.
 
 The layout of memory can be independent of the data structure.
 
-# 50. 
+# 50. Context anywhere
+
+I should be capable of reaching anything from any position in my code.
+
+Everything is available to me.
+
+The runtime should schedule things for me and know the relationships between what runs when.
 
 # Generating ideas
 
