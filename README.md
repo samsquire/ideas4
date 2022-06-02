@@ -768,6 +768,14 @@ Parallel {
  CPUTask2 = CPUTask2(Unmarshalled)
  CreateProfile = CreateProfile(Unmarshalled)
 }
+If not CPUTask1.success:
+ User.addError("could not do CPUTask1")
+ Error = True
+If not CPUTask2.success:
+ User.addError("could not do CPUTask2")
+ Error = True
+If Error:
+ Return ErrorPage(User)
 Parallel {
  SendSuccessEmail = SendSuccessEmail(Unmarshalled)
 }
@@ -803,11 +811,23 @@ Unmarshall
         CreateOrder
         Join(CreateOrder)
          If Error
-          
+          CPUTask1
+          CPUTask2
+          CreateProfile
+          Join(CPUTask, CPUTask2, CreateProfile)
+           
          
 ````
 
 This generates over 18 while true threads which handle a disruptor events of that type.
+
+When a task finished, it runs the scheduler and decided what queues to place the callback event onto.
+
+If there is a failure, the scheduler reschedules the event and tries again.
+
+Load balancing occurs between threads by moduloing the thread index.
+
+To run multiple processes works too.
 
 How to avoid the overhead of thread context switching?
 
