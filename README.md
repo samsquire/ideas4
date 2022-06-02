@@ -715,9 +715,9 @@ We can use the LMAX disruptor pattern and thread pools for efficient processing.
 
 We want to handle multiple consumers and multiple producers. And scale by adding more of each.
 
-We map the synchronous code to a tree of disruptors each indepdentnly monitoring an event qeueue.
+We map the synchronous code to a tree of disruptors each indepdently monitoring an event qeueue.
 
-When an IO event comes in, we generate an event that needs to be processed. This is written to the ring buffer for events of that type.
+When an IO event or CPU completion event comes in, we generate an event that needs to be processed. This is written to the ring buffer for events down the chain of that destination type.
 
 ```
 OnRequest(request):
@@ -764,6 +764,11 @@ If not CreateOrderRequest.success:
 If Error
  Return ErrorPage(User)
 Parallel {
+ CPUTask1 = CPUTask1(Unmarshalled)
+ CPUTask2 = CPUTask2(Unmarshalled)
+ CreateProfile = CreateProfile(Unmarshalled)
+}
+Parallel {
  SendSuccessEmail = SendSuccessEmail(Unmarshalled)
 }
 If not SendSuccessEmail.success:
@@ -804,7 +809,7 @@ Unmarshall
 
 This generates over 18 while true threads which handle a disruptor events of that type.
 
-
+How to avoid the overhead of thread context switching?
 
 Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
 
