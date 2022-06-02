@@ -591,10 +591,7 @@ Rely on sorting to decide the control flow.
 
 ```
 
-```
-
-# 43. Snapshot isolation with duplicate everything
-
+``
 
 
 # 43. When language
