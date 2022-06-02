@@ -789,7 +789,9 @@ Return OrderConfirmationPage(CreateOrderRequest)
 
 This is turned into a state machine, like async await. And there are join nodes inserted which wait for a collection of events.
 
-If I have 32 cores I shall have still have 18 disruptors arranged in a tree that looks like this:
+If I have 32 cores I shall have still have 23 disruptors arranged in a tree that looks like this:
+
+So I need 23 × 32 = 736 threads.
 
 ```
 Unmarshall
