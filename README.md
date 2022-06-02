@@ -193,6 +193,8 @@ I want a mega tree data structure which has the combination of these properties:
  * Can act as a prefix trie.
  * [Can be append only](http://www.bzero.se/ldapd/btree.html)
 
+I started work on this. I've implemented a radix tree, a Left right HashMap, prefix tree and a merkle tree. I need to combine them together.
+
 # 16. Use A* for data query generation
 
 If I put some data into a data structure - is the computer clever enough to generate solutions that get nearer to accessing it?
@@ -855,6 +857,8 @@ How to avoid the overhead of thread context switching?
 We can coordinate busy waits so that when the system is busy, busy waits are used but when the systems capacity is low, we use Thread.yield()
 
 Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
+
+I plan to write this without depending on LMAX disruptor itself.
 
 # Generating ideas
 
