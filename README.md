@@ -823,9 +823,15 @@ This generates over 18 while true threads which handle a disruptor events of tha
 
 When a task finished, it runs the scheduler and decided what queues to place the callback event onto.
 
+I can scale the CPUTask1 and CPUTask2 independently and dynamically. If the capacity for any thread is 0 then we spin up a new thread to autoscale so CPU usage never affects other CPU cores or IO.
+
 If there is a failure, the scheduler reschedules the event and tries again.
 
-Load balancing occurs between threads by moduloing the thread index.
+Join nodes require synchronization with a database to capture join states but it can be in memory for performance. This can be asynchronous at the risk of a erroneously restarted process. If tasks are idempotent this is perfect.
+
+This can be implemented by the scheduler by injecting a message to a join thread. This thread has a simple stateful observer with atomic booleans for each join task. If the join fires it raises another event in all nodes that are inside it.
+
+Load balancing occurs between threads by the scheduler moduloing the request sequence number with the count of threads available for that task.
 
 To run multiple processes works too.
 
