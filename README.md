@@ -582,13 +582,21 @@ It's easier to schedule code in advance of its execution.
 
 The traditional software development approach to control flow of asynchronous systems is callbacks, async/await, events, SEDA or event loops.
 
-The problem with event loops is that work blocks the main thread and you don't have parallelism.
+The problem with event loops is that work blocks the main thread and you don't have parallelism unless you start multiple event loops.
 
 Direct concurrency means scheduling in advance and driving ordering explicitly.
 
 Chaining together callbacks causes complexity.
 
 Rely on sorting to decide the control flow.
+
+The locus of execution is the tip of execution.
+
+Essentially the kernel scheduler and the program itself decide what to do next.
+
+When you have asynchronous code, you don't know when you shall return, you need to decide what to do when the asynchronous program finishes.
+
+I want async/await to work on a thread pool for true parallelism.
 
 ```
 
