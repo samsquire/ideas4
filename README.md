@@ -713,11 +713,13 @@ The runtime should schedule things for me and know the relationships between wha
 
 I want my CPU intensive code to be isolated from other CPU intensive code and my IO code to be isolated too.
 
+The problem with NodeJS is that the Javascript event loop is single threaded and your callbacks cannot execute in parallel. This idea is a solution to this problem.
+
 We can use the LMAX disruptor pattern and dynamic thread pools for efficient processing.
 
 We want to handle multiple consumers and multiple producers. And scale by adding more of each.
 
-We map the synchronous code to a tree of disruptors each independently monitoring an event qeueue.
+We map the synchronous code to a tree of disruptors each independently monitoring an event queue ring buffer.
 
 When an IO event or CPU completion event comes in, we generate an event that needs to be processed. This is written to the ring buffer for events down the chain of that destination type.
 
@@ -727,7 +729,7 @@ Error = False
 Unmarshalled=Unmarshal(request)
 Parallel {
  addressCheck = CheckAddress(Unmarshalled.address)
- creditDetailsCheck = CheckCreditCardDetails(Unmarshalllef.creditCardDetails)
+ creditDetailsCheck = CheckCreditCardDetails(Unmarshallled.creditCardDetails)
  StockAvailabilityCheck = CheckStockAvailability(Unmarshalled.basket)
 }
 If not addressCheck.success:
@@ -792,11 +794,11 @@ If Error:
 Return OrderConfirmationPage(CreateOrderRequest)
 ```
 
-This is turned into a state machine tree, like async await. And there are join nodes inserted which wait for a collection of events.
+This is turned into a state machine tree, like async await does behind the scenes. And there are join nodes inserted which wait for a collection of events.
 
 If I have 32 cores and there are 27 pipeline steps so I need 27 × 32 = 864 threads this lets me pipeline every stage of the handler code!
 
-I shall have still have disruptors for each line arranged in a tree that looks like this. The code above is rewritten into this style, each line goes inside the previous block. When a Parallel section is encountered, a Join is created at the same level and the parallel pipeline steps are linked to the join. Each pipeline step triggers its children.
+I shall have still have disruptors for each line arranged in a tree that looks like this. The code above is rewritten into this style, each line goes inside the previous block. When a Parallel section is encountered, a Join is created at the same level and the parallel pipeline steps are linked to the join. Each pipeline step triggers its children by posting an event to all of them.
 
 ```
 Unmarshall
@@ -846,7 +848,7 @@ Load balancing occurs between threads by the scheduler moduloing the request seq
 
 For redundancy and failover we could run in multiple servers and only process one event of each disruptor.
 
-We can front the entry point of the disruptor with a message queue or Kafka.
+We can front the entry point of the disruptor pipeline with a message queue. Immediately after Netty or your web server handles and parses the request, it is posted onto the ring buffer which is being serviced by Unmarshall. The connection or response object should also be passed into the pipeline, this lets us respond at the end of processing. We can technically process after a return statement. This would be useful to do background processing after replying to the user.
 
 To run multiple processes works too.
 
@@ -854,9 +856,11 @@ How to avoid the overhead of thread context switching?
 
 We can coordinate busy waits so that when the system is busy, busy waits are used but when the systems capacity is low, we use Thread.yield()
 
-Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
+Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal.io event playback and event tracing.
 
 I plan to write this without depending on LMAX disruptor itself. I [started writing the Ringbuffer](https://github.com/samsquire/multiversion-concurrency-control/blob/main/src/main/java/main/MultipleProducerConsumerRingBufferRunner.java), which I ported from [Lock-Free Multi-Producer Multi-Consumer Queue on Ring Buffer](https://www.linuxjournal.com/content/lock-free-multi-producer-multi-consumer-queue-ring-buffer) by Alexander Krizhanovsky.
+
+For event playback, when something goes wrong, the server can be restarted and the requests replayed the same state can be recreated if all events are written to disk. We only need to fsync the first request that comes in, everything fans out from there.
 
 # Generating ideas
 
