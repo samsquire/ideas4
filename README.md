@@ -834,7 +834,7 @@ This generates over 27 while true threads which handle a disruptor events of tha
 
 When a task finished, it runs the scheduler and decided what queues to place the callback event onto.
 
-I can scale the CPUTask1 and CPUTask2 independently and dynamically. If the capacity for any thread is 0 then we spin up a new thread to autoscale so CPU usage never affects other CPU cores or IO.
+I can scale the CPUTask1 and CPUTask2 independently and dynamically. If the capacity for any pipeline stage is 0 then we spin up a new thread to autoscale so CPU usage never affects other CPU cores or IO.
 
 If there is a failure, the scheduler reschedules the event and tries again.
 
@@ -856,7 +856,7 @@ We can coordinate busy waits so that when the system is busy, busy waits are use
 
 Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
 
-I plan to write this without depending on LMAX disruptor itself. I started writing the Ringbuffer, which I ported from [Lock-Free Multi-Producer Multi-Consumer Queue on Ring Buffer](https://www.linuxjournal.com/content/lock-free-multi-producer-multi-consumer-queue-ring-buffer) by Alexander Krizhanovsky.
+I plan to write this without depending on LMAX disruptor itself. I [started writing the Ringbuffer](https://github.com/samsquire/multiversion-concurrency-control/blob/main/src/main/java/main/MultipleProducerConsumerRingBufferRunner.java), which I ported from [Lock-Free Multi-Producer Multi-Consumer Queue on Ring Buffer](https://www.linuxjournal.com/content/lock-free-multi-producer-multi-consumer-queue-ring-buffer) by Alexander Krizhanovsky.
 
 # Generating ideas
 
