@@ -876,6 +876,8 @@ For event playback, when something goes wrong, the server can be restarted and t
  * In parallel
  * Independently
  * Refer
+ * Concurrently
+ * topology
 
 # Incomplete thoughts and ideas 
 
