@@ -713,13 +713,13 @@ The runtime should schedule things for me and know the relationships between wha
 
 I want my CPU intensive code to be isolated from other CPU intensive code and my IO code to be isolated too.
 
-The problem with NodeJS is that the Javascript event loop is single threaded and your callbacks cannot execute in parallel. This idea is a solution to this problem.
+The problem with NodeJS is that the Javascript event loop is single threaded and your callbacks cannot execute in parallel. Another problem is that heavy CPU usage blocks the IO handling and other CPU usage. This idea is a solution to this problem. Browsers also have this problem.
 
 We can use the LMAX disruptor pattern and dynamic thread pools for efficient processing.
 
-We want to handle multiple consumers and multiple producers. And scale by adding more of each.
+We want to handle multiple consumers and multiple producers. And scale by adding more of each. We can also scale each stage of a pipeline.
 
-We map the synchronous code to a tree of disruptors each independently monitoring an event queue ring buffer.
+As LMAX does, we break up each IO request into two halves: the request itself and its response, each enqueing a new event. We map the synchronous code of what we want to do into to a tree of disruptors each independently monitoring an event queue ring buffer. This is similar to a topology in Kafka.
 
 When an IO event or CPU completion event comes in, we generate an event that needs to be processed. This is written to the ring buffer for events down the chain of that destination type.
 
