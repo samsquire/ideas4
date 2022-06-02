@@ -707,20 +707,106 @@ Everything is available to me.
 
 The runtime should schedule things for me and know the relationships between what runs when.
 
-# 51. Rewrite synchronous code into LMAX disruptor thread pools
+# 51. Rewrite synchronous code into LMAX disruptor thread pools - event loops that don't block on CPU usage
 
-I want my CPU intensive code to be isolated from other CPU intensive code.
+I want my CPU intensive code to be isolated from other CPU intensive code and my IO code to be isolated too.
 
 We can use the LMAX disruptor pattern and thread pools for efficient processing.
 
-We want to handle multiple consumers and multiple producers.
+We want to handle multiple consumers and multiple producers. And scale by adding more of each.
 
-When an IO event comes in, we generate an event that needs to be processed. This is written to the ring buffer.
+We map the synchronous code to a tree of disruptors each indepdentnly monitoring an event qeueue.
+
+When an IO event comes in, we generate an event that needs to be processed. This is written to the ring buffer for events of that type.
 
 ```
-# on request
+OnRequest(request):
+Error = False
+Unmarshalled=Unmarshal(request)
+Parallel {
+ addressCheck = CheckAddress(Unmarshalled.address)
+ creditDetailsCheck = CheckCreditCardDetails(Unmarshalllef.creditCardDetails)
+ StockAvailabilityCheck = CheckStockAvailability(Unmarshalled.basket)
+}
+If not addressCheck.success:
+ User.addError("Address not valid")
+ Error = True
+If not creditCardDetailsCheck.success:
+ User.addError("Credit details wrong")
+ Error = True
+If not stockAvailabilityCheck.success:
+ User.addError("stock", Items not in stock", StockAvailabilityCheck)
+ Error = True
+If Error:
+ Return ErrorPage(User)
+Parallel {
+ InsertReserve = insertReserve(Unmarshalled.baskey)
+}
+If not InsertReserve.success:
+ User.addError("Could not reserve stock")
+ Error = True
+If Error:
+ Return ErrorPage(User)
+Parallel {
+ TakeMoneyRequest=TakeMoney(Unmarshalled)
+}
+If not TakeMoneyRequest.success:
+ User.addError("Could not take money")
+ Error = True
+If Error
+ Return ErrorPage(User)
+Parallel {
+ CreateOrderRequest = CreateOrder(InsertReserve, Unmarshalled)
+}
+If not CreateOrderRequest.success:
+ User.addError("Could not create order")
+ Error = True
+If Error
+ Return ErrorPage(User)
+Parallel {
+ SendSuccessEmail = SendSuccessEmail(Unmarshalled)
+}
+If not SendSuccessEmail.success:
+ User.addError("Could not send success email")
+ Error = True
+If Error:
+ Return ErrorPage(User)
+Return OrderConfirmationPage(CreateOrderRequest)
+```
+
+This is turned into a state machine, like async await. And there are join nodes inserted which wait for a collection of events.
+
+If I have 32 cores I shall have still have 18 disruptors arranged in a tree that looks like this:
 
 ```
+Unmarshall
+ AddressCheck
+  If not addressCheck.success
+ CheckCreditCardDetails
+  If not creditCardDetailsCheck.success
+ CheckStockAvailability
+  If not stockAvailabilityCheck.success
+ Join(AddressCheck, CheckCreditCardDetails, CheckStockAvailability)
+  If Error
+   insertReserve
+    If not InsertReserve.success
+     If Error
+      TakeMoney
+       If not TakeMoneyRequest.succes
+      Join(TakeMoney)
+       If Error
+        CreateOrder
+        Join(CreateOrder)
+         If Error
+          
+         
+````
+
+This generates over 18 while true threads which handle a disruptor events of that type.
+
+
+
+Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
 
 # Generating ideas
 
