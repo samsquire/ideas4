@@ -846,6 +846,8 @@ To run multiple processes works too.
 
 How to avoid the overhead of thread context switching?
 
+We can coordinate busy waits so that when the system is busy, busy waits are used but when the systems capacity is low, we use Thread.yield()
+
 Can be combined with event sourcing and CQRS and scaling upwards endlessly and temporal event playback.
 
 # Generating ideas
