@@ -790,11 +790,13 @@ If Error:
 Return OrderConfirmationPage(CreateOrderRequest)
 ```
 
-This is turned into a state machine, like async await. And there are join nodes inserted which wait for a collection of events.
+This is turned into a state machine tree, like async await. And there are join nodes inserted which wait for a collection of events.
 
 If I have 32 cores I shall have still have disruptors for each line arranged in a tree that looks like this:
 
 So I need 27 × 32 = 864 threads.
+
+If I am using Netty I'll also have threads that serve multiple network connections. But the work of a network transaction gets shifted out of netty and into the LMAX disruptor pipeline.
 
 ```
 Unmarshall
@@ -841,6 +843,10 @@ Join nodes require synchronization with a database to capture join states but it
 This can be implemented by the scheduler by injecting a message to a join thread. This thread has a simple stateful observer with atomic booleans for each join task. If the join fires it raises another event in all nodes that are inside it.
 
 Load balancing occurs between threads by the scheduler moduloing the request sequence number with the count of threads available for that task.
+
+For redundancy and failover we could run in multiple servers and only process one event of each disruptor.
+
+We can front the entry point of the disruptor with a message queue or Kafka.
 
 To run multiple processes works too.
 
