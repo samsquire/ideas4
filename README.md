@@ -892,10 +892,27 @@ We might infer that you could store the category directly on the post for effici
 
 Reparenting a loop is to do a tree rotation on the loop so that intermediary data structures are the root. This could be used to optimise certain queries.
 
+# 54. Two way placeholder binding data structure and for compiler design
 
+Compilers are complicated pieces of software and they are often written as pipelines 
 
+Changing the behaviour of a compiler would be easier if there was two way binding on each stage of the pipeline.
 
-# 54. 
+For example, I can inject new behaviour by deciding how this stage of the pipeline appears to this stage of the pipeline.
+
+I need full contextual information to decide on things.
+
+For example, I want to introduce a change to reorder code. I would need to find the right 
+
+# 55. Dynamic and static and zero cost abstractions
+
+You can do something at compile time or at runtime.
+
+Rust prefers to do things at compile time. As a result it's more complicated.
+
+Dynamic features are easier to write as you put in an if statement and you're done.
+
+We can rewrite dynamic features into static features by inserting code and transformations at the right place.
 
 # Generating ideas
 
