@@ -920,17 +920,18 @@ To compile queries into sourcecode and compile it at run time we can use Futamur
 
 We can create a sort function that hoists data to earlier positions by being a tree aware sort.
 
-# 57. Compiler code + Runtime code + Interpreter code + Source = code generation used with traditional Compiler
+# 57. Zero cost abstraction movement via interpreter instrumentation
 
 This is an idea on how to implement zero cost abstractions.
 
-You need a program that takes a compiler code, an interpreter and a program and code generates the combination of three and is then used by a traditional compiler to turn into a program for runtime.
+You need a program that takes a compiler code, has an interpreter and a program and code generates the combination of three and is then used by a traditional compiler to turn into a program for runtime.
 
 We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program.
 
-We need to virtually execute the program to get callstack histories.
+We need to virtually execute the program to get callstack histories. We need to understand loops.
 
 This is useful for moving things around as in code motion for efficiency.
+
 
 We move things from the source program to compile time. Such as allocations, inefficient data structure usage, instantiations, free.
 
@@ -938,6 +939,23 @@ In other words, the compilation pipeline stages are being extended with informat
 
 There is a point in the compiler's AST that corresponds to a point in in the interpreter and in the source program.
 
+We can write naive code and it be optimised away.
+
+```
+class Server {
+ @Endpoint("/query", Method.GET)
+ public Response handleQuery(Request request) {
+  for (Item item : db.find(request.parameters.get("query"))) {
+   if (expensiveOperation(item) {
+
+   }
+   thirdPartySystem.lookup(request.parameters.get("something"));
+
+   ...
+   
+  }
+}
+```
 
 # Generating ideas
 
