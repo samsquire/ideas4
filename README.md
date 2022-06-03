@@ -928,6 +928,10 @@ You need a program that takes a compiler code, an interpreter and a program and 
 
 We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program.
 
+We need to virtually execute the program to get callstack histories.
+
+This is useful for moving things around as in code motion for efficiency.
+
 We move things from the source program to compile time. Such as allocations, inefficient data structure usage, instantiations, free.
 
 In other words, the compilation pipeline stages are being extended with information of the context of the where things are going on in the source program as if it was being executed in parallel by the compiler.
