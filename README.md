@@ -834,11 +834,13 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 # 53. Loop indexing - data structure loops generalisation/loops to data structure
 
+This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
+
+We should arrange our data that is easiest for the human to understand and let the computer optimise actual data storage.
+
 Each stage of iteration represents a new intermediary data structure.
 
 Each field access or pointer deference represents a column in the looped dataset.
-
-
 
 ```
 class Category {
@@ -867,9 +869,15 @@ for (Post post : posts) {
 context.query_all("post_to_category")
 
 ```
-This loop can now be queried but not efficiently.
+This loop can now be queried but not efficiently. It associates a category with a post.
 
-We need some way of matching equivalent loops and deciding which loop to index.
+We need some way of matching equivalent loops and deciding which loop to index. And depending on your processing problem, decide which data source to use to solve the query.
+
+
+We can also generate all variations of data structures storage approach from the looped data structure. Each shall be useful depending on circumstance.
+
+We might infer that you could store the category directly on the post for efficiency.
+
 
 
 
