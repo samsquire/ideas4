@@ -169,7 +169,7 @@ I read somewhere that instruction selection is less of a cause of total performa
 
 Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, disk files. We need some method of paging this data and scheduling data to and from each area efficiently.
 
-Databases such as Postgres have heap managers. Some software use arenas for memory management. There is all sorts of clever things that can be done with readahead and prefetching and amortization.
+Databases such as Postgres have heap managers. Virtual memory exists in kernels. Some software use arenas for memory management. There is all sorts of clever things that can be done with readahead and prefetching and amortization. The problems of chunking has wife ranging impacts to do with caching and decision to load in parallel.
 
 Surely these problems could be solved once in a profoundly effective way and exposed as a library.
 
