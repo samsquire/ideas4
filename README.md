@@ -910,9 +910,12 @@ You can do something at compile time or at runtime.
 
 Rust prefers to do things at compile time. As a result it's more complicated.
 
-Dynamic features are easier to write as you put in an if statement and you're done.
+Dynamic features are easier to write as you put in an if statement and you're done. Problem is this if statement is usually on a hot path. Such as dynamic dispatch.
 
 We can rewrite dynamic features into static features by inserting code and transformations at the right place.
+
+# 56. 
+
 
 # Generating ideas
 
@@ -930,6 +933,7 @@ We can rewrite dynamic features into static features by inserting code and trans
  * Refer
  * Concurrently
  * topology
+ * Graph
 
 # Incomplete thoughts and ideas 
 
