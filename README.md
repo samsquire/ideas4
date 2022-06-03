@@ -838,7 +838,7 @@ In Rust with async and lifetimes it's sometimes difficult to know what you need 
 
 I propose a random generator of symbols and combinations of lifetimes and some heuristics to cause your code to compile.
 
-# 53. Loop indexing - data structure loops generalisation/loops to data structure
+# 53. Loop indexing/algebra - data structure loops generalisation/loops to data structure
 
 This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
 
