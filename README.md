@@ -834,9 +834,46 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 # 53. Loop indexing - data structure loops generalisation/loops to data structure
 
-Each stage of iteration represents a new data structure.
+Each stage of iteration represents a new intermediary data structure.
 
 Each field access or pointer deference represents a column in the looped dataset.
+
+
+
+```
+class Category {
+  public List<Forum> forums;
+}
+class Forum {
+ public List<Thread> threads;
+ public Category category;
+}
+class Thread {
+ public List<Post> posts;
+ public Forum forum;
+}
+class Post {
+ public Thread thread;
+}
+// A query to find all post's categories
+List<QueryContext> contexts = new ArrayList<>();
+QueryContext context = new QueryContext();
+QueryContext post_context = context.newLoop();
+for (Post post : posts) {
+ 
+ Query context child_context = post_context.yield(post, "post_to_category", "post", post, "category", post.thread.forum.category)
+ contexts.add(post_context)
+}
+context.query_all("post_to_category")
+
+```
+This loop can now be queried but not efficiently.
+
+We need some way of matching equivalent loops and deciding which loop to index.
+
+
+
+
 
 # 54. 
 
