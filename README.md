@@ -890,7 +890,7 @@ We can also generate all variations of data structures storage approach from the
 
 We might infer that you could store the category directly on the post for efficiency.
 
-
+Reparenting a loop is to do a tree rotation on the loop so that intermediary data structures are the root. This could be used to optimise certain queries.
 
 
 
