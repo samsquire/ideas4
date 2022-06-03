@@ -844,9 +844,15 @@ This idea is not intuitive but this idea has wide ranging impacts on efficiency 
 
 We should arrange our data that is easiest for the human to understand and let the computer optimise actual data storage.
 
+Each problem has an ideal data structure. We should define the data structure we want and let the computer determine the best course to get there.
+
 Each stage of iteration represents a new intermediary data structure.
 
 Each field access or pointer deference represents a column in the looped dataset.
+
+A nested loop is therefore a new relation with all the columns of the previous iterations included.
+
+Indexing could mean use btree or hashmap for O(1) lookup.
 
 ```
 class Category {
