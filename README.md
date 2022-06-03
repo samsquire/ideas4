@@ -914,9 +914,9 @@ Dynamic features are easier to write as you put in an if statement and you're do
 
 We can rewrite dynamic features into static features by inserting code and transformations at the right place.
 
-# 56. Tree aware Sorting to implement data hoisting and code motion on the hot path
+# 56. Tree aware Sorting to implement data hoisting, code motion on the hot path
 
-To compile queries into sourcecode and compile it at run time we can use Futamura projection of taking an interpreter and generating code that is then compiled.
+To compile queries into sourcecode and compile it at run time we can use Futamura projection of taking an interpreter and generating code that is then compiled. This is similar to Java's template interpreter.
 
 We can create a sort function that hoists data to earlier positions by being a tree aware sort.
 
