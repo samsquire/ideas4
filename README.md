@@ -920,6 +920,19 @@ To compile queries into sourcecode and compile it at run time we can use Futamur
 
 We can create a sort function that hoists data to earlier positions by being a tree aware sort.
 
+# 57. Compiler code + Runtime code + Interpreter code + Source = code generation used with traditional Compiler
+
+This is an idea on how to implement zero cost abstractions.
+
+You need a program that takes a compiler code, an interpreter and a program and code generates the combination of three and is then used by a traditional compiler to turn into a program for runtime.
+
+We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program.
+
+We move things from the source program to compile time. Such as allocations, inefficient data structure usage, instantiations, free.
+
+In other words, the compilation pipeline stages are being extended with information of the context of the where things are going on in the source program as if it was being executed in parallel by the compiler.
+
+There is a point in the compiler's AST that corresponds to a point in in the interpreter and in the source program.
 
 
 # Generating ideas
