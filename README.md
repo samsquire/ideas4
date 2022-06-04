@@ -549,6 +549,8 @@ I think we can use the happens before relation to autoparallelize.
 
 We can sort variable use and automatically insert Object.notify Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
+I propose a cas sort algorithm to maintain order between an arbitrary number of readers and writers.
+
 
 # 42. Direct concurrency and static scheduling
 
@@ -1135,8 +1137,10 @@ Track the callhistory of every method, history of every variable,
 
 Write some code that does something similar with the same data, duplicating all the looping.
 
-
 Track common elements in callhistories for each code, work out where to insert one algorithm into another.
+
+How do you wrap something in an if statement for security?
+
 
 # 67. 
 
