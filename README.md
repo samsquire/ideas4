@@ -975,10 +975,11 @@ You know the states that a client can get into that are seeded by your network c
 
 So by simulating your client you know when they do something that is not possible such as an attack.
 
+It's a state machine.
+
 # 61. 
 
 # Generating ideas
-
  * marketplace
  * schedule
  * tree
