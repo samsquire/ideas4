@@ -991,7 +991,13 @@ We can recognise patterns in call histories and move code around.
 
 Write inefficient code that uses any data structure and turn it into an efficient data structure.
 
-Automatic indexing and view maintenance.
+```
+for outer in db.fetch(request["query"]:
+ for inner in db.fetch(outer.id):
+  do_domething_expensive(outer, inner);
+```
+
+We want automatic indexing (see loop indexing) and view maintenance.
 
 Call histories are essentially guaranteed data access patterns.
 
@@ -999,7 +1005,7 @@ From the call histories you can interpret a value that is passed to a method as 
 
 You can track the flow of a variable to a method invocation to see how it ended up at that callsite.
 
-In the above examples they came from two tables which are inefficiently kept in memory. The outer table is kept in memory while the inner table is kept in memory.
+In the above examples they came from two tables which are inefficiently kept in memory from the database. The outer table is kept in memory while the inner table is kept in memory.
 
 But only one item is being processed at a time. How do we optimise this?
 
@@ -1019,13 +1025,19 @@ For example, if we call a function on each item in a nested loop or do a databas
 
 So we can convert the data structure to one that is a graph.
 
+```
+class Outer {
+ public int id;
+ public Inner inner;
+}
+class Inner {
+ public int id;
+}
+```
+
 Remember the perfect data structure for nested loops is one that arranged the data according to the natural progression of the loop as all the data is adjacent.
 
-```
-for outer in db.fetch(request["query"]:
- for inner in db.fetch(outer.id):
-  do_domething_expensive(outer, inner);
-```
+
 
 The ideal data structure looks like this:
 ```
@@ -1049,18 +1061,55 @@ We also need to page this data in chunks to avoid it being in memory wastefully.
 
 ```
 outer_cursor = db.query("select from outer where outer.Id > :last_outer limit 100")
-While outer_cursor.has_items():
- Outer = outer_cursor.next()
+While outer_cursor.has_more():
+ Outer_items = outer_cursor.next()
  Last_inner = -1
- Inner_cursor = dB.query("select from inner where inner.outer_id = outer_id inner.id > :last_inner", outer_id=outer.id, last_inner=last_inner)
- while inner_cursor.has_items():
-  inner = inner_cursor.next()
+ For outer in outer_items:
+ Inner_cursor = dB.query("select from inner where inner.outer_id = outer_id inner.id > :last_inner limit 100", outer_id=outer.id, last_inner=last_inner)
+ while inner_cursor.has_more():
+  inner_items = inner_cursor.next()
+  For item in inner_items:
   do_domething_expensive(outer, inner)
 ```
 
+Even this is inefficient as we can process every inner item in parallel. So now we need a thread pool or parallel for.
+
 How do we generate a tree data structure from loop access patterns?
 
+```
+class Work {
+ public Work(Db db, ExecutorService pool) {
+  this.pool = pool;
+  this.db = db;
+ }
 
+
+ public Map<Outer, Map<Inner, Result>> results() {
+  Last_outer = -1;
+  outer_cursor = db.query("select from outer where outer.Id > :last_outer limit 100")
+  While (outer_cursor.has_more()) {
+    Outer_items = outer_cursor.next()
+    Last_inner = -1
+    For outer in outer_items:
+      Inner_cursor = db.query("select from inner where inner.outer_id = outer_id inner.id > :last_inner limit 100", outer_id=outer.id, last_inner=last_inner)
+      while (inner_cursor.has_more()) {
+        inner_items = inner_cursor.next()
+         List<Callable<Result>> tasks = new ArrayList<Callable<Result>>();
+         for (final Object object: objects) {
+           Callable<Result> c = new Callable<Result>() {
+             @Override
+             public Result call() throws Exception {
+              return expensiveTask(outer, inner);
+             }
+           };
+           tasks.add(c);
+         }
+         List<Future<Result>> results = pool.invokeAll(tasks);
+ }
+}
+
+new Work(Executors.newCachedThreadPool()).results()
+```
 
 Btree can efficiently retrieve items by key.
 
