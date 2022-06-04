@@ -991,17 +991,65 @@ We can recognise patterns in call histories and move code around.
 
 Write inefficient code that uses any data structure and turn it into an efficient data structure.
 
+Automatic indexing and view maintenance.
+
 Call histories are essentially guaranteed data access patterns.
 
 From the call histories you can interpret a value that is passed to a method as a read or a store.
 
 You can track the flow of a variable to a method invocation to see how it ended up at that callsite.
 
+In the above examples they came from two tables which are inefficiently kept in memory. The outer table is kept in memory while the inner table is kept in memory.
+
+But only one item is being processed at a time. How do we optimise this?
+
+The call history looks like this -
+
+```
+do_domething_expensive(outer1, outer1.inner1)
+do_domething_expensive(outer1, outer1.inner2)
+do_domething_expensive(outer1, outer1.inner3)
+do_domething_expensive(outer2, outer2.inner1)
+do_domething_expensive(outer2, outer2.inner2)
+```
+
 From this information we can work on reducing the journey of the value to the method. We can also try keep the data adjacent in memory for performance.
 
 For example, if we call a function on each item in a nested loop or do a database call in a loop, we can infer that there is a tree data structure based on the nested loop, the loop corresponds to a graph traversal.
 
 So we can convert the data structure to one that is a graph.
+
+Remember the perfect data structure for nested loops is one that arranged the data according to the natural progression of the loop as all the data is adjacent.
+
+```
+for outer in db.fetch(request["query"]:
+ for inner in db.fetch(outer.id):
+  do_domething_expensive(outer, inner);
+```
+
+The ideal data structure looks like this:
+```
+Outer1 inner1
+Outer1 inner2
+Outer1 inner3
+Outer2 inner1
+Outer2 inner2
+Outer3 inner3
+for outer, inner in items:
+  do_domething_expensive(outer, inner)
+
+```
+Since we're talking to a database and fetching the items for a record, it would obviously be more efficient to the join in the database.
+
+```
+select outer, inner from outer join inner on inner.outer_id = outer.id;
+```
+
+How do we generate a tree data structure from loop access patterns?
+
+Btree can efficiently retrieve items by key.
+
+If we store Outer in a tree and Inner in a tree, we can do a hash join where outer refers to an inner.
 
 
 
