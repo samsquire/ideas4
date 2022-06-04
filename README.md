@@ -1129,7 +1129,16 @@ If we store Outer in a tree and Inner in a tree, we can do a hash join where out
 
 A special zipper across graph data structures that remembers the traversals from each value to every other value and allows you to refer to them.
 
-# 66. 
+# 66. Program equivalence or merging code together
+
+Track the callhistory of every method, history of every variable,
+
+Write some code that does something similar with the same data, duplicating all the looping.
+
+
+Track common elements in callhistories for each code, work out where to insert one algorithm into another.
+
+# 67. 
 
 # Generating ideas
  * marketplace
