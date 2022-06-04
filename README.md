@@ -1003,6 +1003,8 @@ For example, if we call a function on each item in a nested loop or do a databas
 
 So we can convert the data structure to one that is a graph.
 
+
+
 # Generating ideas
  * marketplace
  * schedule
