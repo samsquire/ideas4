@@ -965,6 +965,18 @@ When you write a complicated program you also write an accompanying scheduler.
 
 This lets you schedule memory and asynchronous and parallelism.
 
+# 59. Automatic semver
+
+If we had library mesh, we could have automatic semver as you're building your dependents you know when they break.
+
+# 60. Impossibility detection
+
+You know the states that a client can get into that are seeded by your network communication.
+
+So by simulating your client you know when they do something that is not possible such as an attack.
+
+# 61. 
+
 # Generating ideas
 
  * marketplace
