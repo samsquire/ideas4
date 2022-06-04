@@ -1045,7 +1045,22 @@ Since we're talking to a database and fetching the items for a record, it would 
 select outer, inner from outer join inner on inner.outer_id = outer.id;
 ```
 
+We also need to page this data in chunks to avoid it being in memory wastefully.
+
+```
+outer_cursor = db.query("select from outer where outer.Id > :last_outer limit 100")
+While outer_cursor.has_items():
+ Outer = outer_cursor.next()
+ Last_inner = -1
+ Inner_cursor = dB.query("select from inner where inner.outer_id = outer_id inner.id > :last_inner", outer_id=outer.id, last_inner=last_inner)
+ while inner_cursor.has_items():
+  inner = inner_cursor.next()
+  do_domething_expensive(outer, inner)
+```
+
 How do we generate a tree data structure from loop access patterns?
+
+
 
 Btree can efficiently retrieve items by key.
 
