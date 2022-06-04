@@ -1159,6 +1159,9 @@ Track common elements in callhistories for each code, work out where to insert o
  * Data structure
  * Traversal
  * Query
+ * Correlation
+ * History
+ * Aggregation
 
 # Incomplete thoughts and ideas 
 
