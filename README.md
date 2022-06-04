@@ -977,7 +977,19 @@ So by simulating your client you know when they do something that is not possibl
 
 It's a state machine.
 
-# 61. 
+# 61. Data structure merging
+
+If you have two algorithms and the callhistory of those algorithms with the same data you can merge the algorithms together.
+
+It's a matter of matching up lines of the callstacks of each algorithm. And generating code by walking the matched callstacks.
+
+# 62. Call history pattern matching
+
+We can recognise patterns in call histories and move code around.
+
+# 63. Call history to data structure
+
+
 
 # Generating ideas
  * marketplace
