@@ -989,7 +989,19 @@ We can recognise patterns in call histories and move code around.
 
 # 63. Call history to data structure
 
+Write inefficient code that uses any data structure and turn it into an efficient data structure.
 
+Call histories are essentially guaranteed data access patterns.
+
+From the call histories you can interpret a value that is passed to a method as a read or a store.
+
+You can track the flow of a variable to a method invocation to see how it ended up at that callsite.
+
+From this information we can work on reducing the journey of the value to the method. We can also try keep the data adjacent in memory for performance.
+
+For example, if we call a function on each item in a nested loop or do a database call in a loop, we can infer that there is a tree data structure based on the nested loop, the loop corresponds to a graph traversal.
+
+So we can convert the data structure to one that is a graph.
 
 # Generating ideas
  * marketplace
