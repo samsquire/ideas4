@@ -483,7 +483,9 @@ Render a data structure as a graph and allow selections of different objects and
 
 Work out the rule that caused everything to be selected based on user input such as an if statement like as a debugger condition or relation or mapping, then generate a query that matches that part of the data structure.
 
-Allow highlighted items to be sorted and mapped the graph visually.
+Allow highlighted items to be sorted overall or independently.
+
+For example if I have a complicated hierarchy of objects, I can select subitems of collections but retain references to the path that I used to get those items
 
 # 35. Nearest operator
 
@@ -977,7 +979,7 @@ So by simulating your client you know when they do something that is not possibl
 
 It's a state machine.
 
-# 61. Data structure merging
+# 61. Data structure and algorithm merging
 
 If you have two algorithms and the callhistory of those algorithms with the same data you can merge the algorithms together.
 
@@ -985,7 +987,7 @@ It's a matter of matching up lines of the callstacks of each algorithm. And gene
 
 # 62. Call history pattern matching
 
-We can recognise patterns in call histories and move code around.
+We can recognise patterns in call histories and move code around to generate data in advance of where it shall be used.
 
 # 63. Call history to data structure
 
@@ -998,6 +1000,8 @@ for outer in db.fetch(request["query"]:
 ```
 
 We want automatic indexing (see loop indexing) and view maintenance.
+
+We can also merge SQL statements together.
 
 Call histories are essentially guaranteed data access patterns.
 
@@ -1037,8 +1041,6 @@ class Inner {
 
 Remember the perfect data structure for nested loops is one that arranged the data according to the natural progression of the loop as all the data is adjacent.
 
-
-
 The ideal data structure looks like this:
 ```
 Outer1 inner1
@@ -1052,6 +1054,8 @@ for outer, inner in items:
 
 ```
 Since we're talking to a database and fetching the items for a record, it would obviously be more efficient to the join in the database.
+
+We could write a function that knows how to merge SQL statements for efficiency.
 
 ```
 select outer, inner from outer join inner on inner.outer_id = outer.id;
@@ -1115,7 +1119,17 @@ Btree can efficiently retrieve items by key.
 
 If we store Outer in a tree and Inner in a tree, we can do a hash join where outer refers to an inner.
 
+# 64. Parallel linked iterators
 
+
+
+
+
+# 65. High zipper
+
+A special zipper across graph data structures that remembers the traversals from each value to every other value and allows you to refer to them.
+
+# 66. 
 
 # Generating ideas
  * marketplace
@@ -1133,6 +1147,9 @@ If we store Outer in a tree and Inner in a tree, we can do a hash join where out
  * Concurrently
  * topology
  * Graph
+ * Data structure
+ * Traversal
+ * Query
 
 # Incomplete thoughts and ideas 
 
