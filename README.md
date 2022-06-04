@@ -945,6 +945,7 @@ We can write naive code and it be optimised away.
 class Server {
  @Endpoint("/query", Method.GET)
  public Response handleQuery(Request request) {
+  DoSomethingExpensive(request);
   for (Item item : db.find(request.parameters.get("query"))) {
    if (expensiveOperation(item) {
 
@@ -956,6 +957,12 @@ class Server {
   }
 }
 ```
+
+# 58. Scheduler alongside code
+
+When you write a complicated program you also write an accompanying scheduler.
+
+This lets you schedule memory and asynchronous and parallelism.
 
 # Generating ideas
 
