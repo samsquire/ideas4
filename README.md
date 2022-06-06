@@ -1146,6 +1146,63 @@ Writing code as RPC is powerful and works for many large corporations.
 
 But it does not necessarily look like a stream.
 
+# 68. Hot path scheduler aware matching - eliminate polling
+
+When you're waiting for a case to be true such as in a multithreaded system you use the CPU repeatedly in a busy wait or one with yields to the scheduler.
+
+```
+While (root.isDirty()) {
+ // Busy wait
+}
+
+
+While (root.isDirty()) {
+ Thread.yield();
+}
+```
+
+The obvious problem with this while you are busy waiting or yielding, you are not informed of state changes. Work stealing algorithms typically do work for other threads to help them.
+
+This idea is for the scheduler to be aware of substates and act as a communication mechanism.
+
+When we thread yield we should provide a tree of evaluation that should be true when we are to run. When that tree is changed, we evaluate the function to see if we can run.
+
+For example:
+
+```
+While (root.isDirty() {
+  Thread.yield(root.setClean);
+}
+```
+
+Rete algorithm can be used if the object is complicated.
+
+ 
+# 68. Atomic blocks
+
+In my code I should be capable of specifying atomic sections of code.
+
+For example:
+
+```
+Atomic {
+  Previous = node.next;
+  Node.next = newNode;
+  Previous.previous = newNode;
+}
+```
+
+If this code is not atomic, you introduce bugs when iterating forward or backwards over this data structure in a multithreaded environment.
+
+This should be extended to network and database calls, for example:
+
+```
+Atomic {
+ db.query("update users set last_order_time = :last_order_time;", datetime.now())
+ db.query("insert into orders (user_id, total_cost) values (:user_id, :cost);", user_id, cost);
+ db.query("insert into order_items (product_id, quantity) values 
+}
+```
 
 # Generating ideas
  * marketplace
