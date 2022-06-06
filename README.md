@@ -1212,7 +1212,7 @@ We keep a log of what we did do, and how to reverse each process. Ideally the da
 
 We also store a version number. We also have a commit timestamp. This is a system wide timestamp.
 
-If all the subtractions successfully complete, we `insert into versions (Id, false, true, :transaction_id)`.
+If all the subtransactions successfully complete, we `insert into versions (Id, false, true, :transaction_id)`.
 
 Versions without matching finished entries are failed rolled back transactions.
 
