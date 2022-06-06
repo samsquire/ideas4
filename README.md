@@ -1146,7 +1146,7 @@ Writing code as RPC is powerful and works for many large corporations.
 
 But it does not necessarily look like a stream.
 
-# 68. Hot path scheduler aware matching - eliminate polling
+# 68. Hot path scheduler aware matching - eliminate polling and scheduler hooks
 
 When you're waiting for a case to be true such as in a multithreaded system you use the CPU repeatedly in a busy wait or one with yields to the scheduler.
 
@@ -1163,7 +1163,7 @@ While (root.isDirty()) {
 
 The obvious problem with this while you are busy waiting or yielding, you are not informed of state changes. Work stealing algorithms typically do work for other threads to help them.
 
-This idea is for the scheduler to be aware of substates and act as a communication mechanism.
+This idea is for the scheduler to be aware of substates and act as a communication mechanism by providing a matching function that should be intercepted.
 
 When we thread yield we should provide a tree of evaluation that should be true when we are to run. When that tree is changed, we evaluate the function to see if we can run.
 
