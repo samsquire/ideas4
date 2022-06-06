@@ -1200,9 +1200,13 @@ This should be extended to network and database calls, for example:
 Atomic {
  db.query("update users set last_order_time = :last_order_time;", datetime.now())
  db.query("insert into orders (user_id, total_cost) values (:user_id, :cost);", user_id, cost);
- db.query("insert into order_items (product_id, quantity) values 
+ db.execute_values("insert into order_items (product_id, quantity) values %s", basket);
 }
 ```
+
+I expect all three commands to work and if any fail, the others rollback. How to implement this?
+
+We keep a log of what we did do, and how to reverse each process. Ideally the database is designed so that new items are inserts. We can delete inserted items.
 
 # Generating ideas
  * marketplace
