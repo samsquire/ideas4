@@ -1206,7 +1206,15 @@ Atomic {
 
 I expect all three commands to work and if any fail, the others rollback. How to implement this?
 
-We keep a log of what we did do, and how to reverse each process. Ideally the database is designed so that new items are inserts. We can delete inserted items.
+When we begin an atomic block, we ` insert into versions (start, finished, id) values (true, false :transaction_id);`
+
+We keep a log of what we did do, and how to reverse each process. Ideally the database is designed so that new items are inserts. We can delete inserted items. 
+
+We also store a version number. We also have a commit timestamp. If anything is less than this timestamp, it is visible. This is a system wide timestamp.
+
+If all the subtractions successfully complete, we `insert into versions (Id, false, true, :transaction_id)`.
+
+Versions without matching finished entries are failed rolled back transactions.
 
 # Generating ideas
  * marketplace
