@@ -1180,7 +1180,7 @@ Rete algorithm can be used if the object is complicated.
  
 # 68. Atomic blocks
 
-Since writing this idea I learned of software transactional memory, Which means I invented STM independently. I even used the same scenario for updating a doubly linked list as I did in [compare and swap sort algorithm](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
+Since writing this idea I learned of software transactional mem which is very similar to this idea. I even used the same scenario for updating a doubly linked list as I did in [compare and swap sort algorithm](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
 
 In my code I should be capable of specifying atomic sections of code.
 
