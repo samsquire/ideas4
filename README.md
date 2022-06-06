@@ -1210,11 +1210,19 @@ When we begin an atomic block, we ` insert into versions (start, finished, id) v
 
 We keep a log of what we did do, and how to reverse each process. Ideally the database is designed so that new items are inserts. We can delete inserted items. 
 
-We also store a version number. We also have a commit timestamp. If anything is less than this timestamp, it is visible. This is a system wide timestamp.
+We also store a version number. We also have a commit timestamp. This is a system wide timestamp.
 
 If all the subtractions successfully complete, we `insert into versions (Id, false, true, :transaction_id)`.
 
 Versions without matching finished entries are failed rolled back transactions.
+
+We join on versions that are complete.
+
+```
+Select product_id, quantity from order_items inner join on versions where order_items.version_id = versions.transaction_id where versions.transaction_id = max(transaction_id) and versions finished = true
+
+
+```
 
 # Generating ideas
  * marketplace
