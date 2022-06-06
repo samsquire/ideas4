@@ -1125,9 +1125,6 @@ If we store Outer in a tree and Inner in a tree, we can do a hash join where out
 # 64. Parallel linked iterators
 
 
-
-
-
 # 65. High zipper
 
 A special zipper across graph data structures that remembers the traversals from each value to every other value and allows you to refer to them.
@@ -1143,7 +1140,12 @@ Track common elements in callhistories for each code, work out where to insert o
 How do you wrap something in an if statement for security?
 
 
-# 67. 
+# 67. RPC to stream
+
+Writing code as RPC is powerful and works for many large corporations.
+
+But it does not necessarily look like a stream.
+
 
 # Generating ideas
  * marketplace
@@ -1157,6 +1159,7 @@ How do you wrap something in an if statement for security?
  * Merge
  * In parallel
  * Independently
+
  * Refer
  * Concurrently
  * topology
