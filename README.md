@@ -1354,7 +1354,7 @@ So I propose a community where a utopian scenario is created.
 * Users decide how much they want to be paid to see an advert that is targeted to them. The price of an advert is calculated by market forces.
 * Searches are non private and available to everyone on the community. Users and advertiser's can see people's searches.
 * Advertisers who want attention can fill out a profile of who they want to target.
-* Everyone can comment on a search term and discuss it, each search term is an open forum thread for open talking of the relevance of each result.
+* Everyone can comment on a search term and talk of it, each search term is an open forum thread for open talking of the relevance of each result.
 * Content creators can accept commissions in return for money. The created content is then publicly available for purchase.
 
 
