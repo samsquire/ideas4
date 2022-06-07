@@ -1338,6 +1338,25 @@ Is equivalent to
 }
 ```
 
+# 75. Content utopia
+
+The problem on the internet is a funding and a collective action problem. Search engines want to earn the most money so they show adverts. Websites and news websites and content producers want to earn money and views so they place adverts. Advertisers want to earn money by showing people things. Advertisers want to target people who shall action (buy something, believe or change their mind or awareness of something) what they see.
+
+I want to normalise paying for content and advertiser's paying for viewer's time.
+
+Content producers need to pay the server costs and bandwidth.
+
+Users want evergreen high quality content.
+
+So I propose a community where a utopian scenario is created.
+
+* Users decide how much money they want to spend and they decide what they want and answer questions of it.
+* Users decide how much they want to be paid to see an advert that is targeted to them. The price of an advert is calculated by market forces.
+* Searches are non private and available to everyone on the community. Users and advertiser's can see people's searches.
+* Advertisers who want attention can fill out a profile of who they want to target.
+* Everyone can comment on a search term and discuss it, each search term is an open forum thread for open talking of the relevance of each result.
+* Content creators can accept commissions in return for money. The created content is then publicly available for purchase.
+
 
 
 # incomplete ideas
