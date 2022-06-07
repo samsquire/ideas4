@@ -1383,7 +1383,21 @@ I would like to see the shape of the data between calls and run the code inside 
 
 So I propose a debugging system that records all arguments and allows replay of arbitrary lines of code.
 
-So I can play with Linux's scheduler code.
+I want it to be less difficult to test real code with real data.
+
+Software should come with traces of data that can be used with the program. And I can decide which methods to run between with the data.
+
+# 78. Scale to zero and cost saving apps
+
+Serverless is essentially scale to zero. I feel we need scale to zero for regular software in virtual machines.
+
+The problem with scale to zero is that you need a coordinator that coordinates the bringing up of services.
+
+I propose a mobile application that has a front-end that is designed as a queue actions while the backend is unreachable.
+
+When the user does things on the app, the actions are queued up. It takes around 10-30 seconds to deploy from cold and startup and be ready to serve requests.
+
+So when you're not using the service, the service scales down to zero.
 
 # incomplete ideas
 
@@ -1407,7 +1421,6 @@ How to atomically update a number on the network.
  * Merge
  * In parallel
  * Independently
-
  * Refer
  * Concurrently
  * topology
