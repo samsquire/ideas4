@@ -1298,7 +1298,7 @@ Rather than define relations between things with special classes as in Django an
 
 ```
 
-# 74. Deny by default
+# 74. 
 
 # incomplete ideas
 
