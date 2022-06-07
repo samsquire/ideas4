@@ -1302,6 +1302,8 @@ Rather than define relations between things with special classes as in Django an
 
 How do you detect if two pieces of code have the same outcome?
 
+You need to provide the same inputs to both pieces of code. And the expected output.
+
 Turn each piece of code into an AST.
 
 Turn every variable name into a relation.
