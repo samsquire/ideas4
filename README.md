@@ -1280,7 +1280,7 @@ If any items change in any of the underlying queries, that loop iteration gets r
 For user in db.query("select user_id from user"):
   
   For user_product in db.query("select * from products where user_id = :user_id", user_id=user_id):
-    For permission in db.query("select allowed, resource in security"):
+    For permission in db.query("select allowed, resource_id in security where resource_id = :user_product_id and type = 'product'", user_product.id):
      If permission.allowed:
        Yield_page("/:user_id/:product_id/", user_id,user_product.id, "user_product.html")
      Else:
