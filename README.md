@@ -1243,6 +1243,14 @@ Companies and individuals are expected to adapt with the changing world.
 
 Let's track all the clauses that people depend on and inform them when things are no longer true.
 
+# incomplete ideas
+
+Memory set to network calls
+
+Distributed systems and parallel processes.
+
+How to atomically update a number on the network.
+
 # Generating ideas
  * marketplace
  * schedule
