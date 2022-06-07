@@ -1357,6 +1357,11 @@ So I propose a community where a utopian scenario is created.
 * Everyone can comment on a search term and talk of it, each search term is an open forum thread for open talking of the relevance of each result.
 * Content creators can accept commissions in return for money. The created content is then publicly available for purchase.
 
+# 76. Asychronous community
+
+Network effects means sites don't get used unless they have things on them or other users.
+
+There should be a website that aggregates websites that are new and don't have many users. You can then register on all of them and be pinged when new things appear on them.
 
 
 # incomplete ideas
