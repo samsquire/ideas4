@@ -1243,6 +1243,16 @@ Companies and individuals are expected to adapt with the changing world.
 
 Let's track all the clauses that people depend on and inform them when things are no longer true.
 
+# 70. Depoll
+
+Polling is the slow and poor use of resources way of reacting to change.
+
+I propose that applications register interceptors on data structures and they are executed when data changes.
+
+There should be a standard network protocol for registering or hooking into data changes for reactivity.
+
+This way we can solve all polling issues with a single websocket implementation.
+
 # incomplete ideas
 
 Memory set to network calls
@@ -1250,6 +1260,8 @@ Memory set to network calls
 Distributed systems and parallel processes.
 
 How to atomically update a number on the network.
+
+
 
 # Generating ideas
  * marketplace
