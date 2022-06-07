@@ -1258,9 +1258,11 @@ This way we can solve all polling issues with a single websocket implementation.
 Clearly we want to run multiple threads in parallel, the problem occurs when they both want to write and read to the same data structure.
 
 I propose a scheduler that deschedules threads that want to read or write to values that are being written to.
+This idea is based on the whitepaper Wait-Free Queues With Multiple Enqueuers and Dequeuers.
 
+When we go to write or read from X we set our thread's state to read or write X and we set our phase number to the maximum phase number of all threads + 1.
 
-
+When someone goes to read write X, they check the phase number of all threads and if there is one less than itself, it unscheduled this thread. Then when that other thread is finished it reschedules threads that are the lowest phase number.
 
 # incomplete ideas
 
