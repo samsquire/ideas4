@@ -1391,7 +1391,7 @@ Software should come with traces of data that can be used with the program. And 
 
 Serverless is essentially scale to zero. I feel we need scale to zero for regular software in virtual machines.
 
-The problem with scale to zero is that you need a coordinator that coordinates the bringing up of services.
+The problem with scale to zero is that you need a coordinator that coordinates the bringing up of services. For servless cloud services this is the cloud provider's own service.
 
 I propose a mobile application that has a front-end that is designed to queue actions while the backend is unreachable.
 
