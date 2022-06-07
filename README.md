@@ -1221,10 +1221,17 @@ Versions without matching finished entries are failed rolled back transactions.
 We join on versions that are complete.
 
 ```
-Select product_id, quantity from order_items inner join on versions where order_items.version_id = versions.transaction_id where versions.transaction_id = max(transaction_id) and versions finished = true
+Select product_id, quantity
+from order_items
+inner join on versions
+where order_items.version_id = versions.transaction_id
+And versions.transaction_id = max(transaction_id)
+and versions finished = true
 
 
 ```
+
+# 69. 
 
 # Generating ideas
  * marketplace
