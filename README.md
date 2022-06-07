@@ -1338,7 +1338,7 @@ Is equivalent to
 }
 ```
 
-# 75. Content utopia
+# 75. Internet Creator-advertiser-searcher utopia
 
 The problem on the internet is a funding and a collective action problem. Search engines want to earn the most money so they show adverts. Websites and news websites and content producers want to earn money and views so they place adverts. Advertisers want to earn money by showing people things. Advertisers want to target people who shall action (buy something, believe or change their mind or awareness of something) what they see.
 
