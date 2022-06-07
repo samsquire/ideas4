@@ -1393,11 +1393,13 @@ Serverless is essentially scale to zero. I feel we need scale to zero for regula
 
 The problem with scale to zero is that you need a coordinator that coordinates the bringing up of services.
 
-I propose a mobile application that has a front-end that is designed as a queue actions while the backend is unreachable.
+I propose a mobile application that has a front-end that is designed to queue actions while the backend is unreachable.
 
 When the user does things on the app, the actions are queued up. It takes around 10-30 seconds to deploy from cold and startup and be ready to serve requests.
 
 So when you're not using the service, the service scales down to zero.
+
+# 79. 
 
 # incomplete ideas
 
@@ -1430,6 +1432,7 @@ How to atomically update a number on the network.
  * Query
  * Correlation
  * History
+ * Queue
  * Aggregation
 
 # Incomplete thoughts and ideas 
