@@ -1298,7 +1298,43 @@ Rather than define relations between things with special classes as in Django an
 
 ```
 
-# 74. 
+# 74. Code equivalence
+
+How do you detect if two pieces of code have the same outcome?
+
+Turn each piece of code into an AST.
+
+Turn every variable name into a relation.
+
+Turn loops into multi relations.
+
+How do you detect common algorithms?
+
+Remove all methods and inline everything.
+
+What is the outcome after each statement of code? How does it get nearer to the same output as another piece of code. 
+
+Does the relations of one program match with the relations of the other program?
+
+The output data matches if the same relationship matches, for example, 
+
+```
+{
+  "Name": "item1",
+  "Tags": [{"name": "tag1"}, {"name":"tag2"}]
+}
+```
+
+Is equivalent to
+
+```
+{
+ "Name": "item1",
+ "Tags": ["tag1", "tag2"]
+}
+```
+
+
 
 # incomplete ideas
 
