@@ -1231,7 +1231,17 @@ and versions finished = true
 
 ```
 
-# 69. 
+# 69. Societal truth maintenance for business and person welfare
+
+Any personal decision or business has a set of supporting statements that must be true for success.
+
+We can track these backing statements and depend on them
+
+For example, if you depend on the fact you know Python to get a good paying job, you might want to know when this is no longer true.
+
+Companies and individuals are expected to adapt with the changing world.
+
+Let's track all the clauses that people depend on and inform them when things are no longer true.
 
 # Generating ideas
  * marketplace
