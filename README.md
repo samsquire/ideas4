@@ -1264,6 +1264,35 @@ When we go to write or read from X we set our thread's state to read or write X 
 
 When someone goes to read write X, they check the phase number of all threads and if there is one less than itself, it unscheduled this thread. Then when that other thread is finished it reschedules threads that are the lowest phase number excluding the thread that was finished.
 
+# 72. Loop expansion and live itetators
+
+Index some code for loops and expand loops outside their enclosing method.
+
+Compose a single source of truth for loops that is maintained across the whole system.
+
+In other words, I can define behaviour across multiple loops over records and declaratively define relations for those things being looped over.
+
+For example, to define all the pages a user can see on a website, I might write the following loops:
+
+If any items change in any of the underlying queries, that loop iteration gets reexecuted. This can be mapped to a web framework.
+
+```
+For user in db.query("select user_id from user"):
+  
+  For user_product in db.query("select * from products where user_id = :user_id", user_id=user_id):
+    For permission in db.query("select allowed, resource in security"):
+     If permission.allowed:
+       Yield_page("/:user_id/:product_id/", user_id,user_product.id, "user_product.html")
+     Else:
+       Yield_page("/:user_id/:product_id/", user_id,user_product.id, "permission_denied.html")    
+```
+
+
+
+# 73. Loop to schema
+
+# 74. Deny by default
+
 # incomplete ideas
 
 Memory set to network calls
