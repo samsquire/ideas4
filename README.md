@@ -1348,7 +1348,7 @@ Why is this idea so important? If we can compare implementations for equivalence
 
 We can think of programs or code as queries. And we can tweak queries to be more efficient.
 
-So we can have while program optimisation.
+So we can have whole program optimisation.
 
 # 75. Internet Creator-advertiser-searcher utopia
 
