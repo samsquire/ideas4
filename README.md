@@ -1344,6 +1344,12 @@ Is equivalent to
 }
 ```
 
+Why is this idea so important? If we can compare implementations for equivalence we can also compare their relative costs.
+
+We can think of programs or code as queries. And we can tweak queries to be more efficient.
+
+So we can have while program optimisation.
+
 # 75. Internet Creator-advertiser-searcher utopia
 
 The problem on the internet is a funding and a collective action problem. Search engines want to earn the most money so they show adverts. Websites and news websites and content producers want to earn money and views so they place adverts. Advertisers want to earn money by showing people things. Advertisers want to target people who shall action (buy something, believe or change their mind or awareness of something) what they see.
@@ -1369,6 +1375,15 @@ Network effects means sites don't get used unless they have things on them or ot
 
 There should be a website that aggregates websites that are new and don't have many users. You can then register on all of them and be pinged when new things appear on them.
 
+# 77. Code between
+
+Most of the time monolithic and microservices have deep callstacks.
+
+I would like to see the shape of the data between calls and run the code inside a hot loop.
+
+So I propose a debugging system that records all arguments and allows replay of arbitrary lines of code.
+
+So I can play with Linux's scheduler code.
 
 # incomplete ideas
 
