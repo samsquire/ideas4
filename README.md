@@ -462,6 +462,12 @@ I am yet to decide on the syntax for expanding a method n times but I used the *
 
 This is an extension to the [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure) and [20. Lazy arrange or invariant maintenance](https://github.com/samsquire/ideas4/blob/main/README.md#20-lazy-arrange-or-invariant-maintenance)
 
+If I have a materialised view based on another materialised view, I can use algebra to decide which view to update first and which to map to what.
+
+I can also decide where to insert records based on the views that are used.
+
+
+
 # 32. Schedule within/networked fork+join
 
 The chain of code I am using to deploy cloud resources should have the capability to send code to execute as if is running in the same thread.
