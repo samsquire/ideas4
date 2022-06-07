@@ -1264,7 +1264,7 @@ When we go to write or read from X we set our thread's state to read or write X 
 
 When someone goes to read write X, they check the phase number of all threads and if there is one less than itself, it unscheduled this thread. Then when that other thread is finished it reschedules threads that are the lowest phase number excluding the thread that was finished.
 
-# 72. Loop expansion and live itetators
+# 72. Loop expansion and live iterators
 
 Index some code for loops and expand loops outside their enclosing method.
 
@@ -1285,11 +1285,18 @@ For user in db.query("select user_id from user"):
        Yield_page("/:user_id/:product_id/", user_id,user_product.id, "user_product.html")
      Else:
        Yield_page("/:user_id/:product_id/", user_id,user_product.id, "permission_denied.html")    
+     Yield_method(POST, "/add_to_cart", add_to_cart)
 ```
 
 
 
 # 73. Loop to schema
+
+Rather than define relations between things with special classes as in Django and Hibernate, define them as loops.
+
+```
+
+```
 
 # 74. Deny by default
 
