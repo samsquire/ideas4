@@ -1253,6 +1253,15 @@ There should be a standard network protocol for registering or hooking into data
 
 This way we can solve all polling issues with a single websocket implementation.
 
+# 71. Partial order scheduler
+
+Clearly we want to run multiple threads in parallel, the problem occurs when they both want to write and read to the same data structure.
+
+I propose a scheduler that deschedules threads that want to read or write to values that are being written to.
+
+
+
+
 # incomplete ideas
 
 Memory set to network calls
