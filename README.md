@@ -1408,7 +1408,7 @@ When the user does things on the app, the actions are queued up. It takes around
 
 So when you're not using the service, the service scales down to zero.
 
-# 79. Interface search to output
+# 79. Interface search
 
 If we have 74. Code equivalence can we transform one interface to another?
 
@@ -1416,8 +1416,11 @@ If I refactor the objects needed to enter into a request but largely the code re
 
 The options to invoke a request are limited to what the API provides.
 
+
+
 We have types! We can look at what relations were used in the original code and diff them with options in the new code.
 
+So if someone refactors an interface, can we automatically port our code to use the new interface based on context that is available in the original request.
 
 # incomplete ideas
 
