@@ -1443,9 +1443,28 @@ It should schedule writes and network calls to be robust. The approach that Shar
 
 Write a forward progress function and the recovery function is written.
 
+# 82. Symmetric reflection of software layers
 
+With how traditional software is broken up into layers it requires invasive changes to support features that have mutually recursive interactions between layers.
 
+We can solve this problem! We can introduce mutual recursion across layers which adapt behaviour in two places simultaneously.
 
+For example, you have a desktop environment and a display server. Some features need to cross the boundary and manipulate both. And vice versa.
+
+It requires a drastic rethinking of cause and effect and atomic behaviours.
+
+# Multiversion concurrency control as part of a language
+
+It should be mark up code as being concurrent.
+
+For example 
+
+```
+concurrent (X) {
+ do_thing1_with(X);
+ do_thing2_with(X);
+}
+```
 
 # incomplete ideas
 
