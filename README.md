@@ -1497,7 +1497,19 @@ So to avoid the community splintering we can do something else. Users can tag co
 
 So we can have one large community but everyone sees different subsets of posts.
 
-# 85. Multiple entry points
+# 85. Multiple direction code
+
+Most code executes from top to bottom.
+
+What if every line was an entry point relative to every other?
+
+This is the basis of [algebralang](HTTPS://GitHub.com/samsquire/algebralang).
+
+
+
+# 86. Whole program Loop graphs
+
+Can we statically model code as a graph and determine optimisations
 
 # incomplete ideas
 
