@@ -1416,6 +1416,21 @@ If I refactor the objects needed to enter into a request but largely the code re
 
 The options to invoke a request are limited to what the API provides.
 
+# 80. Implicit sort or sort percolation and sort invalidation
+
+In a multithreaded system, you cannot have overlapping reads and writes to the same data.
+
+I want to define a sort function that detects if a transaction is invalid.
+
+This causes multiversion concurrency control to be easy.
+
+But I want my sort function to detect invalid states.
+
+It's not efficient to sort repeatedly, so we need some way of lowering a sort into code and percolate the if statements of the sort.
+
+How do you percolate a sort function?
+
+
 
 
 We have types! We can look at what relations were used in the original code and diff them with options in the new code.
