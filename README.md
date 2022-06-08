@@ -1348,7 +1348,16 @@ Why is this idea so important? If we can compare implementations for equivalence
 
 We can think of programs or code as queries. And we can tweak queries to be more efficient.
 
+If programs are algebraic relations we can reorder them!
+
+If we can reorder programs we can optimise them. This is what relational algebra allows us to do.
+
 So we can have whole program optimisation.
+
+If we model programs with pi calculus or lambda calculus or process calculus we can optimise programs automatically 
+
+We can convert variable based programs into these calculuses and algebraic transformations.
+
 
 # 75. Internet Creator-advertiser-searcher utopia
 
