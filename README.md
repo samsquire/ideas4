@@ -1439,7 +1439,7 @@ How do you percolate a sort function?
 
 I want a programming language that can crash at any point and recover when restarted.
 
-It should schedule writes and network calls to be robust. The approach that ShardStore takes could be generalized.
+It should schedule writes and network calls to be robust by ordering writes so that the database is always consistent. The approach that ShardStore takes could be generalized.
 
 Write a forward progress function and the recovery function is written.
 
