@@ -1476,6 +1476,19 @@ concurrent (X) {
 }
 ```
 
+Can be combined with parallel blocks
+
+```
+parallel {
+ concurrent (X) {
+   Y = do_thing1(X)
+   Z = do_thing2(Y)
+ }
+}
+```
+
+This would abort the concurrent block and restart it if another process interacts with X.
+
 # 84. Adaptive acceptability social network
 
 Inevitably on any group chat or community there is behaviour by a minority that the rest finds to be not pleasurable or acceptable. But there is a split in the community in who agrees what is fine and what isn't.
