@@ -1445,7 +1445,7 @@ Write a forward progress function and the recovery function is written.
 
 # 82. Symmetric reflection of software layers
 
-With how traditional software is broken up into layers it requires invasive changes to support features that have mutually recursive interactions between layers.
+With how traditional software is broken up into layers and layers go in one direction it requires invasive changes to support features that have mutually recursive interactions between layers.
 
 We can solve this problem! We can introduce mutual recursion across layers which adapt behaviour in two places simultaneously.
 
@@ -1453,7 +1453,9 @@ For example, you have a desktop environment and a display server. Some features 
 
 It requires a drastic rethinking of cause and effect and atomic behaviours.
 
-# Multiversion concurrency control as part of a language
+
+
+# 83. Multiversion concurrency control as part of a language
 
 It should be mark up code as being concurrent.
 
