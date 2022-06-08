@@ -1497,6 +1497,7 @@ So to avoid the community splintering we can do something else. Users can tag co
 
 So we can have one large community but everyone sees different subsets of posts.
 
+# 85. Multiple entry points
 
 # incomplete ideas
 
