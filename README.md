@@ -1416,6 +1416,11 @@ If I refactor the objects needed to enter into a request but largely the code re
 
 The options to invoke a request are limited to what the API provides.
 
+We have types! We can look at what relations were used in the original code and diff them with options in the new code.
+
+So if someone refactors an interface, can we automatically port our code to use the new interface based on context that is available in the original request.
+
+
 # 80. Implicit sort or sort percolation and sort invalidation
 
 In a multithreaded system, you cannot have overlapping reads and writes to the same data.
@@ -1433,9 +1438,6 @@ How do you percolate a sort function?
 
 
 
-We have types! We can look at what relations were used in the original code and diff them with options in the new code.
-
-So if someone refactors an interface, can we automatically port our code to use the new interface based on context that is available in the original request.
 
 # incomplete ideas
 
