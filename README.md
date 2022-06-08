@@ -556,7 +556,7 @@ Tokio is good for IO scheduling but not parallel CPU scheduling.
 
 I think we can use the happens before relation to autoparallelize.
 
-We can sort variable use and automatically insert Object.notify Object.wait at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
+We can sort variable use and automatically insert CountDownLatch at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
 I propose a cas sort algorithm to maintain order between an arbitrary number of readers and writers. [I partly implemented this in my compare and swap sort repo. I need to add support for any number of readers and writers.](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
 
