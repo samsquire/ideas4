@@ -1476,6 +1476,15 @@ concurrent (X) {
 }
 ```
 
+# 84. Adaptive acceptability social network
+
+Inevitably on any group chat or community there is behaviour by a minority that the rest finds to be not pleasurable or acceptable. But there is a split in the community in who agrees what is fine and what isn't.
+
+So to avoid the community splintering we can do something else. Users can tag comments with what the message is an example of. When enough people tag something as exhibiting something, we filter out messages that are tagged enough times. You rely on web of trust and mark which tags you don't want to see.
+
+So we can have one large community but everyone sees different subsets of posts.
+
+
 # incomplete ideas
 
 Memory set to network calls
