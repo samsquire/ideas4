@@ -1435,11 +1435,19 @@ It's not efficient to sort repeatedly, so we need some way of lowering a sort in
 
 How do you percolate a sort function?
 
-# 81. Crash safe language
+# 81. Reordering IO at runtime - a crash safe language
 
-I want a programming language that can crash at any point and recover when restarted.
+I want a programming language that can crash at any point and recover when restarted. It should update the disk data structures in an order that is recoverable.
+
+The recovery process can be very similar to the code path used for handling requests.
 
 It should schedule writes and network calls to be robust by ordering writes so that the database is always consistent. The approach that ShardStore takes could be generalized.
+
+For example, in ShardStore which is used by S3 there is an append only log and 4 things need to be updated on disk when a PUT is received. The data of the PUT needs to be written to a free extent (that's a contiguous block of space), an LSM index node needs to be written, the LSM metadata and the superblock which refers to the extents start position needs to be updated.
+
+Every extent is prefixed with the request metadata. On recovery, every extent can be walked and checked if the other data has been updated and the data is accurate.
+
+This also needs to be written in parallel to every other transaction going on concurrently - so you need to merge writes to the same data structure such as two writes to the superblock.
 
 Write a forward progress function and the recovery function is written.
 
