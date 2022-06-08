@@ -1005,7 +1005,7 @@ We can recognise patterns in call histories and move code around to generate dat
 Write inefficient code that uses any data structure and turn it into an efficient data structure.
 
 ```
-for outer in db.fetch(request["query"]:
+for outer in db.fetch(request["query"]):
  for inner in db.fetch(outer.id):
   do_domething_expensive(outer, inner);
 ```
