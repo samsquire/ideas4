@@ -1408,7 +1408,16 @@ When the user does things on the app, the actions are queued up. It takes around
 
 So when you're not using the service, the service scales down to zero.
 
-# 79. 
+# 79. Interface search to output
+
+If we have 74. Code equivalence can we transform one interface to another?
+
+If I refactor the objects needed to enter into a request but largely the code relations is the same inside, can we search the code for a path that leads to the same output?
+
+The options to invoke a request are limited to what the API provides.
+
+We have types! We can look at what relations were used in the original code and diff them with options in the new code.
+
 
 # incomplete ideas
 
