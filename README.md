@@ -1435,6 +1435,14 @@ It's not efficient to sort repeatedly, so we need some way of lowering a sort in
 
 How do you percolate a sort function?
 
+# 81. Crash safe language
+
+I want a programming language that can crash at any point and recover when restarted.
+
+It should schedule writes and network calls to be robust. The approach that ShardStore takes could be generalized.
+
+Write a forward progress function and the recovery function is written.
+
 
 
 
