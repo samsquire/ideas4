@@ -1576,9 +1576,18 @@ Mutual recursion, with one preferred path.
 
 We can optimise with this approach.
 
-# 86. 
+# 86. Dream browser
 
-# 87. 
+Like my idea for Problem Wiki I like how browsers allow you to surf into an app.
+
+Features I think browsers should have:
+ 
+ * **SQL** browser engines should provide SQL APIs. SQL is industry standard approach for querying data and it can be optimised.
+ * **Distributed storage** Sync should be built into the browser and any offline data should be backupable to the cloud.
+ * **Seamless merge with CRDTs** Browsers should implement CRDTs ala Automerge and Yjs and Braid protocol.
+
+
+# 87. Refactored code
 
 # incomplete ideas
 
