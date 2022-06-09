@@ -373,10 +373,10 @@ Sometimes to change the behaviour of code we want to sort the data. Rather than 
 (defn sort-function [data-item function-a function-b
  (if (in :pounds data-item
   (if (= function-a :pounds-to-kilograms -1 1)
-  (if (= function-b :pounds-to-kilograms -1 1))
+  (if (= function-b :pounds-to-kilograms 1 -1))
  (if (in :lbs data-item)
   (if (= function-a :lbs-to-kilogams -1 1)
-  (if (= function-b :lbs-to-kilogams -1 1)
+  (if (= function-b :lbs-to-kilogams 1 -1)
 )
 (defn people-calorific-requirements []
  (sort (sort-function (future-thread people-and-weights
