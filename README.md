@@ -1580,6 +1580,8 @@ We can optimise with this approach.
 
 Can we statically model code as a graph and determine optimisations
 
+# 87. 
+
 # incomplete ideas
 
 Memory set to network calls
