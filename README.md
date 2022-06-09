@@ -1578,7 +1578,7 @@ We can optimise with this approach.
 
 # 86. Dream browser
 
-Like my idea for [Instanceable Wiki](https://github.com/samsquire/ideas2#36-instanceable-wiki) I like how browsers allow you to surf into an app without an install.
+Similar to my idea for an [Instanceable Wiki](https://github.com/samsquire/ideas2#36-instanceable-wiki) I like how browsers allow you to surf into an app without an install.
 
 Features I think browsers should have:
  
