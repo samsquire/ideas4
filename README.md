@@ -1570,7 +1570,11 @@ What if every line was an entry point relative to every other?
 
 This is the basis of [algebralang](HTTPS://GitHub.com/samsquire/algebralang).
 
+So every line of code affects every other line of code.
 
+Mutual recursion, with one preferred path.
+
+We can optimise with this approach.
 
 # 86. Whole program Loop graphs
 
