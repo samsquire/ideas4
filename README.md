@@ -856,9 +856,21 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
 
+Each problem has an ideal data structure. We should define the data access pattern we want and let the computer determine the best course to get there.
+
+Imagine a special object called a relation that supports all operations that are possible with all algorithms and data structures. What data structure gets ultimately used depends on what operations are executed against the relation.
+
+So in other words, we implement binary search, hash join, hashmaps, vectors, linked list, splice, filtering, mapping, flat map, insert operations and inserts operations on this relation. Think of relation being an imaginary data structure that implements all data structure operations.
+
+Some operations for some data structures are more efficient than others. But if the user requests two access patterns that conflict, you might either need to accept a degradation for one or duplication of data for performance.
+
+Think of the data structures for a text editor. I would define lots of loops for my access patterns for inserting text between regions, creating lines between lines, being line aware and jumping to particular lines. I would also have view recycling and cannot render large files without efficient handling of rendering.
+
+A linked list is cheap to splice between items. Whereas a vector is cheap to copy and loop over.
+
 This idea is based on using loops to define data access patterns, the loop itself as a tree or graph represents the relationships between one relation and another.
 
-For example, the following loop represents membership or associayion of relation("b") to relation("a").
+For example, the following loop represents membership or association of relation("b") to relation("a").
 
 ```
 For a in relation("a"):
@@ -878,11 +890,9 @@ We should arrange our data that is easiest for the human to understand and let t
 
 Define all your loops and let the computer decide how to structure data so the loop is efficient.
 
-Each problem has an ideal data structure. We should define the data access pattern we want and let the computer determine the best course to get there.
 
 Each stage of iteration represents a new intermediary data structure. For example, if we're modifying a data structure we might want to use a HashMap or a vector, or linked list.
 
-The relation should support all operations that are possible with all algorithms and data structures. What data structure gets ultimately used depends on what operations are executed against the relation.
 
 ```
 For a in relation("a"):
