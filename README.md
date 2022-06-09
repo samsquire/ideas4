@@ -856,7 +856,26 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
 
-We should arrange our data that is easiest for the human to understand and let the computer optimise actual data storage.
+We should arrange our data that is easiest for the human to understand and let the computer optimise actual data storage, layout and data structure.
+
+We should always be looping over a data access pattern, that way the computer can work out what the loop corresponds to.
+
+Rather than
+```
+Document.onkeypress = function (event) {
+  Document.insert(cursor.position, event.character);
+}
+```
+We replace the event handler with an algebraic loop.
+```
+For letters in user.typing:
+  Document.text.insert(cursor.position, letters)
+  
+```
+
+If we parse this loops as an AST and to an algebra that it maps keypresses to a data structure modification.
+
+This data structure modification could be efficiently handled by a rope data structure as the document is large.
 
 Each problem has an ideal data structure. We should define the data structure we want and let the computer determine the best course to get there.
 
@@ -898,6 +917,8 @@ context.query_all("post_to_category")
 This loop can now be queried but not efficiently. It associates a category with a post.
 
 We need some way of matching equivalent loops and deciding which loop to index. And depending on your processing problem, decide which data source to use to solve the query.
+
+
 
 
 We can also generate all variations of data structures storage approach from the looped data structure. Each shall be useful depending on circumstance.
