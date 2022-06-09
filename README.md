@@ -1587,7 +1587,14 @@ Features I think browsers should have:
  * **Seamless merge with CRDTs** Browsers should implement CRDTs ala Automerge and Yjs and Braid protocol.
 
 
+
 # 87. Refactored code
+
+# 88. Stacks to code
+
+We spend most of our time writing code to generate stacks.
+
+What if we wanted to achieve something complicated instead and wrote the stack callhistory we want to see and generate code from it?
 
 # incomplete ideas
 
