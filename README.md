@@ -856,7 +856,40 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
 
+This idea is based on using loops to define data access patterns, the loop itself as a tree or graph represents the relationships between one relation and another.
+
+For example, the following loop represents membership or associayion of relation("b") to relation("a").
+
+```
+For a in relation("a"):
+  For b in item.relation("b"):
+    Do_something(a, b)
+```
+
+This represents the following data structure:
+
+```
+class A {
+ B b;
+}
+```
+
 We should arrange our data that is easiest for the human to understand and let the computer optimise actual data storage, layout and data structure.
+
+Define all your loops and let the computer decide how to structure data so the loop is efficient.
+
+Each problem has an ideal data structure. We should define the data access pattern we want and let the computer determine the best course to get there.
+
+Each stage of iteration represents a new intermediary data structure. For example, if we're modifying a data structure we might want to use a HashMap or a vector, or linked list.
+
+The relation should support all operations that are possible with all algorithms and data structures. What data structure gets ultimately used depends on what operations are executed against the relation.
+
+```
+For a in relation("a"):
+  For left, right in zip(a.relation("b"), a.relation("b")[1:]):
+    Insert_between(left, right, relation("b").newitem(a.value+b.value)
+```
+
 
 We should always be looping over a data access pattern, that way the computer can work out what the loop corresponds to.
 
@@ -877,9 +910,6 @@ If we parse this loops as an AST and to an algebra that it maps keypresses to a 
 
 This data structure modification could be efficiently handled by a rope data structure as the document is large.
 
-Each problem has an ideal data structure. We should define the data structure we want and let the computer determine the best course to get there.
-
-Each stage of iteration represents a new intermediary data structure.
 
 Each field access or pointer deference represents a column in the looped dataset.
 
