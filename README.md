@@ -1435,6 +1435,10 @@ It's not efficient to sort repeatedly, so we need some way of lowering a sort in
 
 How do you percolate a sort function?
 
+Sort percolation takes a sort function and tries to weave the if statements into a wider program. Whenever objects of the kind being sorted are in scope, the if statements are inserted to prioritise which comes first.
+
+Sort functions also have a grouping property, such as when the group changes. We also want to detect this and returning 1, 0 or -1 is not enough, we also want a sort reason from a sort function.
+
 # 81. Reordering IO at runtime - a crash safe language
 
 I want a programming language that can crash at any point and recover when restarted. It should update the disk data structures in an order that is recoverable.
