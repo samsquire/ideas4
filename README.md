@@ -1576,9 +1576,7 @@ Mutual recursion, with one preferred path.
 
 We can optimise with this approach.
 
-# 86. Whole program Loop graphs
-
-Can we statically model code as a graph and determine optimisations
+# 86. 
 
 # 87. 
 
@@ -1589,6 +1587,8 @@ Memory set to network calls
 Distributed systems and parallel processes.
 
 How to atomically update a number on the network.
+
+
 
 
 
