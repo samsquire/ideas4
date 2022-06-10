@@ -1656,6 +1656,10 @@ I think types are useful but they are not a panacea or silver bullet.
 
 When I look at what needs to be implemented to implement a text editor in Applr MacOs or Kubernetes I think we're reaching the limits of understandability in computer engineering.
 
+# 92. Indexed code execution and code generation
+
+
+
 # incomplete ideas
 
 Memory set to network calls
