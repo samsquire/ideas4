@@ -1588,13 +1588,32 @@ Features I think browsers should have:
 
 
 
-# 87. Refactored code
-
+# 87. 
 # 88. Stacks to code
 
 We spend most of our time writing code to generate stacks.
 
 What if we wanted to achieve something complicated instead and wrote the stack callhistory we want to see and generate code from it?
+
+# 89. Rewrite Performance and refactoring problems translated into problems that can be solved as intellectual puzzles
+
+AI has not surpassed the capability to automatically refactor to human understanding or rewrite problems to be efficient to solve performance problems.
+
+But We have 7 billion people in the world. Each is capable of solving puzzles. If we strip technical nature of performance problems and code understandability into high level problems.
+
+Could quizzes be used to lead to nearer answers that solve technical problems?
+
+Could the average person refactor and solve performance problems?
+
+Humans are good at pattern recognition. With enough data humans could solve algorithmic problems.
+
+The functions of a computer could be rewritten as a people problem or road problem and people puzzles. For example, this group of people represent the kernel, this group of people represent user space and these people represent packets and these people represent the CPU.
+
+IDEs should automatically profile your code and generate flamegraphs. The user is asked why are these people taking so long.
+
+Refactoring is introducing new people to represent or handle certain things. Some people represent an interface (types matching).
+
+I imagine a website that lets people solve technical problems with these metaphors. In aggregate the wisdom of crowds shall find out answers to problems.
 
 # incomplete ideas
 
