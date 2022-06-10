@@ -1588,7 +1588,10 @@ Features I think browsers should have:
 
 
 
-# 87. 
+# 87. The unwritten program and overspecified systems
+
+
+
 # 88. Stacks to code
 
 We spend most of our time writing code to generate stacks.
@@ -1614,6 +1617,8 @@ IDEs should automatically profile your code and generate flamegraphs. The user i
 Refactoring is introducing new people to represent or handle certain things. Some people represent an interface (types matching).
 
 I imagine a website that lets people solve technical problems with these metaphors. In aggregate the wisdom of crowds shall find out answers to problems.
+
+
 
 # incomplete ideas
 
