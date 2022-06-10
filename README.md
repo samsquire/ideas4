@@ -1590,6 +1590,27 @@ Features I think browsers should have:
 
 # 87. The unwritten program and overspecified systems
 
+When you've written a system such as PostgreSQL or the Linux kernel you have a lot of code that does something and does it well. Or you're Google with millions of lines of code.
+
+The problem you have now is that you need to understand and read this code to see how the system works as it is at this time. To change the system you have a lot of work to do as you need to gradually transform how things are done to the new approach.
+
+This is very complicated. Changing running software is very difficult and maintenance is a huge cost of software engineering.
+
+When we look at code from a high level there is a large limitation of what code you shall write next, it's not random. Github Copilot proves this.
+
+There are patterns that are true of every software such as book keeping functions and constants such as - 1 or + 1. 
+
+We should be capable of writing what should be true rather than how to do it. I think this is the next step for programming languages.
+
+We should be specifying what we want to be true. And let the computer decide how to do it.
+
+How do we implement this? We overspecify the system.
+
+If we overspecify the system and say what should be true, we can solve algorithmic problems with pattern matching.
+
+
+
+
 
 
 # 88. Stacks to code
