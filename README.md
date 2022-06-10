@@ -1648,9 +1648,9 @@ What gets executed on a CPU is instructions that manipulate registers and memory
 
 Classes and methods only exist in the compiler. Even a stackframe is virtual.
 
-I kind of feel these are local Optimums that we have learned throughout history in computer science.
+I kind of feel these are local Optimums that we learned throughout history in computer science.
 
-There must be a better approach to structuring code and maximising interoperability and maintainability of code and minimising complexity.
+There must be a better approach to structuring code, maximising interoperability and maintainability of code and minimising complexity. Code communicates how something is done but not what it is trying to do.
 
 I think types are useful but they are not a panacea or silver bullet.
 
