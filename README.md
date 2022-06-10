@@ -1612,11 +1612,6 @@ Overspecification is to define all the states and invariants of the program.
 
 So we should be using set syntax to refer to recursive sets. Or we should be directly using algebra to specify invariants.
 
-
-
-
-
-
 # 88. Stacks to code
 
 We spend most of our time writing code to generate stacks.
@@ -1643,7 +1638,23 @@ Refactoring is introducing new people to represent or handle certain things. Som
 
 I imagine a website that lets people solve technical problems with these metaphors. In aggregate the wisdom of crowds shall find out answers to problems. 
 
-# 90. 
+Let's map programs to what they're actually doing in English terms and use intuition to reason what should solve the problem or how we want to think of the problem.
+
+# 90. Dream IDE
+
+# 91. Methods, classes are local optimum of computer science
+
+What gets executed on a CPU is instructions that manipulate registers and memory.
+
+Classes and methods only exist in the compiler. Even a stackframe is virtual.
+
+I kind of feel these are local Optimums that we have learned throughout history in computer science.
+
+There must be a better approach to structuring code and maximising interoperability and maintainability of code and minimising complexity.
+
+I think types are useful but they are not a panacea or silver bullet.
+
+When I look at what needs to be implemented to implement a text editor in Applr MacOs or Kubernetes I think we're reaching the limits of understandability in computer engineering.
 
 # incomplete ideas
 
