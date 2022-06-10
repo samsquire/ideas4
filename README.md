@@ -1608,6 +1608,10 @@ How do we implement this? We overspecify the system.
 
 If we overspecify the system and say what should be true, we can solve algorithmic problems with pattern matching.
 
+Overspecification is to define all the states and invariants of the program.
+
+So we should be using set syntax to refer to recursive sets. Or we should be directly using algebra to specify invariants.
+
 
 
 
