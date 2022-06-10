@@ -1641,9 +1641,9 @@ IDEs should automatically profile your code and generate flamegraphs. The user i
 
 Refactoring is introducing new people to represent or handle certain things. Some people represent an interface (types matching).
 
-I imagine a website that lets people solve technical problems with these metaphors. In aggregate the wisdom of crowds shall find out answers to problems.
+I imagine a website that lets people solve technical problems with these metaphors. In aggregate the wisdom of crowds shall find out answers to problems. 
 
-
+# 90. 
 
 # incomplete ideas
 
