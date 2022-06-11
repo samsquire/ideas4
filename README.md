@@ -1682,11 +1682,17 @@ When a thread wants to modify the complicated data structure it creates an Op ev
 
 The op event has a granularity setting which corresponds to the field being modified.
 
-Each thread scans the oplog and handles requests with the minimum phase number.
+Two pointers or indexes to the oplog are kept. One is the current position and one is the scanahead.
 
-Another HashMap is kept that marks what is blocked 
+Each thread scans the oplog from the current position and then from the scanahead pointer and handles requests
 
-As they are scanning the list if they encounter a read or write event they mark the blocked HashMap with the key that is blocked and the granularity that is blocked. They skip these items and let the thread whose responsibility is to hand that request, then they handle requests that aren't blocked.
+Another HashMap is kept per thread that marks what is blocked based on the oplog.
+
+As they are scanning the oplog if they encounter a read or write event they mark the blocked HashMap with the key that is blocked and the granularity that is blocked. They skip these items and let the thread whose responsibility is to handle that request, then they handle requests that aren't blocked.
+
+When a thread successfully reads or modifies, it inserts an oplog finish event, this advances the current pointer by one and resets the scanahead to current.
+
+The idea is that all threads can successfully read and write the same data structure if the granularities do not match. But threads can always progress even when their own work is blocked.
 
 
 
