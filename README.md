@@ -1738,7 +1738,7 @@ class DoublyLinkedList {
 }
 ```
 
-When you read from the DoublyLinkedList you always receive fields highest of less than or equal to version. That way you have data sharing as in a persistent data structure.
+When you read from the DoublyLinkedList you always receive fields highest of less than or equal to root.version. That way you have data sharing as in a persistent data structure.
 
 
 
