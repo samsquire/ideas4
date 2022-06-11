@@ -1694,7 +1694,36 @@ When a thread successfully reads or modifies, it inserts an oplog finish event, 
 
 The idea is that all threads can successfully read and write the same data structure if the granularities do not match. But threads can always progress even when their own work is blocked.
 
+To do an operation a thread must enqueue all its operations it wants to do to the oplog
 
+```
+NewNode = new Node(value=6)
+NewNext = new NewNext(previous=complicated.next,
+  field=complicated.next, 
+  new=NewNode,
+  granularity=(complicated), id=500)
+NewPrevious = new NewPrevious(previous=complicated.next,
+  field=complicated.next.previous,
+  new=NewNode, granularity=(complicated.next, complicated.next.previous),
+  id=500)
+NewNodeNext = new SetNext(previous=null, field=NewNode.next, granularity=(NewNode))
+NewOps = [NewNext, NewPrevious, NewNodeNext]
+FinishOp = new FinishOp(granularity=[NewNext.granularity, NewPrevious.granulatity, NewNodeNext.granularity])
+For op in NewOps:
+  Oplog.add(op)
+Pending = true
+While pending:
+  AllWorked = True
+  For op In NewOps:
+    If op.pending and !TryCAS(op):
+      Op.reset() # resets previous and granularity
+      AllWorked = False
+  If AllWorked:
+    pending = false
+    Oplog.add(FinishOp) # unblocks all the data structures
+   
+    
+```
 
 
 
