@@ -1725,6 +1725,20 @@ While pending:
     
 ```
 
+This scheme needs multiversion concurrency control or persistent structures due to the fact that arbitrary fields can be changed by other threads.
+
+This could be implemented as simply as this:
+
+```
+class DoublyLinkedList {
+ int version;
+ RingBuffer<DoublyLinkedList> root;
+ RingBuffer<DoublyLinkedList> next;
+ RingBuffer<DoublyLinkedList> previous;
+}
+```
+
+When you read from the DoublyLinkedList you always receive fields highest of less than or equal to version. That way you have data sharing as in a persistent data structure.
 
 
 
