@@ -1654,7 +1654,7 @@ There must be a better approach to structuring code, maximising interoperability
 
 I think types are useful but they are not a panacea or silver bullet.
 
-When I look at what needs to be implemented to implement a text editor in Applr MacOs or Kubernetes I think we're reaching the limits of understandability in computer engineering.
+When I look at what needs to be implemented to implement a text editor in Apple MacOs or Kubernetes I think we're reaching the limits of understandability in computer engineering.
 
 # 92. Indexed code execution and code generation
 
