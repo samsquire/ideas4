@@ -1658,6 +1658,18 @@ When I look at what needs to be implemented to implement a text editor in Applr 
 
 # 92. Indexed code execution and code generation
 
+# 93. Type collections
+
+What does the type:
+
+```
+Upload<Servers[]>Encrypted<PublicKey>ZippedDeduplicatedWithReferenceTo<ReferenceData>
+```
+
+Represent? It represents a deduplicated data that has been compressed, encrypted and uploaded.
+
+Or is it a monad? It takes an operation and wraps it with an operation.
+
 
 
 # incomplete ideas
