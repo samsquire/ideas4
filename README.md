@@ -1670,6 +1670,27 @@ Represent? It represents a deduplicated data that has been compressed, encrypted
 
 Or is it a monad? It takes an operation and wraps it with an operation.
 
+# 94. Oplog concurrency control
+
+This is an idea of a granular lockfree algorithm that doesn't block, that is it should be wait free.
+
+There is a tree or complicated data structure that needs to be updated and visible to multiple threads. Multiple threads want to read and update this data structure.
+
+All threads serve a shared FIFO buffer for enqueing modifications potentially a ringbuffer.
+
+When a thread wants to modify the complicated data structure it creates an Op event with the parameters for the change.
+
+The op event has a granularity setting which corresponds to the field being modified.
+
+Each thread scans the oplog and handles requests with the minimum phase number.
+
+Another HashMap is kept that marks what is blocked 
+
+As they are scanning the list if they encounter a read or write event they mark the blocked HashMap with the key that is blocked and the granularity that is blocked. They skip these items and let the thread whose responsibility is to hand that request, then they handle requests that aren't blocked.
+
+
+
+
 
 
 # incomplete ideas
