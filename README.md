@@ -1708,7 +1708,7 @@ NewPrevious = new NewPrevious(previous=complicated.next,
   id=500)
 NewNodeNext = new SetNext(previous=null, field=NewNode.next, granularity=(NewNode))
 NewOps = [NewNext, NewPrevious, NewNodeNext]
-FinishOp = new FinishOp(granularity=[NewNext.granularity, NewPrevious.granulatity, NewNodeNext.granularity])
+FinishOp = new FinishOp(granularity=[NewNext.granularity, NewPrevious.granularity, NewNodeNext.granularity])
 For op in NewOps:
   Oplog.add(op)
 Pending = true
