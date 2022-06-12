@@ -1744,7 +1744,7 @@ class DoublyLinkedList {
 
 When you read from the DoublyLinkedList you always receive fields highest of less than or equal to root.version. That way you have data sharing as in a persistent data structure.
 
-# 95. Visual data structure manager
+# 95. Visual data structure and program synthesis
 
 This idea relies on the graph isomorphism problem and the ability to match graph morphisms.
 
