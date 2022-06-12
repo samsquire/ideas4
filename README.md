@@ -1746,18 +1746,25 @@ When you read from the DoublyLinkedList you always receive fields highest of les
 
 # 95. Visual data structure manager
 
-This problem relies on the graph isomorphism problem.
+This idea relies on the graph isomorphism problem and the ability to match graph morphisms.
 
-I should be capable of creating a data structure with lists and references between objects.
+Represent algorithms and data structures as graphs.
 
-And then define before operation and after operation snapshots.
+Define two data structures one before an operation and one after operation and the operations parameters.
+
+Calculate a diff between the graphs. Allow the user to provide sub operation steps for more complicated data structures.
+
+The diff can then be changed into a DFS/BFS/dynamic programming/graph Search algorithm to transform the input into the output.
+
+We can represent algorithms as graphs and use a morphism search to find algorithms that implement the transformation We need to define sorts and partial orders explicitly.
+
+Merging data structures should be possible with a hint to merge and what to merge and the reason for merging.
 
 The computer can work out how to take the arguments and the source input and the end input and create an series of steps to transform the input graph to the output graph.
 
-For example if you were implementing garbage collection you need to do some wide reaching graph transformations. Of the data in memory. What if you could see that memory list in memory and then define what should go on to it with rules and an input to output mapping. As long as you provide the reasoning for a change to the input structure you can generalise the activity with objects that look different.
+For example if you were implementing garbage collection you need to do some wide reaching graph transformations over the stack and track alive pointers. What if you could see that memory list in memory and then define what should go on to it with rules and an input to output mapping. As long as you provide the reasoning for a change to the input structure you can generalise the activity with objects that look different.
 
-Then define behaviours over them from a high level. This is like [34. Graph to query generation and sort]() and Object manager and [20. Lazy arrange or invariant maintenance](https://github.com/samsquire/ideas4/blob/main/README.md#20-lazy-arrange-or-invariant-maintenance)
- .
+This could be combined with [34. Graph to query generation and sort]() and Object manager and [20. Lazy arrange or invariant maintenance](https://github.com/samsquire/ideas4/blob/main/README.md#20-lazy-arrange-or-invariant-maintenance)
 
 
 
