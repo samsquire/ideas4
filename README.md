@@ -1746,6 +1746,8 @@ When you read from the DoublyLinkedList you always receive fields highest of les
 
 # 95. Visual data structure manager
 
+This problem relies on the graph isomorphism problem.
+
 I should be capable of creating a data structure with lists and references between objects.
 
 And then define before operation and after operation snapshots.
