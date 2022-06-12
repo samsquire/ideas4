@@ -1642,6 +1642,10 @@ Let's map programs to what they're actually doing in English terms and use intui
 
 # 90. Dream IDE
 
+
+ * **Continuous integration** CI that runs locally and standardised.
+ * **Standardised deployment** automatically deploy to Kubernetes
+
 # 91. Methods, classes are local optimum of computer science
 
 What gets executed on a CPU is instructions that manipulate registers and memory.
@@ -1739,6 +1743,8 @@ class DoublyLinkedList {
 ```
 
 When you read from the DoublyLinkedList you always receive fields highest of less than or equal to root.version. That way you have data sharing as in a persistent data structure.
+
+# 95. 
 
 
 
