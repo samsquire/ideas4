@@ -1766,7 +1766,15 @@ For example if you were implementing garbage collection you need to do some wide
 
 This could be combined with [34. Graph to query generation and sort]() and Object manager and [20. Lazy arrange or invariant maintenance](https://github.com/samsquire/ideas4/blob/main/README.md#20-lazy-arrange-or-invariant-maintenance)
 
+# 96. Core developers
 
+Some technologies are built by few people and very few people understand the technologies they build upon intimately.
+
+Similar to Non leaf framework I feel this leads to technological mountains where very few people understand the code they rely on.
+
+How many people realistically understand the Postgresql, Chromium, Firefox, Linux kernel, Kubernetes?
+
+Why aren't these projects documented to the level I want? Why don't they explain their algorithms?
 
 # incomplete ideas
 
