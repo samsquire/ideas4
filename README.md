@@ -1791,7 +1791,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * IO multiplexing as in epoll and kqeueue or IO ports
  * Event loops
  * Batch processing systems that use windows
- * Locking, semaphores, mutexes
+ * Locking, semaphores, mutexes multiplex the CPU
  * Scheduling, assignment problem
  * Containerisation
  * Concurrency
@@ -1805,7 +1805,13 @@ The kernel should provide this abstraction as multiplexing is a higher level of 
 
 The same algorithm can be used to schedule all these things.
 
-The key component is time or execution time. Most
+The key component is time or execution time.
+
+The tip of execution is what is being executed at this time.
+
+```
+
+```
 
 # 98. 
 
