@@ -1782,14 +1782,19 @@ Treating one thing as if it's multiple things is extremely powerful.
 
  * Multiplex goroutines/green threads over threads and processes.
  * Multiplex traffic over a connection.
- * Multiplex memory in a an memory allocator
+ * Multiplex memory in a an memory allocator (different pages sizes)
  * Multiplex DOM operations over time (React)
  * Multiplex parts of queries in a database engine (query parallelization)
- * 
+ * Multiplex lines and characters in a document (Rope data structure)
+ * Union types in a data struct
+ * Monads
 
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
+The kernel should provide this abstraction as multiplexing is a higher level of resource sharing.
+
+# 98. 
 
 # incomplete ideas
 
