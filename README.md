@@ -1809,6 +1809,13 @@ The key component is time or execution time.
 
 The tip of execution is what is being executed at this time.
 
+
+We want to change the tip of execution between multiple things.
+
+For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c
+
+Unfortunately it's not really possible to prempt a thread in user space.
+
 ```
 
 ```
