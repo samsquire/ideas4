@@ -1795,6 +1795,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Scheduling, assignment problem
  * Containerisation
  * Concurrency
+ * Bit torrent
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
