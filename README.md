@@ -1788,6 +1788,8 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Multiplex lines and characters in a document (Rope data structure)
  * Union types in a data struct
  * Monads
+ * IO multiplexing as in epoll and kqeueue or IO ports
+ * Event loops
 
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
