@@ -1790,8 +1790,8 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Monads
  * IO multiplexing as in epoll and kqeueue or IO ports
  * Event loops
- * Batch window processing systems
-
+ * Batch processing systems that use windows
+ * Locking, semaphores, mutexes
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
