@@ -1776,6 +1776,21 @@ How many people realistically understand the Postgresql, Chromium, Firefox, Linu
 
 Why aren't these projects documented to the level I want? Why don't they explain their algorithms?
 
+# 97. Visual Multiplexing 
+
+Treating one thing as if it's multiple things is extremely powerful.
+
+ * Multiplex goroutines/green threads over threads and processes.
+ * Multiplex traffic over a connection.
+ * Multiplex memory in a an memory allocator
+ * Multiplex DOM operations over time (React)
+ * Multiplex parts of queries in a database engine (query parallelization)
+ * 
+
+
+These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
+
+
 # incomplete ideas
 
 Memory set to network calls
