@@ -1792,6 +1792,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Event loops
  * Batch processing systems that use windows
  * Locking, semaphores, mutexes
+ * Scheduling, assignment problem
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
