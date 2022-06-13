@@ -1800,6 +1800,10 @@ These problems could be solved in a profoundly effective way with the right abst
 
 The kernel should provide this abstraction as multiplexing is a higher level of resource sharing.
 
+The same algorithm can be used to schedule all these things.
+
+The key component is time or execution time. Most
+
 # 98. 
 
 # incomplete ideas
