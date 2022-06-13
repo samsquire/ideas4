@@ -1794,6 +1794,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Locking, semaphores, mutexes
  * Scheduling, assignment problem
  * Containerisation
+ * Concurrency
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
