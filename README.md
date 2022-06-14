@@ -1835,7 +1835,7 @@ I propose a virtual interrupt statement. The virtual if statement is only ran wh
 
 How to do this in a compiler, we generate two loops in assembly. One has the if statement one doesn't.
 
-When another thread, the scheduler, decides that a process has executef for too long it switches the jump address to switch the loop to the one with the scheduler call.
+When another thread, the scheduler, decides that a process has executed for too long it switches the jump address to switch the loop to the one with the scheduler call.
 
 
 
