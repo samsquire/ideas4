@@ -1814,7 +1814,11 @@ We want to change the tip of execution between multiple things.
 
 For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c
 
-Unfortunately it's not really possible to prempt a thread in user space.
+Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt Virtual threads by having a stack per process and multiplex between processes.
+
+In the asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream to cause a scheduler trap.
+
+The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
 ```
 
