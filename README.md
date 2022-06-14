@@ -1807,20 +1807,20 @@ The same algorithm can be used to schedule all these things.
 
 The key component is time or execution time.
 
-The tip of execution is what is being executed at this time.
+The tip of execution is what is being executed at this time to multiplex we need to switch between it and multiple other items.
 
 
 We want to change the tip of execution between multiple things.
 
-For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c
+For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c and switch_to in process_64.c.
 
-Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt Virtual threads by having a stack per process and multiplex between processes.
+Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows.
 
 In the [asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream](https://github.com/golang/proposal/blob/master/design/24543-non-cooperative-preemption.md) to cause a scheduler trap. [See this design document on Scalable Go Scheduler Design Doc](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw)
 
 The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
-In C we can modify a hot loop by writing to the memory of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler.
+In C we can modify a hot loop by writing to the memory of opcodes of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler. It's possible for the cancel button to actually cancel.
 ```
 
 ```
