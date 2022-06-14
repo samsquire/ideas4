@@ -1825,7 +1825,19 @@ In C we can modify a hot loop by writing to the memory of opcodes of the loop. F
 
 ```
 
-# 98. 
+# 98. Virtual interrupts
+
+One approach to prempt a hot loop is to insert an if statement in the loop that checks for number of iterations before calling scheduler to see if the hot loop should stop or be cancelled.
+
+This obviously introduces an overhead as the cost of providing interactivity or liveness.
+
+I propose a virtual interrupt statement. The virtual if statement is only ran when another thread interrupts it in user space, by modifying its memory.
+
+How to do this in a compiler, we generate two loops in assembly. One has the if statement one doesn't.
+
+When another thread, the scheduler, decides that a process has executef for too long it switches the jump address to switch the loop to the one with the scheduler call.
+
+
 
 # incomplete ideas
 
