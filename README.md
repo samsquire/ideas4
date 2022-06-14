@@ -1816,7 +1816,7 @@ For the Linux kernel this is a hardware interrupt on a timer where each process 
 
 Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt Virtual threads by having a stack per process and multiplex between processes.
 
-In the asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream to cause a scheduler trap.
+In the asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream to cause a scheduler trap. [See this design document on Scalable Go Scheduler Design Doc](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw)
 
 The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
