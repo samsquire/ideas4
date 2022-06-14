@@ -1816,7 +1816,6 @@ For the Linux kernel this is a hardware interrupt on a timer where each process 
 
 Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows.
 
-In the [asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream](https://github.com/golang/proposal/blob/master/design/24543-non-cooperative-preemption.md) to cause a scheduler trap. [See this design document on Scalable Go Scheduler Design Doc](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw)
 
 The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
@@ -1833,7 +1832,9 @@ This obviously introduces an overhead as the cost of providing interactivity or 
 
 I propose a virtual interrupt statement. The virtual if statement is only ran when another thread interrupts it in user space, by modifying its memory.
 
-How to do this in a compiler, we generate two loops in assembly. One has the if statement one doesn't.
+In the [asynchronous non cooperative premption proposal for Golang they suggested inserting code into the instruction stream](https://github.com/golang/proposal/blob/master/design/24543-non-cooperative-preemption.md) to cause a scheduler trap. [See this design document on Scalable Go Scheduler Design Doc](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw)
+
+How to do this in a compiler, we generate two loops in assembly. One has the scheduler trap one doesn't.
 
 When another thread, the scheduler, decides that a process has executed for too long it switches the jump address to switch the loop to the one with the scheduler call.
 
