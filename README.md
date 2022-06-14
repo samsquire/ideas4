@@ -1820,6 +1820,7 @@ In the [asynchronous non cooperative premption proposal for Golang they suggeste
 
 The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
+In C we can modify a hot loop by writing to the memory of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler.
 ```
 
 ```
