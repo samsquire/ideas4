@@ -1840,6 +1840,14 @@ When another thread, the scheduler, decides that a process has executed for too 
 
 In C we can modify a hot loop by writing to the memory of opcodes of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler. It's possible for the cancel button to actually cancel.
 
+# 99. Register loop
+
+One approach to implementing hot loop preemption is to introduce a register loop function.
+
+For example, we register the loop variable as a global variable and register the invariant function 
+
+When we want to prempt the loop, we set the global loop variable to the end of the loop causing the loop to end.
+
 
 # incomplete ideas
 
