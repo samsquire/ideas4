@@ -1798,6 +1798,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Bit torrent
  * Continuations
  * Currying
+ * Layout engines multiplex what is on the screen
 
 These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
 
@@ -1814,12 +1815,11 @@ We want to change the tip of execution between multiple things.
 
 For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c and switch_to in process_64.c.
 
-Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows.
+Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But if we are an interpreter we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows.
 
 
 The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
 
-In C we can modify a hot loop by writing to the memory of opcodes of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler. It's possible for the cancel button to actually cancel.
 ```
 
 ```
@@ -1838,6 +1838,7 @@ How to do this in a compiler, we generate two loops in assembly. One has the sch
 
 When another thread, the scheduler, decides that a process has executed for too long it switches the jump address to switch the loop to the one with the scheduler call.
 
+In C we can modify a hot loop by writing to the memory of opcodes of the loop. For example, [see this stackoverflow post](https://stackoverflow.com/questions/7447013/how-to-write-self-modifying-code-in-c) if we add a disassembler and identify the conditional jump of the hot loop, we can modify the jump target to a line that calls the scheduler. It's possible for the cancel button to actually cancel.
 
 
 # incomplete ideas
