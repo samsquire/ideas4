@@ -1776,7 +1776,7 @@ How many people realistically understand the Postgresql, Chromium, Firefox, Linu
 
 Why aren't these projects documented to the level I want? Why don't they explain their algorithms?
 
-# 97. Visual Multiplexing 
+# 97. Multiplexing API and Visual Multiplexing 
 
 Treating one thing as if it's multiple things is extremely powerful.
 
