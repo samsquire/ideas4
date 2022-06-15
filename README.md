@@ -1800,13 +1800,15 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Currying
  * Layout engines multiplex what is on the screen
 
-These problems could be solved in a profoundly effective way with the right abstraction and used for all cases.
+These problems could be solved in a profoundly effective way with the right abstraction, API and used for all cases.
+
+Imagine the same code being used for scheduling tasks onto threads and green threads as used for bittorrent.
 
 The kernel should provide this abstraction as multiplexing is a higher level of resource sharing.
 
 The same algorithm can be used to schedule all these things.
 
-The key component is time or execution time.
+The key component is time or execution time and scheduling.
 
 The tip of execution is what is being executed at this time to multiplex we need to switch between it and multiple other items.
 
