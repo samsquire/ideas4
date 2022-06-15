@@ -1848,6 +1848,7 @@ For example, we register the loop variable as a global variable and register the
 
 When we want to prempt the loop, we set the global loop variable to the end of the loop causing the loop to end.
 
+I implemented this as a multithreaded scheduler of lightweight threads multiplexed onto kernel threads in C and Java, see my [preemptible-thread repo](HTTPS://GitHub.com/samsquire/preemptible-thread) 
 
 # incomplete ideas
 
