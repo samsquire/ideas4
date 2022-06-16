@@ -1662,6 +1662,12 @@ When I look at what needs to be implemented to implement a text editor in Apple 
 
 # 92. Indexed code execution and code generation
 
+When you parse Quicksort, mergesort and insertion sort the algorithms have very little variation from a tree perspective.
+
+I wonder if code can be indexed to identify patterns.
+
+And trialled on data to see if generates the right answer.
+
 # 93. Type collections
 
 What does the type:
@@ -1859,6 +1865,12 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
  * **Accelerated by GPU**
  * **Very few keywords**
  * ****
+
+# 101. Dream browser
+
+ * **SQL APIs**
+ * **Distributed storage** 
+ * **GUI scalability** Can load trillions of records loaded in the GUI, silently paged behind the scenes.
 
 # incomplete ideas
 
