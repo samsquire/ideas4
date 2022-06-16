@@ -1872,9 +1872,9 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
  * **Distributed storage** 
  * **GUI scalability** Can load trillions of records loaded in the GUI, silently paged behind the scenes.
 
-# 102. Event sourced concurrency control
+# 102. Event sourced multiversion concurrency control
 
-If we have two threads that both want to modify the same data structure simultaneously, the tradition MVCV approach is to version the lists and abort if one fails to append.
+If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure.
 
 There's an approach that means that we don't have to abort.
 
@@ -1884,7 +1884,15 @@ The concurrent modifications are turned into a series of events of appends or de
 
 All the append events are aggregated minus the remove events and this is the version that is iterated.
 
-We can sort the edits so that edits of the same transaction appear after one another.
+We can sort the edits with tree sort so that edits of the same transaction appear after one another this gives us serializability.
+
+For a linked list and if there is an edit in the middle of the linked list at most three items need to be changed so we get persistent data structures.
+
+For a tree we can create new records up to the root to create a new shared persistent data structure.
+
+We can keep a cache of versions of event sourced read trees/linked lists/collections.
+
+For tree we can know the new generated items up to root by keeping a cache of the old identifiers and the new ones while we build up the tree.
 
 # incomplete ideas
 
