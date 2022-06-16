@@ -1872,6 +1872,20 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
  * **Distributed storage** 
  * **GUI scalability** Can load trillions of records loaded in the GUI, silently paged behind the scenes.
 
+# 102. Event sourced concurrency control
+
+If we have two threads that both want to modify the same data structure simultaneously, the tradition MVCV approach is to version the lists and abort if one fails to append.
+
+There's an approach that means that we don't have to abort.
+
+Rather than keeping two versions of the lists, we can use event sourcing.
+
+The concurrent modifications are turned into a series of events of appends or deletes.
+
+All the append events are aggregated minus the remove events and this is the version that is iterated.
+
+We can sort the edits so that edits of the same transaction appear after one another.
+
 # incomplete ideas
 
 Memory set to network calls
