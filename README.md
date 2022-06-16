@@ -1854,10 +1854,11 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 
 # 100. Dream programming language
 
- * Highly concurrent
- * Virtual machine
- * Accelerated by GPU
- * 
+ * **Highly concurrent and parallel**
+ * **Virtual machine**
+ * **Accelerated by GPU**
+ * **Very few keywords**
+ * ****
 
 # incomplete ideas
 
