@@ -458,11 +458,15 @@ replace(pair, neighbours)
 
 I am yet to decide on the syntax for expanding a method n times but I used the * syntax go indicate this.
 
-# 31. Algebraic materialised view edits and optimisation
+# 31. Algebraic materialised view edits and whole program optimisation
 
 This is an extension to the [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure) and [20. Lazy arrange or invariant maintenance](https://github.com/samsquire/ideas4/blob/main/README.md#20-lazy-arrange-or-invariant-maintenance)
 
-If I have a materialised view based on another materialised view, I can use algebra to decide which view to update first and which to map to what.
+If I have a materialised view based on another materialised view, I can use algebra to decide which view to update first and which to map to what
+
+We can change computer programs into queries and therefore algebra then optimising queries the same way a database optimises the algebra of a query using a cost based optimiser. if we represent programs as algebra they can be optimised.
+
+I also want materialised views layered ontop of eachother and the computer decide which one to use for source of truth.
 
 I can also decide where to insert records based on the views that are used.
 
