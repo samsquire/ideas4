@@ -1902,7 +1902,13 @@ For tree we can know the new generated items up to root by keeping a cache of th
 
 # 103. Dream API
 
+# 104. Autothreadpool
 
+To use slow features you need to amortize the cost 
+
+We can write code that finds all new Thread() code and turns them into threadpool references.
+
+So from the user perspective the use of threads is simple.
 
 # incomplete ideas
 
