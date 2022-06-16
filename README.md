@@ -1852,6 +1852,13 @@ When we want to prempt the loop, we set the global loop variable to the end of t
 
 I implemented this as a multithreaded scheduler of lightweight threads multiplexed onto kernel threads in C and Java, see my [preemptible-thread repo](HTTPS://GitHub.com/samsquire/preemptible-thread) 
 
+# 100. Dream programming language
+
+ * Highly concurrent
+ * Virtual machine
+ * Accelerated by GPU
+ * 
+
 # incomplete ideas
 
 Memory set to network calls
