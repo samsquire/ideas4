@@ -1,4 +1,4 @@
-# An Additional 100 Ideas for Computing
+# An Additional 100+ Ideas for Computing
 
 Welcome to the forth page of my Ideas for Computing.
 
@@ -1872,7 +1872,9 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
  * **Distributed storage** 
  * **GUI scalability** Can load trillions of records loaded in the GUI, silently paged behind the scenes.
 
-# 102. Event sourced multiversion concurrency control
+# 102. Event sourced multiversion concurrency control and database sync and ondisk format
+
+Event sourcing solves so many problems.
 
 If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure.
 
@@ -1893,6 +1895,10 @@ For a tree we can create new records up to the root to create a new shared persi
 We can keep a cache of versions of event sourced read trees/linked lists/collections.
 
 For tree we can know the new generated items up to root by keeping a cache of the old identifiers and the new ones while we build up the tree.
+
+# 103. Dream API
+
+
 
 # incomplete ideas
 
