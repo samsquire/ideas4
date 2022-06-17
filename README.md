@@ -1942,6 +1942,10 @@ We can analyse the code communication patterns to decide where to move each beha
 
 # 106. Expected pattern and type based opyimisations
 
+# 107. Distributed Continuation Passing
+
+Rather than talk back and forth between two servers, start a server on the client, send a request and then pass the program to that server that is serving the request where the remainder of the program shall be executed this server repeats the process for the remainder of the computation.
+
 # incomplete ideas
 
 Memory set to network calls
