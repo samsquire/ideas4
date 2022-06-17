@@ -2000,7 +2000,13 @@ When you have a lot of loops and nested code it's not always obvious what contex
 
 The code to parallelize via threads and via network should be the same.
 
+Can we identify when code diverges from the data it uses and use this to parallelize?
 
+For example, the following code diverges at mergesort() lines.
+
+```
+
+```
 
 # incomplete ideas
 
