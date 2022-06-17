@@ -2002,7 +2002,7 @@ The code to parallelize via threads and via network should be the same.
 
 Can we identify when code diverges from the data it uses and use this to parallelize?
 
-For example, the following code diverges at mergesort() lines.
+For example, the following code diverges at _mergesort() lines.
 
 ```
 import numpy
