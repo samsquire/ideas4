@@ -1946,6 +1946,26 @@ We can analyse the code communication patterns to decide where to move each beha
 
 Rather than talk back and forth between two servers, start a server on the client, send a request and then pass the program to that server that is serving the request where the remainder of the program shall be executed this server repeats the process for the remainder of the computation.
 
+# 108. Computing is just additions, multiplications and loops
+
+Programs eventually loop over data, add it together or multiply or divide it.
+
+The abstractions of APIs get in the way of this simple desire to loop, add, multiply and divide.
+
+Loop over APIs. Imagine writing a loop that says what you want to do and the computer works out the APIs and the order to call based on your loop.
+
+So imagine I have this imaginary software that introspects a piece of software while running and has access to the sourcecode.
+
+I can feed in some data and follow all the functions and APIs the data goes down into, for example, I can execute:
+
+```insert into people values ('Samuel Squire', 32)```
+
+And I can track the `struct`s that Samuel Squire goes into and follow all the method calls and loops that process this information.
+
+I can track where this data reaches disk.
+
+From this trace I know how to use all the APIs internal to the application.
+
 # incomplete ideas
 
 Memory set to network calls
