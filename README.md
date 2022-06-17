@@ -1992,6 +1992,10 @@ Direct style parallelism and concurrency would look like this.
 
 ```
 
+# 110. Empty space scheduling
+
+When you have a lot of loops and nested code it's not always obvious what context you're in, when you click you should be given a list of the outer contexts of what you want to place after.
+
 # incomplete ideas
 
 Memory set to network calls
