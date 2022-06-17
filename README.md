@@ -606,7 +606,15 @@ Store data in both arrays of structures and structures of arrays. Use the left r
 
 When there's contention for the wrong data structure (ie it would be more efficient to use arrays of structures), use the code for the other structures or arrays or arrays of structures.
 
-# 45. Code pattern matching
+# 45. Rendering engine reflow diff and pregenerated positions for each resolution
+
+Relayout and reflow is slow. Rendering a catalogue of items is really slow, even though the positions and sizes of everything is the same each time.
+
+We can obviously cache the numbers before reflowing.
+
+We can identify patterns in the numbers across rows and columns.
+
+For example if I am rendering 5 columns by 16 rows and do a load for 16 more items, if the items go above the existing items, we can push the bitmap down, we don't need to reflow all those old items.
 
 
 # 46. Snapshot isolation and duplicate everything
@@ -1923,6 +1931,8 @@ Rather than group microservices into noun services and keep data of the same kin
 So each server has a database of products (small), orders (small), user events (growing endlessly), email service, 
 
 An end to end flow can happen on one server.
+
+
 
 # incomplete ideas
 
