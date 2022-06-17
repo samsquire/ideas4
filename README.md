@@ -1924,7 +1924,7 @@ These can be moved to an argument being passed to the threadpool.
 
 # 104. Multistack microservice pattern
 
-IO is slow. Ram is slow. The CPU is fast.
+IO is slow. Ram is slow. Linked lists are slow. The CPU is fast.
 
 Rather than group microservices into noun services and keep data of the same kind together on different servers,  Group up the entire stack into vertical slices and deploy everything on every server. So every server has an order engine on it.
 
@@ -1933,6 +1933,12 @@ So each server has a database of products (small), orders (small), user events (
 An end to end flow can happen on one server.
 
 
+
+# 105. Cross codebase flow analysis and Communication reducer
+
+The perfect microservice system doesn't require back and forth with other systems.
+
+We can analyse the code communication patterns to decide where to move each behaviour.
 
 # incomplete ideas
 
