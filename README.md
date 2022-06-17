@@ -1966,6 +1966,32 @@ I can track where this data reaches disk.
 
 From this trace I know how to use all the APIs internal to the application.
 
+# 109. Direct coding style, direct code style to indirect style and direct style concurrency
+
+Direct coding style is to act on objects and determine their behaviour from a high level of saying what should happen.
+
+For example, if I was writing a load balancer in direct style I could write my load balancer to loop on a connection object, pick a destination and write data to the destination. Then loop on new requests and pick a different destination server.
+
+Unfortunately most programming is done in an indirect style. For example we define the behaviour of an onRequest handler and we store state between requests of our onRequest handler.
+
+We rarely have full authority over the entire stack.
+
+We write a small piece that has visibility of a tiny piece of the system.
+
+We can map direct style into indirect style.
+
+You can think of direct style code as being object oriented and dealing with the whole system at once.
+
+For example within a web framework request handler you are in direct style while inside the request but from the perspective of the web framework it is indirect.
+
+Direct style code is easier to reason about and easier to write concurrent programs in.
+
+Direct style parallelism and concurrency would look like this.
+
+```
+
+```
+
 # incomplete ideas
 
 Memory set to network calls
