@@ -1914,6 +1914,16 @@ Imagine my new Thread implementation closes over some variables in the scope whe
 
 These can be moved to an argument being passed to the threadpool.
 
+# 104. Multistack microservice pattern
+
+IO is slow. Ram is slow. The CPU is fast.
+
+Rather than group microservices into noun services and keep data of the same kind together on different servers,  Group up the entire stack into vertical slices and deploy everything on every server. So every server has an order engine on it.
+
+So each server has a database of products (small), orders (small), user events (growing endlessly), email service, 
+
+An end to end flow can happen on one server.
+
 # incomplete ideas
 
 Memory set to network calls
