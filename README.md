@@ -2267,6 +2267,21 @@ Class PipelinePoolWorker:
  
 ```
 
+# 112. Compiler as a service (Supercomputer compiler)
+
+There's always a better approach to solving the problem that your code tries to solve.
+
+Writing a compiler optimisation should be as simple as querying a database and inserting records for coordination of layers or introducing facts.
+
+Or match expressions against patterns and more efficient patterns as replacements.
+
+The optimisations we write can be really inefficiently described but due to Algebraic view materialisation, they can be optimised away to be fast.
+
+I think everything can be subsumed into a compiler step: microservices, disks, database schema, clientside code, promise pipelining, ondisk/network serialisation
+
+
+
+
 # incomplete ideas
 
 Memory set to network calls
