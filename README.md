@@ -1888,13 +1888,98 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 
 Event sourcing solves so many problems.
 
-If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure.
+If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure then retry with the updated structure.
 
 There's an approach that means that we don't have to abort.
 
 Rather than keeping two versions of the lists, we can use event sourcing.
 
-The concurrent modifications are turned into a series of events of appends or deletes.
+The concurrent modifications are turned into a series of partial events of appends or deletes.
+
+If you were incrementing a number, you wouldn't store the event of the new number to store but how much to increment by.
+
+Look at this history of events, we have two threads and they can each increment the number
+
+1:I1 2:I1 1:I1
+
+The value is 3. Before raising an event you getAndIncrement an atomic integer, this is your timestamp.
+
+Incrementing a number by a number is a self committing event, if we want cross field snapshot isolation, we need an additional event, imagine we have this history of updating a doubly linked list:
+
+1:head.next=1 2:head.next=3 1:1.previous=head 2:3.previous=head
+
+These changes conflict with one another. As they both try modify the head.
+
+We introduce commit events to introduce atomicity.
+
+1:head.next=1 2:head.next=3 1:1.previous=head 1:commit 2:3.previous=head 2:commit
+
+Then we sort and group by thread Id. 
+
+We ignore events that don't have a commit yet.
+
+```
+Sort(left, right):
+ If left.threadId > right.threadId:
+  Return 1
+ If right.threadId > left.threadId:
+  Return -1
+ If left.timestamp > right.timestamp:
+  Return 1
+ If right.timestamp > left.timestamp:
+  Return -1
+
+```
+
+Now the transactions are in right order we need to ignore transactions that don't have a commit.
+
+We regenerate a new version of the linked list if there are mutations so every transaction gets an immutable snapshot of the data.
+
+```
+Committed = {}
+Transaction_group = defaultdict(list)
+Previous = linkedlist_root
+Previous.mutable = false
+For item in log:
+ Transaction.group[item.timestamp].append(item)
+ If item.commit:
+  Previous = Reduce(apply_linked_list_patch, transaction_group[item.timedtamp], previous)
+
+Def apply_linked_list_patch(previous, patch):
+ If patch.type = "head.next":
+  Previous.head.next = patch.value
+ If patch.type = "value_previous":
+  If patch.subtype = "head":
+   Patch.value.previous = previous.head
+  If patch.subtype = "subvalue":
+   Previous_root = previous.value.previous
+   Previous_next = patch.subvalue
+   Patch.value.previous = patch.subvalue
+   While previous_root.previous != None:
+    New_previous = Previous_root.clone()
+    New_previous.mutable = true
+    New_previous.next = previous_next
+    Previous_root = new_previous.previous
+    Previous_next = new_previous
+   Previous_root = previous.root.clone()
+   Previous_root.next = previous_next
+   Previous = previous_root
+    
+    
+
+Return Previous
+```
+
+
+
+
+
+
+The tree sort function sorts based on the timestamp.
+
+So even if events are raised in interleaved order:
+
+
 
 All the append events are aggregated minus the remove events and this is the version that is iterated.
 
