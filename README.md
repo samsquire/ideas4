@@ -2093,6 +2093,8 @@ Can we identify when code diverges from the data it uses and use this to paralle
 
 For example, the following code diverges at _mergesort() lines.
 
+Any method call can be a future.
+
 ```
 import numpy
 
@@ -2178,10 +2180,91 @@ def _mergesort(start, end, items, output):
   return output
 
 print(mergesort([8, 7, 5, 4, 2, 1, 6, 10, -1]))
-      
+     
   
+```
 
-  
+The second kind of parallelism I want to autoparallelize is interleavings between subsystems.
+
+We often want to do one thing while doing another.
+
+For example, I want to loop over files, deduplicate, archive, encrypt and upload them.
+
+You can be doing all these tasks in a pipeline in parallel.
+
+We can turn loops into pipelines and run them in parallel. For example:
+
+```
+Files = []
+File_data_cache = FileDataCache()
+For item in Io.listfiles(backup_locations):
+ File_data = read(item)
+ Deduplicated_data = File_data_cachd.deduplicate(file_data)
+ Encrypted = Encrypt(deduplicated_data)
+ For upload_destination in destinations:
+   Upload(encrypted, upload_destination)
+```
+
+This can be turned into the following code.
+
+```
+ThreadPool
+File_list_rbp = RingBufferPool(backup_locations)
+File_data_rb = RingBuffer()
+DefuplicatedData_rb = RingBuffer()
+Encrypted_rb = RingBuffer()
+UploadDestination_rbp = File_List_rbp.newRingBufferPool(destinations)
+class Pipeline:
+  Def set_source(self, source):
+    Self.source = source
+  Def set_destination(self, destination)
+    Self.destination = destination
+  Def set_work(self, work):
+    Self.work = work
+  Def run():
+    While (true) {
+      While (self.source.sequence > lasttaken) {
+        Item = self.source.pop()
+        Result = Self.work(item)
+        Self.destination.push(Result)
+        lasttaken++
+      }
+    }
+Class PipelinePool:
+  Def __init__(self, data):
+    For item in data:
+      Self.workers.append(RingBuffer())
+      Self.downstream = []
+  Def newThreadPool(self, data):
+    For item in self.workers:
+       DownstreamItem = PipelinePool(data)
+    
+       Self.downstream.append(DownstreamItem)
+  Def fromThreadPool(self, data):
+    For item in self.downstream:
+      item.newThreadPool(data)
+  Def push(self, pushed):
+    For item in self.workers:
+      item.push(pushed)
+     
+Class PipelinePoolWorker:
+  Def __init__(self, pipeline_pool, index):
+    Self.pipeline_pool = pipeline_pool
+    Self.index = index
+  Def run():
+   lasttaken = 0
+   While (true) {
+     
+     While (self.pipeline_pool.workers[index].sequence > lasttaken) {
+        Item = self.pipeline_pool.workers[self.index].pop();
+        Result = Self.work(item)
+        Self.destination.push(Result)
+        For downstream in enumerate(self.pipeline_pool.downstream[self.index]):
+          downstream.push(item)
+        lasttaken++
+      }
+   }
+ 
 ```
 
 # incomplete ideas
