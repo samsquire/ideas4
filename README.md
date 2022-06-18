@@ -1886,7 +1886,7 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 
 # 102. Event sourced multiversion concurrency control and database sync and ondisk format
 
-Event sourcing solves so many problems.
+Event sourcing solves so many problems. We can synchronise with other nodes by simply replaying events. We can store data as an immutable log on disk as an append only log. We could overlay a CRDT over the log so that data can be merged at any time, even asychronously. The entries in the log form a CRDT with each record merging seamlessly with every other we can introduce the concept of a tree overlaying the event sourced log. It can be replayed
 
 If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure then retry with the updated structure.
 
@@ -1914,9 +1914,16 @@ We introduce commit events to introduce atomicity.
 
 1:head.next=1 2:head.next=3 1:1.previous=head 1:commit 2:3.previous=head 2:commit
 
-Then we sort and group by thread Id. 
+Then we sort and group by thread Id and operation sequence number.
+
+This interleaving is thread safe.
+
+1:head.next=1 1:1.previous=head 1:commit 2:head.next=3 2:3.previous=head 2:commit
+
 
 We ignore events that don't have a commit yet.
+
+The tree sort function sorts based on the timestamp, threadId and sequence Id, so items of the same threadId are next to one another in order of sequence number.
 
 ```
 Sort(left, right):
@@ -1927,6 +1934,10 @@ Sort(left, right):
  If left.timestamp > right.timestamp:
   Return 1
  If right.timestamp > left.timestamp:
+  Return -1
+ If left.sequence > right.sequence:
+  Return 1
+ If right.sequence > left.sequence:
   Return -1
 
 ```
@@ -1975,7 +1986,6 @@ Return Previous
 
 
 
-The tree sort function sorts based on the timestamp.
 
 So even if events are raised in interleaved order:
 
