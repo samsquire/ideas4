@@ -1910,6 +1910,10 @@ For tree we can know the new generated items up to root by keeping a cache of th
 
 # 103. Dream API
 
+ * **Cancellable APIs** 
+ * **Responsive APIs**
+ * **Flow Control** 
+
 # 104. Autothreadpool and code movement parameterization
 
 To use slow features you need to amortize the cost 
