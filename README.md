@@ -1890,7 +1890,7 @@ Event sourcing solves so many problems. We can synchronise with other nodes by s
 
 A hash identifies the lineage of the event sourced log, it represents the hash of the current item plus the hash of all the children that precede it so a hash represents the history as content addressable storage.
 
-When machines diverge, perhaps they go offline and don't communicate, the changes shall be grafted into the log and sorted by causality. For example, if two users go offline and change a data structure the causality shall be set so the causing hash and a number.
+When machines diverge, perhaps they go offline and don't communicate, the changes shall be grafted into the log and sorted by causality. For example, if two users go offline and change a data structure the causality shall be set to the causing hash and a number.
 
 If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure then retry with the updated structure.
 
