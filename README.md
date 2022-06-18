@@ -1886,7 +1886,11 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 
 # 102. Event sourced multiversion concurrency control and database sync and ondisk format
 
-Event sourcing solves so many problems. We can synchronise with other nodes by simply replaying events. We can store data as an immutable log on disk as an append only log. We could overlay a CRDT over the log so that data can be merged at any time, even asychronously. The entries in the log form a CRDT with each record merging seamlessly with every other we can introduce the concept of a tree overlaying the event sourced log. It can be replayed
+Event sourcing solves so many problems. We can synchronise with other nodes by simply replaying events. We can store data as an immutable log on disk as an append only log. We could overlay a CRDT over the log so that data can be merged at any time, even asychronously. The entries in the log form a CRDT with each record merging seamlessly with every other we can introduce the concept of a tree overlaying the event sourced log.
+
+A hash identifies the lineage of the event sourced log, it represents the hash of the current item plus the hash of all the children that precede it so a hash represents the history as content addressable storage.
+
+When machines diverge, perhaps they go offline and don't communicate, the changes shall be grafted into the log and sorted by causality. For example, if two users go offline and change a data structure the causality shall be set so the causing hash and a number.
 
 If we have two threads that both want to modify the same data structure simultaneously, the traditional multiversion concurrency control approach is to version the lists and abort if one fails to append due to parallel edits to the same data structure then retry with the updated structure.
 
@@ -1927,6 +1931,14 @@ The tree sort function sorts based on the timestamp, threadId and sequence Id, s
 
 ```
 Sort(left, right):
+ If left.cause > right.id:
+  Return 1
+ If left.cause < right.id:
+  Return -1
+ If right.cause > left.id:
+  Return -1
+ If right.cause < left.id:
+  Return 1
  If left.threadId > right.threadId:
   Return 1
  If right.threadId > left.threadId:
@@ -1939,6 +1951,7 @@ Sort(left, right):
   Return 1
  If right.sequence > left.sequence:
   Return -1
+ 
 
 ```
 
