@@ -2273,7 +2273,7 @@ There's always a better approach to solving the problem that your code tries to 
 
 Writing a compiler optimisation should be as simple as querying a database and inserting records for coordination of layers or introducing facts.
 
-Or match expressions against patterns and more efficient patterns as replacements.
+Or match expressions trees against patterns and more efficient patterns as replacements.
 
 The optimisations we write can be really inefficiently described but due to Algebraic view materialisation, they can be optimised away to be fast.
 
