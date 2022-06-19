@@ -2302,7 +2302,9 @@ The optimisations we write can be really inefficiently described but due to Alge
 
 I think everything can be subsumed into a compiler step: microservices, disks, database schema, clientside code, promise pipelining, ondisk/network serialisation
 
+# 113. Direct view
 
+Render code ran in a direct fashion.
 
 
 # incomplete ideas
