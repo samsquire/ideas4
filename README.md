@@ -1006,7 +1006,7 @@ For example, I can inject new behaviour by deciding how this stage of the pipeli
 
 I need full contextual information to decide on things.
 
-For example, I want to introduce a change to reorder code. I would need to find the right 
+For example, I want to introduce a change to reorder code. I would need to find the right insertion points relative to each other.
 
 # 55. Dynamic and static and zero cost abstractions
 
