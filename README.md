@@ -2341,6 +2341,8 @@ The optimisations we write can be really inefficiently described but due to Alge
 
 I think everything can be subsumed into a compiler step: microservices, disks, database schema, clientside code, promise pipelining, ondisk/network serialisation
 
+Even your Kubernetes config, database indexes, database queries, communication and data access patterns should be inputs to the compiler.
+
 # 113. Direct view tracing
 
 Render code ran in a direct fashion.
