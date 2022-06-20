@@ -50,6 +50,12 @@ Imagine an API as a graph and define a traversal of the API to get what you want
 
 Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
 
+The server should be defined a bit like Backus-Naur format but defines a protocol instead.
+
+What would IRC or HTTP look like at a high level?
+
+I want a server to handle as much traffic as it can, concurrently and parallel with low latency, jitter and errors. Nothing should block its IO loop. And other long running requests shouldn't slow down other users.
+
 # 9. Query for data structure
 
 If you're writing a compiler or programming language or business software you have a stored shape of data and relationships.
