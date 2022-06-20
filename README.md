@@ -569,17 +569,40 @@ We can sort variable use and automatically insert CountDownLatch at points we ne
 
 I propose a cas sort algorithm to maintain order between an arbitrary number of readers and writers. [I partly implemented this in my compare and swap sort repo. I need to add support for any number of readers and writers.](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
 
+We need a scalable equivalent of Java's synchronized.
+
 I should be capable of writing code like this:
 
 ```
-Def Happens_before(this) update_linked_list(new_head)
-  Old_head = self.head.previous
+Def Happens_before(self.head, self.head.previous) update_linked_list(new_head)
+  old_head = self.head
   Self.head.previous = new_head
   Self.head = new_head
-  New.head.next = Old_head
+  New_head.next = old_head
 ```
 
+This should be rewritten to:
+
+```
+Def update_linked_list(new_head)
+  Trying = true
+  While trying:
+    old_head = self.head
+    Trying = !Self.head.compareAndSet(self.head.previous, new_head)
+    Self.head.previous = new_head
+    Trying = !Self.head.compareAndSet(old_head, new_head)
+    New_head.next = old_head
+```
+
+
 Now all calls to update_linked_list are partially ordered.
+
+But would this be more efficient as an explicit queue?
+
+All threads enqueue their operations and if there is someone already modifying the same value, we don't block but we are dequeued by the committing thread.
+
+
+
 
 # 42. Direct concurrency and static scheduling
 
