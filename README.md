@@ -196,7 +196,6 @@ I imagine this being implemented as a Policy that defines the relationship hiera
 You could have a common API for storage that works across all levels of storage.
 
 This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
-
 # 15. Mega tree
 
 I want a mega tree data structure which has the combination of these properties:
@@ -2319,9 +2318,11 @@ The optimisations we write can be really inefficiently described but due to Alge
 
 I think everything can be subsumed into a compiler step: microservices, disks, database schema, clientside code, promise pipelining, ondisk/network serialisation
 
-# 113. Direct view
+# 113. Direct view tracing
 
 Render code ran in a direct fashion.
+
+In other words if you are using tracing, you can read the logs as the actual code that executed, rather than plaintext logs.
 
 
 # incomplete ideas
