@@ -570,6 +570,17 @@ We can sort variable use and automatically insert CountDownLatch at points we ne
 
 I propose a cas sort algorithm to maintain order between an arbitrary number of readers and writers. [I partly implemented this in my compare and swap sort repo. I need to add support for any number of readers and writers.](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
 
+I should be capable of writing code like this:
+
+```
+Def Happens_before(this) update_linked_list(new_head)
+  Old_head = self.head.previous
+  Self.head.previous = new_head
+  Self.head = new_head
+  New.head.next = Old_head
+```
+
+Now all calls to update_linked_list are partially ordered.
 
 # 42. Direct concurrency and static scheduling
 
