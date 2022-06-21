@@ -2091,7 +2091,14 @@ The perfect microservice system doesn't require back and forth with other system
 
 We can analyse the code communication patterns to decide where to move each behaviour.
 
-# 106. Expected pattern and type based opyimisations
+# 106. Expected pattern and type based optimisations
+
+At any point in your code you're in a context. You might have interrupts disabled, or you might be executing in a particular thread. Or you could be reentrant.
+
+This qualities should be captured by the type system but they are contextual environmental types not return types.
+
+This fact can be used for code movement.
+
 
 # 107. Distributed Continuation Passing
 
