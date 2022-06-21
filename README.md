@@ -36,8 +36,18 @@ Drag and drop is too hard. What about picking an item up and then dropping it. T
 
 Each news topic should be tracked separately, I should be able to follow a news stream from beginning to end on a topic.
 
-# 5. Permanent software / Software subscriptions
+# 5. Permanent software/platform/language / Software subscriptions and outsourceable stack
 
+At the cost of innovation we can solve swathes of computer problems with common parts of a stack.
+
+Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build.
+
+Upgrading CentOS 6 to Centos 7 and to 8 is a pain and you need to reharden everything again 
+
+To build an app things you need to worry of and solve:
+ * Packaging your app
+ * Writing a platform abstraction layer for Windows, Mac and Linux compatibility. Packaging for over 200 Linux distributions. Flatpak, Snap or AppImage
+ * 
 # 6. Contiguous disk layouter
 
 A program that reads your startup configuration and then lays out files on disk so everything is contiguous. So a simple program can be written to read all the files into the disk cache on startup and every read afterwards is instant.
@@ -2356,6 +2366,7 @@ Render code ran in a direct fashion.
 
 In other words if you are using tracing, you can read the logs as the actual code that executed, rather than plaintext logs.
 
+# 114. 
 
 # incomplete ideas
 
