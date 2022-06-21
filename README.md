@@ -42,7 +42,7 @@ At the cost of innovation we can solve swathes of computer problems with common 
 
 Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build.
 
-Upgrading CentOS 6 to Centos 7 and to 8 is a pain and you need to reharden everything again.
+Upgrading RHEL 6 to RHEL 7 and to RHEL 8 is a pain and you need to reharden everything again.
 
 To build an app things you need to worry of and solve:
  * Packaging your app
