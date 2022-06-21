@@ -42,12 +42,46 @@ At the cost of innovation we can solve swathes of computer problems with common 
 
 Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build.
 
-Upgrading CentOS 6 to Centos 7 and to 8 is a pain and you need to reharden everything again 
+Upgrading CentOS 6 to Centos 7 and to 8 is a pain and you need to reharden everything again.
 
 To build an app things you need to worry of and solve:
  * Packaging your app
  * Writing a platform abstraction layer for Windows, Mac and Linux compatibility. Packaging for over 200 Linux distributions. Flatpak, Snap or AppImage
+ * Twelve factor app
+ * Need to decide on how to configure machines so you need configuration management.
+ * Need to decide how to deploy your software
+ * Need logging need log storage and search
+ * Need Application Performance Monitoring
+ * Need tracing
+ * Need database
+ * Need security updates, patching and testing
+ * Need multiple environments and repeatable way to deploy environments
+ * Need containers
+ * Need to orchestrate containers so you need Kubernetes
+ * Need to manage Kubernetes manifests 
+ * Need a container registry
+ * Need backups of databases and container registry and sourcecode and keys
+ * Need secret management
+ * Need encryption at rest and in transit
+ * Need to check returncode every syscall or API call
+ * Need rollback deploys
+ * Need zero downtime deployment
+ * Need feature flags and feature flag toggles
+ * Need app configuration and service discovery
+ * Need separate release and deploy
+ * Need to migrate database
+ * Need to harden your app
+ * Need to scale application database and support services.
+ * Need continuous integration
+ * Need dependency security scanning
+ * Need a buildserver
+ * Need storage for buildserver
+ * Need reliable builds
+ * Need end to end testing
+ * Need a package repository server or cache or mirror
+ * Need a development virtual machine for all the platforms you develop on
  * 
+
 # 6. Contiguous disk layouter
 
 A program that reads your startup configuration and then lays out files on disk so everything is contiguous. So a simple program can be written to read all the files into the disk cache on startup and every read afterwards is instant.
