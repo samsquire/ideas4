@@ -2411,7 +2411,11 @@ In other words if you are using tracing, you can read the logs as the actual cod
 
 # 114. Thread from
 
-The compiler can generate code and weave the synchronization queues as talked of in the previous ideas 
+The compiler can generate code and weave the synchronization queues as talked of in the previous ideas
+
+We often want to run code from the context of a thread.
+
+Assume the thread is in a while true loop. How do you enqueue things on that thread?
 
 So I should be capable of writing:
 
@@ -2423,9 +2427,11 @@ Min(thread.id) {
     Work.callback()
   }
 }
+```
 
 This code would have two threads connected by queues serialize and schedule callbacks between them without explicit locking.
-```
+
+
 
 # incomplete ideas
 
