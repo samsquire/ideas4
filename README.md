@@ -648,6 +648,12 @@ But would this be more efficient as an explicit queue?
 
 All threads enqueue their operations and if there is someone already modifying the same value, we don't block but we are dequeued by the committing thread.
 
+Then you need a callback when the work is done. Or you block until the work is done.
+
+The whitepaper Wait-Free Queues With Multiple Enqueuers and Dequeuers algorithm could be used to queue up work.
+
+It could be changed not to block, and callbacks could be checked for by the committing thread 
+
 
 
 
