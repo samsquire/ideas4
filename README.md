@@ -2409,7 +2409,23 @@ Render code ran in a direct fashion.
 
 In other words if you are using tracing, you can read the logs as the actual code that executed, rather than plaintext logs.
 
-# 114. 
+# 114. Thread from
+
+The compiler can generate code and weave the synchronization queues as talked of in the previous ideas 
+
+So I should be capable of writing:
+
+```
+Min(thread.id) {
+ For work in queuedWork:
+  Do_work(work)
+  Work.threadId {
+    Work.callback()
+  }
+}
+
+This code would have two threads connected by queues serialize and schedule callbacks between them without explicit locking.
+```
 
 # incomplete ideas
 
