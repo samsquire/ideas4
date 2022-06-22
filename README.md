@@ -2420,7 +2420,7 @@ Assume the thread is in a while true loop. How do you enqueue things on that thr
 So I should be capable of writing:
 
 ```
-Min(thread.id) {
+Min(threads.id) {
  For work in queuedWork:
   Do_work(work)
   Work.threadId {
