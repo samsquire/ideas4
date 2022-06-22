@@ -70,7 +70,7 @@ To build an app things you need to worry of and solve:
  * Need app configuration and service discovery
  * Need separate release and deploy
  * Need to migrate database
- * Need to harden your app
+ * Need to harden your app and servers
  * Need to scale application database and support services.
  * Need continuous integration
  * Need dependency security scanning
@@ -80,7 +80,10 @@ To build an app things you need to worry of and solve:
  * Need end to end testing
  * Need a package repository server or cache or mirror
  * Need a development virtual machine for all the platforms you develop on
- * 
+
+Each if these areas is changing all the time. There is nothing permanent to develop against.
+
+I would like to see some permanent foundations on which to build.
 
 # 6. Contiguous disk layouter
 
