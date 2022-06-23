@@ -2528,19 +2528,38 @@ Class Worker extends Thread {
 }
 ```
 
-# 115. While parallelism
+# 115. While do parallelism
 
 We want to achieve perfect use of the processor and handoff between tasks.
 
+In [ideas3 50. Capacity planning tool](https://github.com/samsquire/ideas3#50-capacity-planning-tool) I described a timeline that you can drag work into and binpack work into time.
+
+We want to binpack code and tasks to run with maximum freedom of variable and shared memory usage. The computer should work out how to schedule and order the memory parallelism.
+
 Unfortunately writing multithreaded code is clumsy. It is difficult to handoff work between threads and synchronize explicitly.
 
-So I propose a syntax `while` for parallelism.
+So I propose a syntax `while do` for parallelism.
+
+The while part blocks and schedules a thread to handle the do when it unblocks.
+
+The while loop can therefore run at very fast speeds without being blocked 
+
+The do code runs in parallel do the while. The do can be independently scaled up and down by number of threads and multiplexed over kernel threads.
+
+The following code allows multiplexing connections over multiple threads and independent reading and writing from epoll.
 
 ```
+Socket = bind("127.0.0.1:5006")
 Parallel while {
-
+ Fileno = Socket.accept();
+ Connections.append({"fileno": Fileno});
 } do {
- 
+ Event = Epoll()
+ Parallel while {
+  
+ } Do {
+  
+ }
 }
 ```
 
