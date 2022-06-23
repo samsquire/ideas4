@@ -2431,7 +2431,50 @@ Min(threads.id) {
 
 This code would have two threads connected by queues serialize and schedule callbacks between them without explicit locking.
 
-
+```
+Class Worker extends Thread {
+ private MultiConsumerMultiProducerQueue queue;
+ public AtomicInteger threadId;
+ private List<Worker> workers;
+ private AtomicInteger min_thread = new AtomicInteger(1);
+ private AtomicInteger idGenerator;
+ public int stableThreadId;
+ public Worker(AtomicInteger idGenerator, int stableThreadId) {
+  this.idGenerator = idGenerator;
+  this.stableThreadId = stableThreadId;
+ }
+ 
+ public void run() {
+  While (true) {
+   threadId.set(idGenerator.getAndIncrement());
+   While (queue.isEmpty()) {
+     Thread.yield():
+   }
+   WorkItem workItem = queue.peek();
+   If (workItem.stableThreadId == stableThreadId && workItem.type.equals("callback")) {
+     workItem.callback();
+   }
+   while (threadId > min_thread.get()) {
+    int min = min_thread.get();
+    for (Worker worker : workers) {
+      Int workerThreadId = worker.threadId.get();
+      if (workerThreadId < min) {
+       min = workerThreadId;
+      }
+    }
+    Min_thread.set(min);
+   }
+   WorkItem workItem = queue.pop();
+   If workItem.type.equals("queuedWork") {
+     for (WorkItem work : workItem.items) {
+       work.work();
+       queue.push(new WorkItem("callback", work.callback));
+     }
+   }
+  }
+ }
+}
+```
 
 # incomplete ideas
 
