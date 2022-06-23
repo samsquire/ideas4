@@ -2538,11 +2538,13 @@ We want to binpack code and tasks to run with maximum freedom of variable and sh
 
 Unfortunately writing multithreaded code is clumsy. It is difficult to handoff work between threads and synchronize explicitly.
 
-So I propose a syntax `while do` for parallelism.
+So I propose a syntax `parallel while { # blocking code } do { # multiplexed code }` for parallelism.
 
 The while part blocks and schedules a thread to handle the do when it unblocks.
 
 The while loop can therefore run at very fast speeds without being blocked 
+
+A compiler can statically analyse the code to decide what thread pools to create. In effect each `do` is an independently scheduled threadpool.
 
 The do code runs in parallel do the while. The do can be independently scaled up and down by number of threads and multiplexed over kernel threads.
 
