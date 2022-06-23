@@ -2549,16 +2549,34 @@ The do code runs in parallel do the while. The do can be independently scaled up
 The following code allows multiplexing connections over multiple threads and independent reading and writing from epoll.
 
 ```
+Sockets = {}
 Socket = bind("127.0.0.1:5006")
 Parallel while {
- Fileno = Socket.accept();
- Connections.append({"fileno": Fileno});
+ Socket, Fileno = Socket.accept();
+ Metadata = {"fileno": Fileno, "socket": socket, "sendqueue": RingBuffer()}
+ Connections.append(metadata)
+ sockets[Fileno] = socket
+ connections[Fileno] = metadata
 } do {
- Event = Epoll()
+ 
  Parallel while {
-  
+  Events = Epoll()
  } Do {
-  
+  Parallel for fileno, event in events:
+   If event & EPOLLIN:
+    Parallel while {
+     Received = sockets[Fileno].recv(buffer, 1024)
+    } Do {
+     Parallel for line in Received.split("\n"):
+      Dispatch(line)
+      connections[Fileno]["sendqueue"].push("OK")
+    }
+   If event & EPOLlOUT:
+   Parallel while {
+    Parallel for data in connections[Fileno]["sendqueue"]:
+     
+     Sockets[Fileno].send(data)
+   }
  }
 }
 ```
