@@ -2528,6 +2528,22 @@ Class Worker extends Thread {
 }
 ```
 
+# 115. While parallelism
+
+We want to achieve perfect use of the processor and handoff between tasks.
+
+Unfortunately writing multithreaded code is clumsy. It is difficult to handoff work between threads and synchronize explicitly.
+
+So I propose a syntax `while` for parallelism.
+
+```
+Parallel while {
+
+} do {
+ 
+}
+```
+
 # incomplete ideas
 
 Memory set to network calls
