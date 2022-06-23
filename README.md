@@ -2330,13 +2330,16 @@ For item in Io.listfiles(backup_locations):
 This can be turned into the following code.
 
 ```
-ThreadPool
+ThreadPool tp = new ThreadPool();
 File_list_rbp = RingBufferPool(backup_locations)
 File_data_rb = RingBuffer()
 DefuplicatedData_rb = RingBuffer()
 Encrypted_rb = RingBuffer()
 UploadDestination_rbp = File_List_rbp.newRingBufferPool(destinations)
 class Pipeline:
+  def __init__(self, context, data):
+    self.context = context
+    self.data = data
   Def set_source(self, source):
     Self.source = source
   Def set_destination(self, destination)
@@ -2346,17 +2349,27 @@ class Pipeline:
   Def run():
     While (true) {
       While (self.source.sequence > lasttaken) {
-        Item = self.source.pop()
-        Result = Self.work(item)
+        Item = self.source.data.pop()
+        Result = Self.work(self.context, item)
         Self.destination.push(Result)
         lasttaken++
       }
     }
+  def push(data):
+    self.data.push(data)
+    
 Class PipelinePool:
   Def __init__(self, data):
+    self.data = data
     For item in data:
-      Self.workers.append(RingBuffer())
+      Self.workers.append(Pipeline({}, RingBuffer())
       Self.downstream = []
+      
+  Def from(self, fn):
+    for data, pipeline in zip(self.data, self.workers):
+      fn(pipeline)
+      item.push(data)
+      
   Def newThreadPool(self, data):
     For item in self.workers:
        DownstreamItem = PipelinePool(data)
@@ -2365,9 +2378,12 @@ Class PipelinePool:
   Def fromThreadPool(self, data):
     For item in self.downstream:
       item.newThreadPool(data)
+      
   Def push(self, pushed):
     For item in self.workers:
       item.push(pushed)
+      
+
      
 Class PipelinePoolWorker:
   Def __init__(self, pipeline_pool, index):
@@ -2386,7 +2402,43 @@ Class PipelinePoolWorker:
         lasttaken++
       }
    }
+Files = []
+File_data_cache = FileDataCache()
+
+
+def read_data(context, file_location):
+  return open(item).read()
+  
+def deduplicate_data(context, data):
+  return context.File_data_cache.deduplicate(file_data)
+
+def encrypt_data(context, data):
+  return Encrypt(data)
+
+head = PipelinePoolWorker(Io.listfiles(backup_locations)):
+
+
+
+def create_pipeline(file_location_pipeline)
  
+ 
+ read_data_pipeline = Pipeline(File_data_rb)
+ read_data_pipeline.start()
+ file_location_pipeline.set_destination(read_data_pipeline)
+ read_data_pipeline.set_work(read_data)
+ 
+ 
+ Deduplicated_data = Pipeline({"file_data_cache": file_data_cache}, DefuplicatedData_rb)
+ read_data_pipeline.set_destination(Deduplicated_data)
+ Deduplicated_data.set_work(deduplicate_data)
+ Encrypted = Pipeline({}, Encrypted_rb)
+ Encrypted.start()
+ Deduplicated_data.set_destination(Encrypted)
+ uploads = PipelinePoolWorker(UploadDestination_rbp, destinations)
+ uploads.start()
+ Encrypted.set_destination(uploads)
+
+head.from(create_pipeline)
 ```
 
 # 112. Compiler as a service (Supercomputer compiler)
