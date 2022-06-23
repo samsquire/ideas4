@@ -2467,7 +2467,7 @@ The compiler can generate code and weave the synchronization queues as talked of
 
 We often want to run code from the context of a thread.
 
-Assume the thread is in a while true loop. How do you enqueue things on that thread?
+Assume the thread is in a while true loop. You need to enqueue things on that thread and synchronize work.
 
 So I should be capable of writing:
 
@@ -2481,7 +2481,7 @@ Min(threads.id) {
 }
 ```
 
-This code would have two threads connected by queues serialize and schedule callbacks between them without explicit locking.
+This code serializes working on data structures and would schedule callbacks between them without explicit locking.
 
 ```
 Class Worker extends Thread {
