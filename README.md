@@ -2116,7 +2116,8 @@ For tree we can know the new generated items up to root by keeping a cache of th
 
  * **Cancellable APIs** 
  * **Responsive APIs**
- * **Flow Control** 
+ * **Flow Control**
+ * **Parallelism and concurrency at the same time** 
 
 # 104. Autothreadpool and code movement parameterization
 
@@ -2679,8 +2680,41 @@ Parallel while {
 
 # 117. Rules for concurrency and parallelism
 
-* Compare and set is enough to build a safe but inefficient concurrent algorithm. Especially if you want to enforce atomicity over multiple fields. You actually want to enforce a partial order. Use nested monitor pattern and signal variables or multiversion concurrency control.
+* Compare and set is enough to build a safe but inefficient concurrent algorithm. Especially if you want to enforce atomicity over multiple fields. You actually want to enforce a partial order. Use nested monitor pattern and signal/condition variables or multiversion concurrency control.
 * Don't iterate over a data structure from one thread while it can be modified by another thread. Use persistent data structures and immutability or multiversion concurrency control.
+
+# 118. Cross merge
+
+Cross merge is a construct used with `parallel while { } do { }`
+
+To handoff behaviour when all child tasks are finished.
+
+```
+A1 = Parallel while {
+ documents = Fetch("http://server/documents);
+ Parallel for response in documents:
+  Document = fetch(response);
+} Do {
+ Words = Document.split(" ");
+ Set(Words)
+}
+A2 = Parallel while {
+ Posts = Fetch("http://server/userposts")
+ Parallel for post in posts:
+  Post = Fetch(post)
+ } Do {
+  Words = Post.split(" ")
+  Set(words)
+}
+document_words, post_words = Crossmerge A1 A2
+Document_words.union(posts_words)
+```
+
+# 199. Ticks
+
+You don't need to worry of thread safety is everybody else is reading while you're writing and everybody is writing while you're writing.
+
+This approach uses a RingBuffer to communicate READ/WRITE tick. Threads dequeue from the RingBuffer, when every thread has dequeued from the RingBuffer, a new event is placed on the RingBuffer for the next cycle which is a READ if the last was a WRITE or WRITE if the last cycle was a READ.
 
 # incomplete ideas
 
