@@ -2677,7 +2677,10 @@ Parallel while {
 
 # 116. Configuration addition search
 
+# 117. Rules for concurrency and parallelism
 
+* Compare and set is enough to build a safe but inefficient concurrent algorithm. Especially if you want to enforce atomicity over multiple fields. You actually want to enforce a partial order. Use nested monitor pattern and signal variables or multiversion concurrency control.
+* Don't iterate over a data structure from one thread while it can be modified by another thread. Use persistent data structures and immutability or multiversion concurrency control.
 
 # incomplete ideas
 
