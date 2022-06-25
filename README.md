@@ -2734,6 +2734,15 @@ I propose a GUI framework that uses register loop to create full cancellation tr
  * Decoupling release and deployment. Zero downtime deployments are easy with PHP but very difficult with software that runs endlessly, as a server.
  * Android Google Chrome edit performance on textareas lags the larger the document gets. I edit this document on my phone most of the time.
 
+# 123. Plain English pointer types
+
+C programming pointers and arrays are subtle. And calculating size of a struct or a pointer is subtle.
+
+Sometimes code can be obviously wrong and sometimes it's not.
+
+I propose a plain English syntax for referring to pointers.
+
+Referring to an array of pointers would be written as array of char pointers.
 
 # incomplete ideas
 
