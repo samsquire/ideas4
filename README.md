@@ -1916,6 +1916,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Layout engines multiplex what is on the screen
  * Multiplex Turing machine tape memory over tip of execution
  * Multiplex virtual memory paging
+ * Load balancing
 
 These problems could be solved in a profoundly effective way with the right abstraction, API and used for all cases.
 
