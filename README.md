@@ -2710,11 +2710,21 @@ document_words, post_words = Crossmerge A1 A2
 Document_words.union(posts_words)
 ```
 
-# 199. Ticks
+# 119. Ticks
 
 You don't need to worry of thread safety is everybody else is reading while you're writing and everybody is writing while you're writing.
 
 This approach uses a RingBuffer to communicate READ/WRITE tick. Threads dequeue from the RingBuffer, when every thread has dequeued from the RingBuffer, a new event is placed on the RingBuffer for the next cycle which is a READ if the last was a WRITE or WRITE if the last cycle was a READ.
+
+# 120. Cancellation trees
+
+IntelliJ is very laggy software. It doesn't execute processes on different threads but in the GUI rendering thread. As a result it lags while creating intelligence suggestions.
+
+I propose a GUI framework that uses register loop to create full cancellation trees that can be cancelled when the user does something to invalidate the GUI state. This means you can abort any action on the computer.
+
+# 121. Spreadgrid
+
+
 
 # incomplete ideas
 
