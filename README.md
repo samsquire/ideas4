@@ -2715,11 +2715,15 @@ document_words, post_words = Crossmerge A1 A2
 Document_words.union(posts_words)
 ```
 
-# 119. Ticks
+# 119. Read/write Ticks
 
 You don't need to worry of thread safety is everybody else is reading while you're writing and everybody is writing while you're writing.
 
 This approach uses a RingBuffer to communicate READ/WRITE tick. Threads dequeue from the RingBuffer, when every thread has dequeued from the RingBuffer, a new event is placed on the RingBuffer for the next cycle which is a READ if the last was a WRITE or WRITE if the last cycle was a READ.
+
+Bloomlang uses a similar approach.
+
+See my multiplexing repository for a design of a multiplexing event system that uses read/write Ticks.
 
 # 120. Cancellation trees
 
