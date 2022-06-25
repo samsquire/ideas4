@@ -1890,7 +1890,7 @@ How many people realistically understand the Postgresql, Chromium, Firefox, Linu
 
 Why aren't these projects documented to the level I want? Why don't they explain their algorithms?
 
-# 97. Multiplexing API and Visual Multiplexing 
+# 97. Multiplexing as a computer primitive, API and Visual Multiplexing 
 
 Treating one thing as if it's multiple things is extremely powerful.
 
@@ -1917,6 +1917,8 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Multiplex Turing machine tape memory over tip of execution
  * Multiplex virtual memory paging
  * Load balancing
+ * Compilers multiplex instructions over time
+ * Compiler registry allocation (there's a limited number of things and they need to be shuffled around)
 
 These problems could be solved in a profoundly effective way with the right abstraction, API and used for all cases.
 
