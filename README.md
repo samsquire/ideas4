@@ -1894,7 +1894,7 @@ Why aren't these projects documented to the level I want? Why don't they explain
 
 Treating one thing as if it's multiple things is extremely powerful.
 
- * Multiplex goroutines/green threads over threads and processes. [See my preemptible-thread repository for my implementation of this.](https://github.com/samsquire/preemptible-thread)
+ * Multiplex N goroutines/green threads over M threads and processes. [See my preemptible-thread repository for my implementation of this.](https://github.com/samsquire/preemptible-thread)
  * Multiplex traffic over a connection.
  * Multiplex memory in a an memory allocator (different pages sizes)
  * Multiplex DOM operations over time (React)
@@ -1903,6 +1903,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Union types in a data struct
  * Monads
  * IO multiplexing as in epoll and kqeueue or IO ports
+ * Syscall multiplexing
  * Event loops
  * Batch processing systems that use windows
  * Locking, semaphores, mutexes multiplex the CPU
@@ -1913,6 +1914,8 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Continuations
  * Currying
  * Layout engines multiplex what is on the screen
+ * Multiplex Turing machine tape memory over tip of execution
+ * Multiplex virtual memory paging
 
 These problems could be solved in a profoundly effective way with the right abstraction, API and used for all cases.
 
@@ -2118,6 +2121,7 @@ For tree we can know the new generated items up to root by keeping a cache of th
  * **Responsive APIs**
  * **Flow Control**
  * **Parallelism and concurrency at the same time** 
+ * **Multiplexing and scheduling primitives**
 
 # 104. Autothreadpool and code movement parameterization
 
@@ -2718,12 +2722,13 @@ This approach uses a RingBuffer to communicate READ/WRITE tick. Threads dequeue 
 
 # 120. Cancellation trees
 
-IntelliJ is very laggy software. It doesn't execute processes on different threads but in the GUI rendering thread. As a result it lags while creating intelligence suggestions.
+IntelliJ is very laggy software. It doesn't execute processes on different threads but in the GUI rendering thread. As a result it lags while creating intellisense suggestions.
 
 I propose a GUI framework that uses register loop to create full cancellation trees that can be cancelled when the user does something to invalidate the GUI state. This means you can abort any action on the computer.
 
 # 121. Spreadgrid
 
+# 122. 
 
 
 # incomplete ideas
