@@ -1894,7 +1894,7 @@ Why aren't these projects documented to the level I want? Why don't they explain
 
 Treating one thing as if it's multiple things is extremely powerful.
 
- * Multiplex N goroutines/green threads over M threads and processes. [See my preemptible-thread repository for my implementation of this.](https://github.com/samsquire/preemptible-thread)
+ * Multiplex N goroutines/green threads over M threads and processes. [See my preemptible-thread repository for my implementation of this.](https://github.com/samsquire/preemptible-thread) See my [multiplexing repository](HTTPS://GitHub.com/samsquire/multiplexing) for a highly parallel event architecture
  * Multiplex traffic over a connection.
  * Multiplex memory in a an memory allocator (different pages sizes)
  * Multiplex DOM operations over time (React)
