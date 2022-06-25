@@ -1903,7 +1903,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Union types in a data struct
  * Monads
  * IO multiplexing as in epoll and kqeueue or IO ports
- * Syscall multiplexing
+ * Syscall multiplexing: doing syscalls in a thread to avoid blocking
  * Event loops
  * Batch processing systems that use windows
  * Locking, semaphores, mutexes multiplex the CPU
