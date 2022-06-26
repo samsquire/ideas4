@@ -2786,7 +2786,20 @@ Referring to struct Structure name** pointers would be written as array of struc
  * We depend on the abstraction of tape (memory positions) and evaluation of instructions. So we suffer from concurrency and parallelism issues. Mutability and aliasing is important for safe concurrency and parallelism.
  * We can model programs as either reading or writing a location or not if critical section/regions never overlap and are partially ordered we avoid parallelism problems.
  * Parallelism and concurrency should be resolved by the computer (compiler) the autoparallelised solution is defined in the problem specification or the algebra of what you're trying to do.
-
+ * We can overspecify a system. If there are 100 relations that you want to enforce and you know how to write instructions on how to implement each of them, you should be capable of writing an inefficient implementation and overspecify it.
+ * When the computer has instructions on how to calculate something, can it merge the relations into one to create a data model that works efficiently for all relations.
+ * A depth first search implementation for one thing and a division relation can be merged.
+ * In one scenario you need a DFS relation and in another you want a group relation or a some pattern.
+ * Instructions are statically analysable.
+ * How do you satisfy all relations simultaneously?
+ * If every program is a query, you can find the common elements of each query and move the tip of execution to where it is efficient.
+ * Data in two different shapes can be marked as equal.
+ * Equalities can be maintained with work. Or lazily generated.
+ * The algorithm to turn one equality to another is generatable by a computer. As the data shape is defined by relations. Such as an object graph. Usually it shall be resolved by iteration, traversal, or storage.
+ * Relations can be transformed.
+ * Computers are good at storing data and data has relations. You want to maintain parallel relations: each corresponds to a query.
+ * Data can be filtered.
+ 
 # incomplete ideas
 
 Memory set to network calls
