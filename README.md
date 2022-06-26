@@ -2735,11 +2735,12 @@ I propose a GUI framework that uses register loop to create full cancellation tr
 
 # 121. Spreadgrid
 
-# 122. Unresolved issues
+# 122. Avenues of research
 
  * Upgrading a database is very difficult to do without downtime. I feel any new database or general software should try and solve this core problem.
- * Decoupling release and deployment. Zero downtime deployments are easy with PHP but very difficult with software that runs endlessly, as a server.
+ * Decoupling release and deployment. Zero downtime deployments are easy with PHP but very difficult with software that runs endlessly, as a server. How do you atomically update a system without downtime?
  * Android Google Chrome edit performance on textareas lags the larger the document gets. I edit this document on my phone most of the time.
+ * Fraud prevention
 
 # 123. Plain English pointer types
 
