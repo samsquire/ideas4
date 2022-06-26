@@ -2742,6 +2742,7 @@ I propose a GUI framework that uses register loop to create full cancellation tr
  * Android Google Chrome edit performance on textareas lags the larger the document gets. I edit this document on my phone most of the time.
  * Fraud prevention
 
+
 # 123. Plain English pointer types
 
 C programming pointers and arrays are subtle. And calculating size of a struct or a pointer is subtle.
@@ -2750,7 +2751,41 @@ Sometimes code can be obviously wrong and sometimes it's not.
 
 I propose a plain English syntax for referring to pointers.
 
-Referring to an array of pointers would be written as array of char pointers.
+Referring to struct Structure name** pointers would be written as array of struct pointers.
+
+# 124. Complexity reduction, Re-entrancy, tip of execution hierarchy, blocking
+
+ * Re-entrancy and blocking are often invisible in the programming language syntax with the exception of async/await.
+ * You want assurances that nobody can be mutating data at the same time as you. Sometimes it doesn't matter. The computer could work it out.
+ * The tip of the execution is what is executed next: it is what what code is next in memory. It is often managed by stackframes. The control flow of programming and tape allows us to be Turing complete.
+ * Software is slow due to being trapped by by the complexity of stackframes. To change the behaviour of a program you need to change the algorithm - of what happens when and where and how. To change a program to be fast you need to understand the problem you're trying to solve, and that often requires a completely different stack of stackframes and algorithmic approach.
+ * In Haskell the idea of defining the problem as a definition is really powerful and leads to accurate powerful code. But we can implement primitives to a higher level of definition than even Haskell. Containers, methods, functions, processes, Kubernetes, threads, Cron are all approaches to arranging what should be done at the tip of execution and how it should be layed out and arranged.
+ * The tip of execution is what goes on next. Many problems can be respecified at a high level of addition, subtraction, division and multiplexing and monads and application and change. The computer should work out the efficient implementation automatically based on the relations you specify.
+ * Each of the previous point's categories of the tip of execution can be multiplexed and assigned a type for an idea.
+ * Ideas have relations.
+ * Looping forever and programs that process all events in one instant are two really powerful primitives for building systems. Bloom Lang and [my multiplexing repository](HTTPS://GitHub.com/samsquire/multiplexing) uses this design.
+ * Relations can be ordered and scheduled and the tip of execution can be scheduled efficiently.
+ * Relations can form a graph.
+ * Graphs are trees
+ * Programming syntax is a tree
+ * Abstract syntax trees are relations and orderings.
+ * Trees can define execution on a computer.
+ * CPU Instructions define what should go on.
+ * Relations can be recursive.
+ * Relations can be logical.
+ * Some things are faster than other things. You can define logical statements of what is more efficient. Setting up threads in advance of using them is faster than creating a thread when you need to schedule work in parallel.
+ * You can separate things into different classes of things: you can run the tip of execution in a thread or in a container.
+ * Things have dependencies.
+ * Things can be scheduled.
+ * Caches cause things to be faster
+ * A process implies a thread. Kubernetes implies a container.
+ * The hierarchy of the tip of execution can be generalised to have the same interface, it can be scheduled and multiplexed.
+ * Scheduling the tip of execution can be at compile time, ahead of time or at runtime. There are costs are flexibilities of each.
+ * Compiling and interpreting are two sides of the same problem: the tip of execution. Compiling decided what to do in relation to a program tree in advance of its execution whereas you can also decide what to do at runtime at cost.
+ * We can compile as we go as we learn of our data. This is what a cost based optimiser in a database does.
+ * We depend on the abstraction of tape (memory positions) and evaluation of instructions. So we suffer from concurrency and parallelism issues. Mutability and aliasing is important for safe concurrency and parallelism.
+ * We can model programs as either reading or writing a location or not if critical section/regions never overlap and are partially ordered we avoid parallelism problems.
+ * Parallelism and concurrency should be resolved by the computer (compiler) the autoparallelised solution is defined in the problem specification or the algebra of what you're trying to do.
 
 # incomplete ideas
 
