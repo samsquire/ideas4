@@ -1975,7 +1975,8 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 # 100. Dream programming language
 
  * **Highly concurrent and parallel**
- * **Virtual machine**
+ * **Compiler, interpreter and virtual machine based** I want my code to run on multiple systems. So that involves some kind of compilation step or virtual machine. When we want performance, we compile. While developing, we interpret.
+ * **Zero downtime deployments and separation of release and deployment** PHP is easy to deploy - just upload files. But it's not easy to do an atomic deploy of PHP code as there is a risk that someone requests halfway between an FTP copy. We can use virtual dispatch tables to switch between versions of code. The virtual machine runtime can load new code atomically.
  * **Accelerated by GPU**
  * **Very few keywords**
  * ****
