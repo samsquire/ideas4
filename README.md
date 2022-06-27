@@ -2821,7 +2821,7 @@ Referring to struct Structure name** pointers would be written as array of struc
  * Malloc does clever things to manage the management of free memory. For example it stores the size of the available free memory after each chunk. This way it can do calculations as it goes. The general pattern to optimisation in this case is laying out things nearest to where you use them.
  * Data layout and data structure and algorithm are all separate problems.
  * Data structure is the relations between data layouts and an algorithm is the instructions for processing that data layout of data structure.
- * Can we represent instructions as fungible numbers or symbols?
+ * Can we represent instructions as nonfungible numbers or symbols?
  * a + b evaluates to the same as b + a. But they are not the same.
  * Factors are multiplications. What does it mean to multiply an instruction? Is it a loop?
  * Instructions execute in relation to time. There is a dimension of time and there is a different instruction being executed at each time interval or cycle and there is a position that the instruction is at in space. There is also the state of every piece of data in memory.
