@@ -22,7 +22,7 @@ There's a table of contents if you click the icon at the top left:
 Thank you to all the contributors who have been sending in examples and corrections!
 
 
-# 1. Personal file archives
+# 1. Automatic Personal file archives
 
 My personal files inevitably leads to lots of small files which take forever to copy and are transferred very slowly by my hardware when copied. I propose a personal file manager which handles archiving for our files by letting us "log into" our files by unpacking them to fast media and lets us "repack" the files back up when we logout of the file manager.
 
