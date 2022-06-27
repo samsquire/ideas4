@@ -1979,7 +1979,9 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
  * **Zero downtime deployments and separation of release and deployment** PHP is easy to deploy - just upload files. But it's not easy to do an atomic deploy of PHP code as there is a risk that someone requests halfway between an FTP copy. We can use virtual dispatch tables to switch between versions of code. The virtual machine runtime can load new code atomically.
  * **Accelerated by GPU**
  * **Very few keywords**
- * ****
+ * **Concurrency control** Locking or serializable snapshot isolation
+ * **Statically analysable**
+ * **Powerful types**
 
 # 101. Dream browser
 
