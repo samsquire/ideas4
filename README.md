@@ -2799,7 +2799,19 @@ Referring to struct Structure name** pointers would be written as array of struc
  * Relations can be transformed.
  * Computers are good at storing data and data has relations. You want to maintain parallel relations: each corresponds to a query.
  * Data can be filtered.
- 
+
+# 125. Moving towards profoundly stable software and the impoverished software engineering world
+
+ * I feel a very large problem in the computing industry is that everybody is reinventing the wheel repeatedly and people are working on the wrong problems.
+ * People do not necessarily share their solutions to problems.
+ * Maintenance costs of software are very expensive. Everything is constantly changing underneath our feet. The only stable platform is maybe the amd64 instruction set.
+ * APIs and abstractions are changing all the time. Every Linux distribution places things in slightly different places.
+ * Each Linux distribution is duplicating effort and repackaging the same set of software for multiple systems.
+ * The C programming environment is impoverished compared to say Python.
+ * The C language has very little guard rails to doing the wrong thing.
+ * Other languages offer lots of safety.
+ *
+
 # incomplete ideas
 
 Memory set to network calls
