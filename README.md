@@ -2826,7 +2826,8 @@ Referring to struct Structure name** pointers would be written as array of struc
  * Factors are multiplications. What does it mean to multiply an instruction? Is it a loop?
  * Instructions execute in relation to time. There is a dimension of time and there is a different instruction being executed at each time interval or cycle and there is a position that the instruction is at in space. There is also the state of every piece of data in memory.
  * We want to optimise the production or application of functions or algebraic equations.
- * 
+ * There is the mathematics of change. Such as integration and differentiation. There is also change in memory over time.
+ *
 
 # incomplete ideas
 
