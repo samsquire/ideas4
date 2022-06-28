@@ -2851,9 +2851,7 @@ So I propose loops are queries and are specifications of what should be true, bu
 
 You can in effect select over a loop. Or provide a when clause to a loop.
 
-Essentially control flow is in and out of a loop at different intervals depending on an order.
-
-
+Essentially control flow is in and out of a loop at different intervals depending on what triggered the invariant.
 
 
 # incomplete ideas
