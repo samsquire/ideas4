@@ -2843,9 +2843,15 @@ For example a sudoku solver could maintain list of potential numbers for each ce
 
 It needs to eliminate options through impossibility. It should start with the most overspecified rows and columns first.
 
-You can either do this in one whole step, which is inefficient or do it piecemeal in an ordered fashion.
+You can either do this in one whole step, which is inefficient or do it piecemeal in an ordered fashion when you try out an answer.
 
-So we want to order loop subiterations. When does a loop become relevant?
+I need a when operator. Rather than think of programs as serialised steps to getting to an output, we define expressions and when clauses over them.
+
+For recursive backtracking in a sudoku solver, we can reject and return explicitly to different control paths from a different perspective.
+
+When we detect a solution is impossible we explicitly write a reject statement which aborts control flow.
+
+So we want to order loop subiterations. When does a loop iteration become relevant?
 
 So I propose loops are queries and are specifications of what should be true, but they are lazily evaluated for efficiency.
 
@@ -2857,6 +2863,7 @@ An if statement in a loop can be transformed to two separate loops at the cost o
 
 Ahead of time compilation can speed up code if we put decision points in our code.
 
+We want to weave control flow between specifications of expressions or invariants.
 
 
 # incomplete ideas
