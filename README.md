@@ -97,7 +97,12 @@ I would like to see some permanent foundations on which to build. Moving towards
  * The C programming environment is impoverished compared to say Python.
  * The C language has very little guard rails to doing the wrong thing.
  * Other languages offer lots of safety.
- *
+
+I should be capable of outsourcing these decisions to experts.
+
+When you pick a stack you inherit all the problems of the stack and you benefit from expertise in one direction: the written code to solve a problem.
+
+But you don't benefit from the executional skills of deploying and using that software. This needs to change.
 
 
 # 6. Contiguous disk layouter
