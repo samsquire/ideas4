@@ -2853,6 +2853,11 @@ You can in effect select over a loop. Or provide a when clause to a loop.
 
 Essentially control flow is in and out of a loop at different intervals depending on what triggered the invariant.
 
+An if statement in a loop can be transformed to two separate loops at the cost of memory.
+
+Ahead of time compilation can speed up code if we put decision points in our code.
+
+
 
 # incomplete ideas
 
