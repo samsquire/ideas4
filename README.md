@@ -2829,6 +2829,33 @@ Referring to struct Structure name** pointers would be written as array of struc
  * There is the mathematics of change. Such as integration and differentiation. There is also change in memory over time.
  *
 
+# 126. Invariant expressions and induction at the tip of execution
+
+If you can refer to anything in your current expression, you have maximum expressivity.
+
+If you can declare behaviour at your current expression and define what something is, you can always create forward progress with your program.
+
+The question is how to optimise this approach.
+
+A loop represents an overconstrained evaluation of a whole set. Sometimes we only want to do partial loops, from the context of an inner expression.
+
+For example a sudoku solver could maintain list of potential numbers for each cell.
+
+It needs to eliminate options through impossibility. It should start with the most overspecified rows and columns first.
+
+You can either do this in one whole step, which is inefficient or do it piecemeal in an ordered fashion.
+
+So we want to order loop subiterations. When does a loop become relevant?
+
+So I propose loops are queries and are specifications of what should be true, but they are lazily evaluated for efficiency.
+
+You can in effect select over a loop. Or provide a when clause to a loop.
+
+Essentially control flow is in and out of a loop at different intervals depending on an order.
+
+
+
+
 # incomplete ideas
 
 Memory set to network calls
