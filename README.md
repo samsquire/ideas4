@@ -2870,6 +2870,7 @@ Ahead of time compilation can speed up code if we put decision points in our cod
 
 We want to weave control flow between specifications of expressions or invariants.
 
+
 # 127. Community Idea: What's it good at: Solved problems
 
 Each programming language, tool, system and software is good at representing and solving particular problems.
