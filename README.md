@@ -2879,6 +2879,10 @@ But this isn't really documented anywhere.
 
 I can save a lot of resources by picking off the shelf solutions to problems. But it's not always clear what you can use for your problems to go away.
 
+# 128. Loop compilation
+
+
+
 # incomplete ideas
 
 Memory set to network calls
