@@ -2905,7 +2905,7 @@ A modern stack of software is files, processes, loops, threads, network buffers,
 
 What if you want to overlay behaviour over existing functionality? I want to map computation to computation.
 
-Do another thing while doing the existing computation. Or do the existing computation in a slightly different way.
+Do another thing while doing the existing computation. Or do the existing computation in a slightly different approach.
 
 For example, you might want to loop over running loops and iterate over them only some of the time. Or load balance them or backpressure them.
 
@@ -2915,7 +2915,7 @@ Take Kubernetes for example, each field in the YAML causes a slightly different 
 
  * What I want to see is the overall loop and customise parts of the loops.
 
- * Perhaps you could look at a GUI of a behavioural tree of a garbage collector or a web browser.
+ * Perhaps you could look at a GUI of a behavioural tree of a garbage collector or a web browser. This should look like JMX GUI.
 
  * You would see all the functions running and a high level perspective of what the software is doing.
 
