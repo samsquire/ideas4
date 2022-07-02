@@ -2899,7 +2899,7 @@ Two sets of load balancer can be used as an alternative to the old version strea
 
 Timing is essential with any upgrade. I want software to be updateable from day 1 of development. Semantic versioning is a hygiene rule, not every product follows it. And when upgrading software timing is of the essence. I want to decouple upgrade from timing and cause them to be automatic and seamless.
 
-# 130. Behaviour trees
+# 130. Behaviour trees configured by pseudocode
 
 A modern stack of software is files, processes, loops, threads, network buffers, containers, storage and a sequence of instructions executed by a CPU.
 
