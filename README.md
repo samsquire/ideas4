@@ -2899,19 +2899,25 @@ Two sets of load balancer can be used as an alternative to the old version strea
 
 Timing is essential with any upgrade. I want software to be updateable from day 1 of development. Semantic versioning is a hygiene rule, not every product follows it. And when upgrading software timing is of the essence. I want to decouple upgrade from timing and cause them to be automatic and seamless.
 
-# 130 Behaviour trees
+# 130. Behaviour trees
 
-A modern stack of software is files, processes, loops, threads, network buffers and a sequence of instructions executed by a CPU.
+A modern stack of software is files, processes, loops, threads, network buffers, containers, storage and a sequence of instructions executed by a CPU.
 
 What if you want to overlay behaviour over existing functionality? I want to map computation to computation.
 
 Do another thing while doing the existing computation. Or do the existing computation in a slightly different way.
 
-For example, you might want to loop over running loops and iterate over them only some of the time.
+For example, you might want to loop over running loops and iterate over them only some of the time. Or load balance them or backpressure them.
 
-Perhaps you could look at the beh as behavioural tree of a garbage collector or a web browser.
+Or decide what the behaviour should be.
 
-You would see all the functions running and a high level perspective of what the software is doing.
+Take Kubernetes for example, each field in the YAML causes a slightly different behaviour but YAML is arguably the wrong data structure for deciding an imperative operation.
+
+What I want to see is the overall loop and customise parts of the loops.
+
+Perhaps you could look at a GUI of a behavioural tree of a garbage collector or a web browser.
+
+ * You would see all the functions running and a high level perspective of what the software is doing.
 
 Perhaps you would visualise it as a grid and a tree. The grid shows the various objects there are and the state's they are in.
 
