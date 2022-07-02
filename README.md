@@ -2899,7 +2899,18 @@ Two sets of load balancer can be used as an alternative to the old version strea
 
 Timing is essential with any upgrade. I want software to be updateable from day 1 of development. Semantic versioning is a hygiene rule, not every product follows it. And when upgrading software timing is of the essence. I want to decouple upgrade from timing and cause them to be automatic and seamless.
 
-# 130. Behaviour trees configured by pseudocode
+# 130. Behaviour trees and configuration as pseudocode
+
+Imagine if the configuration file for a system was an imaginary pseudocode for that software's primary function.
+
+ * For example the pseudocode for Haproxy is a while loop accepting connections and then a while loop handling http requests and forwarding them to chosen backends 
+ * You could add logging by adding a log line. Or enrich or conditionally change the value of variables in the pseudocode.
+
+ * You could be restricted from changing the order of the pseudocode but you could place if statements and custom processing anywhere
+
+ * Internally the statements between the fixed behaviour of the program would be turned into hooks at various stages of the application.
+
+ * Kubernetes would look like a while loop that tried to get nearer to the desired state and would pick a pod and pull a container and set up networking.
 
 A modern stack of software is files, processes, loops, threads, network buffers, containers, storage and a sequence of instructions executed by a CPU.
 
