@@ -2901,6 +2901,25 @@ Timing is essential with any upgrade. I want software to be updateable from day 
 
 # 130 Behaviour trees
 
+A modern stack of software is files, processes, loops, threads, network buffers and a sequence of instructions executed by a CPU.
+
+What if you want to overlay behaviour over existing functionality? I want to map computation to computation.
+
+Do another thing while doing the existing computation. Or do the existing computation in a slightly different way.
+
+For example, you might want to loop over running loops and iterate over them only some of the time.
+
+Perhaps you could look at the beh as behavioural tree of a garbage collector or a web browser.
+
+You would see all the functions running and a high level perspective of what the software is doing.
+
+Perhaps you would visualise it as a grid and a tree. The grid shows the various objects there are and the state's they are in.
+
+Most of the state transitions shall be too fast to track by human eye. But we can turn a state transition into a list.
+
+
+
+
 # 131. Concurrency tester
 
 I want to simulate the interleaving and simultaneous execution of N Java programs and see if the program is correct.
