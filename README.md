@@ -2911,6 +2911,10 @@ For example, you might want to loop over running loops and iterate over them onl
 
 Or decide what the behaviour should be.
 
+ * For files it would be what to write to the file, what locations to look for?
+ * For containers it would be pull strategy, image name, sidecar, volumes
+
+
 Take Kubernetes for example, each field in the YAML causes a slightly different behaviour but YAML is arguably the wrong data structure for deciding an imperative operation.
 
  * What I want to see is the overall loop and customise parts of the loops.
