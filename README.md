@@ -2913,15 +2913,15 @@ Or decide what the behaviour should be.
 
 Take Kubernetes for example, each field in the YAML causes a slightly different behaviour but YAML is arguably the wrong data structure for deciding an imperative operation.
 
-What I want to see is the overall loop and customise parts of the loops.
+ * What I want to see is the overall loop and customise parts of the loops.
 
-Perhaps you could look at a GUI of a behavioural tree of a garbage collector or a web browser.
+ * Perhaps you could look at a GUI of a behavioural tree of a garbage collector or a web browser.
 
  * You would see all the functions running and a high level perspective of what the software is doing.
 
-Perhaps you would visualise it as a grid and a tree. The grid shows the various objects there are and the state's they are in.
+ * Perhaps you would visualise it as a grid and a tree. The grid shows the various objects there are and the state's they are in.
 
-Most of the state transitions shall be too fast to track by human eye. But we can turn a state transition into a list.
+ * Most of the state transitions shall be too fast to track by human eye. But we can turn a state transition into a list.
 
 
 
