@@ -2834,7 +2834,7 @@ Referring to struct Structure name** pointers would be written as array of struc
  * There is the mathematics of change. Such as integration and differentiation. There is also change in memory over time.
  *
 
-# 126. Invariant expressions and induction at the tip of execution
+# 126. Loop Invariant expressions and induction at the tip of execution
 
 If you can refer to anything in your current expression, you have maximum expressivity.
 
@@ -2880,6 +2880,9 @@ But this isn't really documented anywhere.
 I can save a lot of resources by picking off the shelf solutions to problems. But it's not always clear what you can use for your problems to go away.
 
 # 128. Loop compilation
+
+
+
 
 
 
