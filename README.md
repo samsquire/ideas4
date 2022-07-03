@@ -4,7 +4,7 @@ Welcome to the forth page of my Ideas for Computing.
 
 This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
-This is a long document but each section is small. There is probably a masters or PhD idea in here somewhere but be patient, this document is a stream of thoughts so you might not like every idea.
+This is a long document but each section is small. There is probably a masters or PhD idea in here somewhere but be patient, this document is a stream of thoughts so you might not like every idea. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness of lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they can be. 
 
  * See [100 Ideas for Computing](HTTPS://GitHub.com/samsquire/ideas), the first issue of this series.
  * See [ideas2, Another 85+ Ideas For Computing](HTTPS://GitHub.com/samsquire/ideas2)
