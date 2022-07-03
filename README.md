@@ -2947,6 +2947,8 @@ I want to simulate the interleaving and simultaneous execution of N Java program
 
 I could use TLA+ but I want to think of a low tech solution.
 
+# 132. Revenue scaling plan
+
 
 
 
