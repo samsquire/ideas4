@@ -2953,7 +2953,7 @@ I could use TLA+ but I want to think of a low tech solution.
 
 ```
 For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]:
- For number in range(10):
+ For number in range(0, 10):
   For symbol in ["÷", "×", "(", ")", "&"]:
    print(letter + number + symbol)
 ```
@@ -2961,20 +2961,18 @@ For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 The problem with this loop is that letters are starved, numbers and symbols are starved of resources while the inner loop is running.
 
 What if we want this effect:
-A0÷
-B1×
-c2(
-D3)
-...
-A1÷
 
-a = 0
-b = 0
-c = 0
-for (; iterations < a.length * b.length * c.length; a = (a + 1) % a.length, b = (b + 1) % b.length, c = (c + 1) % c.length, iterations++) {
- System.out.println("%s%s%s", String.format(letters[a], numbers[b], symbols[c]));
-}
+```
+A1÷ 1 1 1
+B2× 2 2 2
+C2( 3 3 3
+D3) 4 4 4
+A2( 1 2 3
+B3( 2 3 4
+C4÷ 3 4 1
+D0× 4 1 2
 
+```
 
 
 
