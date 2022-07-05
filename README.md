@@ -2960,7 +2960,9 @@ For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 
 The problem with this loop is that letters are starved, numbers and symbols are starved of resources while the inner loop is running.
 
-What if we want this effect:
+What if we want this effect.
+ * The Cartesian product is produced but in an evenly spread out order
+ 
 
 ```
 A1÷ 1 1 1
@@ -2971,6 +2973,10 @@ A2( 1 2 3
 B3( 2 3 4
 C4÷ 3 4 1
 D0× 4 1 2
+C2÷ 3 2 1
+B1( 2 1 4
+A4( 1 4 3
+D3× 4 3 2
 
 ```
 
