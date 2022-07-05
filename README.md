@@ -2949,7 +2949,7 @@ I could use TLA+ but I want to think of a low tech solution.
 
 # 132. Revenue scaling plan
 
-# 133. Concurrent loops - loops as lightweight threads
+# 133. Concurrent loops - loops as lightweight threads, loops as load balancing
 
 ```
 For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]:
@@ -2958,11 +2958,12 @@ For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
    print(letter + number + symbol)
 ```
 
-The problem with this loop is that letters are starved, numbers and symbols are starved of resources while the inner loop is running.
+The problem with this loop is that letters and numberd are starved of resources while the inner loop for symbols is running.
 
 What if we want this effect.
  * The Cartesian product is produced but in an evenly spread out order
- 
+ * Any part of the loops can be paused. If I pause the outer loops I get the same behaviour as the naive for loop.
+ * If I pause the middle loop, we don't process so many items from that loop.
 
 ```
 A1÷ 1 1 1
