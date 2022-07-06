@@ -2951,6 +2951,12 @@ I could use TLA+ but I want to think of a low tech solution.
 
 # 133. Concurrent loops - loops as lightweight threads, loops as load balancing
 
+Loops are NOT first class citizens in code.
+
+They should be passable around similar to functions.
+
+They can even run concurrently.
+
 ```
 For letter in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]:
  For number in range(0, 10):
@@ -2964,6 +2970,7 @@ What if we want this effect.
  * The Cartesian product is produced but in an evenly spread out order
  * Any part of the loops can be paused. If I pause the outer loops I get the same behaviour as the naive for loop.
  * If I pause the middle loop, we don't process so many items from that loop.
+ * I can start and resume different parts of loops and switch between multiple loops. I can schedule loops
 
 ```
 A1÷ 1 1 1
@@ -2979,8 +2986,96 @@ B1( 2 1 4
 A4( 1 4 3
 D3× 4 3 2
 
+Here is code that represents a arbitrarily nested number of loops over collections.
+
+It also load balanced the loops and runs them in an evenly spread out Cartesian order.
+
+
+
+```
+class Tick:
+  def __init__(self, collections, func):
+    self.collections = collections
+    self.n = 0
+    self.func = func
+    
+    self.current = []
+    for item in range(len(self.collections)):
+      
+      self.current.append(0)
+   
+  def size(self):
+    total = len(self.collections[0])
+    for collection in self.collections[1:]:
+      total = total * len(collection)
+    return total
+
+  def tick(self):
+    
+    items = []
+    n = self.n
+    self.indexes = []
+    
+    
+    # reversed to match order of itertools.product
+    for collection in reversed(self.collections): 
+        n, r = divmod(n, len(collection))
+        self.indexes.append(r)
+
+    
+    for loop in range(len(self.collections)):
+      previous = 0
+      for mod in range(0, len(self.collections)):
+        previous = previous + self.indexes[mod]
+      
+      self.indexes[loop] = previous % len(self.collections[loop])
+      
+
+    for loop, item in enumerate(self.indexes):
+      items.append(self.collections[loop][item])
+    
+    self.n = self.n + 1
+    return self.func(items)
+  
+a = ["a", "b", "c"]      
+b  = ["1", "2", "3"]
+c = ["÷", "×", "("]
+
+def printer(items):
+  output = ""
+  for item in items:
+    output += item
+  return output
+
+ticker = Tick([a, b, c], printer)
+print(ticker.size())
+for index in range(ticker.size()):
+  print(ticker.tick())
+
+print("CORRECT")
+for letter in a:
+ for number in b:
+  for symbol in c:
+    print("{}{}{}".format(letter, number, symbol))
 ```
 
+I propose the following methods be available on loops:
+
+Nested loops can be visualised as a tree, so there are variations to the order we can process the loops. For a tree of 3 nested loops the trees looks like this:
+
+```
+A # Ask for As only
+ B
+  C
+
+B # Ask for B's only
+ A
+
+C # ask for C's only
+ B
+  A
+ 
+```
 
 
 # incomplete ideas
