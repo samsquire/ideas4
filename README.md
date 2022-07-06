@@ -3068,15 +3068,65 @@ A # Ask for As only
  B
   C
 
-B # Ask for B's only
+B # Ask for B's only, iterating A necessarily
  A
 
-C # ask for C's only
+C # ask for C's only, iterating B and a necessarily
  B
   A
  
 ```
 
+What of loops at the same level, that is, without nesting.
+
+```
+for letter in letters:
+ for number in numbers:
+  print(letter + number)
+ for symbol in symbols:
+  print(letter + symbol)
+```
+
+
+# 134. Virtual processes
+
+Combined with concurrent loops we can produce virtual processes.
+
+Each process has an inbox, you essentially have two processes linked by a concurrent loop.
+
+```
+Input_work = []
+
+A = Process()
+B = Process()
+C = Process()
+J = JoinProcess()
+D = Process()
+processes = [A, B, C, D, J]
+A.link(B)
+A.link(C)
+B.link(J)
+C.link(J)
+J.link(D)
+s = Supervisor(processes)
+```
+
+Supervisor needs to create this nested loop:
+
+```
+for item in A:
+ A_output = A.process(item)
+ B.submit(A_output)
+ C.submit(A_output)
+ for item in B:
+  B_output = B.process(item)
+  J.submit(B_output)
+ for item in C:
+  C_output = C.process(item)
+  J.submit(C_output)
+for item in J:
+ D.submit(item)
+```
 
 # incomplete ideas
 
