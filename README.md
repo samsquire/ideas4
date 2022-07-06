@@ -3129,7 +3129,7 @@ for item in J:
  D.submit(item)
 ```
 
-# 135. Recursife Coordinations and decision portfolios and time allocation portfolio and recursive dividends
+# 135. Recursive Coordinations and decision portfolios and time allocation portfolio and recursive dividends
 
 There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit for a large enough group of people through recursive effect.
 
