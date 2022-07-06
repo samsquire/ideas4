@@ -3129,11 +3129,15 @@ for item in J:
  D.submit(item)
 ```
 
-# 135. Coordination decision portfolio
+# 135. Coordination decision portfolio and time allocation portfolio
 
-There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for every person.
+There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for every person through recursive effect.
 
 There's a win-win solution.
+
+Imagine an information system that was also a constraint solving system and scheduler.
+
+Every company has responsibilities and work it needs to do. You benefit if a company raises money as trade produces value.
 
 # incomplete ideas
 
