@@ -3129,15 +3129,29 @@ for item in J:
  D.submit(item)
 ```
 
-# 135. Coordination decision portfolio and time allocation portfolio
+# 135. Coordination decision portfolio and time allocation portfolio and recursive dividends
 
-There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for every person through recursive effect.
+There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for a large enough group of people through recursive effect.
 
-There's a win-win solution.
+There's a win-win solution. Money raised throug work is spent in the economy and ripples out to other people.
 
 Imagine an information system that was also a constraint solving system and scheduler.
 
-Every company has responsibilities and work it needs to do. You benefit if a company raises money as trade produces value.
+For maximum effect and return, if multiple individuals coordinates and did not see their work as being isolated, they could multiply their effects with other people doing the same thing.
+
+Think W3C, ISO, WHATWG and every consortium and committee suffers from.
+
+They suffer from coordination problems.
+
+A slightly different arrangement would benefit multiple parties simultaneously and improve things for everybody.
+
+I think of this problem as numbers that are multiplied in every direction, providing a sum that is greater than all its parts. That's what proper coordination is.
+
+Every company has responsibilities and work it needs to do. You benefit if a company raises money as trade produces value that is spread indirectly through society.
+
+There is an time ordering that is an evenly spread out Cartesian product of everybody's coordinated problems. With this product, everybody gets attention but the business does not fail to operate on it's own responsibilities.
+
+Recursive dividends means you get what you cause. You should return a fraction of that change or scheduling's return. We can use the learning function of a neural network to produce returns to people who cause things.
 
 # incomplete ideas
 
