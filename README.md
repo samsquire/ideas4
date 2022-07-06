@@ -3129,6 +3129,12 @@ for item in J:
  D.submit(item)
 ```
 
+# 135. Coordination decision portfolio
+
+There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for every person.
+
+There's a win-win solution.
+
 # incomplete ideas
 
 Memory set to network calls
