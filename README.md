@@ -2985,6 +2985,7 @@ C2÷ 3 2 1
 B1( 2 1 4
 A4( 1 4 3
 D3× 4 3 2
+```
 
 Here is code that represents a arbitrarily nested number of loops over collections.
 
