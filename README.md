@@ -3129,15 +3129,21 @@ for item in J:
  D.submit(item)
 ```
 
-# 135. Coordination decision portfolio and time allocation portfolio and recursive dividends
+# 135. Recursife Coordinations and decision portfolios and time allocation portfolio and recursive dividends
 
-There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit for a large enough group of people through recursive effect.
+There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit for a large enough group of people through recursive effect.
 
-There's a win-win solution. Money raised throug work is spent in the economy and ripples out to other people.
+There's a win-win solution. Money raised through work is spent in the economy and ripples out to other people.
 
 Imagine an information system that was also a constraint solving system and scheduler.
 
-For maximum effect and return, if multiple individuals coordinates and did not see their work as being isolated, they could multiply their effects with other people doing the same thing.
+For maximum effect and return, if multiple individuals coordinations and did not see their work as being isolated, they could multiply their effects with other people doing the same thing.
+
+Imagine a system or social network where everyone announces what they are doing.
+
+People reply with how they could see that work solve their problems.
+
+The author decides to fulfil a coordination, the coordination is added to both of their portfolios.
 
 Think W3C, ISO, WHATWG and every consortium and committee suffers from.
 
