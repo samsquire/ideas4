@@ -3158,11 +3158,11 @@ for item in J:
 
 # 135. Recursive coordinations and decision portfolios and time allocation portfolio and recursive dividends
 
-Imagine an information system that was also a constraint solving system and scheduler. At the beginning of everybody's workday, task or project -- within a company, publicly, internationally, within families and within open source products, people write what they are going to do. Then they do the work, then they check the system for what people suggested would benefit them. People are encouraged to share what would benefit them. The understanding being that this is not a light statement to insert, this is a commitment. You reply to the work that someone is doing with the intention of using it and benefitting from it. You propose how you would benefit from it and how the work's deliverable should be changed to benefit you. You are also required to provide something in return for the change.
+Imagine a work management system that was also a constraint solving system and scheduler. At the beginning of everybody's workday, task or project -- within a company, publicly, internationally, within families and within open source products, people write what they are going to do. Then they do the work, then they check the system for what people suggested would benefit them. People are encouraged to share what would benefit them. The understanding being that this is not a light statement to add what would benefit you, this is a commitment for mutually beneficial exchange. You reply to the work that someone is doing with the intention of using it and benefitting from it. You propose how you would benefit from it and how the work's deliverable should be changed to benefit you. You are also required to provide something in return for the change.
 
-There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit as many groups of people through recursive effect and recursive relationships. If you do this for me, I'll do this for you.
+There's 8 billion people on the planet and each of those people has more than 1 problem and potential value to provide. There's a solution through multidimensional space that provides profit or benefit to as many groups of people through recursive effect and recursive relationships. If you do this for me, I'll do this for you.
 
-There's a win-win state of affairs through co-operation. Money raised through work is spent in the economy and ripples out to other people. If you limit this to a smaller group, everybody benefits.
+There's a win-win state of affairs through co-operation. Money raised through work is spent in the economy and ripples out to other people. If you limit this to a smaller group, everybody in the group benefits. Trade produces value in excess of its inputs.
 
 
 
