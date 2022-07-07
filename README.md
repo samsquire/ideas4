@@ -2964,7 +2964,7 @@ I could use TLA+ but I want to think of a low tech solution.
 
 # 132. Revenue scaling plan
 
-# 133. Concurrent loops - loops as lightweight threads, loops as load balancing
+# 133. Concurrent loops - loops as lightweight threads, load balancing loops
 
 Loops are NOT first class citizens in code.
 
@@ -3103,8 +3103,18 @@ for letter in letters:
   print(letter + symbol)
 ```
 
+This cartesian product of this looks like this:
+
+```
+a1
+a÷
+```
 
 # 134. Virtual processes and scheduling
+
+A process is a collection of loops, some nested, some independent and some dependent on eachother.
+
+We can build a tree of loops and run all the loops concurrently. This gives us concurrent processes that can independently progress.
 
 This is similar to Erlang but the practices of Erlang could be generalised and applied to any programming language, even those without native thread support. This is probably similar to continuation passing.
 
