@@ -1487,7 +1487,21 @@ For user in db.query("select user_id from user"):
 Rather than define relations between things with special classes as in Django and Hibernate, define them as loops.
 
 ```
+for category in categories:
+  for thread in category:
+   assign(category, thread)
 
+for thread in category.threads:
+ for post in thread:
+  for like in post:
+   assign(thread, post, like)
+  for thank in post:
+   assign(thread, post, thank)
+  for inlink in post:
+   assign(thread, post, inlink)
+  for attachment in post:
+   assign(thread, post, attachment)
+  
 ```
 
 # 74. Code equivalence
