@@ -2201,11 +2201,11 @@ This fact can be used for code movement.
 
 Rather than talk back and forth between two servers, start a server on the client, send a request and then pass the program to that server that is serving the request where the remainder of the program shall be executed this server repeats the process for the remainder of the computation.
 
-# 108. Computing is just additions, multiplications and loops
+# 108. Computing is just additions, multiplications, loops and search
 
 Programs eventually loop over data, add it together or multiply or divide it.
 
-The abstractions of APIs get in the way of this simple desire to loop, add, multiply and divide.
+The abstractions of APIs and programming languages get in the way of this simple desire to loop, add, multiply and divide.
 
 Loop over APIs. Imagine writing a loop that says what you want to do and the computer works out the APIs and the order to call based on your loop.
 
@@ -2257,7 +2257,7 @@ The code to parallelize via threads and via network should be the same.
 
 Can we identify when code diverges from the data it uses and use this to parallelize?
 
-For example, the following code diverges at _mergesort() lines.
+For example, the following code diverges at mergesort() lines.
 
 Any method call can be a future.
 
