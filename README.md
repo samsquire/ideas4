@@ -1,10 +1,10 @@
 # Additional 100+ Ideas for Computing
 
-Welcome to the forth page of my Ideas for Computing. This is a stream of my thoughts while working on computers.
+Welcome to the forth page of my Ideas for Computing. This is a stream of my thoughts while working on computers with the theme of integration and improvement of how computers work.
 
 This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
-This is a long document but each section is small. There is probably a masters or PhD idea in here somewhere but be patient, this document is a stream of thoughts so you might not like every idea. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness of lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they can be. 
+This is a long document but each section is a few paragraphs. There is probably a masters or PhD idea in here somewhere but I hope you can be patient and bear with me, this document is a stream of thoughts so you might not like every idea. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness of lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they can be. 
 
  * See [100 Ideas for Computing](HTTPS://GitHub.com/samsquire/ideas), the first issue of this series.
  * See [ideas2, Another 85+ Ideas For Computing](HTTPS://GitHub.com/samsquire/ideas2)
@@ -26,15 +26,15 @@ Thank you to all the contributors who have been sending in examples and correcti
 
 My personal files inevitably leads to lots of small files which take forever to copy and are transferred very slowly by my hardware when copied. I propose a personal file manager which handles archiving for our files by letting us "log into" our files by unpacking them to fast media and lets us "repack" the files back up when we logout of the file manager.
 
-It should be extracted on desktop environment login and repacked asychronously in the background. Then you can copy the file to your NAS or cloud backup solution.
+It should be extracted on desktop environment login and repacked asychronously in the background. Then you can copy the file to your NAS or cloud backup solution as one fast contiguous file transfer. You could also layer encryption and deduplication ontop of this.
 
 # 2. Idea management software
 
-Society is composed of ideas, let's let everyone track the ideas they like.
+Society is composed of ideas, let's let everyone track the ideas they like. Ideas are informally collected throughout life, there's no central knowledgebase for an individual. There's Wikipedia which represents society's knowledge but there are few systems for collecting ideas you agree with and want to see more of. This document is actually an example of what I want to see: people aggregating ideas they like and want to invest time in.
 
 # 3. Pick up and drop
 
-Drag and drop is too hard. What about picking an item up and then dropping it. There would be no need to click and hold the mouse.
+Drag and drop is too hard, especially on laptop trackpads or nibs. What if instead we visually pick up an item up and then drop it. There would be no need to click and hold the mouse. Copy and paste APIs are usually separate from drag and drop APIs, but they don't need to be.
 
 # 4. Chronological news
 
