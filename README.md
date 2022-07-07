@@ -4,7 +4,7 @@ Welcome to the forth page of my Ideas for Computing. This is a stream of my thou
 
 This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
-This is a long document but each section is a few paragraphs. There is probably a masters or PhD idea in here somewhere but I hope you can be patient and bear with me, this document is a stream of thoughts so you might not like every idea. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness of lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they can be. 
+This is a long document but each section is a few paragraphs. There is probably a masters or PhD idea in here somewhere but I hope you can be patient and bear with me, this document is a stream of thoughts so you might not like every idea. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness and lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they could be. 
 
  * See [100 Ideas for Computing](HTTPS://GitHub.com/samsquire/ideas), the first issue of this series.
  * See [ideas2, Another 85+ Ideas For Computing](HTTPS://GitHub.com/samsquire/ideas2)
@@ -115,7 +115,7 @@ Imagine an API as a graph and define a traversal of the API to get what you want
 
 Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
 
-The server should be defined a bit like Backus-Naur format but defines a protocol instead.
+The server should be defined a bit like Backus-Naur format but defines a protocol instead. Parsing could be generalised and raised in terms of abstraction and applied to protocol communication.
 
 What would IRC or HTTP look like at a high level?
 
@@ -250,7 +250,7 @@ I read somewhere that instruction selection is less of a cause of total performa
 
 Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, disk files. We need some method of paging this data and scheduling data to and from each area efficiently.
 
-Databases such as Postgres have heap managers. Virtual memory exists in kernels. Some software use arenas for memory management. There is all sorts of clever things that can be done with readahead and prefetching and amortization. The problems of chunking has wide ranging impacts to do with caching and decision to load in parallel.
+Databases such as Postgres have heap managers. Virtual memory are managed by kernels. Some software use arenas for memory management. Memory management is too complicated so browsers such as Chromium just use arenas and free it when the tab is closed. There is all sorts of clever things that can be done with readahead and prefetching and amortization. The problems of chunking has wide ranging impacts to do with caching and decision to load in parallel.
 
 Surely these problems could be solved once in a profoundly effective way and exposed as a library.
 
@@ -261,6 +261,7 @@ I imagine this being implemented as a Policy that defines the relationship hiera
 You could have a common API for storage that works across all levels of storage.
 
 This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
+
 # 15. Mega tree
 
 I want a mega tree data structure which has the combination of these properties:
@@ -285,9 +286,9 @@ If I have a keyspace that is lexicographically sorted or a HashMap or btree can 
 
 Could I generate sequences of instructions as graph traversals that become generalised algorithms that fetch data?
 
-We know where the data is in the data structure.
+We know where the target data is in the data structure.
 
-There is a sequence of steps and iteration to get the query to fetch the data.
+There is a sequence of steps and iteration to get the query to fetch the data we want.
 
 For a tree we know which nodes we have to traverse in order to get to the data, so we can generate code that knows how to fetch children recursively and do a binary search on an array.
 
@@ -3076,7 +3077,7 @@ C # ask for C's only, iterating B and a necessarily
  
 ```
 
-What of loops at the same level, that is, without nesting.
+What of loops at the same level, that is, loops at the same level. It causes no difference if the 2nd and 3rd loop are iterated out of order.
 
 ```
 for letter in letters:
@@ -3087,7 +3088,9 @@ for letter in letters:
 ```
 
 
-# 134. Virtual processes
+# 134. Virtual processes and scheduling
+
+This is similar to Erlang but the practices of Erlang could be generalised and applied to any programming language, even those without native thread support. This is probably similar to continuation passing.
 
 Combined with concurrent loops we can produce virtual processes.
 
