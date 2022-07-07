@@ -1,6 +1,6 @@
 # Additional 100+ Ideas for Computing
 
-Welcome to the forth page of my Ideas for Computing.
+Welcome to the forth page of my Ideas for Computing. This is a stream of my thoughts while working on computers.
 
 This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
@@ -3131,13 +3131,14 @@ for item in J:
 
 # 135. Recursive Coordinations and decision portfolios and time allocation portfolio and recursive dividends
 
-There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit for a large enough group of people through recursive effect.
+Imagine an information system that was also a constraint solving system and scheduler. At the beginning of everybody's everyday task or piece of work, people write what they are going to do. Then they do the work, then they check the system for what people suggested would benefit them. There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit as many groups of people through recursive effect and recursive relationships. If you do this for me, I'll do this for you.
 
-There's a win-win solution. Money raised through work is spent in the economy and ripples out to other people.
+There's a win-win state of affairs through co-operation. Money raised through work is spent in the economy and ripples out to other people. If you limit this to a smaller group, everybody benefits.
 
-Imagine an information system that was also a constraint solving system and scheduler.
 
-For maximum effect and return, if multiple individuals coordinations and did not see their work as being isolated, they could multiply their effects with other people doing the same thing.
+
+
+For maximum effect and return, if multiple individuals coordinates and did not see their work as being isolated, they could multiply their effects with other people doing the same thing.
 
 Imagine a system or social network where everyone announces what they are doing.
 
