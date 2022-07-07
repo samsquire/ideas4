@@ -3187,6 +3187,16 @@ There is an time ordering that is an evenly spread out Cartesian product of ever
 
 Recursive dividends means you get what you cause. You should return a fraction of that change or scheduling's return. We can use the learning function of a neural network to produce returns to people who cause things.
 
+# 136. The Show, don't tell problem and many failed lineages problem
+
+In every company around the world the company has a technical problem, then someone is employed by the company and that person solves the problem technically. This is repeated ad infinitum throughout time. Very few of these technical solutions escape as a lineage from the company, so the same work gets reinvented again and again.
+
+Think how many Github projects there are and all the wasted effort from projects that go nowhere. I don't accept that technology should work in this manner and that the knowledge of the solutions go with the people that built them and do not percolate through industry or add to the knowledge of society.
+
+Think of operating system, programming language and web browser lineage and genealogical trees, it's forward marching line of progress as each split adds something to the whole. The problem is that things don't get merged back, so we collectively lose so much untapped value in society.
+
+The second problem is the show don't tell problem. To work on one think is to work on the exclusion of everything else. If you tell people what you want and design a perfect solution you'll never finish. So ideas that people talk of don't get implemented, the people who do the work decide the future. The problem is to get investment, you need to tell others what you're going to do. So this is a stalemate and the reason why most businesses and software projects fail.
+
 # incomplete ideas
 
 Memory set to network calls
