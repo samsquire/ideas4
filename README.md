@@ -115,7 +115,7 @@ Imagine an API as a graph and define a traversal of the API to get what you want
 
 Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
 
-The server should be defined a bit like Backus-Naur format but defines a protocol instead. Parsing could be generalised and raised in terms of abstraction and applied to protocol communication.
+The server should be defined a bit like Backus-Naur format but defines a protocol instead. Parsing could be generalised and raised a level in terms of abstraction and applied to protocol communication of arbitrary number of simultaneously communicating processes. It's a state machine and parsing problem.
 
 What would IRC or HTTP look like at a high level?
 
@@ -355,7 +355,7 @@ def diff3(a, b):
 
 # 20. Lazy arrange or invariant maintenance
 
-Many computer problems and algorithms can be solved with a sorting function and a set of statements that should be maintained over collections of objects.
+Many computer problems and algorithms can be solved with a division and sorting function and a set of statements that should be maintained over collections of objects.
 
 Unfortunately to maintain invariants requires custom code when data is changed or modified. Such as recalculating the hash of an object.
 
@@ -383,7 +383,7 @@ This could be combined with [Data Views](https://github.com/samsquire/ideas#90-v
 
 This could be combined with [Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure)
 
-# 21. Sort groups
+# 21. Sort group tree
 
 It is often useful to have a single relation that is sorted with a complicated ordering function that maintains the order according to various properties 
 
@@ -478,7 +478,7 @@ We can take two lists and align them into sections where they differ and where t
 
 # 30. Extending code without changing it efficiently
 
-Usually to extend code we need to change it. Or add parameters everywhere.
+Usually to extend code we need to change it. Or add parameters everywhere. We write methods to abstract ideas, but those methods cause code to become too complicated to change if we want to create a far reaching change.
 
 I think there's a better thing we can do with compilers.
 
