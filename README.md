@@ -30,7 +30,7 @@ It should be extracted on desktop environment login and repacked asychronously i
 
 # 2. Idea management software
 
-Society is composed of ideas, let's let everyone track the ideas they like. Ideas are informally collected throughout life, there's no central knowledgebase for an individual. There's Wikipedia which represents society's knowledge but there are few systems for collecting ideas you agree with and want to see more of. This document is actually an example of what I want to see: people aggregating ideas they like and want to invest time in.
+Society is composed of ideas, let's let everyone track the ideas they like. Ideas are informally collected throughout life, there's no central knowledgebase for an individual. There's Wikipedia which represents society's knowledge but there are few systems for collecting ideas you agree with and want to see more of. This document is actually an example of what I want to see: people aggregating ideas they like and want to invest time and resources in.
 
 # 3. Pick up and drop
 
