@@ -3195,7 +3195,7 @@ Think how many Github projects there are and all the wasted effort from projects
 
 Think of operating system, programming language and web browser lineage and genealogical trees, it's forward marching line of progress as each split adds something to the whole. The problem is that things don't get merged back, so we collectively lose so much untapped value in society.
 
-The second problem is the show don't tell problem. To work on one think is to work on the exclusion of everything else. If you tell people what you want and design a perfect solution you'll never finish. So ideas that people talk of don't get implemented, the people who do the work decide the future. The problem is to get investment, you need to tell others what you're going to do. So this is a stalemate and the reason why most businesses and software projects fail.
+The second problem is the show don't tell problem. To work on one thing is to work on the exclusion of everything else, an opportunity cost. If you tell people what you're going to do, and spend all your time designing a perfect solution you'll never finish, so nothing gets done if you tell. So ideas that people talk of don't get implemented, the people who do the work decide the future. The problem is to get investment, you need to tell others what you're going to do. So this is a stalemate and the reason why most businesses and software projects fail.
 
 # incomplete ideas
 
