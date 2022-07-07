@@ -3197,6 +3197,14 @@ Think of operating system, programming language and web browser lineage and gene
 
 The second problem is the show don't tell problem. To work on one thing is to work on the exclusion of everything else, an opportunity cost. If you tell people what you're going to do, and spend all your time designing a perfect solution you'll never finish, so nothing gets done if you tell. So ideas that people talk of don't get implemented, the people who do the work decide the future. The problem is to get investment, you need to tell others what you're going to do. So this is a stalemate and the reason why most businesses and software projects fail.
 
+# 137. A scalable system design
+
+Imagine a tree of load balancers, one in each availability zone and across multiple regions with GTM being programmed so every load balancer is aware of every other load balancer in every other region and availability zone.
+
+I plan to use PowerDNS with the pipe backend. When a DNS query is resolved, it checks the remote IP address and responds with a round robin IP address of the server that is nearest the region of the requesting IP.
+
+
+
 # incomplete ideas
 
 Memory set to network calls
