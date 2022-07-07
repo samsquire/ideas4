@@ -42,7 +42,7 @@ Each news topic should be tracked separately, I should be able to follow a news 
 
 # 5. Permanent software/platform/language / Software subscriptions and outsourceable stack
 
-At the cost of innovation we can solve swathes of computer problems with common parts of a stack.
+At the cost of innovation we can solve swathes of computer problems with common parts of a stack. The networking stack is standardised and solved the communication problem. But there is a lot of work to standardise the rest of the technology stack. See my idea4 on 135. Recursive Coordination and decision portfolios for how we could implement social and technical leverage to solve this problem of standardisation.
 
 Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build.
 
