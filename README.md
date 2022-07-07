@@ -42,11 +42,9 @@ Each news topic should be tracked separately, I should be able to follow a news 
 
 # 5. Permanent software/platform/language / Software subscriptions and outsourceable stack
 
-At the cost of innovation we can solve swathes of computer problems with common parts of a stack. The networking stack is standardised and solved the communication problem. But there is a lot of work to standardise the rest of the technology stack. See my idea4 on 135. Recursive Coordination and decision portfolios for how we could implement social and technical leverage to solve this problem of standardisation.
+At the cost of innovation we can solve swathes of computer problems with common parts of a stack. The BSD networking stack is standardised and solved the communication problem, it seems BSD sockets are in most software products today. But there is a lot of work needed to standardise the rest of the technology stack. See [idea4 on 135. Recursive Coordination and decision portfolios](https://github.com/samsquire/ideas4/blob/main/README.md#135-recursive-coordinations-and-decision-portfolios-and-time-allocation-portfolio-and-recursive-dividends) for how we could implement social and technical leverage to solve this problem of standardisation.
 
-Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build.
-
-Upgrading RHEL 6 to RHEL 7 and to RHEL 8 is a pain and you need to reharden everything again.
+Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build. Upgrading RHEL 6 to RHEL 7 and to RHEL 8 is a pain and you need to reharden everything again.
 
 To build an app things you need to worry of and solve:
  * Packaging your app
@@ -87,9 +85,9 @@ To build an app things you need to worry of and solve:
 
 Each if these areas is changing all the time. There is nothing permanent to develop against.
 
-I would like to see some permanent foundations on which to build. Moving towards profoundly stable software and the existence of an impoverished software engineering world
+I would like to see some permanent foundations on which to build. Moving towards profoundly stable software and away from the existence of an impoverished software engineering world:
 
- * I feel a very large problem in the computing industry is that everybody is reinventing the wheel repeatedly and people are working on the wrong problems.
+ * I feel a very large problem in the computing industry is that everybody is reinventing the wheel repeatedly and people are working on the wrong problems. What you see on Hacker News as people's personal projects are not solutions to these common problems. People are working on the wrong things.
  * People do not necessarily share their solutions to problems.
  * Maintenance costs of software are very expensive. Everything is constantly changing underneath our feet. The only stable platform is maybe the amd64 instruction set.
  * APIs and abstractions are changing all the time. Every Linux distribution places things in slightly different places.
