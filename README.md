@@ -119,7 +119,7 @@ The server should be defined a bit like Backus-Naur format but defines a protoco
 
 What would IRC or HTTP look like at a high level?
 
-I want a server to handle as much traffic as it can, concurrently and parallel with low latency, jitter and errors. Nothing should block its IO loop. And other long running requests shouldn't slow down other users.
+I want a server to handle as much traffic as it can, concurrently and parallel with low latency, jitter and errors. Nothing should block its IO loop. And other long running computations/CPU usage shouldn't slow down other users.
 
 # 9. Query for data structure
 
