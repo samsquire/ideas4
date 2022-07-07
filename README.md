@@ -3146,7 +3146,9 @@ for item in J:
 
 # 135. Recursive Coordinations and decision portfolios and time allocation portfolio and recursive dividends
 
-Imagine an information system that was also a constraint solving system and scheduler. At the beginning of everybody's everyday task or piece of work, people write what they are going to do. Then they do the work, then they check the system for what people suggested would benefit them. There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit as many groups of people through recursive effect and recursive relationships. If you do this for me, I'll do this for you.
+Imagine an information system that was also a constraint solving system and scheduler. At the beginning of everybody's workday, task or project -- within a company, publicly, internationally, within families and within open source products, people write what they are going to do. Then they do the work, then they check the system for what people suggested would benefit them. People are encouraged to share what would benefit them. The understanding being that this is not a light statement to make, this is a commitment. You reply to the work that someone is doing with the intention of using it and benefitting from it. You propose how you would benefit from it and how the work's deliverable should be changed to benefit you. You are also required to provide something in return for the change.
+
+There's 8 billion people on the planet. There's a solution through multidimensional space that provides profit or benefit as many groups of people through recursive effect and recursive relationships. If you do this for me, I'll do this for you.
 
 There's a win-win state of affairs through co-operation. Money raised through work is spent in the economy and ripples out to other people. If you limit this to a smaller group, everybody benefits.
 
@@ -3161,15 +3163,11 @@ People reply with how they could see that work solve their problems.
 
 The author decides to fulfil a coordination, the coordination is added to both of their portfolios.
 
-Think W3C, ISO, WHATWG and every consortium and committee suffers from.
+Think what W3C, ISO, WHATWG and every consortium and committee suffers from. They suffer from coordination problems. Standardisation efforts suffer and are delayed due to a back and forward over issues that rarely come up if you actually tried to do the work. I propose people try implement solutions and standardise in retrospect.
 
-They suffer from coordination problems.
+A slightly different arrangement could benefit multiple parties simultaneously and improve things for everybody.
 
-A slightly different arrangement would benefit multiple parties simultaneously and improve things for everybody.
-
-I think of this problem as numbers that are multiplied in every direction, providing a sum that is greater than all its parts. That's what proper coordination is.
-
-Every company has responsibilities and work it needs to do. You benefit if a company raises money as trade produces value that is spread indirectly through society.
+I think of this problem as numbers that are multiplied in every direction, providing a sum that is greater than all its parts. That's what proper coordination is. If you multiply one number by 1.01 you grow by 1%, if everybody adds to the whole, the multiplied product is much greater than the sum of its parts.
 
 There is an time ordering that is an evenly spread out Cartesian product of everybody's coordinated problems. With this product, everybody gets attention but the business does not fail to operate on it's own responsibilities.
 
