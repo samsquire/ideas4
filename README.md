@@ -316,6 +316,8 @@ If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexin
 
 I propose a simple system that tracks all instances of data and keeps them integrated. This would be used between systems and keep then in sync. It would also be used within an application server or database architecture. It would also have the feature to delay updating items before returning success. So indexes can be updated passively or even asynchronously.
 
+Denormalisation solves performance including parallelism problems as in Left Right concurrency control. We need an industry standard way to keep data in synchronisation, in memory.
+
 # 19. Merge database
 
 A distributed database that uses CRDTs to replicate and resolves concurrent edits with Myers algorithm for String Edit Sequence edit scripts.
