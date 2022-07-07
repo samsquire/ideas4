@@ -125,7 +125,7 @@ I want a server to handle as much traffic as it can, concurrently and parallel w
 
 If you're writing a compiler or programming language or business software you have a stored shape of data and relationships.
 
-Sometimes to solve particular problems you need data in a particular shape.
+Sometimes to solve particular problems you need data in a particular shape. That is, a problem becomes simpler to write an algorithm for if the data is in the right shape.
 
 What if you had a query language where you could retrieve a data structure?
 
@@ -133,7 +133,7 @@ In compiled languages we have pointers and in interpreted languages such as Pyth
 
 We also have indexing Data structures such as hashmaps and btrees. What if we could built up data structures by a query?
 
-We want a btree indexing these columns and these relations.
+We want a btree indexing these columns and these relations. As a result, we get a data structure with these indexing structures.
 
 GraphQL is nearest to this idea. I want a linked list of this data or an object graph that looks like this.
 
