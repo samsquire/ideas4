@@ -3103,7 +3103,7 @@ for letter in letters:
   print(letter + symbol)
 ```
 
-This cartesian product of this looks like this:
+The product of this looks like this:
 
 ```
 a1
