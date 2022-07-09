@@ -2765,7 +2765,7 @@ See my multiplexing repository for a design of a multiplexing event system that 
 
 IntelliJ is very laggy software. It doesn't execute processes on different threads but in the GUI rendering thread. As a result it lags while creating intellisense suggestions.
 
-I propose a GUI framework that uses register loop to create full cancellation trees that can be cancelled when the user does something to invalidate the GUI state. This means you can abort any action on the computer.
+I propose a GUI framework that uses register loop to create full cancellation trees of operations, where every tree node is a parent of a child operation. Any node has a validity hat can be cancelled when the user does something to invalidate the GUI state. For example, the GUI should show a pending intellisense that can be cancelled. This means you can abort any action on the computer.
 
 # 121. Spreadgrid
 
