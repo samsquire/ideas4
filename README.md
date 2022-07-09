@@ -3211,6 +3211,15 @@ Think of the different segments or contexts that code can execute in: in a loop,
 
 Imagine you could schedule code into each of these contexts with a MV command.
 
+# 139. Incremental scaling
+
+When designing scalable systems we generally design the end state of how the scaled system should look.
+
+I propose a different much harder problem to solve.
+
+Incrementally scale a system through changes to the running system without much service interruption.
+
+Write code that takes a system from single availability zone to multi availability zone then multi region.
 
 # incomplete ideas
 
