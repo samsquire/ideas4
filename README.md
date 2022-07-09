@@ -3205,6 +3205,11 @@ Imagine a tree of load balancers, one in each availability zone and across multi
 
 I plan to use PowerDNS with the pipe backend. When a DNS query is resolved, it checks the remote IP address and responds with a round robin IP address of the server that is nearest the region of the requesting IP.
 
+# 138. Code movement API
+
+Think of the different segments or contexts that code can execute in: in a loop, in a method, in a thread, in a process, in a container, in a language virtual machine or on a hypervisor virtual machine.
+
+Imagine you could schedule code into each of these contexts with a MV command.
 
 
 # incomplete ideas
