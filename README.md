@@ -102,6 +102,7 @@ When you pick a stack you inherit all the problems of the stack and you benefit 
 
 But you don't benefit from the executional skills of deploying and using that software. This needs to change.
 
+This idea is so we subscribe to a practice. If you want to use code to drive your configuration that's a decision and something you can build against. Or you want to use YAML.
 
 # 6. Contiguous disk layouter
 
@@ -428,6 +429,8 @@ This list of lists with columns can be represented as a graph.
 
 This is what ORM software does for us. It maintains object graphs 
 
+I would like my ORM to be explicit in its workings and literally accept lists of lists to populate objects, not do magic with annotations or decorators.
+
 # 25. Imperative graph traversal to query
 
 I like to change between a graph traversal with imperative code to a query and vice versa 
@@ -436,7 +439,10 @@ It's quite complicated. But I think it can be done.
 
 If you turn a graph traversal into a set of reasons, you could generate a query.
 
-# 26. Sort method calls of pipeline
+Existing
+ * [Chiselstrike, my other database is a compiler](https://blog.chiselstrike.com/my-other-database-is-a-compiler-10fd527a4d78)
+
+# 26. Sort method calls of pipeline and sort reject
 
 Sometimes to change the behaviour of code we want to sort the data. Rather than be explicit of sorting of the data, we can treat the pipeline as data and sort the method calls of a pipeline.
 
