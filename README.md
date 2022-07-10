@@ -34,7 +34,7 @@ Society is composed of ideas, let's let everyone track the ideas they like. Idea
 
 # 3. Pick up and drop
 
-Drag and drop is too hard, especially on laptop trackpads or nibs. What if instead we visually pick up an item up and then drop it. There would be no need to click and hold the mouse. Copy and paste APIs are usually separate from drag and drop APIs, but they don't need to be.
+Drag and drop is too hard, especially on laptop trackpads or trackpoint. What if instead we visually pick up an item up and then drop it. There would be no need to click and hold the mouse. Copy and paste APIs are usually separate from drag and drop APIs, but they don't need to be.
 
 # 4. Chronological news
 
