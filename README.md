@@ -87,7 +87,7 @@ Each if these areas is changing all the time. There is nothing permanent to deve
 
 I would like to see some permanent foundations on which to build. Moving towards profoundly stable software and away from the existence of an impoverished software engineering world:
 
- * I feel a very large problem in the computing industry is that everybody is reinventing the wheel repeatedly and people are working on the wrong problems. What you see on Hacker News as people's personal projects are not solutions to these common problems. People are working on the wrong things.
+ * I feel a very large problem in the computing industry is that everybody is reinventing the wheel repeatedly and software ends development within a company and has only one deployment. People are working on the wrong problems. What you see on Hacker News as people's personal projects are not solutions to these common problems. People are working on the wrong things.
  * People do not necessarily share their solutions to problems.
  * Maintenance costs of software are very expensive. Everything is constantly changing underneath our feet. The only stable platform is maybe the amd64 instruction set.
  * APIs and abstractions are changing all the time. Every Linux distribution places things in slightly different places.
