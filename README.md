@@ -2907,6 +2907,14 @@ I can save a lot of resources by picking off the shelf solutions to problems. Bu
 
 # 129. Update first software
 
+Imagine we have a website similar to Repl.it, Jsfiddle and Jsbin.
+
+It provides a database or file system and allows migrations to be defined.
+
+It should be opinionated regarding handling updates. Creating a release should be a button press.
+
+Restoring data at a previous version should also be available easily.
+
 Updating software is painful. Usually to upgrade we bump the version number and then fix compilation errors and then run the tests.
 
 Unfortunately for systems that store data this is not enough of a fix.
