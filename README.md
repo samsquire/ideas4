@@ -2,7 +2,7 @@
 
 Welcome to the forth page of my Ideas for Computing. This is a stream of my thoughts while working on computers with the theme of integration and improvement of how computers work.
 
-This issue is heavily focused on data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
+This issue is more focused on parallelism, data structures and algorithms so you might need to be familiar with algorithms and programming to understand these ideas.
 
 This is a long document but each section is a few paragraphs. There is probably a masters or PhD idea in here somewhere but I hope you can be patient and bear with me, this document is a stream of thoughts so you might not like or see the originality of every idea. I see the state of the technology world as being impoverished or poor, many good ideas are not adopted or in the mainstream. You might think an idea is obvious but I might not have seen it or seen it in the manner I want to see it. I am still trying to express my vision of computing but it is different to how computing works today. I think the computer industry is in its infancy and unevenly distributed; the goodness and lessons of industry are yet to percolate everywhere. In my limited experience of the computer industry, most environments are impoverished and don't realise how poor they are and how much better they could be. I don't underestimate how much work is needed to get to where we could be.
 
