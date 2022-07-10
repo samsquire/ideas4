@@ -662,8 +662,12 @@ Def update_linked_list(new_head)
   While trying:
     old_head = self.head
     Trying = !Self.head.compareAndSet(self.head.previous, new_head)
+    if not Trying:
+      continue
     Self.head.previous = new_head
     Trying = !Self.head.compareAndSet(old_head, new_head)
+    if not Trying:
+      continue
     New_head.next = old_head
 ```
 
