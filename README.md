@@ -3246,6 +3246,8 @@ If we want things to keep going, we need to invest effort into keeping them goin
 
 Imagine a system that tracks attributes of survival and allows people to add to the whole to keep something surviving.
 
+# 141. Algebra for shape addition
+
 # incomplete ideas
 
 Memory set to network calls
