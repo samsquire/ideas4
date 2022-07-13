@@ -3238,6 +3238,14 @@ Incrementally scale a system through changes to the running system without much 
 
 Write code that takes a system from single availability zone to multi availability zone then multi region.
 
+# 140. Survival management
+
+Most ideas fail when a critical person stops doing what they were doing.
+
+If we want things to keep going, we need to invest effort into keeping them going.
+
+Imagine a system that tracks attributes of survival and allows people to add to the whole to keep something surviving.
+
 # incomplete ideas
 
 Memory set to network calls
