@@ -3254,6 +3254,10 @@ A virtual cloud environment that simulates problems and has a build button to bu
 
 Simulates users using the system and simulates failures.
 
+# 142. Dream compiler
+
+ * **Intellisense web** At any given point in a compiler input stream there is a sequence of what is valid. I would like a GUI to show me these things.
+
 # incomplete ideas
 
 Memory set to network calls
