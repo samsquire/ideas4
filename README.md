@@ -3268,6 +3268,7 @@ I can see the flow of data between components
  * I can introduce crossroad junctions, T junctions and roundabouts
  * I can introduce motorways/highways which are fast paths and lanes which are slow paths.
 
+I would have lined represent the tip of execution.
 
 # incomplete ideas
 
