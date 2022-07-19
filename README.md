@@ -3258,6 +3258,17 @@ Simulates users using the system and simulates failures.
 
  * **Intellisense web** At any given point in a compiler input stream there is a sequence of what is valid. I would like a GUI to show me these things.
 
+# 143 metaphorical programming - cars
+
+A metaphorical observability of code. Each car is driving around on roads between components.
+
+I can see the flow of data between components
+
+ * I can change the width of roads, the length of roads.
+ * I can introduce crossroad junctions, T junctions and roundabouts
+ * I can introduce motorways/highways which are fast paths and lanes which are slow paths.
+
+
 # incomplete ideas
 
 Memory set to network calls
