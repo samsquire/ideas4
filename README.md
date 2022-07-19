@@ -3272,6 +3272,11 @@ I would have lined represent the tip of execution.
 
 # 144. Memory hierarchy and computation flow analysis and subsumation
 
+Ideally you want to be processing data while reading it from IO or the network.
+
+We can process data in batches. The batch size needs to be large enough to be worth running in parallel.
+
+
 # incomplete ideas
 
 Memory set to network calls
