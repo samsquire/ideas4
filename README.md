@@ -2671,7 +2671,7 @@ Class Worker extends Thread {
 }
 ```
 
-# 115. While do parallelism
+# 115. While do parallelism and automatic thread pools
 
 We want to achieve perfect use of the processor and handoff between tasks.
 
