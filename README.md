@@ -3270,6 +3270,8 @@ I can see the flow of data between components
 
 I would have lined represent the tip of execution.
 
+# 144. Memory hierarchy and computation flow analysis and subsumation
+
 # incomplete ideas
 
 Memory set to network calls
