@@ -3276,6 +3276,11 @@ Ideally you want to be processing data while reading it from IO or the network.
 
 We can process data in batches. The batch size needs to be large enough to be worth running in parallel.
 
+# 145. Practices
+
+ * **
+
+# 146. 
 
 # incomplete ideas
 
