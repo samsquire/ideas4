@@ -3270,7 +3270,7 @@ I can see the flow of data between components
 
 I would have lined represent the tip of execution.
 
-# 144. Memory hierarchy and computation flow analysis and subsumation
+# 144. Memory hierarchy and computation flow analysis
 
 Ideally you want to be processing data while reading it from IO or the network.
 
@@ -3280,7 +3280,13 @@ We can process data in batches. The batch size needs to be large enough to be wo
 
  * **
 
-# 146. 
+# 146. Communication Subsumation
+
+Represent all the communications between functions,
+
+# 147. Intelligent shard routing
+
+# 148. Function marketplace
 
 # incomplete ideas
 
