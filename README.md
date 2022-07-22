@@ -3307,6 +3307,13 @@ The abstraction should be a definition of the system at a high level and a form 
 
 This should allow us to update our system dynamically.
 
+For example, we can define what should go on to requests we can rerun the function to apply to past storage of past requests.
+
+In other words, our system is reactive in its design.
+
+
+# 151. People circuitry
+
 # incomplete ideas
 
 Memory set to network calls
