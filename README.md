@@ -3308,6 +3308,16 @@ Communication is extremely expensive from a CPU perspective. We shouldn't need t
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
+This idea:
+
+ * extremely complicated refactorings of systems in traditionally implemented code should be trivial
+ * I should be capable of mutating a system while it is running from an old design to a new design easily
+ * Systems should mutate to change of design and architecture easily
+ * We can use a combination of declarativeness and imperativeness to achieve this goal.
+ * Statements such as "There is a load balancer in this availability zone, sharded by this user cookie" should be trivially refactorable to a different layout.
+ * I want to declare my system design with imperative code and mutate a data structure from one design to another. So this is a mixture of imperative and declarative code. I want to use one language to do this. I want to create Kubernetes resources, Terraform resources, Dockerfiles, application code, CI/CD pipelines with a program. This is similar to Temporal.
+ * 
+
 If we raise the level of abstraction for how we define our system, we can create drastic changes to the system with less impacts than changing a system that is active.
 
 The abstraction should be a definition of the system at a high level and a form of mapping from component to new component.
@@ -3316,9 +3326,11 @@ This should allow us to update our system dynamically.
 
 For example, we can define what should go on to requests we can rerun the function to apply to past storage of past requests.
 
-In other words, our system is reactive in its design.
+In other words, our system is reactive to its design.
 
 Event handlers, workflow should be defined with a builder of the system as a whole.
+
+This idea is an extension to how Kubernetes has an API for defining resources and Pulimi and Terraform. The system as a whole should be overconstrained. 
 
 # 151. People circuitry
 
