@@ -3302,9 +3302,11 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 148. Function marketplace
 
-# 149. Communication Analysis
+# 149. Communication to shared memory and communication analysis
 
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
+
+We need to have a very good reason to export processing to another computer. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
@@ -3355,6 +3357,8 @@ Every developer is different and has solved different problems in their life. Th
 Some developers have machine sympathy others do not.
 
 Let's arrange people in a circuit and optimise for code production and problem solving. Put two people on a problem and ask them to design a solution and integrate that solution everywhere.
+
+
 
 # incomplete ideas
 
