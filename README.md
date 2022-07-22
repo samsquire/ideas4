@@ -3299,7 +3299,7 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 149. Communication Analysis
 
-# 150. System as a program and system difference evolution
+# 150. System as a program and system difference evolution, overconstrained systems and softeare defined system
 
 If we raise the level of abstraction for how we define our system, we can create drastic changes to the system with less impacts than changing a system that is active.
 
@@ -3311,6 +3311,7 @@ For example, we can define what should go on to requests we can rerun the functi
 
 In other words, our system is reactive in its design.
 
+Event handlers, workflow should be defined with a builder of the system as a whole.
 
 # 151. People circuitry
 
