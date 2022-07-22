@@ -3299,6 +3299,14 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 149. Communication Analysis
 
+# 150. System as a program and system difference evolution
+
+If we raise the level of abstraction for how we define our system, we can create drastic changes to the system with less impacts than changing a system that is active.
+
+The abstraction should be a definition of the system at a high level and a form of mapping from component to new component.
+
+This should allow us to update our system dynamically.
+
 # incomplete ideas
 
 Memory set to network calls
