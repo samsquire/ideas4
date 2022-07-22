@@ -3290,6 +3290,11 @@ From a very high level we want data that is relevant to be stored together, so a
 
 We can route data to a shard based on efficiency.
 
+We write web request handlers to handle and route requests.
+We can also write handlers that define the destination of data.
+
+These can be dynamic handlers if the output of any changes, we move the data.
+
 # 148. Function marketplace
 
 # 149. Communication Analysis
