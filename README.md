@@ -3299,6 +3299,8 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 149. Communication Analysis
 
+Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
+
 # 150. System as a program and system difference evolution, overconstrained systems and softeare defined system
 
 If we raise the level of abstraction for how we define our system, we can create drastic changes to the system with less impacts than changing a system that is active.
@@ -3314,6 +3316,28 @@ In other words, our system is reactive in its design.
 Event handlers, workflow should be defined with a builder of the system as a whole.
 
 # 151. People circuitry
+
+Conway's law means that software ends up looking like the communication patterns of people who create the software. If we think of a person developer as a component of the architecture, each has IO with other people, a memory buffer of recent code, and a mind that is a central processing unit capable of rapid pattern matching and general purpose problem solving. Individual contributor's are capable of mass outputs see Linux Torvalds, Varnish developer, Guido Van Rossum, Rasmus Lerdorf. Let's take individual potential into thought of the layout of software engineering teams.
+
+Some people build software in layers.
+
+The problem with layers is that layers form a rigid agreement of how things are seen by different layers. If you want a far reaching change you might get the expression problem and need to touch every layer for every variation.
+
+This idea is to think of the person on a team as part of the system and to arrange them In such a way to maximise throughout.
+
+If different people are responsible for different layers then you have a communication slowdown as you inevitably need to communicate to have successful integration.
+
+In Google they produce new chat applications every year. There are different solutions to the same problem in Google's codebase as different teams have different problems to solve and they solve the problem slightly differently.
+
+I see no problem with this if it causes maximum velocity. If it slows down development I would be against it.
+
+This idea is to see the individuals developing the software as being part of the systems design and not just a body shop worker who churns out code.
+
+Every developer is different and has solved different problems in their life. They are better at some problems over others. They have different levels of knowledge.
+
+Some developers have machine sympathy others do not.
+
+Let's arrange people in a circuit and optimise for code production and problem solving. Put two people on a problem and ask them to design a solution and integrate that solution everywhere.
 
 # incomplete ideas
 
