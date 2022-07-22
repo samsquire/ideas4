@@ -2675,7 +2675,7 @@ Class Worker extends Thread {
 
 We want to achieve perfect use of the processor and handoff between tasks.
 
-In [ideas3 50. Capacity planning tool](https://github.com/samsquire/ideas3#50-capacity-planning-tool) I described a timeline that you can drag work into and binpack work into time.
+In [ideas3 50. Capacity planning tool](https://github.com/samsquire/ideas3#50-capacity-planning-tool) I described a timeline that you can drag work into and binpack work into time. Most web frameworks produce very inefficient binpacking of work into time, due to blocking behaviours and lack of parallelism.
 
 We want to binpack code and tasks to run with maximum freedom of variable and shared memory usage. The computer should work out how to schedule and order the memory parallelism.
 
@@ -2683,9 +2683,12 @@ Unfortunately writing multithreaded code is clumsy. It is difficult to handoff w
 
 So I propose a syntax `parallel while { # blocking code } do { # multiplexed code }` for parallelism.
 
-The while part blocks and schedules a thread to handle the do when it unblocks.
+ * Parallel while blocks are hoisted and converted into two-level thread pools.
+ * Blocking calls (syscalls and IO) are executed in a new thread. The `parallel while` syntax is a combined (a) while loop and (b) a thread pool submission.
+ * The blocking thread hands off to another thread in the `do` part of the loop.
+ * The while part blocks and schedules a thread to handle the do when it unblocks.
 
-The while loop can therefore run at very fast speeds without being blocked 
+The while loop can therefore run at very fast speeds without being blocked.
 
 A compiler can statically analyse the code to decide what thread pools to create. In effect each `do` is an independently scheduled threadpool.
 
@@ -2725,6 +2728,8 @@ Parallel while {
  }
 }
 ```
+
+This idea is based on the philosophy that the tip of execution shoul never block and when we want to create the illusion of blocking, we use an event loop in a thread, but the progression of the program as a whole is always moving forward and progressing. The frontier of execution is always processing events.
 
 # 116. Configuration addition search
 
@@ -3301,7 +3306,7 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
 
-# 150. System as a program and system difference evolution, overconstrained systems and softeare defined system
+# 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
 If we raise the level of abstraction for how we define our system, we can create drastic changes to the system with less impacts than changing a system that is active.
 
