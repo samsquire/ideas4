@@ -3286,7 +3286,13 @@ Represent all the communications between functions,
 
 # 147. Intelligent shard routing
 
+From a very high level we want data that is relevant to be stored together, so accessing it is fast.
+
+We can route data to a shard based on efficiency.
+
 # 148. Function marketplace
+
+# 149. Communication Analysis
 
 # incomplete ideas
 
