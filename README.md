@@ -3302,7 +3302,7 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 148. Function marketplace
 
-# 149. Communication to shared memory and communication analysis
+# 149. Communication to shared memory and automated communication analysis
 
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
 
@@ -3318,11 +3318,16 @@ If the data is spread over the network, how do you present a cohesive view of al
 
 If every Microservice is on every machine with its own database, we maximize throughout at the expense of independent scalability.
 
-Can we break processing into partitions do that each partition uses a maximum of processing on a single machine.
+Can we break processing into partitions do that each partition uses a maximum of processing on a single machine. I call this Microservice segued. We split the lifecycle of behaviour across shards and have a sunshade for each stage of the lifecycle.
 
 Event brokers can be on a particular shard or on a separate host for communication and decoupling of microservices communication 
 
+Can we feed in all the interactions to a system and tell us how we should binpack our servers?
 
+ * Place communicating Microservices together on same machine with the same data
+ * Isolate heavy CPU processes
+
+We can mapreduce load balance heavy tasks by partitioning the problem.
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
