@@ -3314,7 +3314,7 @@ If every server runs every microservice as in microstack, then we can partition 
 
 When we receive a request we can design our system so that all the data is already on the server where the request was received so no further communication is needed to fulfil the request. If the data is too large to store on one server, we could have a convention where clients know of the shards they must relay their requests to to retrieve the full dataset.
 
-
+If the data is spread over the network, how do you present a cohesive view of all data in one interface?
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
