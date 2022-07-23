@@ -3306,13 +3306,13 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
 
-We need to have a very good reason to export processing to another computer if the processing can all occur on a single machine. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
+We need to have a very good reason to export processing to another computer if the processing can all occur on a single machine. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Enforcing order is expensive from a distributed system perspective, ideally you want every machine in a network processing at maximum speed on its problems or work, when you communicate, you stop work on two machines to pass work between them. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
 
 If data is too large for one computer, we can distribute the processing and storage for a disaggregated architecture. When data is too large, we need to shard and aggregate results. The work dispatch has a submission roundtrip time and processing time and reply time.
 
-If every server runs every microservice as in microstack, then we can partition the state of a microservice's datastore across multiple machines and still scale compute and storage.
+If every server runs every microservice as in [ideas4 # 104. Multistack Microservice Pattern](https://github.com/samsquire/ideas4/blob/main/README.md#104-multistack-microservice-pattern), then we can partition the state of a microservice's datastore across multiple machines and still scale compute and storage.
 
-When we receive a request we can design our system so that all the data is already on the server where the request was received so no further communication is needed to fulfil the request. If the data is too large to store on one server, we could have a convention where clients know of the shards they must relay their requests to to retrieve the full dataset.
+When we receive a request we can design our system so that all the data is already on the server where the request was received so no further communication is needed to fulfil the request. If the data is too large to store on one server, we could have a convention where clients know of the shards they must relay their requests to to retrieve the full dataset, and each machine fulfils its partition of the data.
 
 If the data is spread over the network, how do you present a cohesive view of all data in one interface?
 
@@ -3325,9 +3325,9 @@ Event brokers can be on a particular shard or on a separate host for communicati
 Can we feed in all the interactions to a system and tell us how we should binpack our servers?
 
  * Place communicating Microservices together on same machine with the same data
- * Isolate heavy CPU processes
+ * Load balance microservice to microservice traffic. Ideally we distribute to local machine for efficiency.
 
-We can mapreduce load balance heavy tasks by partitioning the problem.
+We can mapreduce load balance heavy tasks by partitioning the problem and sending them to a work pool.
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
@@ -3378,6 +3378,8 @@ Every developer is different and has solved different problems in their life. Th
 Some developers have machine sympathy others do not.
 
 Let's arrange people in a circuit and optimise for code production and problem solving. Put two people on a problem and ask them to design a solution and integrate that solution everywhere.
+
+# 152. Migratory systems
 
 
 
