@@ -3306,9 +3306,15 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
 
-We need to have a very good reason to export processing to another computer. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
+We need to have a very good reason to export processing to another computer if the processing can all occur on a single machine. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
 
-If data is too large for one computer, we can distribute the processing and storage. When data is too large, we need to shard and aggregate results. 
+If data is too large for one computer, we can distribute the processing and storage for a disaggregated architecture. When data is too large, we need to shard and aggregate results. The work dispatch has a submission roundtrip time and processing time and reply time.
+
+If every server runs every microservice as in microstack, then we can partition the state of a microservice's datastore across multiple machines and still scale compute and storage.
+
+When we receive a request we can design our system so that all the data is already on the server where the request was received so no further communication is needed to fulfil the request. If the data is too large to store on one server, we could have a convention where clients know of the shards they must relay their requests to to retrieve the full dataset.
+
+
 
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
