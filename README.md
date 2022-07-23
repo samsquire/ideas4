@@ -3308,6 +3308,8 @@ Communication is extremely expensive from a CPU perspective. We shouldn't need t
 
 We need to have a very good reason to export processing to another computer. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
 
+If data is too large for one computer, we can distribute the processing and storage. When data is too large, we need to shard and aggregate results. 
+
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
 This idea:
