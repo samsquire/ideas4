@@ -3316,6 +3316,14 @@ When we receive a request we can design our system so that all the data is alrea
 
 If the data is spread over the network, how do you present a cohesive view of all data in one interface?
 
+If every Microservice is on every machine with its own database, we maximize throughout at the expense of independent scalability.
+
+Can we break processing into partitions do that each partition uses a maximum of processing on a single machine.
+
+Event brokers can be on a particular shard or on a separate host for communication and decoupling of microservices communication 
+
+
+
 # 150. System as a program and system difference evolution, overconstrained systems and software defined system
 
 This idea:
