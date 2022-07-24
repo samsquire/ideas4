@@ -3387,7 +3387,21 @@ Let's arrange people in a circuit and optimise for code production and problem s
 
 Imagine writing all your communication between microservices with a HTTP client that actually uses shared memory to communicate with local microservices. You can fan out and communicate locally for performance.
 
+# 154. Hook
+
+Writing code with a blank slate is easier than writing code with an complicated codebase.
+
+Writing assertions or additional facts is easier than modifying existing facts to do what you want.
+
+# 155. Eventually consistent website - Queuing primitive
+
+When I change a record on a website, we can have a notifications area that says your change is queued.
+
+When the change is applied, the content is updated and the notification changes to being that your change has been accepted.
+
 # incomplete ideas
+
+
 
 Memory set to network calls
 
