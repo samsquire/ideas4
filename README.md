@@ -3403,7 +3403,9 @@ When the change is applied, the content is updated and the notification changes 
 
 # 156. Generalise scalability - Properties based scalability
 
-Can scalability be generalized? Most complicated systems need to manage memory usage, storage usage, network usage and communication usage.
+Can scalability be generalized? Most complicated systems need to manage memory usage, storage usage, network usage and communication. Communication and indirection can be used to scale, at a fixed cost.
+
+Systems have a fixed capacity and generally a fixed single threaded performance (4-5ghz) and a fixed number of hardware thread cores. If we have a N objects that is larger than the system can cope with, we need to divide N into segments and assign them to different machines.
 
 
 
