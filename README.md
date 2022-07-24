@@ -3383,7 +3383,9 @@ Let's arrange people in a circuit and optimise for code production and problem s
 
 # 152. Migratory systems
 
+# 153. Network Stackless HTTP
 
+Imagine writing all your communication between microservices with a HTTP client that actually uses shared memory to communicate with local microservices. You can fan out and communicate locally for performance.
 
 # incomplete ideas
 
