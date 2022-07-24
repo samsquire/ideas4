@@ -3407,6 +3407,10 @@ When the change is applied, the content is updated and the notification changes 
 
 Unfortunately control flow in most programs is a mess. You cannot read code like a story in most codebases as the code goes everywhere. 
 
+# 158. CI/CD REPL Editor
+
+A web based editor that monitors files, and runs Docker builds and CI/CD pipelines on every change. So you can test your entire pipeline automatically. Should also deploy to Kubernetes.
+
 # incomplete ideas
 
 
