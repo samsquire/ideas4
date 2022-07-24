@@ -3403,6 +3403,10 @@ When the change is applied, the content is updated and the notification changes 
 
 # 156. Properties based scalability
 
+# 157. Flow is how you understand programs
+
+Unfortunately control flow in most programs is a mess. You cannot read code like a story in most codebases as the code goes everywhere. 
+
 # incomplete ideas
 
 
