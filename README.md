@@ -3399,6 +3399,10 @@ When I change a record on a website, we can have a notifications area that says 
 
 When the change is applied, the content is updated and the notification changes to being that your change has been accepted.
 
+# 155. Downtimeless systems
+
+# 156. Properties based scalability
+
 # incomplete ideas
 
 
