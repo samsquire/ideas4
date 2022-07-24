@@ -3304,6 +3304,8 @@ These can be dynamic handlers if the output of any changes, we move the data.
 
 # 149. Communication to shared memory and automated communication analysis
 
+[Scalability but at what cost?](http://www.frankmcsherry.org/assets/COST.pdf)
+
 Communication is extremely expensive from a CPU perspective. We shouldn't need to communicate if we can avoid it. Microservice architecture has very little mechanical sympathy.
 
 We need to have a very good reason to export processing to another computer if the processing can all occur on a single machine. Communication is equivalent to explicit synchronization from a parallel and multithreading perspective, it slows everything down. Enforcing order is expensive from a distributed system perspective, ideally you want every machine in a network processing at maximum speed on its problems or work, when you communicate, you stop work on two machines to pass work between them. Communication represents serialization of causality. The single threaded performance of a computer is extremely fast if all the data for a task is on one computer. The reason to communicate is to scale or provide flexibility of architecture.
