@@ -3401,7 +3401,11 @@ When the change is applied, the content is updated and the notification changes 
 
 # 155. Downtimeless systems
 
-# 156. Properties based scalability
+# 156. Generalise scalability - Properties based scalability
+
+Can scalability be generalized? Most complicated systems need to manage memory usage, storage usage, network usage and communication usage.
+
+
 
 # 157. Flow is how you understand programs
 
