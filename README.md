@@ -3428,6 +3428,12 @@ A web based editor that monitors files, and runs Docker builds and CI/CD pipelin
 
 Upgrade a serverless system to a server, seamlessly, downscale to functions as a service when idle.
 
+# 160. Try before you buy cloud computing
+
+In my experience of building servers and configuring cloud environments is that it takes a lot of attempts to get something working.
+
+
+
 # incomplete ideas
 
 
