@@ -3417,6 +3417,10 @@ Unfortunately control flow in most programs is a mess. You cannot read code like
 
 A web based editor that monitors files, and runs Docker builds and CI/CD pipelines on every change. So you can test your entire pipeline automatically. Should also deploy to Kubernetes.
 
+# 159. Serverless Upgrade
+
+Upgrade a serverless system to a server, seamlessly, downscale to functions as a service when idle.
+
 # incomplete ideas
 
 
