@@ -102,6 +102,13 @@ But you don't benefit from the executional skills of deploying and using that so
 
 This idea is so we subscribe to a practice. If you want to use code to drive your configuration that's a decision and something you can build against. Or you want to use YAML.
 
+```
+require('system-upgrades') as upgrades;
+require('backup') as backups;
+schedule(backups.backup, '00 00 * * *')
+schedule(upgrades.security_update, '00 05 * * *')
+
+```
 
 # 6. Contiguous disk layouter
 
