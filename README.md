@@ -3448,6 +3448,12 @@ In this design each service retrieves its schema from a central source and every
 
 Someone can move a piece of context to the protocol schema centrally. So adding a new column to a database or to a protocol  message is as simple as changing it in one place.
 
+# 163. System tree
+
+I find packages in Java to be almost useless.
+
+What I really want is a tree that gives a list of features and toggleables for each feature and manage their properties similar to JMX.
+
 # incomplete ideas
 
 
