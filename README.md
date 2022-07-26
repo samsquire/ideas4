@@ -2917,6 +2917,8 @@ I can save a lot of resources by picking off the shelf solutions to problems. Bu
 
 # 128. Loop compilation
 
+I've sometimes wanted to generate code rather than insert a loop with an if statement. It's probably more efficient to partition a loop and generate machine code for it.
+
 # 129. Update first software
 
 Imagine we have a website similar to Repl.it, Jsfiddle and Jsbin.
