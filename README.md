@@ -3436,6 +3436,18 @@ In my experience of building servers and configuring cloud environments is that 
 
 # 161. Cloud IDE
 
+# 162. Protocol manager
+
+In big microservice based systems or systems with lots of protocols, you often need to make a change that ripples out through the entire system. If you have X services you send a message between them you have X message schemas. Let's manage the schemas centrally
+
+Adding a field to a message should be a simple change in a central system. The rest of the system should just adapt to the new field.
+
+In traditional microservice architectures there's either a monorepo or a repository per microservice and each service has to be changed to add the new field.
+
+In this design each service retrieves its schema from a central source and every area where messages are constructed there is a context area. This context area contains all known state at that point in time.
+
+Someone can move a piece of context to the protocol schema centrally. So adding a new column to a database or to a protocol  message is as simple as changing it in one place.
+
 # incomplete ideas
 
 
