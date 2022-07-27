@@ -3450,7 +3450,8 @@ Someone can move a piece of context to the protocol schema centrally. So adding 
 
 # 163. System tree in IDEs
 
-In IntelliJ I find packages and class view in Java on the left hand side to be almost useless.
+In IntelliJ I find packages and class view in Java on the left hand side to be almost useless. In most codebasees, I find the file hierarchy of files of sourcecode to be useless.
+ * People do not know how to organise code.
  * Not many people organise code by feature into packages by feature but by kind of thing. Such as controllers, views, services, marshallers etc
  * In refactored codebases, each file does very little.
  * Core logic is spread across the codebase, in different packages.
