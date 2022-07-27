@@ -3457,9 +3457,13 @@ In IntelliJ I find packages and class view in Java on the left hand side to be a
  * Every codebase organises code differently. Learning one codebase means you learn that codebase's ideosyncrasies.
  * To change behaviour, you need to change multiple classes, every call site and the parameters of lots of methods.
  * You need to pass along data to where it is needed.
- * 
+ * Dependency injection registries files are incredibly useful in working out how software works.
+ * The `int main(String[] argv)` file is useful.
+ * Request handler methods are useful.
+ * The classes where one component is driven by the context of another component is useful. Such as if you were modifying a database system, you would want to find the code that drives the physical data storage from the logical storage.
+ * For a compiler, I would want obvious frontend, backend, middle end, optimisation, end areas of code.
 
-What I really want is a tree that gives a list of features and toggleables for each feature and manage their properties similar to JMX.
+What I really want is a tree that gives a list of areas of the software and allows their behaviour to be changed, a bit like an elegant GUI that was designed to edit the software.
 
 # incomplete ideas
 
