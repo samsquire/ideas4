@@ -3448,9 +3448,16 @@ In this design each service retrieves its schema from a central source and every
 
 Someone can move a piece of context to the protocol schema centrally. So adding a new column to a database or to a protocol  message is as simple as changing it in one place.
 
-# 163. System tree
+# 163. System tree in IDEs
 
-I find packages in Java to be almost useless.
+In IntelliJ I find packages and class view in Java on the left hand side to be almost useless.
+ * Not many people organise code by feature into packages by feature but by kind of thing. Such as controllers, views, services, marshallers etc
+ * In refactored codebases, each file does very little.
+ * Core logic is spread across the codebase, in different packages.
+ * Every codebase organises code differently. Learning one codebase means you learn that codebase's ideosyncrasies.
+ * To change behaviour, you need to change multiple classes, every call site and the parameters of lots of methods.
+ * You need to pass along data to where it is needed.
+ * 
 
 What I really want is a tree that gives a list of features and toggleables for each feature and manage their properties similar to JMX.
 
