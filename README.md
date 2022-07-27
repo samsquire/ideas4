@@ -3448,11 +3448,11 @@ In this design each service retrieves its schema from a central source and every
 
 Someone can move a piece of context to the protocol schema centrally. So adding a new column to a database or to a protocol  message is as simple as changing it in one place.
 
-# 163. System tree in IDEs
+# 163. System tree in IDEs and direct code scheduling
 
 In IntelliJ I find packages and class view in Java on the left hand side to be almost useless. In most codebasees, I find the file hierarchy of files of sourcecode to be useless.
- * People do not know how to organise code.
- * Not many people organise code by feature into packages by feature but by kind of thing. Such as controllers, views, services, marshallers etc
+ * People **do not** know how to organise code.
+ * Not many people organise code by feature but by kind of thing. Such as controllers, views, services, marshallers etc
  * In refactored codebases, each file does very little.
  * Core logic is spread across the codebase, in different packages.
  * Every codebase organises code differently. Learning one codebase means you learn that codebase's ideosyncrasies.
@@ -3462,7 +3462,7 @@ In IntelliJ I find packages and class view in Java on the left hand side to be a
  * The `int main(String[] argv)` file is useful.
  * Request handler methods are useful.
  * The classes where one component is driven by the context of another component is useful. Such as if you were modifying a database system, you would want to find the code that drives the physical data storage from the logical storage.
- * For a compiler, I would want obvious frontend, backend, middle end, optimisation, end areas of code.
+ * For a compiler, I would want obvious frontend, backend, middle end, optimisation, codegen areas of code.
 
 What I really want is a tree that gives a list of areas of the software and allows their behaviour to be changed, a bit like an elegant GUI that was designed to edit the software.
 
