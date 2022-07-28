@@ -3448,7 +3448,7 @@ In this design each service retrieves its schema from a central source and every
 
 Someone can move a piece of context to the protocol schema centrally. So adding a new column to a database or to a protocol  message is as simple as changing it in one place.
 
-# 163. System tree in IDEs and direct code scheduling
+# 163. System tree in IDEs and direct system management
 
 In IntelliJ I find packages and class view in Java on the left hand side to be almost useless. In most codebasees, I find the file hierarchy of files of sourcecode to be useless.
  * People **do not** know how to organise code.
