@@ -3470,11 +3470,11 @@ What I really want is a tree that gives a list of areas of the software and allo
 
 I've done some reading of [Joe Duffy's retrospective of Software Transactional Memory](http://joeduffyblog.com/2010/01/03/a-brief-retrospective-on-transactional-memory/).
 
-The reason concurrency and parallelism is hard for people to understand is due to a property of the creation that is against the intuition of how our minds rationally operate but our minds depend on its properties to operate. Physics tries to uncover these properties. Causality is interesting in itself. Communication, entanglement, observation, synchronization and causality are all linked together. We exist in a cause and effect creation.
+The reason concurrency and parallelism is hard for people to understand is due to a property of the creation that is against the intuition of how our minds **rationally** operate but our minds depend on its properties to operate. Physics tries to uncover these properties. Causality is interesting in itself. Communication, entanglement, observation, synchronization and causality are all linked together. We exist in a cause and effect creation.
 
 Sorting or orderings are really useful from the perspective of something inside the creation. Lexicographic sorting is really useful. Time is also sorted, there's an arrow of time and it moves forward.
 
-What's so simple that nobody explains?
+What's so simple that nobody explains? How can we wield how the creation works to write performant, efficient, concurrent and parallel code, correctly and everytime? With the minimal effort and resources?
 
 
 
