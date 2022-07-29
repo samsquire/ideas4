@@ -3476,7 +3476,19 @@ Sorting or orderings are really useful from the perspective of something inside 
 
 What's so simple that nobody explains? How can we wield how the creation works to write performant, efficient, concurrent and parallel code, correctly and everytime? With the minimal effort and resources?
 
+# 165. Alternative parallel while
 
+```
+parallel while {
+ os.read("/bigfile", 1024, buf)
+}
+parallel while {
+ split(buf, "\n");
+}
+parallel while {
+ 
+}
+```
 
 # incomplete ideas
 
