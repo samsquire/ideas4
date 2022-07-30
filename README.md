@@ -3509,7 +3509,7 @@ While I'm reading files, I should be doing expensive calculations with each line
 
 # 166. Buyer signal - Commit to buy
 
-Things do not get created unless there is a market for something. The problem is that creating a market for something is expensive. There's a self-referential cycle in the creation process - a cross dependency between revenue, workers and funding. Nothing gets created without funding or bootstrapping. Many startups put up a landing page to gather interest in people who are going to build something. I find this risky.
+Things do not get created unless there is a market for something. The problem is that creating a market for something is expensive. There's a self-referential cycle in the creation process - a cross dependency between revenue, workers and funding. Nothing gets created without funding or bootstrapping. Many startups put up a landing page to gather interest in people who are going to build something. I find this risky. You're under pressure to deliver, to a timescale.
 
 So I propose an imaginary market where people specify their requirements and commit to buy a product that meets their requirements.
 
@@ -3522,6 +3522,8 @@ The world could be far happier if everybody agreed with how they were treated.
 I want to specify what is in scope and have the computer work out how it can be efficient.
 
 I want to specify what should be visible to where when escaping things.
+
+# 169. 
 
 # incomplete ideas
 
