@@ -3459,7 +3459,7 @@ In IntelliJ I find packages and class view in Java on the left hand side to be a
  * Not many people organise code by feature but by kind of thing. Such as controllers, views, services, marshallers etc
  * In refactored codebases, each file does very little.
  * Core logic is spread across the codebase, in different packages.
- * Every codebase organises code differently. Learning one codebase means you learn that codebase's ideosyncrasies.
+ * Every codebase organises code differently. Learning one codebase means you learn that codebase's idiosyncrasies.
  * To change behaviour, you need to change multiple classes, every call site and the parameters of lots of methods.
  * You need to pass along data to where it is needed.
  * Dependency injection registries files are incredibly useful in working out how software works.
@@ -3498,6 +3498,8 @@ parallel while {
 ```
 
 While I'm reading files, I should be doing expensive calculations with each line.
+
+# 166. 
 
 # incomplete ideas
 
