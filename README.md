@@ -3515,6 +3515,10 @@ So I propose an imaginary market where people specify their requirements and com
 
 The world could be far happier if everybody agreed with how they were treated.
 
+# 168. Explicit scope specification
+
+I want to specify what is in scope and have the computer work out how it can be efficient.
+
 # incomplete ideas
 
 
@@ -3555,7 +3559,6 @@ How to atomically update a number on the network.
 
 # Incomplete thoughts and ideas 
 
-Scope magic
 
 Tree programming
 Fluent system
