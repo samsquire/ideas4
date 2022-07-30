@@ -3533,6 +3533,9 @@ For a given state, there is a state that follows that is valid or good or useful
 
 If people were presented with the present state and asked what the next state should be from a selection of choices, people could solve technical problems through abstraction.
 
+# 171.
+
+
 # incomplete ideas
 
 
