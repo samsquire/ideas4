@@ -3538,6 +3538,7 @@ How to atomically update a number on the network.
 
 
 # Generating ideas
+
  * marketplace
  * schedule
  * tree
@@ -3561,7 +3562,6 @@ How to atomically update a number on the network.
  * Queue
  * Aggregation
 
-# Incomplete thoughts and ideas 
 
 
 Tree programming
