@@ -3527,6 +3527,12 @@ I want to specify what should be visible to where when escaping things.
 
 Create a SAAS by REPL.
 
+# 170. Technical problem abstraction, Computers need to give people incomes
+
+For a given state, there is a state that follows that is valid or good or useful.
+
+If people were presented with the present state and asked what the next state should be from a selection of choices, people could solve technical problems through abstraction.
+
 # incomplete ideas
 
 
