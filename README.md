@@ -3517,10 +3517,11 @@ So I propose an imaginary market where people specify their requirements and com
 
 The world could be far happier if everybody agreed with how they were treated.
 
-# 168. Explicit scope specification
+# 168. Explicit scope and escape specification
 
 I want to specify what is in scope and have the computer work out how it can be efficient.
 
+I want to specify what should be visible to where when escaping things.
 
 # incomplete ideas
 
