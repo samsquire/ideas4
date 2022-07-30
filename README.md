@@ -3482,6 +3482,7 @@ Imagine we could tell the computer to maximise doing one thing while doing anoth
 
 ```
 parallel while {
+ char buf[1024];
  os.read("/bigfile", 1024, buf)
 }
 parallel while {
