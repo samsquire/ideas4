@@ -3505,7 +3505,7 @@ parallel while {
 }
 ```
 
-While I'm reading files, I should be doing expensive calculations with each line.
+While I'm reading files, I should be doing expensive calculations with each line. Buffers could be intelligently scaled between parts, a bit like TCP window sizes.
 
 # 166. Buyer signal - Commit to buy
 
