@@ -14,7 +14,7 @@ This is a long document but each section is a few paragraphs. There is probably 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
-There's a table of contents if you click the icon at the top left:
+If you're accessing this from [the GitHub repository](https://github.com/samsquire/ideas4), there's a table of contents if you click the icon at the top left:
 
 ![image](https://user-images.githubusercontent.com/1983701/175236707-835a315e-7f94-43d6-97d7-f2114b3052c7.png)
 
