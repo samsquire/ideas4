@@ -3480,6 +3480,12 @@ Sorting or orderings are really useful from the perspective of something inside 
 
 What's so simple that nobody explains? How can we wield how the creation works to write performant, efficient, concurrent and parallel code, correctly and everytime? With the minimal effort and resources?
 
+Ideally computers should automatically do what they're meant to do when they're meant to do it, with the minimum communication. Unfortunately the positional 3D nature of the creation means that light and electrons travel at a speed that is not conducive to immediacy unless they are entangled.
+
+Computers require communication to do things. Communication implies synchronization - one party needs to listen for another to send, fortunately we can listen and send at the same time, unlike speech.
+
+Atomicity can be visualised dimensionally. From one dimension, I see this, from another dimension, I see another thing. I change my position and see different things.
+
 # 165. Alternative parallel while
 
 Imagine we could tell the computer to maximise doing one thing while doing another thing.
