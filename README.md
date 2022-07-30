@@ -3302,7 +3302,7 @@ We can process data in batches. The batch size needs to be large enough to be wo
 
 Represent all the communications between functions,
 
-# 147. Intelligent shard routing
+# 147. Intelligent shard routing and data shift
 
 From a very high level we want data that is relevant to be stored together, so accessing it is fast.
 
@@ -3312,6 +3312,8 @@ We write web request handlers to handle and route requests.
 We can also write handlers that define the destination of data.
 
 These can be dynamic handlers if the output of any changes, we move the data.
+
+Rather than be a system that decides where to store the data and store it, it's a regularly rerunning system that evaluates where data should be.
 
 # 148. Function marketplace
 
@@ -3518,6 +3520,7 @@ The world could be far happier if everybody agreed with how they were treated.
 # 168. Explicit scope specification
 
 I want to specify what is in scope and have the computer work out how it can be efficient.
+
 
 # incomplete ideas
 
