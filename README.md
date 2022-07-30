@@ -3505,6 +3505,10 @@ Things do not get created unless there is a market for something. The problem is
 
 So I propose an imaginary market where people specify their requirements and commit to buy a product that meets their requirements.
 
+# 167. Agreement system
+
+The world could be far happier if everybody agreed with how they were treated.
+
 # incomplete ideas
 
 
