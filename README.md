@@ -2995,6 +2995,10 @@ I could use TLA+ but I want to think of a low tech solution.
 
 # 132. Revenue scaling plan
 
+Cloud computing changed how we think of scaling and costs in providing IT but we can go further.
+
+Imagine if there was a function that took in a financial amount and number of concurrent users and could map to an infrastructure that scales to that many users. £5, £10, £100, £200, £1,000, £10,000, £1,000,000 all map to different amounts of users and different infrastructure to support them.
+
 # 133. Concurrent loops - loops as lightweight threads, load balancing loops
 
 Loops are NOT first class citizens in code.
