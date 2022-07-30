@@ -3478,17 +3478,21 @@ What's so simple that nobody explains? How can we wield how the creation works t
 
 # 165. Alternative parallel while
 
+Imagine we could tell the computer to maximise doing one thing while doing another thing.
+
 ```
 parallel while {
  os.read("/bigfile", 1024, buf)
 }
 parallel while {
- split(buf, "\n");
+ lines = split(buf, "\n");
 }
 parallel while {
- 
+ do_expensive_calculation(lines);
 }
 ```
+
+While I'm reading files, I should be doing expensive calculations with each line.
 
 # incomplete ideas
 
