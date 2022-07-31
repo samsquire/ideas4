@@ -3266,6 +3266,8 @@ Imagine a system that tracks attributes of survival and allows people to add to 
 
 # 141. Algebra for shape addition
 
+Adding YAML to existing YAML is a validation problem, I wonder if algebra can cause it to be easier?
+
 # 142. Scale game
 
 A virtual cloud environment that simulates problems and has a build button to build different architectures.
