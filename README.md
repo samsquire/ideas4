@@ -3545,6 +3545,8 @@ Why is my work arrangements tied to an employer intranet? Why can't I just pick 
 
 An error message on authentication is usually sanitized to prevent sharing information with attackers, but the information is profoundly useful from a security engineering perspective. We can create deny events to policies for least privilege security.
 
+# 174. 
+
 # incomplete ideas
 
 
