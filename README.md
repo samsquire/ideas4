@@ -3547,7 +3547,13 @@ Why is my work arrangements tied to an employer intranet? Why can't I just pick 
 
 An error message on authentication is usually sanitized to prevent sharing information with attackers, but the information is profoundly useful from a security engineering perspective. We can create deny events to policies for least privilege security.
 
-# 174. 
+# 174. Right maps and Investment boundary app
+
+There's a priori cause to why something went on, observable and non-observable. Businesses are exposed to market forces and the interactions of billions of people. Money movement, interest rates and other economic effects.
+
+If I'm investing money, I want some due dilligence or say how things are to be ran. Venture capital and trusts do this.
+
+
 
 # incomplete ideas
 
