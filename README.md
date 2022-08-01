@@ -3563,7 +3563,11 @@ You pay for access to the site and for each purchase details.
 
 Data for everyone.
 
-# 176. 
+# 176.   Full table scan queries
+
+A database design that is designed around a centralised full table scan and queries are queued up to be processed during the scan.
+
+This is faster than doing multiple full time scans at the same time, it's better to saturate IO once than multiple times.
 
 # incomplete ideas
 
