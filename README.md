@@ -3573,13 +3573,15 @@ This is faster than doing multiple full time scans at the same time, it's better
 
 If you have 1000PB of data and it is sharded across many computers, you can scan the data set in cycles. An NVM SSD gives at least 3500 MB read performance. And RAM can be pretty large. So we can rely on sequential read performance to apply the scan to multiple records.
 
-1000 petabytes is 1E+12 or 1,000,000,000,000 megabytes at 3500 MB on one machine, this would take 285,714,285 seconds or 9 years.
+1000 petabytes is 1E+12 or 1,000,000,000,000 megabytes at 2800MB on one machine, this would take 357142857 seconds or 11 years just to read the data into memory.
 
-It would require 9 years to service a very large number of queries on one machine with 1000PB.
+It would require 11 years to service a very large number of queries on one machine with 1000PB.
 
-If you sharded the 1000 PB to 10,000 different machines and search each of them at 3500 MB a second it would take 28571 seconds or ~8 hours.
+If you sharded the 1000 PB to 25,000 different machines to give 40TB per machine and search each of them at 2800MB a second it would take 28571 seconds or ~4 hours.
 
 I don't think it's that bad.
+
+Add the cost of Aho Corasick of iteraring each character in 2800MB is going to be fast. Computers are fast!
 
 # 177. Search absence log
 
