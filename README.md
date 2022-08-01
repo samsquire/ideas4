@@ -3557,6 +3557,8 @@ If I'm investing money, I want some due dilligence or say how things are to be r
 
 Imagine a website where you are encouraged to post what you buy and you are paid to do so.
 
+You pay for access to the site and for each purchase details.
+
 Data for everyone.
 
 # incomplete ideas
