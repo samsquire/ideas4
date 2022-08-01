@@ -3553,7 +3553,11 @@ There's a priori cause to why something went on, observable and non-observable. 
 
 If I'm investing money, I want some due dilligence or say how things are to be ran. Venture capital and trusts do this.
 
+# 175. Broadcast what you buy
 
+Imagine a website where you are encouraged to post what you buy and you are paid to do so.
+
+Data for everyone.
 
 # incomplete ideas
 
