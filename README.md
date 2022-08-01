@@ -3587,6 +3587,8 @@ Add the cost of Aho Corasick of iteraring each character in 2800MB is going to b
 
 Log what you didn't find in data, so you know for next time.
 
+# 178. 
+
 # incomplete ideas
 
 
