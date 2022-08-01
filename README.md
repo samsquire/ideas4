@@ -3563,16 +3563,27 @@ You pay for access to the site and for each purchase details.
 
 Data for everyone.
 
-# 176.   Deliberate Full table scan queries
+# 176. Deliberate full table scan queries
 
-This is a low tech search 
+This is a low tech search. We can apply Aho Corasick and brute force a large data set distributed over many machines. 
 
-
-A database design that is designed around a centralised full table scan and queries are queued up to be processed during the scan.
+We centralise full table scan on a timer and queries are queued up to be processed during the scan. Queries that are queued up after the full table scan starts are paused until the next cycle.
 
 This is faster than doing multiple full time scans at the same time, it's better to saturate IO once than multiple times.
 
-If you have 100PB of data and it is sharded
+If you have 1000PB of data and it is sharded across many computers, you can scan the data set in cycles. An NVM SSD gives at least 3500 MB read performance. And RAM can be pretty large. So we can rely on sequential read performance to apply the scan to multiple records.
+
+1000 petabytes is 1E+12 or 1,000,000,000,000 megabytes at 3500 MB on one machine, this would take 285,714,285 seconds or 9 years.
+
+It would require 9 years to service a very large number of queries on one machine with 1000PB.
+
+If you sharded the 1000 PB to 10,000 different machines and search each of them at 3500 MB a second it would take 28571 seconds or ~8 hours.
+
+I don't think it's that bad.
+
+# 177. Search absence log
+
+Log what you didn't find in data, so you know for next time.
 
 # incomplete ideas
 
