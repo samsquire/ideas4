@@ -3596,6 +3596,8 @@ Deploy a performant server to a machine and decide what is behind the server, no
 
 Indexes can live on each web server for the content they host. We send queries to servers that we want to search.
 
+# 180. Future calculation validation
+
 # incomplete ideas
 
 
