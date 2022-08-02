@@ -3598,6 +3598,10 @@ Indexes can live on each web server for the content they host. We send queries t
 
 # 180. Future calculation validation
 
+# 181. Live server to template file
+
+Turn a bash_history session into an Ansible file.
+
 # incomplete ideas
 
 
