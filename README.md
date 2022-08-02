@@ -3592,6 +3592,10 @@ Log what you didn't find in data, so you know for next time.
 
 Deploy a performant server to a machine and decide what is behind the server, no RPC compilation step.
 
+# 179. Block storage is easier than communicating
+
+Indexes can live on each web server for the content they host. We send queries to servers that we want to search.
+
 # incomplete ideas
 
 
