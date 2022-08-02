@@ -2795,7 +2795,8 @@ I propose a GUI framework that uses register loop to create full cancellation tr
  * Upgrading a database is very difficult to do without downtime. I feel any new database or general software should try and solve this core problem.
  * Decoupling release and deployment. Zero downtime deployments are easy with PHP but very difficult with software that runs endlessly, as a server. How do you atomically update a system without downtime?
  * Android Google Chrome edit performance on textareas lags the larger the document gets. I edit this document on my phone most of the time.
- * Fraud prevention
+ * Organisational fraud prevention framework
+ * Parallelism generalisation
 
 
 # 123. Plain English pointer types
@@ -3579,7 +3580,7 @@ It would require 11 years to service a very large number of queries on one machi
 
 If you sharded the 1000 PB to 25,000 different machines to give 40TB per machine and search each of them at 2800MB a second it would take 28571 seconds or ~4 hours.
 
-I don't think it's that bad.
+I don't think it's that bad. You can obviously search place more storage in each machine and benefit from paralellisation, but you are limited by RAM.
 
 Add the cost of Aho Corasick of iteraring each character in 2800MB is going to be fast. Computers are fast!
 
