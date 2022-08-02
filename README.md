@@ -3580,7 +3580,7 @@ It would require 11 years to service a very large number of queries on one machi
 
 If you sharded the 1000 PB to 25,000 different machines to give 40TB per machine and search each of them at 2800MB a second it would take 28571 seconds or ~4 hours.
 
-I don't think it's that bad. You can obviously search place more storage in each machine and benefit from paralellisation, but you are limited by RAM.
+I don't think it's that bad. You can obviously place more storage in each machine and benefit from paralellisation, but you are limited by RAM.
 
 Add the cost of Aho Corasick of iteraring each character in 2800MB is going to be fast. Computers are fast!
 
@@ -3588,7 +3588,9 @@ Add the cost of Aho Corasick of iteraring each character in 2800MB is going to b
 
 Log what you didn't find in data, so you know for next time.
 
-# 178. 
+# 178. Server REPL
+
+Deploy a performant server to a machine and decide what is behind the server, no RPC compilation step.
 
 # incomplete ideas
 
