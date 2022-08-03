@@ -3616,6 +3616,8 @@ Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
 
 We can duplicate all our data that we join by storing it on separate servers that have join fields on and shard this aggregated set and do mapreduce on it.
 
+# 186. Cache invalidation and scheduling
+
 
 # incomplete ideas
 
