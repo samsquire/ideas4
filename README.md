@@ -3610,6 +3610,12 @@ Turn a bash_history session into an Ansible file.
 
 Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
 
+# 184. Dedicated to shard and back again
+
+# 185. Duplicate Sharded duplicated join servers
+
+We can duplicate all our data that we join by storing it on separate servers that have join fields on and shard this aggregated set and do mapreduce on it.
+
 
 # incomplete ideas
 
