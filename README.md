@@ -3303,7 +3303,7 @@ We can process data in batches. The batch size needs to be large enough to be wo
 
 # 146. Communication Subsumation
 
-Represent all the communications between functions,
+Represent all the communications between functions, move servers to where they are communicating with.
 
 # 147. Intelligent shard routing and data shift
 
@@ -3596,11 +3596,20 @@ Deploy a performant server to a machine and decide what is behind the server, no
 
 Indexes can live on each web server for the content they host. We send queries to servers that we want to search.
 
-# 180. Future calculation validation
+# 180. GUI Thunking for cloud computing
+
+
 
 # 181. Live server to template file
 
 Turn a bash_history session into an Ansible file.
+
+# 182. Things Inside Things
+
+# 183. Id blindness
+
+Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
+
 
 # incomplete ideas
 
