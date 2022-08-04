@@ -2017,7 +2017,7 @@ For example, we register the loop variable as a global variable and register the
 
 When we want to prempt the loop, we set the global loop variable to the end of the loop causing the loop to end.
 
-I implemented this as a multithreaded scheduler of lightweight threads multiplexed onto kernel threads in C and Java, see my [preemptible-thread repo](HTTPS://GitHub.com/samsquire/preemptible-thread) 
+I implemented this as a multithreaded scheduler of lightweight threads multiplexed onto kernel threads in C, Rust and Java, see my [preemptible-thread repo](HTTPS://GitHub.com/samsquire/preemptible-thread) 
 
 # 100. Dream programming language
 
@@ -3688,6 +3688,8 @@ Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
 # 184. Dedicated to shard and back again
 
 # 185. Duplicate Sharded duplicated join servers
+
+In my [hash-db project](https://github.com/samsquire/hash-db) I implement distributed join by sharding each row to a separate machine based on its consistent hash.
 
 We can duplicate all our data that we join by storing it on separate servers that have join fields on and shard this aggregated set and do mapreduce on it.
 
