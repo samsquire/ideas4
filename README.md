@@ -3682,7 +3682,11 @@ We can duplicate all our data that we join by storing it on separate servers tha
 
 # 186. Cache invalidation and scheduling
 
-# 187. Virtual load bal
+# 187. Virtual load balancing
+
+# 188. Tip of execution management
+
+# 189. Resumable loops
 
 # incomplete ideas
 
