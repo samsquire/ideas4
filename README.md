@@ -3731,7 +3731,7 @@ I call this the "tip of execution" - it is what runs and when and how. systemd d
 
 Notice the progression: we start with 1, then we move to many, then we move to nested (as in trees such as fork() and sidecars) then we move to parallel then we move to infinite (as in scalability).
 
-In the next evolution of this trajectory, you shall see the same pattern.
+In the next evolution of this trajectory, I think you shall see the same pattern.
 
 Managing the tip of execution is especially useful for multithreaded and distributed systems. Distributed systems are disorderly - everything occurs at different points of time and not in synchronization with eachother. But you still want an overall causality to different things in the system and you ideally want that to be choreographed in one part of the code but necessarily executed on different machines. How do you choreograph a multithreaded and distributed system? I think you can spread the choreography plan to multiple machines. Every machine should know what it is to do next. [#42. This is a form of Direct concurrency, static scheduling](https://github.com/samsquire/ideas4/blob/main/README.md#42-direct-concurrency-and-static-scheduling) and direct coding from my other idea. Request choreography resembles a reentrant function that has loops inside that returns to its previous execution position but from multiple machines in parallel, without synchronization. Choreography state must be relayed across the network in the request or perhaps even more efficiently, the network synchronizes process state automatically. Rather than asking a central service for the status of another dependent task, we already know the state of every other task. This is a **global process list**.
 
