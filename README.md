@@ -3304,7 +3304,7 @@ We can process data in batches. The batch size needs to be large enough to be wo
 
 # 145. Practices
 
- * **
+ * **Idempotency**
 
 # 146. Communication Subsumation
 
@@ -3696,6 +3696,18 @@ We can duplicate all our data that we join by storing it on separate servers tha
 # 187. Virtual load balancing
 
 # 188. Tip of execution management
+
+When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new.
+
+For example, we invented operating systems to manage parallel execution of programs on hardware. We introduced processes and threads. Then we created virtual machines. Then we created containers. Then we created kubernetes.
+
+It seems the abstraction of deciding what to run on a computer we have doesn't work completely.
+
+I call this the "tip of execution" - it is what runs and when and how. systemd defines when things should run. Kubernetes determines where and when things should run.
+
+Notice the progression: we start with 1, then we move to many, then we move to infinite, then we move to parallel.
+
+In the next evolution of this trajectory, you shall see the same pattern.
 
 # 189. Resumable loops
 
