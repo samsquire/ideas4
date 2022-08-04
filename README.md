@@ -3599,7 +3599,13 @@ Deploy a performant server to a machine and decide what is behind the server, no
 
 # 179. Block storage is easier than communicating
 
-Indexes can live on each web server for the content they host. We send queries to servers that we want to search.
+The logistical problem of searching the web is that building a Google is a hard technical problem. So here's my solution:
+
+* a central service that registers server addresses to keywords (a simple mapping)
+* each web server stores indexes for all its content that stays on that properties' servers for the content they host.
+* We send queries to the central server and the server responds with a list of servers to search and we initiate searches in parallel to all those servers.
+
+No crawling and explicit expensive data storage required. The crawling problem becomes a statically generated site problem and keyword extraction for submitting to the central service.
 
 # 180. GUI Thunking for cloud computing
 
