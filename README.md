@@ -2920,31 +2920,23 @@ I can save a lot of resources by picking off the shelf solutions to problems. Bu
 
 I've sometimes wanted to generate code rather than insert a loop with an if statement. It's probably more efficient to partition a loop and generate machine code for it.
 
-# 129. Update first software
+# 129. Update/upgrade first software
 
-Imagine we have a website similar to Repl.it, Jsfiddle and Jsbin.
+Updating software can lead to two different experiences. If you're using trunk based development, then you might find development and updates go smoothly due to your continuous delivery, deployment and integration pipelines. Usually to upgrade we bump the version number and then fix compilation errors and then run the tests and push for deployment. Unfortunately for systems that store data this is not enough of a fix so you need database migrations too. If you have APIs you also need to version your APIs. But when it comes to system software, upgrades are very painful. Upgrading Kubernetes, ceph, databases, message queues is not easy.
 
-It provides a database or file system and allows migrations to be defined.
+I propose software be designed for upgrading from day 1. Many applications remove code after a intermediary release, so you cannot skip versions. This is really painful operationally. Perhaps I can mark code as being fixed to a release so refactoring tools do not effect it? The code is not dead and cannot be removed because someone could do an upgrade that skips multiple versions.
 
-It should be opinionated regarding handling updates. Creating a release should be a button press.
+Here are my ideas:
 
-Restoring data at a previous version should also be available easily.
+* **Decoupling the front and back of an application** Imagine you have 3500 servers and 1000 microservices. You could develop the microservices so that versions are always backward and forward compatible so you always have a dependency between releases for compatibility. This takes a lot of effort and coordination between teams. Ideally I want to be capable of releasing any microservice at any time, without any impacts to other services that depend on me. The rolling deploy of this architecture is complicated. **Introduce a request queue** The part of the application that listens and receives requests can be decoupled from the part that handles requests. Whereas a load balancer doesn't store requests, this layer would be static and rarely updated and simply enqueue events for handling later.
+* **Upgrade endpoint** software is shipped with a special upgrade endpoint that allows you to register network address of the server you're upgrading to. Then the database is checkpointed at the point the upgrade began and an upgrade is started in the background, data in the database is migrated to the new server. When old data is migrated, the data since the checkpoint is also streamed across. Then from this point the old database forwards requests to the new system. Two sets of load balancer can be used as an alternative to the old version streaming changes across. Timing is essential with any upgrade. I want software to be updateable from day 1 of development. Semantic versioning is a hygiene rule, not every product follows it. And when upgrading software timing is of the essence. I want to decouple upgrade from timing and cause them to be automatic and seamless.
+* **Server upgrades** Servers that listen on a socket go down when upgraded and then receive traffic when rolling restarted.
 
-Updating software is painful. Usually to upgrade we bump the version number and then fix compilation errors and then run the tests.
+Imagine we have a website similar to Repl.it, Jsfiddle and Jsbin. It provides a database or file system and allows migrations to be defined. It should be opinionated regarding handling updates. Creating a release should be a button press. Restoring data at a previous version should also be available easily. We need to migrate our data to the new approach to storing.
 
-Unfortunately for systems that store data this is not enough of a fix.
+Upgrade drain cycle - coding around loops
 
-We need to migrate our data to the new approach to storing.
-
-I propose software is shipped with a special upgrade endpoint that allows you to register network address of the server you're upgrading to.
-
-Then the database is checkpointed at the point the upgrade began and an upgrade is started in the background, data in the database is migrated to the new server.
-
-When old data is migrated, the data since the checkpoint is also streamed across. Then from this point the old database forwards requests to the new system.
-
-Two sets of load balancer can be used as an alternative to the old version streaming changes across.
-
-Timing is essential with any upgrade. I want software to be updateable from day 1 of development. Semantic versioning is a hygiene rule, not every product follows it. And when upgrading software timing is of the essence. I want to decouple upgrade from timing and cause them to be automatic and seamless.
+language in a language loops
 
 # 130. Behaviour trees and configuration as pseudocode
 
