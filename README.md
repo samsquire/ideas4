@@ -3606,6 +3606,70 @@ Turn a bash_history session into an Ansible file.
 
 # 182. Things Inside Things
 
+Configuring computer systems is largely things inside things.
+
+I would like to be capable of taking a CSV that looks like this.
+
+And configuring load balancers (global server load balancing), multi-cloud multi-availability zone deployments, servicemesh.
+
+```
+web1,us-east-1a,docker/lampserver,443
+web1,us-east-1b,docker/lampserver,443
+web1,us-east-1c,docker/lampserver,443
+web1,us-east-1d,docker/lampserver,443
+web1,us-east-1e,docker/lampserver,443
+web1,us-east-1f,docker/lampserver,443
+web1,us-west-2a,docker/lampserver,443
+web1,us-west-2b,docker/lampserver,443
+web1,us-west-2c,docker/lampserver,443
+web1,us-west-1b,docker/lampserver,443
+web1,eu-west-1a,docker/lampserver,443
+web1,eu-west-1b,docker/lampserver,443
+web1,eu-west-1c,docker/lampserver,443
+web1,eu-central-1a,docker/lampserver,443
+web1,eu-central-1b,docker/lampserver,443
+web1,ap-southeast-1a,docker/lampserver,443
+web1,ap-southeast-1b,docker/lampserver,443
+web1,ap-southeast-2a,docker/lampserver,443
+web1,ap-southeast-2b,docker/lampserver,443
+web1,ap-southeast-2c,docker/lampserver,443
+web1,ap-northeast-1a,docker/lampserver,443
+web1,ap-northeast-1c,docker/lampserver,443
+web1,sa-east-1a,docker/lampserver,443
+web1,sa-east-1b,docker/lampserver,443
+web1,sa-east-1c,docker/lampserver,443
+web1,ap-south-1a,docker/lampserver,443
+web1,ap-south-1b,docker/lampserver,443
+Brazil South,docker/lampserver,443
+France Central,docker/lampserver,443
+Qatar Central,docker/lampserver,443
+South Africa,docker/lampserver,443
+North	Australia East,docker/lampserver,443
+Canada Central,docker/lampserver,443
+Germany West,docker/lampserver,443
+Central	UAE,docker/lampserver,443
+Central India,docker/lampserver,443
+Central US,docker/lampserver,443
+North Europe,docker/lampserver,443
+Japan East,docker/lampserver,443
+East US,docker/lampserver,443
+Norway East,docker/lampserver,443
+Korea Central,docker/lampserver,443
+East US,docker/lampserver,443
+UK South,docker/lampserver,443
+Southeast Asia,docker/lampserver,443
+South Central,docker/lampserver,443
+US	West,docker/lampserver,443
+Europe,docker/lampserver,443
+East Asia,docker/lampserver,443
+Virginia,docker/lampserver,443
+Sweden Central,docker/lampserver,443
+China North,docker/lampserver,443
+West US,docker/lampserver,443
+Switzerland North	,docker/lampserver,443		
+West US,docker/lampserver,443				
+```
+
 # 183. Id blindness
 
 Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
