@@ -3701,15 +3701,17 @@ We can duplicate all our data that we join by storing it on separate servers tha
 
 When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new.
 
-For example, we invented operating systems to manage parallel execution of programs on hardware. We introduced processes and threads. Then we created virtual machines. Then we created containers. Then we created kubernetes.
+For example, we invented operating systems to manage parallel execution of programs on hardware first through cooperative scheduling then preemptive scheduling. We introduced processes and threads. Then we created virtual machines. Then we created containers. Then we created kubernetes.
 
-It seems the abstraction of deciding what to run on a computer we have doesn't work completely.
+It seems the abstraction of deciding what to run on a computer and when we have doesn't work completely. Especially when we have multiple devices and distributed systems.
 
 I call this the "tip of execution" - it is what runs and when and how. systemd defines when things should run. Kubernetes determines where and when things should run.
 
-Notice the progression: we start with 1, then we move to many, then we move to infinite, then we move to parallel.
+Notice the progression: we start with 1, then we move to many, then we move to nested (as in trees such as fork() and sidecars) then we move to parallel then we move to infinite (as in scalability).
 
 In the next evolution of this trajectory, you shall see the same pattern.
+
+Distributed systems are disorderly - everything occurs at different points of time and not in synchronization with eachother.
 
 # 189. Resumable loops
 
