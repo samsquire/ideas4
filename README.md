@@ -3723,11 +3723,11 @@ We can duplicate all our data that we join by storing it on separate servers tha
 
 When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new. Especially for network and distributed system scale computing systems.
 
-For example, we invented operating systems to manage parallel execution of programs on hardware first through cooperative scheduling then preemptive scheduling. We introduced processes and threads. Then we created virtual machines. Then we created containers. Then we created kubernetes.
+For example, we invented operating systems to manage parallel execution of programs on hardware first through cooperative scheduling then preemptive scheduling. We introduced processes and threads. Then we created virtual machines. Then we created systemd. Then we created containers. Then we created kubernetes.
 
-It seems the abstraction of deciding what to run on a computer and when we have doesn't work completely. Especially when we have multiple devices and distributed systems.
+It seems the abstraction of deciding what to run on a computer and when that we have doesn't work completely. Especially when we have multiple devices and distributed systems.
 
-I call this the "tip of execution" - it is what runs and when and how. systemd defines when things should run. Kubernetes determines where and when things should run.
+I call this the "tip of execution" - it is what runs and when and how. systemd defines when and what things should run. Kubernetes determines where and when things should run.
 
 Notice the progression: we start with 1, then we move to many, then we move to nested (as in trees such as fork() and sidecars) then we move to parallel then we move to infinite (as in scalability).
 
@@ -3736,6 +3736,8 @@ In the next evolution of this trajectory, you shall see the same pattern.
 Managing the tip of execution is especially useful for multithreaded and distributed systems. Distributed systems are disorderly - everything occurs at different points of time and not in synchronization with eachother. But you still want an overall causality to different things in the system and you ideally want that to be choreographed in one part of the code but necessarily executed on different machines. How do you choreograph a multithreaded and distributed system? I think you can spread the choreography plan to multiple machines. Every machine should know what it is to do next. [#42. This is a form of Direct concurrency, static scheduling](https://github.com/samsquire/ideas4/blob/main/README.md#42-direct-concurrency-and-static-scheduling) and direct coding from my other idea. Request choreography resembles a reentrant function that has loops inside that returns to its previous execution position but from multiple machines in parallel, without synchronization. Choreography state must be relayed across the network in the request.
 
 Raft and paxos work but they mean your processing works forward in lockstep through a central node for consensus of the leader. In other words, you place a hard ceiling on the scalability of the system due to all the network communication to synchronize state machine state and the explicit synchronization and blocking of communication. Once the leader's scalability is used up, you'll have to break up your consensus into components to run multiple separate rafts or paxos.
+
+Ideally we want all computers running at full speed through to a result, restrained by synchronization. This is why multithreading doesn't always scale and it also applies to distributed systems. This can occur if the work that each machine is assigned is naturally parallel to work of other machines. A web server is the perfect example to this. Each web server receives work for many requests on many threads. A web server's multiple threads handles many requests from many clients.
 
 # 189. Unordered systems understandability
 
