@@ -3743,6 +3743,14 @@ If you synchronize session state on all web servers synchronously on save in par
 
 If the **global process list** is kept synchronized between all machines, all choreographies from that point can be automatic. Each thread can monitor the process list and its work items to decide what to do next, at the maximum possible speed. Message queuing systems are a different approach, the tip of execution is defined by the receiving of a message and handling it. But you still need to know the state of other systems at the time the message was received, and this usually involves a synchronous call to another service to check its status. The global process list as an abstraction allows the messages received to be coordinated without additional network traffic.
 
+The idea is that the global process list can be used between coordinating threads too as a form of synchronization that works between independent machines in addition to threads on the same machine.
+
+When a work item comes into a service, the process list is evaluated to check state of other systems, if other systems are not in correct state, queue up the rest of the processing on the global process list and mark what state to wait for.
+
+For threads, such as a fan out and join pattern, we have a queue for each thread and when the global process list is changed, it emits an event onto the relevant threads. When a thread is finished, it updates the global process list.
+
+Updating the process list should not involve contention due to a thread only updating its own state, not the state of other threads. So in theory we do not need locks.
+
 # 189. Unordered systems understandability
 
 Can you have an eventually consistent chronological list that users can find easy to understand?
