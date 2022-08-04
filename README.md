@@ -3424,7 +3424,24 @@ When I change a record on a website, we can have a notifications area that says 
 
 When the change is applied, the content is updated and the notification changes to being that your change has been accepted.
 
-# 155. Downtimeless systems
+# 155. Downtimeless systems, soft systems
+
+Imagine a system that never stops accepting requests due to it never going down fully, but might not reply synchronously. In other words, the synchrony of the system is dependent on system health.
+
+Every client and server part of the system would have two halves. A queue for replies and the server a queue for incoming requests. Most of the time, the server responds synchronously.
+
+You would need to design your client code to handle this:
+
+* you save the context before you create an API call somewhere
+* you do the API call.
+** if the API call responds synchronously, you can keep processing
+** otherwise wait for incoming event on reply qeueu and handle and match reply to context, keep processing
+
+This is similar to the request/reply pattern in RabbitMQ for artificial RPC.
+
+The interesting thing of this design is that it cascades an asynchronous reply means every calling service needs to also be asynchronous. Not everything has to be up for everything to work, eventually.
+
+
 
 # 156. Generalise scalability - Properties based scalability
 
@@ -3687,7 +3704,7 @@ West US,docker/lampserver,443
 
 Dynamic systems with lots of GUID IDs causes blindness to IDs and ID chasing.
 
-# 184. Dedicated to shard and back again
+# 184. Dedicated to shard and back again without interruption of traffic
 
 # 185. Duplicate Sharded duplicated join servers
 
@@ -3701,7 +3718,7 @@ We can duplicate all our data that we join by storing it on separate servers tha
 
 # 188. Tip of execution management
 
-When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new.
+When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new. Especially for network and distributed system scale computing systems.
 
 For example, we invented operating systems to manage parallel execution of programs on hardware first through cooperative scheduling then preemptive scheduling. We introduced processes and threads. Then we created virtual machines. Then we created containers. Then we created kubernetes.
 
@@ -3723,9 +3740,14 @@ Order is expensive from a consistency perspective.
 
 I imagine a GUI that shows a chronological view of what has been received so far. When an item is received that is chronologically before the most recently received item, the GUI should highlight these items for the user to see in perspective of the original list.
 
-Perhaps have the concept of "new" items in addition to the chronological list.
+Perhaps have the concept of "newly received" delayed items in addition to the chronological list with a next and previous button. A bit like a search result in an text editor or IDE.
 
 # 189. Resumable loops
+
+# 190. 
+
+
+
 
 # incomplete ideas
 
