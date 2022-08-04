@@ -3715,6 +3715,14 @@ In the next evolution of this trajectory, you shall see the same pattern.
 
 Distributed systems are disorderly - everything occurs at different points of time and not in synchronization with eachother.
 
+# 189. Disorderly systems understandability
+
+Can you have an eventually consistent chronological list that users can find easy to understand?
+
+Order is expensive from a consistency perspective.
+
+I imagine a GUI that shows a chronological view of what has been received so far. When an item is received that is chronologically before the most recently received item, the GUI should highlight these items for the user to see in perspective of the original list.
+
 # 189. Resumable loops
 
 # incomplete ideas
