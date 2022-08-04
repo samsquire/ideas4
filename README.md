@@ -3424,23 +3424,26 @@ When I change a record on a website, we can have a notifications area that says 
 
 When the change is applied, the content is updated and the notification changes to being that your change has been accepted.
 
-# 155. Downtimeless systems, soft systems
+# 155. Downtimeless systems, soft systems, queues everywhere
 
 Imagine a system that never stops accepting requests due to it never going down fully, but might not reply synchronously. In other words, the synchrony of the system is dependent on system health.
 
-Every client and server part of the system would have two halves. A queue for replies and the server a queue for incoming requests. Most of the time, the server responds synchronously.
+Even the global load balancers should be capable of going down and the system should queue up requests on the client such as the mobile app or website. If an `fetch` fails, queue it up in indexed db. Show a "delayed" warning on the frontend.
+
+Every client and server part of the system would have two halves. A queue for replies and the server a queue for incoming requests. Most of the time, the server responds synchronously and the system is fast.
 
 You would need to design your client code to handle this:
 
 * you save the context before you create an API call somewhere
 * you do the API call.
 ** if the API call responds synchronously, you can keep processing
-** otherwise wait for incoming event on reply qeueu and handle and match reply to context, keep processing
+** otherwise wait for incoming event on reply queue and handle and match reply to context, keep processing
 
 This is similar to the request/reply pattern in RabbitMQ for artificial RPC.
 
-The interesting thing of this design is that it cascades an asynchronous reply means every calling service needs to also be asynchronous. Not everything has to be up for everything to work, eventually.
+You would have a websocket bridge that keeps a connection to the user's machine which itself has a queue for sending replies back to a particular client.
 
+The interesting thing of this design is that it cascades an asynchronous reply means every calling service needs to also be asynchronous. Not everything has to be up for everything to work, eventually.
 
 
 # 156. Generalise scalability - Properties based scalability
