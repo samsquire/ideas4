@@ -577,13 +577,15 @@ We need to solve all these problems with an approach that works the same for eve
 
 # 34. Graph to query generation and sort
 
-Render a data structure as a graph and allow selections of different objects and fields and references/pointers.
+Render a data structure as a visual graph and allow selections of different objects and fields and references/pointers.
 
 Work out the rule that caused everything to be selected based on user input such as an if statement like as a debugger condition or relation or mapping, then generate a query that matches that part of the data structure.
 
-Allow highlighted items to be sorted overall or independently.
-
 For example if I have a complicated hierarchy of objects, I can select subitems of collections but retain references to the path that I used to get those items
+
+Rather than writing the code that iterates and gathers the requested objects in the object graph, I can simply select what I want to get access to.
+
+Allow highlighted items to be sorted overall or independently.
 
 # 35. Nearest operator
 
