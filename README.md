@@ -3763,7 +3763,11 @@ Perhaps have the concept of "newly received" delayed items in addition to the ch
 
 # 189. Resumable loops
 
-# 190. 
+# 190. Traffic scheduling
+
+# 191. Asynchronous association
+
+If you have a one request that fans out to multiple requests, you want to do them all in parallel and you might not be synchronous. So you need to wait for multiple replies before you can keep processing the request, in the mean time, you keep the socket alive for replies.
 
 
 
