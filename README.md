@@ -3769,7 +3769,15 @@ Perhaps have the concept of "newly received" delayed items in addition to the ch
 
 If you have a one request that fans out to multiple requests, you want to do them all in parallel and you might not be synchronous. So you need to wait for multiple replies before you can keep processing the request, in the mean time, you keep the socket alive for replies.
 
-# 192. Visitor pays hosting
+# 192. Visitor pays storage, compute and hosting
+
+Imagine if running your own infrastructure became mainstream but was abstracted away and treated like an app install with a subscription? You would install software to your account and you would be responsible for the bills for it.
+
+This is similar to requestor pays S3 buckets.
+
+# 193. Microservice and FaaS communication subsumation
+
+
 
 
 # incomplete ideas
