@@ -3779,7 +3779,7 @@ This is similar to requestor pays S3 buckets.
 
 # 194. Communication is slower than multithreading locking and Synchronizing communication as a force multiplier
 
-My local virtual machine can ping itself in 4 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication. 3333-1000 requests per second.  Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
+My local virtual machine can ping itself in 0.04-0.98 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication between responses. 3333-1000 requests per second.  Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
 
 Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes?
 
