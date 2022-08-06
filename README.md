@@ -3787,8 +3787,7 @@ I'm thinking of an incredibly large website that doesn't fit in memory.
 
 * A client has a web socket open that is managed by web socket server.
 * We shard the data to be stored on many different machines
-* When a request comes in, we synchronize the request with all machines (**communication 1**)
-** This could be implemented by a message queue that every node is a consumer of.
+* When a request comes in, we synchronize the request with all machines (**communication 1**) This could be implemented by a message queue that every node is a consumer of.
 * Every machine fulfils that part of the request that it can do with the data is has locally.
 * Every machine communicates with the web socket server, to communicate back part of the response to the client.
 * The client pieces together the information and templates it into one page.
