@@ -3781,15 +3781,17 @@ This is similar to requestor pays S3 buckets.
 
 My local virtual machine can ping itself in 4 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication. 3333-1000 requests per second.  Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
 
-Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes.
+Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes?
 
-I'm thinking of an incredibly large website that doesn't fit on memory.
+I'm thinking of an incredibly large website that doesn't fit in memory.
 
 * A client has a web socket open that is managed by web socket server.
 * We shard the data to be stored on many different machines
-* When a request comes in, we synchronize the request with all machines (**communication 1**
+* When a request comes in, we synchronize the request with all machines (**communication 1**)
+** This could be implemented by a message queue that every node is a consumer of.
 * Every machine fulfils that part of the request that it can do with the data is has locally.
-* Every machine communicates with the web socket server, to communicate back to the client.
+* Every machine communicates with the web socket server, to communicate back part of the response to the client.
+* The client pieces together the information and templates it into one page.
 
 When people communicate, they can act as synergistic systems that multiply the force of each participant for mutual benefit.
 
