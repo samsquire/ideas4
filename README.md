@@ -3779,10 +3779,17 @@ This is similar to requestor pays S3 buckets.
 
 # 194. Synchronizing communication as a force multiplier
 
-When people communicate, they can act as synergistic systems that multiply the force of eachother for mutual benefit.
+When people communicate, they can act as synergistic systems that multiply the force of each participant for mutual benefit.
 
-When computers communicate, usually the system as a whole benefits but not necessarily both sides. We can change that.
+When computers communicate, usually the system as a whole benefits but not necessarily both sides of the exchange. We can change that. We often communicate to pass control flow along the network. In other words, one server receives a request and then passes many requests to other servers for each to do processing. The communication triggers the tip of execution or control flow.
 
+Imagine an eventually consistent organisation whereby every process is in parallel to every other process. Rather than updating a STATUS field and having a rigid structure or sequence of events for a case item, we could have a STATUS field that is dependent on the state of every other thing at that moment in time.
+
+This field can be cached of course.
+
+You don't start packing people's order until payment was accepted and went through.
+
+But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons.
 
 # incomplete ideas
 
