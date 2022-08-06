@@ -3781,7 +3781,7 @@ This is similar to requestor pays S3 buckets.
 
 When people communicate, they can act as synergistic systems that multiply the force of eachother for mutual benefit.
 
-When computers communicate, usually one side benefits. We can change that.
+When computers communicate, usually the system as a whole benefits but not necessarily both sides. We can change that.
 
 
 # incomplete ideas
