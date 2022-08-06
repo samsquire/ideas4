@@ -3783,14 +3783,19 @@ My local virtual machine can ping itself in 0.04-0.98 milliseconds, admittedly t
 
 Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes?
 
-I'm thinking of an incredibly large website that doesn't fit in memory.
+I'm thinking of an incredibly large website that doesn't fit in memory. We can support many data ccess patterns with an upperbound of 2 or 3 communications.
 
 * A client has a web socket open that is managed by web socket server.
 * We shard the data to be stored on many different machines
 * When a request comes in, we synchronize the request with all machines (**communication 1**) This could be implemented by a message queue that every node is a consumer of.
 * Every machine fulfils that part of the request that it can do with the data is has locally.
-* Every machine communicates with the web socket server, to communicate back part of the response to the client.
+* Every machine communicates with the web socket server, to communicate back part of the response to the listening client. (**communication 2**)
 * The client pieces together the information and templates it into one page.
+
+For fetching data that spans multiple datasets, we need an upperbound of 3 communications: 
+
+* For the user feed which aggregates information from everywhere else, we also store a list of IDs on the user's shard server. When a feed item is added, it is broadcast to the client (**communication 3**). The client then creates a request for all the feed items, providing the list of items to fetch. **communication 4**. The servers communicate back the content **communication 5**.
+* The client aggregates the information together.
 
 When people communicate, they can act as synergistic systems that multiply the force of each participant for mutual benefit.
 
