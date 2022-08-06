@@ -3777,7 +3777,19 @@ This is similar to requestor pays S3 buckets.
 
 # 193. Microservice and FaaS communication subsumation
 
-# 194. Synchronizing communication as a force multiplier
+# 194. Communication is slower than multithreading locking and Synchronizing communication as a force multiplier
+
+My local virtual machine can ping itself in 4 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication. 3333-1000 requests per second.  Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
+
+Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes.
+
+I'm thinking of an incredibly large website that doesn't fit on memory.
+
+* A client has a web socket open that is managed by web socket server.
+* We shard the data to be stored on many different machines
+* When a request comes in, we synchronize the request with all machines (**communication 1**
+* Every machine fulfils that part of the request that it can do with the data is has locally.
+* Every machine communicates with the web socket server, to communicate back to the client.
 
 When people communicate, they can act as synergistic systems that multiply the force of each participant for mutual benefit.
 
@@ -3789,7 +3801,9 @@ This field can be cached of course.
 
 You don't start packing people's order until payment was accepted and went through.
 
-But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons.
+But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons and means the system isn't very robust.
+
+
 
 # incomplete ideas
 
