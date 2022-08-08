@@ -3781,13 +3781,15 @@ This is similar to requestor pays S3 buckets.
 
 # 194. Communication is slower than multithreading locking and Synchronizing communication as a force multiplier
 
-My local virtual machine can ping itself in 0.04-0.98 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication between responses. 3333-1000 requests per second.  Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
+My local virtual machine can ping itself in 0.04-0.98 milliseconds, admittedly that's a virtual machine running on Windows. Latency on a data centre network can be around 0.3 milliseconds - 1 millisecond. Latency around the world is much higher. This sets an upper limit to the number of requests that can be done per second on a single threaded program that relies on communication between responses. 3333-1000 requests per second. Communication is therefore slower than multithreaded synchronization. You need to communicate to shift data.
+
+Shared memory can communicate any amount of data, at the cost of a synchronization event.
 
 Is there an algorithm that produces correct results based on a single request and multiple parallel separate independent processes?
 
-I'm thinking of an incredibly large website that doesn't fit in memory. We can support many data access patterns with an upperbound of 2 or 3 communications.
+I'm thinking of an incredibly large website that doesn't fit in memory. We can support many data access patterns with an upperbound of 2 or 3 communications depending on the type of communication.
 
-* A client has a web socket open that is managed by web socket server.
+* A client has a web socket open that is managed by web socket server. You send messages to it, and it sends them to the designated client.
 * We shard the data to be stored on many different machines
 * When a request comes in, we synchronize the request with all machines (**communication 1**) This could be implemented by a message queue that every node is a consumer of.
 * Every machine fulfils that part of the request that it can do with the data it has locally.
@@ -3797,7 +3799,7 @@ I'm thinking of an incredibly large website that doesn't fit in memory. We can s
 For fetching data that spans multiple datasets, we need an upperbound of 3 communications: 
 
 * For the user feed which aggregates information from everywhere else, we also store a list of IDs on the user's shard server. When a feed item is added, it is broadcast to the client (**communication 1**). The client then creates a request for all the feed items, providing the list of items to fetch content for (**communication 2**) The servers communicate back the content **communication 3**.
-* The client aggregates the information together into one feed.
+* The client aggregates the information together from each shard into one feed.
 
 When people communicate, they can act as synergistic systems that multiply the force of each participant for mutual benefit.
 
@@ -3811,7 +3813,9 @@ You don't start packing people's order until payment was accepted and went throu
 
 But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons and means the system isn't very robust.
 
+# 195. Mass id generation
 
+If the whole system works in paralell, you need some method of linking data together rather than waiting for responses. We can generate every ID of every needed object in parallel.
 
 # incomplete ideas
 
