@@ -1003,9 +1003,9 @@ Each problem has an ideal data structure. We should define the data access patte
 
 Imagine a special object called a relation that supports all operations that are possible with all algorithms and data structures. What data structure gets ultimately used depends on what operations are executed against the relation.
 
-So in other words, we implement binary search, hash join, hashmaps, vectors, linked list, splice, filtering, mapping, flat map, insert operations and inserts operations on this relation. Think of relation being an imaginary data structure that implements all data structure operations.
+So in other words, we implement binary search, hash join, hashmaps, vectors, linked list, splice, filtering, mapping, flat map, insert operations and other operations on this relation. Think of relation being an imaginary data structure that implements all data structure operations.
 
-Some operations for some data structures are more efficient than others. But if the user requests two access patterns that conflict, you might either need to accept a degradation for one or duplication of data for performance.
+Some operations for some data structures are more efficient than others. But if the user requests two access patterns that conflict, you might either need to accept a degradation for one or duplication of data for performance. You could run a simulation to see the proportion of each data structure operation and use this to decide which data structure to use.
 
 Think of the data structures for a text editor. I would define lots of loops for my access patterns for inserting text between regions, creating lines between lines, being line aware and jumping to particular lines. I would also have view recycling and cannot render large files without efficient handling of rendering.
 
@@ -3812,6 +3812,8 @@ This field can be cached of course.
 You don't start packing people's order until payment was accepted and went through.
 
 But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons and means the system isn't very robust.
+
+Can we implement window sizes for multithreaded applications, so a lock is only acquired every so often and the cost of synchronization is amortized? This would introduce latency to requests though. But if throughput is high, locking once every 250ms is better than locking thousands of times for each communication event.
 
 # 195. Mass id generation
 
