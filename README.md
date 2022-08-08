@@ -2738,7 +2738,7 @@ Parallel while {
 }
 ```
 
-This idea is based on the philosophy that the tip of execution shoul never block and when we want to create the illusion of blocking, we use an event loop in a thread, but the progression of the program as a whole is always moving forward and progressing. The frontier of execution is always processing events.
+This idea is based on the philosophy that the tip of execution should never block and when we want to create the illusion of blocking, we use an event loop in a thread, but the progression of the program as a whole is always moving forward and progressing. The frontier of execution is always processing events.
 
 # 116. Configuration addition search
 
@@ -3813,11 +3813,38 @@ You don't start packing people's order until payment was accepted and went throu
 
 But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons and means the system isn't very robust.
 
-Can we implement window sizes for multithreaded applications, so a lock is only acquired every so often and the cost of synchronization is amortized? This would introduce latency to requests though. But if throughput is high, locking once every 250ms is better than locking thousands of times for each communication event.
+Can we implement window sizes for multithreaded applications, so a lock is only acquired every so often and the cost of synchronization is amortized? This would introduce latency to requests though. But if throughput is high, locking once every 250ms is better than locking thousands of times for each communication event, slowing everyone down. We could also flush when the number of items meets a certain size of items. Whichever goes on first.
 
 # 195. Mass id generation
 
 If the whole system works in paralell, you need some method of linking data together rather than waiting for responses. We can generate every ID of every needed object in parallel.
+
+You would need an id generation server/service that can generate massive numbers of safe id numbers that are globally unique.
+
+# 196. Binpacking network and time
+
+How do you write a scalable execution system that supports small numbers items to large petabytes worth of data?
+
+You can binpack work over time and then distribute the plan.
+
+Requirements of the plan:
+
+ * Causality should be communicated by the plan.
+ * Should be cheap to schedule work.
+ * Should be capable of expressing loops over large numbers of items, across machines, across threads
+ * Should be cheap to schedule coordination between threads (communication)
+ * Should be cheap to schedule coordination over network to other processes.
+ * The resulting work graph should be tighly packed, with little or no downtime.
+
+We want to avoid this work pattern:
+
+![InefficientPlan drawio](https://user-images.githubusercontent.com/1983701/183412183-65e0e5a9-b874-41cb-a52c-0fd505012190.png)
+
+Or this plan. You might notice this resembles the communication pattern of a web browser for each resource.
+
+![InefficientPlan2 drawio](https://user-images.githubusercontent.com/1983701/183412946-4e952735-cd6d-42e1-bfb6-0acc549e39ca.png)
+
+
 
 # incomplete ideas
 
