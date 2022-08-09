@@ -3850,6 +3850,15 @@ We want this plan:
 
 If your code uses a regular for loop, then your work looks more similar to the first plan.
 
+This is what we want:
+
+![InefficientPlan drawio (1)](https://user-images.githubusercontent.com/1983701/183623122-5d0a1615-8910-4663-b541-6b3109fe0a85.png)
+
+We can go further, we can add loops to this too:
+
+![BinpackedLoops drawio](https://user-images.githubusercontent.com/1983701/183624154-f04667db-8158-4b15-af9e-4165ef8ea2e4.png)
+
+
 # 197. For loop servers
 
 # incomplete ideas
