@@ -3864,6 +3864,11 @@ A server that is communicating in parallel with many different nodes should also
  * It's inefficient to have two threads per socket, so we need to multiplex sending and receiving over sockets across threads.
  * Ideally, we shouldn't block sending or receiving to any client connection while waiting for other sends or receives.
 
+This diagram shows how this could look. There is a set of connections that are in different states. There is a `recv` and a `send` thread for each side of the connection.
+
+![BinpackedLoops drawio (1)](https://user-images.githubusercontent.com/1983701/183655381-7ada7326-ee23-4582-8706-756f85183883.png)
+
+
 # 197. For loop servers
 
 # 198. Sharding framework
