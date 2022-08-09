@@ -3875,7 +3875,7 @@ This diagram shows how this could look. There is a set of connections that are i
 
 To change something to be faster, we can divide then multiply. First you divide the problem into pieces, then you multiply the part that does the work, replicating it to solve the problem faster and at the same time.
 
-This is slightly different to the Multiplexing idea.
+This is slightly different to the [# 97. Multiplexing as a computer primitive, API and visual multiplexing](https://github.com/samsquire/ideas4/blob/main/README.md#97-multiplexing-as-a-computer-primitive-api-and-visual-multiplexing).
 
 We can change a thing to go from 1, to many, to nested to parallel by introducing a sharding framework that supports this as a primitive.
 
