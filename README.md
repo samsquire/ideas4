@@ -1224,7 +1224,7 @@ From the call histories you can interpret a value that is passed to a method as 
 
 You can track the flow of a variable to a method invocation to see how it ended up at that callsite.
 
-In the above examples they came from two tables which are inefficiently kept in memory from the database. The outer table is kept in memory while the inner table is kept in memory.
+In the above examples they came from two tables which are inefficiently kept in memory from the database. The outer table is kept in memory while the inner table is kept in memory. This is also the N+1 problem.
 
 But only one item is being processed at a time. How do we optimise this?
 
@@ -3813,7 +3813,7 @@ You don't start packing people's order until payment was accepted and went throu
 
 But what tends to be built is that people choreograph different systems by control flow, which can fail for arbitrary reasons and means the system isn't very robust.
 
-Can we implement window sizes for multithreaded applications, so a lock is only acquired every so often and the cost of synchronization is amortized? This would introduce latency to requests though. But if throughput is high, locking once every 250ms is better than locking thousands of times for each communication event, slowing everyone down. We could also flush when the number of items meets a certain size of items. Whichever goes on first.
+Can we implement window sizes for multithreaded applications, so a lock is only acquired every so often and the cost of synchronization is amortized? This would introduce latency to requests though. But if throughput is high, you'll never reach the locking interval, locking once every 250ms is better than locking thousands of times for each communication event, slowing everyone down. We could also flush when the number of items meets a certain size of items. Whichever goes on first.
 
 # 195. Mass id generation
 
@@ -3829,7 +3829,7 @@ You can binpack work over time and then distribute the plan.
 
 Requirements of the plan:
 
- * Causality should be communicated by the plan.
+ * Causality should be communicated by the plan similar to a logical clock.
  * Should be cheap to schedule work.
  * Should be capable of expressing loops over large numbers of items, across machines, across threads
  * Should be cheap to schedule coordination between threads (communication)
@@ -3844,7 +3844,13 @@ Or this plan. You might notice this resembles the communication pattern of a web
 
 ![InefficientPlan2 drawio](https://user-images.githubusercontent.com/1983701/183412946-4e952735-cd6d-42e1-bfb6-0acc549e39ca.png)
 
+We want this plan:
 
+![BinpackedTime drawio](https://user-images.githubusercontent.com/1983701/183600730-52522444-cef2-424a-b0af-88e663c036aa.png)
+
+If your code uses a regular for loop, then your work looks more similar to the first plan.
+
+# 197. For loop servers
 
 # incomplete ideas
 
