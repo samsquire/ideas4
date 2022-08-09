@@ -3879,7 +3879,7 @@ This is slightly different to the [# 97. Multiplexing as a computer primitive, A
 
 We can change a thing to go from 1, to many, to nested to parallel by introducing a sharding framework that supports this as a primitive.
 
-* There's no reason why my multiplexing userspace M:N scheduler couldn't also support my concurrent loops idea to be a M:N:L scheduler. We can add sockets too. Sockets:Machine threads:N green threads:Concurrent Loops.
+* There's no reason why [my multiplexing userspace M:N scheduler](https://github.com/samsquire/preemptible-thread) couldn't also support my idea of concurrent loops in [# 133. Concurrent loops, loops as lightweight threads and load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops) idea to be a M:N:L scheduler. We can add sockets too so the hiarchy looks similar to this: S:M:N:L or Socket:MMachine thread:N green thread:L Concurrent Loop.
 * We can add arbitrary dimensions to the scheduler by sharding replication. A microservice can use **X** databases, **L** load balancers, **C** circuits, **T** tenants
 * We can add **A** cloud account, **R** region, **Z** availability zone to this sharding framework.
 * Data can also be sharded, **K** Key, **V** value
