@@ -3821,7 +3821,7 @@ If the whole system works in paralell, you need some method of linking data toge
 
 You would need an id generation server/service that can generate massive numbers of safe id numbers that are globally unique.
 
-# 196. Binpacking network and time
+# 196. Binpacking work into network and time and server communication
 
 How do you write a scalable execution system that supports small numbers items to large petabytes worth of data?
 
@@ -3858,6 +3858,10 @@ We can go further, we can add loops to this too:
 
 ![BinpackedLoops drawio](https://user-images.githubusercontent.com/1983701/183624154-f04667db-8158-4b15-af9e-4165ef8ea2e4.png)
 
+A server that is communicating in parallel with many different nodes should also be binpacked.
+ * I want to communicate with other clients while communicating with any given client
+ * I want to send while I'm receiving and receive while I'm sending
+ * 
 
 # 197. For loop servers
 
