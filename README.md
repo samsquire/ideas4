@@ -3873,6 +3873,20 @@ This diagram shows how this could look. There is a set of connections that are i
 
 # 198. Sharding framework
 
+To change something to be faster, we can divide then multiply. First you divide the problem into pieces, then you multiply the part that does the work, replicating it to solve the problem faster and at the same time.
+
+This is slightly different to the Multiplexing idea.
+
+We can change a thing to go from 1, to many, to nested to parallel by introducing a sharding framework that supports this as a primitive.
+
+* There's no reason why my multiplexing userspace M:N scheduler couldn't also support my concurrent loops idea to be a M:N:L scheduler. We can add sockets. Sockets:Machine threads:N green threads:Concurrent Loops.
+* We can add arbitrary dimensions to the scheduler by sharding replication. A microservice can support **X** databases, **L** load balancers, **C** circuits, **T** tenants
+* We can add **A** account, **R** region, **Z** availability zone to this sharding framework.
+* Data can also be sharded, **K** Key, **V** value
+* The mapping can be multidirectional and non-static. We can reassign things to other things if there is an advantage to do so. **S×2**ocket:**K**ernel thread:**N**ightweight thread hierarchy materialized as Socket1:Thread1:LightweightThread1 and Socket1:Thread2:LightWeightThread2 could be mapped to K:S:N. This notation can be S×2:K{1-k,r|w}×1:N×n <-> K:S[]{r|w}:N mapping is bidirectional, a socket belongs to at most 2 threads, thread serves multiple sockets, a socket can change threads, a thread can change sockets. A socket can change which thread it is assigned to. A thread can change which sockets apply to it.
+
+
+
 # incomplete ideas
 
 
