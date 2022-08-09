@@ -3860,8 +3860,9 @@ We can go further, we can add loops to this too:
 
 A server that is communicating in parallel with many different nodes should also be binpacked.
  * I want to communicate with other clients while communicating with any given client
- * I want to send while I'm receiving and receive while I'm sending
- * 
+ * I want to send while I'm receiving and receive while I'm sending, so I need two threads to handle communication with the socket. A sending thread and a receiving thread.
+ * It's inefficient to have two threads per socket, so we need to multiplex sending and receiving over sockets across threads.
+ * Ideally, we shouldn't block sending or receiving to any client connection while waiting for other sends or receives.
 
 # 197. For loop servers
 
