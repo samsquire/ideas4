@@ -3823,7 +3823,7 @@ You would need an id generation server/service that can generate massive numbers
 
 # 196. Binpacking work into network and time and server communication
 
-How do you write a scalable execution system that supports small numbers items to large petabytes worth of data?
+How do you write a scalable execution system that supports small numbers of items to large petabytes worth of data? But is written as if you do not need to worry of scale?
 
 You can binpack work over time and then distribute the plan.
 
@@ -3869,7 +3869,10 @@ This diagram shows how this could look. There is a set of connections that are i
 ![BinpackedLoops drawio (1)](https://user-images.githubusercontent.com/1983701/183655381-7ada7326-ee23-4582-8706-756f85183883.png)
 
 
+
 # 197. For loop servers
+
+
 
 # 198. Sharding framework
 
@@ -3882,14 +3885,26 @@ We can change a thing to go from 1, to many, to nested to parallel by introducin
 * There's no reason why [my multiplexing userspace M:N scheduler](https://github.com/samsquire/preemptible-thread) couldn't also support my idea of concurrent loops in [# 133. Concurrent loops, loops as lightweight threads and load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops) idea to be a M:N:L scheduler. We can add sockets too so the hierarchy looks similar to this: S:M:N:L or Socket:MMachine thread:N green thread:L Concurrent Loop.
 * We can add arbitrary dimensions to the scheduler by sharding replication. A microservice can use **X** databases, **L** load balancers, **C** circuits, **T** tenants
 * We can add **A** cloud account, **R** region, **Z** availability zone to this sharding framework.
-* Data can also be sharded, **K** Key, **V** value. **T** table **C** column.
+* Data can also be sharded, **K** Key, **V** value. **T** table **C** column. **Q** queue. Kafka **G** group
 * The mapping can be multidirectional and non-static. We can reassign things to other things if there is an advantage to do so and there often is. **S×2** sockets:**K** kernel threads:**N** lightweight threads can be a hierarchy materialized as Socket1:Thread1:LightweightThread1 and Socket1:Thread2:LightWeightThread2 could be mapped to K:S:N. This notation can be S×2:K{1-k,r|w}×1:N×n <-> K:S[]{r|w}:N mapping is bidirectional, a socket belongs to at most 2 threads, thread serves multiple sockets, a socket can change threads, a thread can change sockets. A socket can change which thread it is assigned to. A thread can change which sockets apply to it.
 
 This can also be used for service discovery and efficient routing. The hierarchy has efficiency for things near itself. You could have geographical regions mapped to the hierarchy as **G** geography, **S** server, **D** datacentre.
 
 This idea is to enumerate the notation and to use it to create scheduling decisions to create a simultaneous tree data structure and list.
 
-# 199. 
+# 199. Actor driven GUI
+
+The GUI can be multithreaded, no more single slow event loops. Each widget runs in its own thread and mouse state is synchronized with all widgets, round robin.
+
+# 200. Fabric programming
+
+If you pull the fabric, it moves, and every point attached to it moves with it.
+
+Can we use this same idea with multithreaded programming?
+
+# 201. Waiting line of code
+
+When I have a complicated workflow system, such as temporal.io, it would be nice to see what line of code is being blocked on.
 
 # incomplete ideas
 
