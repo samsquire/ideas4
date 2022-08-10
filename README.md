@@ -3882,11 +3882,14 @@ We can change a thing to go from 1, to many, to nested to parallel by introducin
 * There's no reason why [my multiplexing userspace M:N scheduler](https://github.com/samsquire/preemptible-thread) couldn't also support my idea of concurrent loops in [# 133. Concurrent loops, loops as lightweight threads and load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops) idea to be a M:N:L scheduler. We can add sockets too so the hierarchy looks similar to this: S:M:N:L or Socket:MMachine thread:N green thread:L Concurrent Loop.
 * We can add arbitrary dimensions to the scheduler by sharding replication. A microservice can use **X** databases, **L** load balancers, **C** circuits, **T** tenants
 * We can add **A** cloud account, **R** region, **Z** availability zone to this sharding framework.
-* Data can also be sharded, **K** Key, **V** value
+* Data can also be sharded, **K** Key, **V** value. **T** table **C** column.
 * The mapping can be multidirectional and non-static. We can reassign things to other things if there is an advantage to do so and there often is. **S×2** sockets:**K** kernel threads:**N** lightweight threads can be a hierarchy materialized as Socket1:Thread1:LightweightThread1 and Socket1:Thread2:LightWeightThread2 could be mapped to K:S:N. This notation can be S×2:K{1-k,r|w}×1:N×n <-> K:S[]{r|w}:N mapping is bidirectional, a socket belongs to at most 2 threads, thread serves multiple sockets, a socket can change threads, a thread can change sockets. A socket can change which thread it is assigned to. A thread can change which sockets apply to it.
 
 This can also be used for service discovery and efficient routing. The hierarchy has efficiency for things near itself. You could have geographical regions mapped to the hierarchy as **G** geography, **S** server, **D** datacentre.
 
+This idea is to enumerate the notation and to use it to create scheduling decisions to create a simultaneous tree data structure and list.
+
+# 199. 
 
 # incomplete ideas
 
