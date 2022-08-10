@@ -3906,6 +3906,17 @@ Can we use this same idea with multithreaded programming?
 
 When I have a complicated workflow system, such as temporal.io, it would be nice to see what line of code is being blocked on.
 
+# 202. Dream laptop
+
+All hardware begins to feel dated eventually. Laptops become old fast. Framework and System76 are steps in the right direction. Here's what I want out of a portable desktop replacement:
+
+ * modular ports, similar to the Framework
+ * Powerful cooling
+ * More than 25 watts power usage that throttles down when on battery. If I'm on AC power, the computer can scale the power usage. The problem is cooling. How do you design a laptop case for superior cooling?
+ * I don't mind if it is heavy if it is powerful
+ * Can run Docker natively
+ * Has lots of CPU cores
+
 # incomplete ideas
 
 
