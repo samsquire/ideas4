@@ -3924,6 +3924,7 @@ All hardware begins to feel dated eventually. Laptops become old fast. Framework
  * I don't mind if it is heavy if it is powerful
  * Can run Docker natively
  * Has lots of CPU cores
+ * Heatsink dock and external GPU
 
 # 203. Shift before destroy
 
