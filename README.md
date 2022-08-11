@@ -3938,7 +3938,7 @@ Create flow network models of each addressable resource (memory, SSD, CPU, cache
 
 # 205. Unsynced data loss synchronization
 
-This system assumes you're happy with an eventually consistent system and extremely high performance at loss of consistency.
+This system assumes you're happy with an eventually consistent system and potential rollbacks through time (temporary dataloss) and extremely high performance at memory speed at loss of consistency.
 
 This idea is strange but what if you ran your fsync on a timer and rely on the fact that data can be stored on multiple machines?
 
@@ -3946,7 +3946,9 @@ We can create complex durability by replying immediately rather than waiting for
 
 The client receives an cryptographic attestation that the data was accepted and caches the attestation and the data in a buffer. When there is data loss - i.e, a server or region goes down due to power or other problem, we enter recovery mode and we ask for all attested unfsynced messages from clients and other servers along the processing path.
 
-This requires there be continuous heartbeats and immediate detection of power loss.
+This requires there be continuous heartbeats and immediate detection of power loss which may be difficult if there is a partition.
+
+We can create a `TEE` iptables rule to forward requests to another server as a cache of received requests which we can replay.
 
 # incomplete ideas
 
