@@ -668,12 +668,16 @@ This should be rewritten to:
 ```
 Def update_linked_list(new_head)
   Trying = true
+  checkpoint = 0
   While trying:
     old_head = self.head
-    Trying = !Self.head.compareAndSet(self.head.previous, new_head)
-    if not Trying:
-      continue
+    if checkpoint == 0:
+      Trying = !Self.head.compareAndSet(self.head.previous, new_head)
+      if not Trying:
+        continue
+      checkpoint = 1  
     Self.head.previous = new_head
+    
     Trying = !Self.head.compareAndSet(old_head, new_head)
     if not Trying:
       continue
@@ -2955,7 +2959,7 @@ language in a language loops
 
 # 130. Behaviour trees and configuration as pseudocode
 
-Imagine if the configuration file for a system was an imaginary pseudocode for that software's primary function.
+Imagine if the configuration file for a system was an imaginary pseudocode for that software's primary function. The pseudocode arguments can be manipulated and code around the pseudocode can be inserted at any point.
 
  * For example the pseudocode for Haproxy is a while loop accepting connections and then a while loop handling http requests and forwarding them to chosen backends 
  * You could add logging by adding a log line. Or enrich or conditionally change the value of variables in the pseudocode.
@@ -3749,7 +3753,7 @@ When a work item comes into a service, the process list is evaluated to check st
 
 For threads, such as a fan out and join pattern, we have a queue for each thread and when the global process list is changed, it emits an event onto the relevant threads. When a thread is finished, it updates the global process list.
 
-Updating the process list should not involve contention due to a thread only updating its own state, not the state of other threads but the thread must synchronize with updates to the global process list before changing it.
+Updating the process list should hopefully not involve too much contention threads must synchronize with updates to the global process list before changing it. The simplest thing is that every thread takes turns changing it, coordinated by a coordination thread.
 
 
 
