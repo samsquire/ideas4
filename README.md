@@ -3923,6 +3923,12 @@ All hardware begins to feel dated eventually. Laptops become old fast. Framework
  * Can run Docker natively
  * Has lots of CPU cores
 
+# 203. Shift before destroy
+
+If I want to change a property of my infrastructure in the cloud, it oftens requires destroying everything and starting again. Wouldn't it be nice if blue-green deployments were part of the infrastructure?
+
+You can shift data and drain resources prior to destruction and rebuild.
+
 # incomplete ideas
 
 
