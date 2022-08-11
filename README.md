@@ -3936,7 +3936,7 @@ You can shift data and drain resources prior to destruction and rebuild.
 
 Create flow network models of each addressable resource (memory, SSD, CPU, caches) and calculate the buffer size, rate and placement scientifically.
 
-# 205. Unsynced data loss synchronization or "distributed durability"
+# 205. Unsynced data loss synchronization or "distributed write ahead log durability"
 
 This system assumes you're happy with an eventually consistent system and potential rollbacks through time (temporary dataloss) and extremely high performance at memory speed at loss of consistency.
 
