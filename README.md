@@ -3936,19 +3936,18 @@ You can shift data and drain resources prior to destruction and rebuild.
 
 Create flow network models of each addressable resource (memory, SSD, CPU, caches) and calculate the buffer size, rate and placement scientifically.
 
-# 205. Unsynced data loss synchronization
+# 205. Unsynced data loss synchronization or "distributed durability"
 
 This system assumes you're happy with an eventually consistent system and potential rollbacks through time (temporary dataloss) and extremely high performance at memory speed at loss of consistency.
 
-This idea is strange but what if you ran your fsync on a timer and rely on the fact that data can be stored on multiple machines?
-
-We can create complex durability by replying immediately rather than waiting for fsync. We can fysync after a request or on a timer.
-
-The client receives an cryptographic attestation that the data was accepted and caches the attestation and the data in a buffer. When there is data loss - i.e, a server or region goes down due to power or other problem, we enter recovery mode and we ask for all attested unfsynced messages from clients and other servers along the processing path.
-
-This requires there be continuous heartbeats and immediate detection of power loss which may be difficult if there is a partition.
-
-We can create a `TEE` iptables rule to forward requests to another server as a cache of received requests which we can replay.
+* This idea is strange but if you care about the most performance you can get and don't mind consistency or stale data problems.
+* We rely on the fact that every client store data in a buffer too.
+* Assume the power goes down, and the server loses 1 second of transactional data, assume the data is still in memory or on disk of every client, we can recreate the missing data on the next heartbeat event. This is similar to a distributed write ahead log. If the downtime shall be 4 hours before power comes back on, then we need to persist the data for at least this long. It is unknown how long downtime shall occur.
+* You ran your fsync on a timer and rely on the fact that data can be stored on multiple machines.
+* We can create complex durability by replying immediately rather than waiting for fsync. We can fysync after a request or on a timer.
+* The client receives an cryptographic attestation that the data was accepted and caches the attestation and signed timestamp and the data in a buffer. When there is data loss - i.e, a server or region goes down due to power or other problem, we enter recovery mode and we ask for all attested unfsynced messages from clients and other servers along the processing path on the next heartbeat.
+* This requires there be continuous heartbeats and immediate detection of power loss which may be difficult if there is a partition.
+* We can create a `TEE` iptables rule to forward requests to another server as a cache of received requests which we can replay, this should ideally be in a different region for data security.
 
 # incomplete ideas
 
