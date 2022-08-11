@@ -3928,9 +3928,15 @@ All hardware begins to feel dated eventually. Laptops become old fast. Framework
 
 # 203. Shift before destroy
 
-If I want to change a property of my infrastructure in the cloud, it oftens requires destroying everything and starting again. Wouldn't it be nice if blue-green deployments were part of the infrastructure?
+If I want to change a property of my infrastructure in the cloud, it oftens requires destroying everything, changing lots of references and then starting again. Wouldn't it be nice if blue-green deployments were part of the infrastructure?
 
 You can shift data and drain resources prior to destruction and rebuild.
+
+# 204. Scientific architecture
+
+Create flow network models of each addressable resource (memory, SSD, CPU, caches) and calculate the buffer size, rate and placement scientifically.
+
+
 
 # incomplete ideas
 
