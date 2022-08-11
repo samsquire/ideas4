@@ -3936,7 +3936,17 @@ You can shift data and drain resources prior to destruction and rebuild.
 
 Create flow network models of each addressable resource (memory, SSD, CPU, caches) and calculate the buffer size, rate and placement scientifically.
 
+# 205. Unsynced data loss synchronization
 
+This system assumes you're happy with an eventually consistent system and extremely high performance at loss of consistency.
+
+This idea is strange but what if you ran your fsync on a timer and rely on the fact that data can be stored on multiple machines?
+
+We can create complex durability by replying immediately rather than waiting for fsync. We can fysync after a request or on a timer.
+
+The client receives an cryptographic attestation that the data was accepted and caches the attestation and the data in a buffer. When there is data loss - i.e, a server or region goes down due to power or other problem, we enter recovery mode and we ask for all attested unfsynced messages from clients and other servers along the processing path.
+
+This requires there be continuous heartbeats and immediate detection of power loss.
 
 # incomplete ideas
 
