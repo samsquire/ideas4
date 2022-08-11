@@ -3749,7 +3749,9 @@ When a work item comes into a service, the process list is evaluated to check st
 
 For threads, such as a fan out and join pattern, we have a queue for each thread and when the global process list is changed, it emits an event onto the relevant threads. When a thread is finished, it updates the global process list.
 
-Updating the process list should not involve contention due to a thread only updating its own state, not the state of other threads. So in theory we do not need locks.
+Updating the process list should not involve contention due to a thread only updating its own state, not the state of other threads but the thread must synchronize with updates to the global process list before changing it.
+
+
 
 # 189. Unordered systems understandability
 
