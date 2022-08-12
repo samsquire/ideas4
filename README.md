@@ -4000,7 +4000,7 @@ Imagine some code that operates on arguments. In Python the object's reference i
 I think when object oriented programming goes wrong when you begin to implement inheritance, proxies, visitors and other abstractions. This is when you know object oriented programming has become complicated due to weaknesses in the model.
 
 * Bidirectional relations by default.
-* 
+* We need to decouple the data and the operations that should run on that data, so we can extend either without damaging either.
 
 # incomplete ideas
 
