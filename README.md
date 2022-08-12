@@ -3953,14 +3953,16 @@ This system assumes you're happy with an eventually consistent system and potent
 
 The double spend problem:
 
-# 206. Thoughts on acceptable distributed transactions
+# 206. Thoughts on acceptable atomic distributed transactions
 
 The Two Generals Problem means that distributed atomicity is difficult due to the lack of atomicity and reliability in network communication. But I wonder if we can produce a system that when it works, it scales most of the time, when there is failures, it is detectable. And performs well.
 
 * One machine is the heartbeat server and sends a logical monotonically increasing timestamp.
-* Every transaction served by a single machine is monotonically increasing from the timestamp broadcast. 1660240536.0, 1660240536.1, 1660240536.2
+* Every transaction served by a single machine also has its own monotonically increasing from the timestamp broadcast. 1660240536.0, 1660240536.1, 1660240536.2
+* Read timestamps are streamed to every replica.
 * 
 
+# 207. Internet scale system
 
 # incomplete ideas
 
