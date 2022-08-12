@@ -3964,6 +3964,17 @@ The Two Generals Problem means that distributed atomicity is difficult due to th
 
 # 207. Internet scale system
 
+# 208. Repetitive errors
+
+It seems every local development environment suffers from the same kinds or classes of errors.
+
+ * Python/pip locally
+ * Ruby/gems locally
+ * system tools
+ * 
+
+Logical idempotence and steady state. Impossible scenarios cannot occur.
+
 # incomplete ideas
 
 
