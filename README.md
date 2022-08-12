@@ -3975,6 +3975,14 @@ It seems every local development environment suffers from the same kinds or clas
 
 Logical idempotence and steady state. Impossible scenarios cannot occur.
 
+# 209. Time stretch
+
+Most of the time our computers are idle and we need all work to be done at request time.
+
+# 210. Object oriented programming
+
+I enjoy using a good object orientated API. Especially if it is really flexible.
+
 # incomplete ideas
 
 
