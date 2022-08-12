@@ -3979,9 +3979,28 @@ Logical idempotence and steady state. Impossible scenarios cannot occur.
 
 Most of the time our computers are idle and we need all work to be done at request time.
 
-# 210. Object oriented programming
+# 210. Object oriented programming v2
 
-I enjoy using a good object orientated API. Especially if it is really flexible.
+I enjoy using a good object orientated API. Especially if it is really flexible but most object orientated APIs aren't flexible as I would want them to be. There are things that don't matter and things that do matter, when solving problems.
+
+From an instruction stream perspective, the instructions to run are in the context of a block of memory or struct, this is the "this" reference in Java or "self" in Python. Associating code with a struct causes it to be easier to manage things, you can pass around the object reference and the code always updates the right object. The problem is the expression problem.
+
+My problems with object oriented programming becomes when I want to change the behaviour of the application or existing system. It's very difficult to change an object orientated system that already exists. Especially if you want to change behaviour or do something new, without changing all the code that exists. But it is easy to create a new object model that represents your model of authority or relationship between things and the loops and interactions between those new objects.
+
+Most people have a model in their heads of how software works from a user's perspective. Haproxy accepts connections, receives the request and forwards it to a load balanced backend. An IDE runs a compiler and a build automatically in the background while you write code an then allows you to run the program or deploy it. The model in a user's head is different to how the program works at an object orientated level.
+
+Imagine a complicated GUI application such as an Integrated Development Environment, in a dream object orientated world, I could simply interrogate the type of objects on the screen, new up my own objects of the right kind with builders and add them to the screen object container components and provide the code to manage these objects and the relationships between them. This could be completely separate from all the code that was written to exist already. Unfortunately the GUI is not a database but a running program with defined interfaces for managing objects. If I did what I propose, code that was meant to run for those components might not run, or they wouldn't be treated the same way as existing objects.
+
+React suffers from this problem too. In react I have a hierarchy of JSX components that interact by rendering their children. This is an easy approach to writing GUIs but suffers from the interoperation, complexity and expressivity problem.
+
+The state management solution gets in the way of treating the GUI as a database of object relations.
+
+Imagine some code that operates on arguments. In Python the object's reference is the first argument "self".
+
+I think when object oriented programming goes wrong when you begin to implement inheritance, proxies, visitors and other abstractions. This is when you know object oriented programming has become complicated due to weaknesses in the model.
+
+* Bidirectional relations by default.
+* 
 
 # incomplete ideas
 
