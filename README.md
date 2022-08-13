@@ -4012,7 +4012,8 @@ I think we can create a model where most queries end up with a familiar amount o
  * It takes half a cycle to read data in L1 cache but takes 100 nanosecond to read data from main memory.
  * Memory bandwidth is around 12 gigabytes per second or higher.
  * Memory can therefore be retrieved from main memory, 1 billion bytes takes 100 nanoseconds or ((1E9*100. Obviously we actually have cache lines, so this is more like 1E9/64*100 = 1.5625 gigabytes a second or at 8 cores, 12 gigabytes per second.
- * But to actually refer to a byte we need an L1 reference (or L2 or L3) so that's (6400 * 1E9) * 0.5 = 
+ * But to actually refer to a byte we need an L1 reference (or L2 or L3) so that's (1E9) * 0.5 = 500 milliseconds
+ * So each 100 milliseconds which is 100000000 nanoseconds, which 100000000÷100 = 1000000 bytes
  * I define a standard where 15 tables of 1 billion records are queried. That's 15 billion records.
  * These queries go on in parallel and concurrently, so there is contention.
  * If we think of the memory access patterns, we can design the most efficient traversal of memory and disk.
@@ -4023,9 +4024,12 @@ I think we can create a model where most queries end up with a familiar amount o
  * What about scanning the data from the index? Assuming memory read of a cache line takes 100 nanoseconds to read every 64 bytes of data a time. We have up to 1 billion records to read of 4 bytes each, so we need to read a maximum of 1E9×4 times but we can fetch 64 bytes at a time so it is (100×((1E9*4)÷64))=6250000000000 nanoseconds or 1 hour and 44 minutes.
  * We can index and parallelise data to improve this performance.
  * There are (1E9*4)÷64 = 62,500,000 regions of data to iterate as each region is 4 bytes and it requires 100 nanoseconds to fetch each region.
- * A single machine with 8 cores and 16 hardware threads can iterate a block of 62,500,000 regions 16 at a time for (100×((1E9*4)÷64))÷16 or 390625000 nanoseconds or 400 milliseconds.
+ * A single machine with 8 cores and 16 hardware threads can iterate a block of 62,500,000 regions 16 at a time for (100×((1E9*4)))÷16 or 25000000000 nanoseconds or 25 seconds.
  * 400 milliseconds * 15 tables = 6000 * 15 or 90000 milliseconds or 90 seconds or 1.5 minutes, as each table takes turns. Due to contention it would be more efficient to run these parallel queries sequentially for data locality.
  * We need to improve the performance. This assumes a query hits every record in the table. Most queries should fetch fewer records, so this is a worst case scenario.
+ * We can divide the data across machines but this produces costs of network latency.
+ * It costs 10,000 nanoseconds to send 1k over the network. We need to signal to other servers to process the data.
+ * If we have 10 servers with 8 cores each we can reduce the time to 
  * **Circular indexes** cover more query patterns than single indexes.
 
 
