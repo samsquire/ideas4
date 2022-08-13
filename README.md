@@ -4011,7 +4011,7 @@ I think we can create a model where most queries end up with a familiar amount o
  * An average 3ghz CPU can execute 3E9 or 3,000,000,000 cycles per second or 3E9 cycles per 1E+09 nanoseconds or in nanoseconds per cycle 1E+09÷3E9 or 0.333333333 nanoseconds per cycle.
  * It takes half a cycle to read data in L1 cache but takes 100 nanosecond to read data from main memory.
  * Memory bandwidth is around 12 gigabytes per second or higher.
- * Memory can therefore be retrieved from main memory at 100 nanoseconds or ((1E9*100. Obviously we actually have cache lines, so this is more like 1E9/64*100 = 1.5625 gigabytes a second.
+ * Memory can therefore be retrieved from main memory, 1 billion bytes takes 100 nanoseconds or ((1E9*100. Obviously we actually have cache lines, so this is more like 1E9/64*100 = 1.5625 gigabytes a second or at 8 cores, 12 gigabytes per second.
  * But to actually refer to a byte we need an L1 reference (or L2 or L3) so that's (6400 * 1E9) * 0.5 = 
  * I define a standard where 15 tables of 1 billion records are queried. That's 15 billion records.
  * These queries go on in parallel and concurrently, so there is contention.
