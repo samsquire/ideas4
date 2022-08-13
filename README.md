@@ -4002,6 +4002,23 @@ I think when object oriented programming goes wrong when you begin to implement 
 * Bidirectional relations by default.
 * We need to decouple the data and the operations that should run on that data, so we can extend either without damaging either.
 
+# 211. Stength reduction data querying
+
+Some people think 100ms for a response from an API is a good number. I don't agree. A computer can do a lot in 100 milliseconds.
+
+I think we can create a model where most queries end up with a familiar amount of work to do. And per request. This can be used to create scaling decisions. We can do this by optimising a certain workload, and then applying that workload to our problem. Note this is the reverse to how most people solve performance problem. I want to generalise solving performance problems for lots of data.
+
+ * I define a standard where 15 tables of 1 billion records are queried. That's 15 billion records.
+ * These queries go on in parallel and concurrently, so there is contention.
+ * If we think of the memory access patterns, we can design the most efficient traversal of memory and disk.
+ * If we have 15 tables of 1 billion records of 2 columns each, one 64 bit integer and one varchar(128). Our indexes are at least 15×1+E9×4 + 15×1+E9×128 or 1.98e+12 bytes or almost 2 terrabytes.
+ * 100 milliseconds is 100,000,000 nanoseconds.
+ * A L1 cache reference is 0.5 nanoseconds.
+ * A logarithm binary search on the btree index is at most O(log 1E9) comparisons and 12 loop conditionals, so 24 statements all referring to L1 cache, 24×0.5=12 nanoseconds to find the beginning of data.
+ * What about scanning the data from the index? Assuming memory read of a cache line takes 100 nanoseconds to read every 64 bytes of data a time. We have up to 1 billion records to read of 4 bytes each, so we need to read a maximum of 1E9×4 times but we can fetch 64 bytes at a time so it is (100×((1E9*4)÷64))=6250000000000 nanoseconds or 1 hour and 44 minutes.
+ * We can index data to improve this performance.
+ * 
+
 # incomplete ideas
 
 
