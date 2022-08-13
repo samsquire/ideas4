@@ -3382,9 +3382,11 @@ For example, we can define what should go on to requests we can rerun the functi
 
 In other words, our system is reactive to its design.
 
-Event handlers, workflow should be defined with a builder of the system as a whole.
+Event handlers, workflow could be defined with a builder of the system as a whole.
 
-This idea is an extension to how Kubernetes has an API for defining resources and Pulimi and Terraform. The system as a whole should be overconstrained. 
+This idea is an extension to how Kubernetes has an API for defining resources and Pulimi and Terraform.
+
+The system as a whole should be overconstrained. Everything should be specified and changeable.
 
 # 151. People circuitry
 
@@ -4037,6 +4039,18 @@ I think we can create a model where most queries end up with a familiar amount o
 To render a complicated web page, we might need to issue multiple queries.
 
 It would be nice to specify all the data we need in one query and have it returned in one block but paginated.
+
+# 213. State machine incompleteness, state machine multiplication
+
+It's far easier to reason of software when there is a happy path to develop against.
+
+If we represent our software as a state machine, there are cases which fail the happy path test, and we need to get back to the happy path.
+
+ * Anything that relies on the file system, locations and presence is a recipe for error.
+
+# 214. API virtual machine
+
+
 
 
 # incomplete ideas
