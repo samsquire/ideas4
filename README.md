@@ -3360,11 +3360,11 @@ Can we feed in all the interactions to a system and tell us how we should binpac
 
 We can mapreduce load balance heavy tasks by partitioning the problem and sending them to a work pool.
 
-# 150. System as a program and system difference evolution, overconstrained systems and software defined system
+# 150. System as a program and system difference evolution, overconstrained systems and software defined system, automatic blue green deployment
 
 This idea:
 
- * extremely complicated refactorings of systems in traditionally implemented code should be trivial
+ * extremely complicated refactorings of systems in traditionally implemented code should be trivial but they really aren't
  * I should be capable of mutating a system while it is running from an old design to a new design easily
  * Systems should mutate to change of design and architecture easily
  * We can use a combination of declarativeness and imperativeness to achieve this goal.
@@ -4032,6 +4032,11 @@ I think we can create a model where most queries end up with a familiar amount o
  * If we have 10 servers with 8 cores each we can reduce the time to 
  * **Circular indexes** cover more query patterns than single indexes.
 
+# 212. Multiquery
+
+To render a complicated web page, we might need to issue multiple queries.
+
+It would be nice to specify all the data we need in one query and have it returned in one block but paginated.
 
 
 # incomplete ideas
