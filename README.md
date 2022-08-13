@@ -4004,10 +4004,15 @@ I think when object oriented programming goes wrong when you begin to implement 
 
 # 211. Stength reduction data querying
 
-Some people think 100ms for a response from an API is a good number. I don't agree. A computer can do a lot in 100 milliseconds.
+Some people think 100ms for a response from an API is a good number. I don't agree. A computer can do a lot in 100 milliseconds. The numbers of items that is relevant to any given query is usually querying is much less than a billion.
 
 I think we can create a model where most queries end up with a familiar amount of work to do. And per request. This can be used to create scaling decisions. We can do this by optimising a certain workload, and then applying that workload to our problem. Note this is the reverse to how most people solve performance problem. I want to generalise solving performance problems for lots of data.
 
+ * An average 3ghz CPU can execute 3E9 or 3,000,000,000 cycles per second or 3E9 cycles per 1E+09 nanoseconds or in nanoseconds per cycle 1E+09÷3E9 or 0.333333333 nanoseconds per cycle.
+ * It takes half a cycle to read data in L1 cache but takes 100 nanosecond to read data from main memory.
+ * Memory bandwidth is around 12 gigabytes per second or higher.
+ * Memory can therefore be retrieved from main memory at 100 nanoseconds or ((1E9*100. Obviously we actually have cache lines, so this is more like 1E9/64*100 = 1.5625 gigabytes a second.
+ * But to actually refer to a byte we need an L1 reference (or L2 or L3) so that's (6400 * 1E9) * 0.5 = 
  * I define a standard where 15 tables of 1 billion records are queried. That's 15 billion records.
  * These queries go on in parallel and concurrently, so there is contention.
  * If we think of the memory access patterns, we can design the most efficient traversal of memory and disk.
@@ -4016,8 +4021,14 @@ I think we can create a model where most queries end up with a familiar amount o
  * A L1 cache reference is 0.5 nanoseconds.
  * A logarithm binary search on the btree index is at most O(log 1E9) comparisons and 12 loop conditionals, so 24 statements all referring to L1 cache, 24×0.5=12 nanoseconds to find the beginning of data.
  * What about scanning the data from the index? Assuming memory read of a cache line takes 100 nanoseconds to read every 64 bytes of data a time. We have up to 1 billion records to read of 4 bytes each, so we need to read a maximum of 1E9×4 times but we can fetch 64 bytes at a time so it is (100×((1E9*4)÷64))=6250000000000 nanoseconds or 1 hour and 44 minutes.
- * We can index data to improve this performance.
- * 
+ * We can index and parallelise data to improve this performance.
+ * There are (1E9*4)÷64 = 62,500,000 regions of data to iterate as each region is 4 bytes and it requires 100 nanoseconds to fetch each region.
+ * A single machine with 8 cores and 16 hardware threads can iterate a block of 62,500,000 regions 16 at a time for (100×((1E9*4)÷64))÷16 or 390625000 nanoseconds or 400 milliseconds.
+ * 400 milliseconds * 15 tables = 6000 * 15 or 90000 milliseconds or 90 seconds or 1.5 minutes, as each table takes turns. Due to contention it would be more efficient to run these parallel queries sequentially for data locality.
+ * We need to improve the performance. This assumes a query hits every record in the table. Most queries should fetch fewer records, so this is a worst case scenario.
+ * **Circular indexes** cover more query patterns than single indexes.
+
+
 
 # incomplete ideas
 
