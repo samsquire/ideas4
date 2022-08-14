@@ -4056,6 +4056,19 @@ If we represent our software as a state machine, there are cases which fail the 
 
 If I want to synchronize two database nodes, I need a secure approach to uploading and downloading in both directions for every database change during a synchronization event.
 
+# 217. Database synchronization
+
+Imagine you want to synchronize two or more Postgres nodes.
+
+But you want to change the data model as little as possible.
+
+ * Need to timestamp the data at a certain point of time.
+ * Need to export data, could use a COPY TO command
+ * Need to import the data that was changed on the other machines.
+ * Could have staging tables.
+ * Could have an algorithm that inserts into the main table when conflict detection is completed.
+ * Conflict detection can run on a timer: when there is a conflict, duplicate the data, when the conflict is marked as resolved, remove one copy.
+ * For text fields, merge the text together.
 
 
 
