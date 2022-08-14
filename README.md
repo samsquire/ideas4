@@ -4063,6 +4063,10 @@ Imagine you want to synchronize two or more Postgres nodes.
 But you want to change the data model as little as possible.
 
  * Need to timestamp the data at a certain point of time. This could be as simple as max(primary key)
+ * Assuming a new record appears that already exists inside node A and was added by node B, how do we know if it is a new separate record or a changed record?
+ * We should know when the last sync event was of each side. If the last_sync time < new_record_id, it's a completely new record with this new ID.
+ * If last_sync > new_record_id we need to work out whether it is a new record or a change to an existing record.
+ * 
  * Need to export data, could use a COPY TO command
  * Need to import the data that was changed on the other machines.
  * Could have staging tables.
