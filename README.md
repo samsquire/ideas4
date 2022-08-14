@@ -4026,7 +4026,7 @@ I think we can create a model where most queries end up with a familiar amount o
  * What about scanning the data from the index? Assuming memory read of a cache line takes 100 nanoseconds to read every 64 bytes of data a time. We have up to 1 billion records to read of 4 bytes each, so we need to read a maximum of 1E9×4 times but we can fetch 64 bytes at a time so it is (100×((1E9*4)÷64))=6250000000000 nanoseconds or 1 hour and 44 minutes.
  * We can index and parallelise data to improve this performance.
  * There are (1E9*4)÷64 = 62,500,000 regions of data to iterate as each region is 4 bytes and it requires 100 nanoseconds to fetch each region.
- * A single machine with 8 cores and 16 hardware threads can iterate a block of 62,500,000 regions 16 at a time for (100×((1E9*4)))÷16 or 25000000000 nanoseconds or 25 seconds.
+ * A single machine with 8 cores and 16 hardware threads can iterate a block of 62,500,000 regions 16 at a time for (100×((1E9÷64*4)))÷16 or 390625000 nanoseconds or 400 milliseconds.
  * 400 milliseconds * 15 tables = 6000 * 15 or 90000 milliseconds or 90 seconds or 1.5 minutes, as each table takes turns. Due to contention it would be more efficient to run these parallel queries sequentially for data locality.
  * We need to improve the performance. This assumes a query hits every record in the table. Most queries should fetch fewer records, so this is a worst case scenario.
  * We can divide the data across machines but this produces costs of network latency.
