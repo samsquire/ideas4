@@ -4046,9 +4046,17 @@ It's far easier to reason of software when there is a happy path to develop agai
 
 If we represent our software as a state machine, there are cases which fail the happy path test, and we need to get back to the happy path.
 
- * Anything that relies on the file system, locations and presence is a recipe for error.
+ * Anything that relies on the file system, locations and presence or existing state is a recipe for error.
 
 # 214. API virtual machine
+
+# 215. Backend browser
+
+# 216. Cluster gossip protocol
+
+If I want to synchronize two database nodes, I need a secure approach to uploading and downloading in both directions for every database change during a synchronization event.
+
+
 
 
 
