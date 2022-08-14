@@ -4062,7 +4062,7 @@ Imagine you want to synchronize two or more Postgres nodes.
 
 But you want to change the data model as little as possible.
 
- * Need to timestamp the data at a certain point of time.
+ * Need to timestamp the data at a certain point of time. This could be as simple as max(primary key)
  * Need to export data, could use a COPY TO command
  * Need to import the data that was changed on the other machines.
  * Could have staging tables.
