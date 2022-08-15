@@ -3970,6 +3970,8 @@ The Two Generals Problem means that distributed atomicity is difficult due to th
 
 It seems every local development environment suffers from the same kinds or classes of errors.
 
+Edge cases where a thing is attempted and fails and leaves behind everything in state that isn't correct.
+
  * Python/pip locally
  * Ruby/gems locally
  * system tools
@@ -3980,6 +3982,16 @@ Logical idempotence and steady state. Impossible scenarios cannot occur.
 # 209. Time stretch
 
 Most of the time our computers are idle and we need all work to be done at request time.
+
+This puts the pressure to produce a fast result at the time of request time. But we have 99.999999% of time available to do things before the request.
+
+What if we anticipated what requests would be made for the data we do have and use CPU and storage power to predict what shall happen next.
+
+Caching is a partial solution to this problem.
+
+We have a large amount of time resources to arrange things so that processing is extremely rapid.
+
+If you have 15 billion records
 
 # 210. Object oriented programming v2
 
