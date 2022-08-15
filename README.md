@@ -1478,7 +1478,7 @@ This idea is based on the whitepaper Wait-Free Queues With Multiple Enqueuers an
 
 When we go to write or read from X we set our thread's state to read or write X and we set our phase number to the maximum phase number of all threads + 1.
 
-When someone goes to read write X, they check the phase number of all threads and if there is one less than itself, it unscheduled this thread. Then when that other thread is finished it reschedules threads that are the lowest phase number excluding the thread that was finished.
+When someone goes to read write X, they check the phase number of all threads and if there is one less than itself, it unschedules this thread. Then when that other thread is finished it reschedules threads that are the lowest phase number excluding the thread that was finished.
 
 # 72. Loop expansion and live iterators
 
