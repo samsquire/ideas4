@@ -42,7 +42,7 @@ Each news topic should be tracked separately, I should be able to follow a news 
 
 # 5. Permanent software/platform/language / Software subscriptions and outsourceable stack
 
-At the cost of innovation we can solve swathes of computer problems with common parts of a stack. The BSD networking stack is standardised and solved the communication problem, it seems BSD sockets are in most software products today. But there is a lot of work needed to standardise the rest of the technology stack. See [idea4 on 135. Recursive Coordination and decision portfolios](https://github.com/samsquire/ideas4/blob/main/README.md#135-recursive-coordinations-and-decision-portfolios-and-time-allocation-portfolio-and-recursive-dividends) for how we could implement social and technical leverage to solve this problem of standardisation without the effort of standardisation.
+At the cost of innovation we can solve swathes of computer problems with common parts of a stack. The BSD networking stack is standardised and solved the communication problem, it seems BSD sockets are in most software products today. But there is a lot of work needed to standardise the rest of the technology stack. See [ideas4 on 135. Recursive Coordination and decision portfolios](https://github.com/samsquire/ideas4/blob/main/README.md#135-recursive-coordinations-and-decision-portfolios-and-time-allocation-portfolio-and-recursive-dividends) for how we could implement social and technical leverage to solve this problem of standardisation without the effort of standardisation.
 
 Unfortunately the ground is shifting beneath us at all times. There is no stable space on which to build. Upgrading RHEL 6 to RHEL 7 and to RHEL 8 is a pain and you need to reharden everything again.
 
@@ -130,7 +130,7 @@ I want a server to handle as much traffic as it can, concurrently and parallel w
 
 # 9. Query for data structure
 
-If you're writing a compiler or programming language or business software you have a stored shape of data and relationships at every stage of processing. In business software we call this marshalling or an intermediate representation in compiler technology.
+If you're writing a compiler or programming language or business software you have a stored shape of data and relationships at every stage of processing.  This is called marshalling or an intermediate representation in compiler technology.
 
 Sometimes to solve particular problems you need data in a particular shape. That is, a problem becomes simpler to write an algorithm for if the data is in the right shape.
 
@@ -255,7 +255,7 @@ So the walking of data is continuations between collaborating servers.
 
 I read somewhere that instruction selection is less of a cause of total performance of code compared with data layout. With data driven architecture we can use arrays of structures or structures of arrays for performance.
 
-Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, disk files. We need some method of paging this data and scheduling data to and from each area efficiently.
+Much of modern programming is managing different buckets of data and scheduling them into memory for example we have heap, the stack, S3, file system's disk files and network available storage such as NFS or Ceph. We need some method of paging this data and scheduling data to and from each area efficiently.
 
 Databases such as Postgres have heap managers. Virtual memory are managed by kernels. Some software use arenas for memory management. Memory management is too complicated so browsers such as Chromium just use arenas and free it when the tab is closed. There is all sorts of clever things that can be done with readahead and prefetching and amortization. The problems of chunking has wide ranging impacts to do with caching and decision to load in parallel.
 
@@ -267,7 +267,7 @@ I imagine this being implemented as a Policy that defines the relationship hiera
 
 You could have a common API for storage that works across all levels of storage.
 
-This could be combined with [10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
+This could be combined with [ideas4 10. Access pattern serialization](https://github.com/samsquire/ideas4/blob/main/README.md#10-access-pattern-serialization) and [ideas4 9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure).
 
 # 15. Mega tree
 
@@ -313,7 +313,9 @@ Why? Memory management and low level implementation details in impoverished envi
 
 If compilers and optimisers were written in Python you would have more people be capable of supporting your project.
 
-As it stands to add code to these projects you need to be seriously skilled in low level programming 
+As it stands to add code to these projects you need to be seriously skilled in low level programming.
+
+Sometimes the problem is understood by the "what" rather than the "how". If developers could look at systems from a high level, they might still be capable of contributing ideas to where the "how" distracts from the "what to do". You can always describe a more efficient, more scalable more performant system by defining what is to be done differently to how the system works at the moment. We don't benefit from this property of communication when writing low level projects, as there is so much detail at the "how" level that it's hard to see the forest rather than the individual trees. You obviously need to know about both, but abstractions mean we care less about trees most of the time we use computers. For example, the proportion of assembly programmers to Javascrip developers.
 
 # 18. Data structure synchronization
 
@@ -364,7 +366,7 @@ def diff3(a, b):
 
 # 20. Lazy arrange or invariant maintenance
 
-Many computer problems and algorithms can be solved with a division and sorting function and a set of statements that should be maintained over collections of objects.
+Many computer problems and algorithms can be solved with a division and sorting function and a set of statements or invariants that should be maintained over collections of objects.
 
 Unfortunately to maintain invariants requires custom code when data is changed or modified. Such as recalculating the hash of an object.
 
@@ -619,6 +621,10 @@ I think it's related to a fractal tree.
 
 # 39. Data structure mapping studio
 
+I read the Rpython documentation and it talks about the compiler's internal data structures to lower code into something the computer could understand.
+
+I also work with many devops tools that use YAML.
+
 There should be a website or office suite software that offers views of data structures from one to another and the operations that can be done on them. These can be implemented as mappings.
 
 For example, each DevOps tool has some JSON or YAML that means something significant. An Nginx file can be parsed and turned into a graph data structure. Kubernetes YAML means something
@@ -635,21 +641,25 @@ By defining Equivalencies we can create really powerful programs. This is materi
 
 If you know how to do something for one item, do you know by inferences know how to do it for all items at once?
 
-Could indexes be generated from a method to calculate something?
+Could database indexes be generated from a method to calculate something?
 
 You write a nested loop to find or collect together data from multiple sources, if you index each loop separately you can handle any number of items as a materialized view.
 
-# 41. Happens before concurrency and Partial order maintenance
+# 41. Happens before concurrency, Partial order maintenance and intrathread callbacks
 
-IO event loops are fairly complicated to use properly.
+Assume you have lots of threads, threads for IO and threads for CPU usage. And maybe a GUI thread.
 
-Tokio is good for IO scheduling but not parallel CPU scheduling.
+IO event loops are fairly complicated to use properly - see C's libuv as used by Nodejs, Rust's tokio. You need some way of dispatching events to the IO loop and retrieving them in the context of a CPU event loop. So you need some communication mechanism and therefore synchronization.
 
-I think we can use the happens before relation to autoparallelize.
+For two threads to communicate in a thread safe way, they both need to wait separately, before each write and before each read. Each enqueuing thread needs to wait for space available to write to and the dequeuing thread needs to wait before there is an item to dequeue. If there are no items in the queue, the thread blocks and can do no useful work.
+
+The coordination is complicated. The Rust async runtime is complicated and hard to understand. Tokio is good for IO scheduling but not parallel CPU scheduling.
+
+I think we can use the happens before relation to autoparallelize. We can use the "happens before" relation with an argument of where something should run. The system can arrange the thread safe communication between threads.
 
 We can sort variable use and automatically insert CountDownLatch at points we need our memory to be visible to other processes. These joins before a shared variable is used represent synchronization points.
 
-I propose a cas sort algorithm to maintain order between an arbitrary number of readers and writers. [I partly implemented this in my compare and swap sort repo. I need to add support for any number of readers and writers.](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
+I wrote a compare and swap sort algorithm to maintain order between an arbitrary number of readers and writers. [I partly implemented this in my compare and swap sort repo. I need to add support for any number of readers and writers.](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
 
 We need a scalable equivalent of Java's synchronized.
 
@@ -687,7 +697,7 @@ Def update_linked_list(new_head)
 
 Now all calls to update_linked_list are partially ordered.
 
-But would this be more efficient as an explicit queue?
+But would this might be more efficient as an explicit queue, that threads try process.
 
 All threads enqueue their operations and if there is someone already modifying the same value, we don't block but we are dequeued by the committing thread.
 
@@ -702,25 +712,21 @@ It could be changed not to block, and callbacks could be checked for by the comm
 
 # 42. Direct concurrency and static scheduling
 
-It's easier to schedule code in advance of its execution.
+It's easier to schedule code in advance of its execution. Imagine the CPU and the clock of a CPU. The CPU internals have lifecycles on the die and the clock synchronizes the parallelism of each part.
 
 The traditional software development approach to control flow of asynchronous systems is callbacks, async/await, events, SEDA or event loops.
 
 The problem with event loops is that work blocks the main thread and you don't have parallelism unless you start multiple event loops.
 
-Direct concurrency means scheduling in advance and driving ordering explicitly.
+If we batch up work to the rthythm of a clock, we can schedule directly and avoid data race conditions and race conditions to the same data.
 
-Chaining together callbacks causes complexity.
-
-Rely on sorting to decide the control flow.
-
-The locus of execution is the tip of execution.
-
-Essentially the kernel scheduler and the program itself decide what to do next.
-
-When you have asynchronous code, you don't know when you shall return, you need to decide what to do when the asynchronous program finishes.
-
-I want async/await to work on a thread pool for true parallelism.
+ * Direct concurrency means scheduling in advance and driving ordering explicitly.
+ * Chaining together callbacks causes complexity.
+ * Rely on simple task sorting to decide the control flow.
+ * The locus of execution is the tip of execution.
+ * Essentially the kernel scheduler and the program itself decide what to do next. This is scheduling in userspace.
+ * When you have asynchronous code, you don't know when you shall return, you need to decide what to do when the asynchronous program finishes.
+ * I want `async`/`await` to work on a thread pool for true parallelism.
 
 ```
 
@@ -733,13 +739,13 @@ Use join calculus to be the interface of rete
 
 # 43. Generalized transactions
 
-We often want the semantics of all or none at all.
+We often want the semantics of all or none at all. One of the problems with midori is that the world is not transactional, but why not?
 
-# 44. Duplicate everything - store everything twice
+# 44. Duplicate everything - store everything at least twice
 
 Store data in both arrays of structures and structures of arrays. Use the left right concurrency control pattern with each side so you get benefits of each.
 
-When there's contention for the wrong data structure (ie it would be more efficient to use arrays of structures), use the code for the other structures or arrays or arrays of structures.
+When there's contention for the wrong data structure (ie it would be more efficient to use structures of arrays), wait for the other data structure to drain or use the less efficient mechanism.
 
 # 45. Rendering engine reflow diff and pregenerated positions for each resolution
 
@@ -760,15 +766,13 @@ I should only see what was last committed and changed but I don't want to lower 
 
 One approach is we can combine the use of persistent data structures with this idea to implement snapshot isolation.
 
-When I change a field, I should regenerate up to root a new record and append to the log for the data structure.
-
-This can be combined with mega tree. We need a global Log object that everyone uses to access the root of the data structure.
+When I change a field, I should regenerate up to root a new record and append to the log for the data structure. This can be combined with mega tree. We need a global Log object that everyone uses to access the root of the data structure.
 
 When there is a change, the root object is changed. The problem is parallel updates to the root object, anyone who changes before the root is changed would be overwritten.
 
 We need to avoid last write wins as Left Right is not enough to protect the root. So we need multiversion conconcurrency control.
 
-Alternatively we can treat the MegaTree as being threadsafe and not regenerate the tree each time there is a change, so we have internode parallelism. The MegaTree would have a commit method.
+**Alternatively** we can treat the MegaTree as being threadsafe and not regenerate the tree each time there is a change, so we have internode parallelism. The MegaTree would have a commit method.
 
 For append only illusion we can generate events walked up to the root and when we serialize we serialize new nodes but while in memory it can mutate.
 
@@ -782,9 +786,8 @@ When I create a thread for parallel work and I spend most of my time in my progr
 
 How do we partition the loops efficiently?
 
-When we create the threads we specify named collections and partition them by thread index.
-
-For Java lists we can use sublists. For linked lists we can cut them in half 
+ * When we create the threads we specify named collections and partition them by thread index.
+ * For Java lists we can use sublists. For linked lists we can cut them in half recursively
 
 # 48. Loop rewriter - Avoid resource starvation by chunking loops
 
@@ -834,6 +837,8 @@ The layout of memory can be independent of the data structure.
 # 50. Context anywhere
 
 I should be capable of reaching anything from any position in my code.
+
+Imagine you could dictate the processing or tip of execution of another computer or server from the context of your current program. This would lead somewhat to spaghetti code if not handled properly.
 
 Everything is available to me.
 
@@ -4086,8 +4091,19 @@ But you want to change the data model as little as possible.
  * Conflict detection can run on a timer: when there is a conflict, duplicate the data, when the conflict is marked as resolved, remove one copy.
  * For text fields, merge the text together.
 
+# 218. Shared thread queues
 
+One problem I think a lot about is how to design multithreaded systems that very rarely block.
 
+The system is always working towards forward process. The only threads that block are IO threads.
+
+One idea is that every thread has a set of queues it is assigned to.
+
+![Multiqueue drawio](https://user-images.githubusercontent.com/1983701/184778931-9f011280-b971-4193-b6e5-33689564f6fd.png)
+
+Each thread nonblockingly checks each queue looking for work. For a multiconsumer multiproducer queue, this is fine. If a queue is full or empty, we check the next queue assigned to us, and we spin through this list of queues repeatedly.
+
+Each queue can be served by multiple threads.
 
 
 # incomplete ideas
