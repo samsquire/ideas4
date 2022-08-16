@@ -4095,13 +4095,13 @@ But you want to change the data model as little as possible.
 
 One problem I think a lot about is how to design multithreaded systems that very rarely block.
 
-The system is always working towards forward process. The only threads that block are IO threads.
+The system is always working towards forward process. The only threads that block are IO threads, which do system calls.
 
 One idea is that every thread has a set of queues it is assigned to.
 
-![Multiqueue drawio](https://user-images.githubusercontent.com/1983701/184778931-9f011280-b971-4193-b6e5-33689564f6fd.png)
+![Multiqueue drawio (1)](https://user-images.githubusercontent.com/1983701/184780596-e662ed0e-3e16-42e1-9b9e-d8c6c46b174b.png)
 
-Each thread nonblockingly checks each queue looking for work. For a multiconsumer multiproducer queue, this is fine. If a queue is full or empty, we check the next queue assigned to us, and we spin through this list of queues repeatedly.
+Each thread nonblockingly checks each queue looking for work. Each enqueuing thread checks multiple queues looking for one that won't block due to being too full. For a multiconsumer multiproducer queue, this is fine. If a queue is full or empty, we check the next queue assigned to us, and we spin through this list of queues repeatedly.
 
 Each queue can be served by multiple threads.
 
