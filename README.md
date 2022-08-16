@@ -223,7 +223,7 @@ If someone is looping manually down a spreadsheet pasting into an intranet webpa
 
 # 13. Window walk optimisation
 
-Imagine you want to find a job that is near your home transport wise, near a supermarket, doctors and that pays the most and has the cheapest house to buy or rent.
+Imagine you want to find a job that is near your home transport wise, near a supermarket, near a doctors and that pays the most and has the cheapest house to buy or rent.
 
 You could open a browser for each of these queries but it's difficult to optimise these multiple queries manually.
 
@@ -4104,6 +4104,28 @@ One idea is that every thread has a set of queues it is assigned to.
 Each thread nonblockingly checks each queue looking for work. Each enqueuing thread checks multiple queues looking for one that won't block due to being too full. For a multiconsumer multiproducer queue, this is fine. If a queue is full or empty, we check the next queue assigned to us, and we spin through this list of queues repeatedly.
 
 Each queue can be served by multiple threads.
+
+# 219. Multiple way association and table metaprogramming
+
+The multiplicative problem of N platforms * X hardware configurations * M operating systems * P platforms * E environments produces a complicated mess to deploy into.
+
+It's not uncommon for a customer to define a drastically changing requirement that changes all the code that needs to be implemented.
+
+This is also known as the expression problem where data and operations are often intrinsically tied together. Adding a variation of either without breaking what already exists requires a specific design.
+
+This idea has two parts: First, we have an editor, where we define behaviour.
+
+I propose it be modified by multidimensional matrix spreadsheet. A typical spreadsheet is in 2 dimensions, X and Y. We can have any number of dimensions. We can also have defaults set for each dimension.
+
+I propose a virtual machine that allows the matching up of variations to other variations and allows code to be applied to them.
+
+* parallelism/concurrency
+* negotiation protocols
+* upgrade procedure
+* schema
+* hierarchy
+
+
 
 
 # incomplete ideas
