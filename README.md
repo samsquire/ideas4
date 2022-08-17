@@ -4105,25 +4105,60 @@ Each thread nonblockingly checks each queue looking for work. Each enqueuing thr
 
 Each queue can be served by multiple threads.
 
-# 219. Multiple way association and table metaprogramming
+# 219. Multimultidimensional association and table metaprogramming
 
-The multiplicative problem of N platforms * X hardware configurations * M operating systems * P platforms * E environments produces a complicated mess to deploy into.
+I think the expression problem is an extremely interesting far reaching problem in computer science.
 
-It's not uncommon for a customer to define a drastically changing requirement that changes all the code that needs to be implemented.
+![image](https://user-images.githubusercontent.com/1983701/185044943-9c501e90-c441-4e18-801c-217f4d001347.png)
 
-This is also known as the expression problem where data and operations are often intrinsically tied together. Adding a variation of either without breaking what already exists requires a specific design.
 
-This idea has two parts: First, we have an editor, where we define behaviour.
-
-I propose it be modified by multidimensional matrix spreadsheet. A typical spreadsheet is in 2 dimensions, X and Y. We can have any number of dimensions. We can also have defaults set for each dimension.
-
-I propose a virtual machine that allows the matching up of variations to other variations and allows code to be applied to them.
+The solution to the expresion problem can handle the following problems:
 
 * parallelism/concurrency
 * negotiation protocols
-* upgrade procedure
+* upgrade and seamless upgrade procedure
+* compatible code evolution over time
 * schema
 * hierarchy
+* versioning
+* error handling
+* compatibility
+* order
+
+
+This idea is a proposed solution to the expression problem that relies on higher dimensioned data structures and an algorithm to locate the desired code.
+
+The expression problem where data and operations are often intrinsically tied together. Adding a variation of either without breaking what already exists requires a specific design.
+
+
+
+ * The multiplicative problem of N platforms * X hardware configurations * M operating systems * P desktop environments * E environments produces * D distributions is complicated mess to deploy into.
+
+ * If you're writing a compiler and you have an AST node, you could create an eval method. But then you're limited by what types you can accept. It's difficult to extend the AST to support other types.
+ * Generics exists for a reason but is not a proper solution.
+ * It's not uncommon for a customer to define a drastically changing requirement that changes all the code that needs to be implemented.
+ * A computer is files, processes, containers, filesystems, mountpoints, permissions, partitions, block devices, sockets, character devices, usb devices, PCI devices and so on. They all have interactions with eachother. If someone unplugs a USB stick while it is mounted what should happen?
+
+
+
+This idea has two parts: First, we have a special data structure that represents data and operations amongst other things where we define correct behaviour.
+
+I propose a schema data structure that defines expected behaviour be modified by a multimultidimensional matrix spreadsheet. A typical spreadsheet is in 2 dimensions, X and Y. We can have any axis in any number of dimensions. So this is a multidimensional matrix, we can also multiply this so many times. We then have an algorithm which finds the right operation based on the mappings of the matrix.
+
+It's really difficult to render this data structure without duplicating what is on the screen many times. Higher dimensioned data needs to be projected into 2 dimensions.
+
+In Microsoft Excel and other spreadsheet software, I can copy data down columns or rows to duplicate the data in them, the data is optionally incremented or extended based on what the cell that the selection began with.
+
+The first idea is that we can define one thing in terms of another thing by naming it.
+
+
+
+The second innovation is defining a function that defines how to compare matrixes to see if they are compatible.
+
+Two schemas are compatible if there is no ambiguity in what should go on.
+
+I propose a virtual machine that allows the matching up of variations to other variations and allows code to be applied to them.
+
 
 
 
