@@ -4109,7 +4109,11 @@ Each queue can be served by multiple threads.
 
 I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the against compiled code problem. I don't care if the code needs to be recompiled.
 
-What object oriented inheritance gets wrong is what should inherit, it is data that should also inherit! Similar to DNA!
+We can solve the expression problem with nested multidimensional matrixes and named content based queries.
+
+What object oriented inheritance gets wrong is what should inherit, it is data that should also inherit! Similar to DNA! It's the structure of the data that should inherit.
+
+The problems of multiple inheritance can be solved by explicitly defining cases in tables, hence tabular metaprogramming.
 
 ![image](https://user-images.githubusercontent.com/1983701/185045309-efb897c7-f304-400e-ab8b-fce1eeed0445.png)
 
@@ -4117,15 +4121,16 @@ The expression problem is similar to sudoku, combinatorial, rubiks cubes problem
 
 The solution to the expresion problem can handle the following problems:
 
-* **Definition of graphs/trees/object structures** The expression problem is intrinsically tied to the representation of object structures and standins for eachother.
+* **Definition of graphs/trees/object structures** The expression problem is intrinsically tied to the representation of object structures and standins or object compatibility for eachother.
 
 ![image](https://user-images.githubusercontent.com/1983701/185062227-5bc1c748-664e-46ad-8aa8-85b67f9360c6.png)
 
-
+* **Dynamic flexible interfaces** Interfaces in Java and Golang are rather weakly powered.
 * **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things.
 * **Negotiation Protocols** If you exchange the matrix with another node, you can negotiate behaviour based on what you support, which is due to the nested matrix nature of the expression problem. You can agree on the highest or lowest matching level you support.
 * **Upgrade and seamless upgrade procedure** Upgrading software **should** be easy but it rarely is.
-* compatible code evolution over time
+* **Compatible code evolution over time** We can **extend** existing behaviours by name.
+* **Parameterization** We can parameterize any part of any algorithm by injecting in a different value.
 * schema hierarchy
 * data structures
 * hierarchy
