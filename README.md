@@ -4109,8 +4109,9 @@ Each queue can be served by multiple threads.
 
 I think the expression problem is an extremely interesting far reaching problem in computer science.
 
-![image](https://user-images.githubusercontent.com/1983701/185044943-9c501e90-c441-4e18-801c-217f4d001347.png)
+![image](https://user-images.githubusercontent.com/1983701/185045309-efb897c7-f304-400e-ab8b-fce1eeed0445.png)
 
+Essentially the expression problem is similar to sudoku and other combinatorial problems.
 
 The solution to the expresion problem can handle the following problems:
 
