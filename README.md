@@ -4109,18 +4109,22 @@ Each queue can be served by multiple threads.
 
 I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the against compiled code problem. I don't care if the code needs to be recompiled.
 
-What object oriented inheritance gets wrong is what should inherit, it is data that should inherit! Similar to DNA!
+What object oriented inheritance gets wrong is what should inherit, it is data that should also inherit! Similar to DNA!
 
 ![image](https://user-images.githubusercontent.com/1983701/185045309-efb897c7-f304-400e-ab8b-fce1eeed0445.png)
 
-Essentially the expression problem is similar to sudoku, combinatorial, rubiks cubes problems.
+The expression problem is similar to sudoku, combinatorial, rubiks cubes problems.
 
 The solution to the expresion problem can handle the following problems:
 
-* definition of graphs/trees/object structures
-* parallelism/concurrency
-* negotiation protocols
-* upgrade and seamless upgrade procedure
+* **Definition of graphs/trees/object structures** The expression problem is intrinsically tied to the representation of object structures and standins for eachother.
+
+![image](https://user-images.githubusercontent.com/1983701/185062227-5bc1c748-664e-46ad-8aa8-85b67f9360c6.png)
+
+
+* **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things.
+* **Negotiation Protocols** If you exchange the matrix with another node, you can negotiate behaviour based on what you support, which is due to the nested matrix nature of the expression problem. You can agree on the highest or lowest matching level you support.
+* **Upgrade and seamless upgrade procedure** Upgrading software **should** be easy but it rarely is.
 * compatible code evolution over time
 * schema hierarchy
 * data structures
@@ -4129,6 +4133,7 @@ The solution to the expresion problem can handle the following problems:
 * error handling
 * compatibility
 * ordering of operations
+* materialized view optimisation/whole program optimisation
 
 This idea is a proposed solution to the expression problem that relies on higher dimensioned data structures and an algorithm to locate the desired code.
 
@@ -4162,16 +4167,7 @@ It should be possible to define special relation between matrix coordinates:
  * after names
  * name while something is true
 
-
-
-
-
-
-
-
 The first idea is that we can define one thing in terms of another thing by naming it.
-
-
 
 The second innovation is defining a function that defines how to compare matrixes to see if they are compatible.
 
