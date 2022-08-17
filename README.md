@@ -4107,25 +4107,28 @@ Each queue can be served by multiple threads.
 
 # 219. Multimultidimensional association and table metaprogramming
 
-I think the expression problem is an extremely interesting far reaching problem in computer science.
+I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the against compiled code problem. I don't care if the code needs to be recompiled.
+
+What object oriented inheritance gets wrong is what should inherit, it is data that should inherit! Similar to DNA!
 
 ![image](https://user-images.githubusercontent.com/1983701/185045309-efb897c7-f304-400e-ab8b-fce1eeed0445.png)
 
-Essentially the expression problem is similar to sudoku and other combinatorial problems.
+Essentially the expression problem is similar to sudoku, combinatorial, rubiks cubes problems.
 
 The solution to the expresion problem can handle the following problems:
 
+* definition of graphs/trees/object structures
 * parallelism/concurrency
 * negotiation protocols
 * upgrade and seamless upgrade procedure
 * compatible code evolution over time
-* schema
+* schema hierarchy
+* data structures
 * hierarchy
 * versioning
 * error handling
 * compatibility
-* order
-
+* ordering of operations
 
 This idea is a proposed solution to the expression problem that relies on higher dimensioned data structures and an algorithm to locate the desired code.
 
@@ -4144,11 +4147,27 @@ The expression problem where data and operations are often intrinsically tied to
 
 This idea has two parts: First, we have a special data structure that represents data and operations amongst other things where we define correct behaviour.
 
-I propose a schema data structure that defines expected behaviour be modified by a multimultidimensional matrix spreadsheet. A typical spreadsheet is in 2 dimensions, X and Y. We can have any axis in any number of dimensions. So this is a multidimensional matrix, we can also multiply this so many times. We then have an algorithm which finds the right operation based on the mappings of the matrix.
+I propose a schema data structure that defines expected behaviour be modified by a multimultidimensional matrix spreadsheet. A typical spreadsheet is in 2 dimensions, X and Y. We can have any axis in any number of dimensions. So this is a multidimensional matrix, we can also multiply this so many times. We then have an algorithm which finds the right operation based on the mappings of the matrix. We can also define sub matrixes as cells for other cells.
 
-It's really difficult to render this data structure without duplicating what is on the screen many times. Higher dimensioned data needs to be projected into 2 dimensions.
+It's really difficult to render this data structure without duplicating what is on the screen many times. Higher dimensioned data needs to be projected onto 2 dimensions. I name this a **case**.
 
 In Microsoft Excel and other spreadsheet software, I can copy data down columns or rows to duplicate the data in them, the data is optionally incremented or extended based on what the cell that the selection began with.
+
+We introduce the idea of **name** that are queries or functions that refer to regions of the matrix.
+
+Now we want names and cases to be addable or replaceable over time. It should be possible to add something to a name, remove it, and add it back, while still maintaining backward compatibility. 
+
+It should be possible to define special relation between matrix coordinates:
+ * between two names (for future upgradeability)
+ * after names
+ * name while something is true
+
+
+
+
+
+
+
 
 The first idea is that we can define one thing in terms of another thing by naming it.
 
