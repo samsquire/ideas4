@@ -4113,7 +4113,8 @@ Each queue can be served by multiple threads.
 
 # 219. Multimultidimensional association and table metaprogramming
 
-![expressionproblem](https://user-images.githubusercontent.com/1983701/185338291-4fa0d9c8-c215-4352-a507-7e334f801cb4.png)
+![expressionproblem](https://user-images.githubusercontent.com/1983701/185339236-91bafcbd-1e4b-4ef5-9acf-ea4d8d2cc00b.png)
+
 
 
 I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
