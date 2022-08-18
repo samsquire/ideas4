@@ -4069,9 +4069,15 @@ If we represent our software as a state machine, there are cases which fail the 
 
 # 215. Backend browser
 
-# 216. Cluster gossip protocol
+In the interests of browsing into software, wouldn't it be great if you could browse into software with a special browser and search engine that searches for available docker images and lets you browse into their GUIs?
+
+# 216. Cluster gossip protocol and node download manager
+
+Browsers and torrent software has good download GUIs that let you monitor downloads across the network.
 
 If I want to synchronize two database nodes, I need a secure approach to uploading and downloading in both directions for every database change during a synchronization event.
+
+I want a download manager that shows me the progress of key reshuffling and data downloads across the network.
 
 # 217. Database synchronization
 
@@ -4107,17 +4113,28 @@ Each queue can be served by multiple threads.
 
 # 219. Multimultidimensional association and table metaprogramming
 
-I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the against compiled code problem. I don't care if the code needs to be recompiled.
+![expressionproblem](https://user-images.githubusercontent.com/1983701/185337938-e3abe4b9-16f5-4872-b82e-091552d37ab1.png)
 
-We can solve the expression problem with nested multidimensional matrixes and named content based queries.
+
+I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
+
+The expression problem put simply: "what do we do next (operation) given a case (data)".
+
+People created web frameworks, rule engines, Kubernetes to decide how to solve this problem.
+
+In the real world, the corollary is bureaucracy and people falling through the cracks in society. Or healthcare. Or the tax system. Bureaucracy has new cases (or data) to apply operations too all the time, since society is complicated and complex. 
+
+We can solve the expression problem with nested multidimensional matrixes and nested named content based queries. The problems of multiple inheritance can be solved by explicitly defining cases and subcases in tables, hence tabular metaprogramming.
+
+In effect, we match types or properties with multiple behaviours with a matrix lookup and order the behaviours. This is like a pseudo method that is just a label around code. A plain text transformation with no requirement for a new programming language.
 
 What object oriented inheritance gets wrong is what should inherit, it is data that should also inherit! Similar to DNA! It's the structure of the data that should inherit.
-
-The problems of multiple inheritance can be solved by explicitly defining cases in tables, hence tabular metaprogramming.
 
 ![image](https://user-images.githubusercontent.com/1983701/185045309-efb897c7-f304-400e-ab8b-fce1eeed0445.png)
 
 The expression problem is similar to sudoku, combinatorial, rubiks cubes problems.
+
+
 
 The solution to the expresion problem can handle the following problems:
 
@@ -4125,7 +4142,7 @@ The solution to the expresion problem can handle the following problems:
 
 ![image](https://user-images.githubusercontent.com/1983701/185062227-5bc1c748-664e-46ad-8aa8-85b67f9360c6.png)
 
-* **Dynamic flexible interfaces** Interfaces in Java and Golang are rather weakly powered.
+* **Dynamic flexible interfaces** Interfaces in Java and Golang are rather weakly powered in terms of extensibility.
 * **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things.
 * **Negotiation Protocols** If you exchange the matrix with another node, you can negotiate behaviour based on what you support, which is due to the nested matrix nature of the expression problem. You can agree on the highest or lowest matching level you support.
 * **Upgrade and seamless upgrade procedure** Upgrading software **should** be easy but it rarely is.
