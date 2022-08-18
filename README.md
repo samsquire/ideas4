@@ -4113,7 +4113,8 @@ Each queue can be served by multiple threads.
 
 # 219. Multimultidimensional association and table metaprogramming
 
-![expressionproblem](https://user-images.githubusercontent.com/1983701/185339236-91bafcbd-1e4b-4ef5-9acf-ea4d8d2cc00b.png)
+![expressionproblem](https://user-images.githubusercontent.com/1983701/185339644-64c60980-8725-4159-9eb6-b64bbeef464f.png)
+
 
 
 
