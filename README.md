@@ -4122,7 +4122,7 @@ I think the expression problem is an extremely interesting far reaching problem 
 
 The expression problem put simply: "what do we do next (operation) given a case (data)".
 
-People created web frameworks, rule engines, Kubernetes to decide how to solve this problem.
+People created web frameworks, rule engines, type systems, object orientation and Kubernetes to decide how to solve this problem.
 
 In the real world, the corollary is bureaucracy and people falling through the cracks in society. Or healthcare. Or the tax system. Bureaucracy has new cases (or data) to apply operations too all the time, since society is complicated and complex. 
 
