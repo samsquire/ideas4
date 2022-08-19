@@ -4216,6 +4216,8 @@ But sometimes we're expecting a phone call. We should be capable of telling our 
 
 Rather than block off time 1:1 with different people who might not be capable of receiving a call, we dial multiple people at once and the first to answer gets the call.
 
+# 223. 
+
 # incomplete ideas
 
 
