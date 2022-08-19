@@ -4202,7 +4202,7 @@ I propose a virtual machine that allows the matching up of variations to other v
 
 Scope determines what you can do, so why not display that at all time? And have the last line of code take one line?
 
-# 221. Derisk and front offloading rerisking strategies
+# 221. Derisking and front offload derisking strategies
 
 Most startups and businesses fail. Most software engineering projects fail.
 
