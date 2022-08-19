@@ -4202,11 +4202,19 @@ I propose a virtual machine that allows the matching up of variations to other v
 
 Scope determines what you can do, so why not display that at all time? And have the last line of code take one line?
 
-# 221. Derisk,
+# 221. Derisk and front offloading rerisking strategies
 
 Most startups and businesses fail. Most software engineering projects fail.
 
 The problem is the circular dependency between **product**, **revenue**, **funding** and **workers**.
+
+# 222. Multidial and "expecting a phone call" functionality
+
+For people whose time is valuable, i.e everyone, not everyone is available 24/7.
+
+But sometimes we're expecting a phone call. We should be capable of telling our phone this. It should be higher priority than Do Not Disturb.
+
+Rather than block off time 1:1 with different people who might not be capable of receiving a call, we dial multiple people at once and the first to answer gets the call.
 
 # incomplete ideas
 
