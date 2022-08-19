@@ -3786,7 +3786,7 @@ Perhaps have the concept of "newly received" delayed items in addition to the ch
 
 If you have a one request that fans out to multiple requests, you want to do them all in parallel and you might not be synchronous. So you need to wait for multiple replies before you can keep processing the request, in the mean time, you keep the socket alive for replies.
 
-# 192. Visitor pays storage, compute and hosting
+# 192. Visitor pays storage, compute, hosting and customer support
 
 Imagine if running your own infrastructure became mainstream but was abstracted away and treated like an app install with a subscription? You would install software to your account and you would be responsible for the bills for it.
 
@@ -4113,20 +4113,19 @@ Each queue can be served by multiple threads.
 
 # 219. Multimultidimensional association and table metaprogramming
 
+We can solve the expression problem with nested multidimensional matrixes and nested named content based queries. The problems of multiple inheritance can be solved by explicitly defining cases and subcases in tables, hence tabular metaprogramming.
+
 ![expressionproblem](https://user-images.githubusercontent.com/1983701/185339644-64c60980-8725-4159-9eb6-b64bbeef464f.png)
-
-
-
 
 I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
 
-The expression problem put simply: "what do we do next (operation) given a case (data)".
+The expression problem put simply: "what do we do (next) (operation) given a case (data)".
 
-People created web frameworks, rule engines, type systems, object orientation and Kubernetes to decide how to solve this problem.
+People created web frameworks, rule engines, type systems, object orientation/class based design (OOP) and Kubernetes to decide how to solve this problem.
 
-In the real world, the corollary is bureaucracy and people falling through the cracks in society. Or healthcare. Or the tax system. Bureaucracy has new cases (or data) to apply operations too all the time, since society is complicated and complex. 
+In the real world, the corollary is bureaucracy and people falling through the cracks in society. Or healthcare. Or the tax system. Bureaucracy, healthcare and politics has new cases (or data) to apply operations too all the time, since society is complicated and complex. 
 
-We can solve the expression problem with nested multidimensional matrixes and nested named content based queries. The problems of multiple inheritance can be solved by explicitly defining cases and subcases in tables, hence tabular metaprogramming.
+
 
 In effect, we match types or properties with multiple behaviours with a matrix lookup and order the behaviours. This is like a pseudo method that is just a label around code. A plain text transformation with no requirement for a new programming language.
 
@@ -4145,11 +4144,11 @@ The solution to the expresion problem can handle the following problems:
 ![image](https://user-images.githubusercontent.com/1983701/185062227-5bc1c748-664e-46ad-8aa8-85b67f9360c6.png)
 
 * **Dynamic flexible interfaces** Interfaces in Java and Golang are rather weakly powered in terms of extensibility.
-* **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things.
+* **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things. We need to represent causality in the matrix and we can therefore render synchronization events in the multimatrix.
 * **Negotiation Protocols** If you exchange the matrix with another node, you can negotiate behaviour based on what you support, which is due to the nested matrix nature of the expression problem. You can agree on the highest or lowest matching level you support.
 * **Upgrade and seamless upgrade procedure** Upgrading software **should** be easy but it rarely is.
 * **Compatible code evolution over time** We can **extend** existing behaviours by name.
-* **Parameterization** We can parameterize any part of any algorithm by injecting in a different value.
+* **Parameterization** We can parameterize any part of any operation, algorithm or type by injecting in a different value.
 * schema hierarchy
 * data structures
 * hierarchy
@@ -4199,9 +4198,15 @@ Two schemas are compatible if there is no ambiguity in what should go on.
 
 I propose a virtual machine that allows the matching up of variations to other variations and allows code to be applied to them.
 
+# 220. One status line coding IDE
 
+Scope determines what you can do, so why not display that at all time? And have the last line of code take one line?
 
+# 221. Derisk,
 
+Most startups and businesses fail. Most software engineering projects fail.
+
+The problem is the circular dependency between **product**, **revenue**, **funding** and **workers**.
 
 # incomplete ideas
 
