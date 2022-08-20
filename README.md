@@ -4222,6 +4222,14 @@ What if we could block virtually? But not actually block progress?
 
 If two threads are perfectly synchronized, they can enter the same piece of code at the same time.
 
+```
+check if other thread has entered critical section
+indicate critical section entered
+check if other threads has entered critical section, abort if so
+do critical work
+unindicate critical section
+```
+
 If they are not perfectly synchronized, we can indicate we are in a critical section and when we leave it, other threads can check if someone is in the critical section before entering and do something else if so.
 
 # incomplete ideas
