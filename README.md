@@ -4216,7 +4216,13 @@ But sometimes we're expecting a phone call. We should be capable of telling our 
 
 Rather than block off time 1:1 with different people who might not be capable of receiving a call, we dial multiple people at once and the first to answer gets the call.
 
-# 223. 
+# 223. Virtual blocking
+
+What if we could block virtually? But not actually block progress?
+
+If two threads are perfectly synchronized, they can enter the same piece of code at the same time.
+
+If they are not perfectly synchronized, we can indicate we are in a critical section and when we leave it, other threads can check if someone is in the critical section before entering and do something else if so.
 
 # incomplete ideas
 
