@@ -4218,13 +4218,17 @@ Rather than block off time 1:1 with different people who might not be capable of
 
 # 223. Virtual mutual exclusion, thread communication and event stream 
 
-What if we could block virtually? But not actually block progress? I propose threads have two inputs: other threads and an event stream.
+What if we could block virtually? But not actually block progress? I propose threads have two inputs: other threads and an event queue.
+
+A thread can write to another thread and a thread can receive events on a queue. In that thread's event loop it shall loop over both inbox items and an event queue, round robin.
+
+This keeps a thread busy. A thread can claim a piece of work on the global work queue and distribute subwork to other threads by writing to other threads.
 
 What are the cases for a critical section?
 
 * If two threads are perfectly synchronized, they can enter the same piece of code at the same time. They both think they're the only one there, they mark the critical section as entered. They then check again if someone else entered the critical section too. They detect that the other thread entered the critical section, so this case is successfully detected.
 * If one thread is well ahead of the other, then the first thread shall detect the other thread entering the critical section.
-* There is an edge case: What if the first thread is slow, then passes the initial 
+* There is an edge case: What if the first thread is slow, it passes the exclusion check #1 but pauses and another thread is faster and claims the mutual exclusion. The slow thread eventually notices.
 
 
 
@@ -4291,6 +4295,16 @@ Both threads claimed mutual exclusion, but Thread 1 or Thread 2 shall notice the
 ```
 
 If they are not perfectly synchronized, one thread detects the violation of the critical section.
+
+# 224. Event sourced concurrency control
+
+Implement read queries as scans that check transaction committed status before reducing to that value. Disregard uncommitted changes. Keep a history of committed transactions. 
+
+This is multiversion concurrency control.
+
+To detect if there is a conflict, we check if there is any open transaction that modifies the same keys.
+
+# 225
 
 # incomplete ideas
 
