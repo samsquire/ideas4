@@ -4216,21 +4216,81 @@ But sometimes we're expecting a phone call. We should be capable of telling our 
 
 Rather than block off time 1:1 with different people who might not be capable of receiving a call, we dial multiple people at once and the first to answer gets the call.
 
-# 223. Virtual blocking
+# 223. Virtual mutual exclusion, thread communication and event stream 
 
-What if we could block virtually? But not actually block progress?
+What if we could block virtually? But not actually block progress? I propose threads have two inputs: other threads and an event stream.
 
-If two threads are perfectly synchronized, they can enter the same piece of code at the same time.
+What are the cases for a critical section?
+
+* If two threads are perfectly synchronized, they can enter the same piece of code at the same time. They both think they're the only one there, they mark the critical section as entered. They then check again if someone else entered the critical section too. They detect that the other thread entered the critical section, so this case is successfully detected.
+* If one thread is well ahead of the other, then the first thread shall detect the other thread entering the critical section.
+* There is an edge case: What if the first thread is slow, then passes the initial 
+
+
 
 ```
-check if other thread has entered critical section
-indicate critical section entered
-check if other threads has entered critical section, abort if so
+check if any of other threads has entered critical section
+indicate critical section entered for thread
+check if any of other threads has entered critical section, abort if so
 do critical work
 unindicate critical section
 ```
 
-If they are not perfectly synchronized, we can indicate we are in a critical section and when we leave it, other threads can check if someone is in the critical section before entering and do something else if so.
+```
+###### CASE ######
+Thread 1. before mutual exclusion check #1 0
+Thread 2. mutual exclusion check #1 1
+Depends on which thread executes the claim first.
+###### CASE ######
+Thread 1. before mutual exclusion check #1 0
+Thread 2. claimed mutual exclusion 2
+Thread 1 will notice the mutual exclusion claim
+###### CASE ######
+Thread 1. before mutual exclusion check #1 0
+Thread 2. before mutual exclusion check #2 3
+Depends on which thread executes the claim first.
+###### CASE ######
+Thread 1. mutual exclusion check #1 1
+Thread 2. before mutual exclusion check #1 0
+Depends on which thread executes the claim first.
+###### CASE ######
+Thread 1. mutual exclusion check #1 1
+Thread 2. claimed mutual exclusion 2
+Thread 1 may not notice that Thread 2 has claimed the exclusion.
+If so, Thread 1 will claim mutual exclusion, then check for mutual exclusion a second time.
+Thread 1 will notice that Thread 2 claimed mutual exclusion.
+###### CASE ######
+Thread 1. mutual exclusion check #1 1
+Thread 2. before mutual exclusion check #2 3
+Thread 2 has claimed mutual exclusion, Thread 1 may or not notice.
+If Thread 1 doesn't notice, it shall notice when it claims and then checks for mutual exclusion a second time.
+###### CASE ######
+Thread 1. claimed mutual exclusion 2
+Thread 2. before mutual exclusion check #1 0
+Thread 2 shall notice Thread 1's mutual exclusion.
+###### CASE ######
+Thread 1. claimed mutual exclusion 2
+Thread 2. mutual exclusion check #1 1
+Thread 2 may not notice Thread 1 claim of mutual exclusion. When Thread 2 claims the mutual exclusion, it shall notice Thread 1 has the claim of mutual exclusion.
+###### CASE ######
+Thread 1. claimed mutual exclusion 2
+Thread 2. before mutual exclusion check #2 3
+Both threads have claimed mutual exclusion. Both threads will notice that two threads have a claim on mutual exclusion. One could unclaim before the other and allow the the mutual exclusion to go through.
+###### CASE ######
+Thread 1. before mutual exclusion check #2 3
+Thread 2. before mutual exclusion check #1 0
+Thread 2 shall notice Thread 1's mutual exclusion claim.
+###### CASE ######
+Thread 1. before mutual exclusion check #2 3
+Thread 2. mutual exclusion check #1 1
+Thread 2 shall notice Thread 1's mutual exclusion claim.
+###### CASE ######
+Thread 1. before mutual exclusion check #2 3
+Thread 2. claimed mutual exclusion 2
+Both threads claimed mutual exclusion, but Thread 1 or Thread 2 shall notice the other thread has claimed mutual exclusion in "mutual exclusion check #2"
+```
+
+If they are not perfectly synchronized, one thread detects the violation of the critical section.
 
 # incomplete ideas
 
