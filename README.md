@@ -4304,7 +4304,21 @@ This is multiversion concurrency control.
 
 To detect if there is a conflict, we check if there is any open transaction that modifies the same keys.
 
-# 225
+# 225. Structural programming
+
+While working on [my multithreaded epollserver](https://github.com/samsquire/epoll-server) I found that the complexity comes from needing to tell the computer how to do a thing rather than the structure of that thing.
+
+The structure is easier to define and explain and more important than the instructions on how to do each thing.
+
+For example, in my epollserver I create a thread which is the server thread. This thread binds and listens and waits for connections. The server thread also spins up a number of client threads. Then a client connects and the server communicates the socket number to the client thread. When a connects or disconnects, that client thread communicates with all the other threads that a client connected. This is how we implement broadcast.
+
+# 226. Pseudo Methods call communication
+
+What if we could call a method on an object and the object handles the message when it is suitable?
+
+What if we want to wait for the presence of multiple calls before doing something? Or we want to do something in a certain order?
+
+
 
 # incomplete ideas
 
