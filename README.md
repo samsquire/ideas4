@@ -4324,11 +4324,11 @@ What if we could call a method on an object and the object handles the message w
 
 What if we want to wait for the presence of multiple calls before doing something? Or we want to do something in a certain order?
 
-# 227. Matching half
+# 227. Matching halves and multiples, insertion and scheduling
 
 A programming language where every block level structure is duplicated and IDEs automatically insert it.
 
- * Method calls and method receives are indicated.
+ * Method calls and method call from are indicated.
  * Don't need to manually comment closing curly braces for complicated control flow.
 
 
