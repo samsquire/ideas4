@@ -3891,7 +3891,7 @@ We can be inspired by methods being message passing.
 
 Imagine if writing a multithreaded multisocket server that listens to multiple sockets in parallel being easy? The following code:
 
- * Creates 5 number `recv` and 5 `send` worker threads.
+ * Creates 10 socket handling threads which are 5 `recv` worker threads and 5 `send` worker threads.
  * When the `recv` socket receives a message, it communicates with the `send` worker thread to send a message to all the connected sockets.
  * When a connection is created, a message is sent to both the recv and send threads. Which then set up loops for processing messages sent or received.
  * Loops communicate by communicating by method calls. Method calls are pseudo messages that receive arguments.
