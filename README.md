@@ -4331,6 +4331,42 @@ A programming language where every block level structure is duplicated and IDEs 
  * Method calls and method call from are indicated.
  * Don't need to manually comment closing curly braces for complicated control flow.
 
+# 228. Duality of ASTs, LISP and React and dynamic scenegraphs
+
+React is essentially an AST that is memoized and rerendered automatically.
+
+Now the question is how do we create dynamic compositors? Why do we have a compositor for windows and browsers but isn't just one piece of software?
+
+Blitting bitmaps into a structure is something can be effectively described and rendered efficiently.
+
+# 229. Wiring up relationship structures in GUIs or object orientated GUIs
+
+There is a visual piece of software needed for wiring up structures and creating relations between things.
+
+What I want is an visual software linking objects and behaviours together. When I use terraform, I define resources. When I use a file explorer, I manage files. When I use AWS Console I manage cloud infrastructure. But there is not much visual software to manage relationships between arbitrary things and manage behaviours between them.
+
+This tool would have 4 separate interfaces:
+
+* **Source data tables** This is similar to spreadsheets such as Excel.
+* **Data generation script** We write imperative code to loop over the source data and insert data into a database. This is similar to the builder pattern in Java. This code is reran whenever source data or the generation code is changed and differences are detected and reconciled. This is similar to sourcecode basis for generating or manipulating data. 
+* **SQL scripts** We write SQL queries to fetch data that satisfies some condition.
+* **Relationships GUI** We render the relationships as an object graph such as an UML entity diagram.
+* **Actor Behaviour** Each record is an object is a process that has an inbox and outbox. We write reactive `for loops` that loop over SQL result sets and use object orientated message passing to manage behaviour between objects. This allows the system to be spread across machines and multithreaded.
+* 
+
+
+
+
+Given a context, we want to send messages to other objects to change their behaviour or create relationships.
+
+I want to see all incoming relationships between objects.
+
+Complicated diagrams are hard to understand due to ordering problems. It's difficult to see the order of the diagram, it needs to be followed.
+
+
+
+# 230. GUIs where there is ongoing operations
+
 
 
 # incomplete ideas
