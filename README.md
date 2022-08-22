@@ -3885,16 +3885,32 @@ This diagram shows how this could look. There is a set of connections that are i
 
 
 
-# 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, loops methods
+# 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, looping over methods
 
-Writing a multithreaded multisocket server that listens to multiple sockets should be as simple as writing the following:
+We can be inspired by methods being message passing.
+
+Imagine if writing a multithreaded multisocket server that listens to multiple sockets in parallel being easy? The following code:
+
+ * Creates 5 number `recv` and 5 `send` worker threads.
+ * When the `recv` socket receives a message, it communicates with the `send` worker thread to send a message to all the connected sockets.
+ * When a connection is created, a message is sent to both the recv and send threads. Which then set up loops for processing messages sent or received.
+ * Loops communicate by communicating by method calls. Method calls are pseudo messages that receive arguments.
+ * An example of easier multithreaded multisocket programming.
 
 ```
 loops = []
 thread_count = 5
 connected_sockets = []
+send_servers = []
 schedule {
- 
+ for (int i = 0 ; i < thread_count; i++) {
+   for message in connect(socket, socketno):
+     send_server = for message in send(socketno, buf):
+           for send_server in send_servers:
+              for send_server in server:
+                 send(socketno, buf)
+     send_servers.append(send_server)
+ }
  for (int i = 0 ; i < thread_count; i++) {
    loops.append {
      per_thread_sockets = []
@@ -3904,11 +3920,7 @@ schedule {
          receive_server = for message in recv(socketno, buf, 1024):
             for listener in all_sockets
                send_servers.send(socketno, buf)
-         send_server = for message in send(socketno, buf):
-           for send_server in send_servers:
-              for send_server in server:
-                 send(socketno, buf)
-         send_servers.append(send_server)
+         
        }
        
    }
@@ -3921,9 +3933,9 @@ for connection in listener.accept() {
 }
 ```
 
-Loops can be servers. If we treat each loop as separate process and a server simultaneously, we can send events to loops and they can be picked up in freedom of that loop. We can build software that scales with this pattern.
+Loops can be servers. If we treat each loop as separate process and a server simultaneously, we can send events to loops and they can be picked up in freedom of that loop. We can build software that scales on multicore systems and across processes.
 
-Second, we can have a loop that is buffered and ticked and allows multiple events to be queued at a time.
+Second, we can have a loop that is buffered and ticked and allows multiple events to be queued at a time for complex event processing.
 
 In golang and occam-pi, we can use a `select` statement to direct behaviour from a communicating process over a channel.
 
