@@ -3971,6 +3971,8 @@ The Two Generals Problem means that distributed atomicity is difficult due to th
 
 # 207. Internet scale system
 
+What if every system was built from foundations that were scalable by default?
+
 # 208. Repetitive errors
 
 It seems every local development environment suffers from the same kinds or classes of errors.
@@ -3988,11 +3990,15 @@ Logical idempotence and steady state. Impossible scenarios cannot occur.
 
 Most of the time our computers are idle and we need all work to be done at request time.
 
-This puts the pressure to produce a fast result at the time of request time. But we have 99.999999% of time available to do things before the request.
+This puts the extreme pressure to produce a fast result at request time. But we have 99.999999% of time available to do things before the request.
 
-What if we anticipated what requests would be made for the data we do have and use CPU and storage power to predict what shall happen next.
+Can we use trade time to speed up request time? What can we do to speed up data retrieval?
 
-Caching is a partial solution to this problem.
+What if we anticipated every possible request would be made for the data we do have and use CPU and storage capacity to predict what shall happen next.
+
+When there is no requests going on, the database should be analysing the data and shifting the data around to create truly fast data retrieval patterns.
+
+Caching is a partial solution to this problem. I think many indexes are the answer.
 
 We have a large amount of time resources to arrange things so that processing is extremely rapid.
 
@@ -4066,6 +4072,10 @@ If we represent our software as a state machine, there are cases which fail the 
  * Anything that relies on the file system, locations and presence or existing state is a recipe for error.
 
 # 214. API virtual machine
+
+What if all callsites were actually VMs? You could centrally manage every callsite by distributing bytecode to running software to deliver callsite patches.
+
+In this manner, an API call is actually a record in a database, which is actually a program.
 
 # 215. Backend browser
 
@@ -4343,31 +4353,29 @@ Blitting bitmaps into a structure is something can be effectively described and 
 
 There is a visual piece of software needed for wiring up structures and creating relations between things.
 
-What I want is an visual software linking objects and behaviours together. When I use terraform, I define resources. When I use a file explorer, I manage files. When I use AWS Console I manage cloud infrastructure. But there is not much visual software to manage relationships between arbitrary things and manage behaviours between them.
+What I want is an visual software linking objects and behaviours together. When I use terraform, I define resources I also link objects together with text. When I use a file explorer, I manage files. When I use AWS Console I manage cloud infrastructure. But there is not much visual software to manage relationships between arbitrary things and manage behaviours between them.
 
 This tool would have 4 separate interfaces:
 
 * **Source data tables** This is similar to spreadsheets such as Excel.
 * **Data generation script** We write imperative code to loop over the source data and insert data into a database. This is similar to the builder pattern in Java. This code is reran whenever source data or the generation code is changed and differences are detected and reconciled. This is similar to sourcecode basis for generating or manipulating data. The lineage  from source data record to database record is maintained.
 * **SQL scripts** We write SQL queries to fetch data that satisfies some condition.
-* **Relationships GUI** We render the relationships as an object graph such as an UML entity diagram.
+* **Relationships GUI** We render the relationships as an object graph such as an UML entity diagram. It should be possible to edit this diagram and create new records from this GUI visual graph interface directly.
 * **Actor Behaviour** Each record is an object is a process that has an inbox and outbox. We write reactive `for loops` that loop over SQL result sets and use object orientated message passing to manage behaviour between objects. This allows the system to be spread across machines and multithreaded.
-* 
-
-
-
 
 Given a context, we want to send messages to other objects to change their behaviour or create relationships.
 
 I want to see all incoming relationships between objects.
 
-Complicated diagrams are hard to understand due to ordering problems. It's difficult to see the order of the diagram, it needs to be followed.
+Complicated diagrams are hard to understand due to ordering problems. It's difficult to see the order of the diagram, it needs to be followed in order for total understanding.
 
 
 
 # 230. GUIs where there is ongoing operations
 
+The GUI from a real time strategy game is useful as you can see units on the screen working toward goals. And the GUI from The Sims is useful as you can queue up actions for your sim character.
 
+Could this approach be used to coordinate computers and GUIs themselves? Can we design a GUI by telling data to go into a widget? Can we tell different parts of the screen to coordinate it?
 
 # incomplete ideas
 
