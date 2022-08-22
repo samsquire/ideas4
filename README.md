@@ -3885,9 +3885,47 @@ This diagram shows how this could look. There is a set of connections that are i
 
 
 
-# 197. For loop servers
+# 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, loops methods
 
+Writing a multithreaded multisocket server that listens to multiple sockets should be as simple as writing the following:
 
+```
+loops = []
+thread_count = 5
+connected_sockets = []
+schedule {
+ 
+ for (int i = 0 ; i < thread_count; i++) {
+   loops.append {
+     per_thread_sockets = []
+     for message in connect(socket, socketno):
+       schedule {
+         per_thread_sockets.append(socket)
+         receive_server = for message in recv(socketno, buf, 1024):
+            for listener in all_sockets
+               send_servers.send(socketno, buf)
+         send_server = for message in send(socketno, buf):
+           for send_server in send_servers:
+              for send_server in server:
+                 send(socketno, buf)
+         send_servers.append(send_server)
+       }
+       
+   }
+ } 
+}
+next_server = 0
+for connection in listener.accept() {
+  loops[next_server].connect(connection)
+  next_server = (next_server + 1) % thread_count
+}
+```
+
+Loops can be servers. If we treat each loop as separate process and a server simultaneously, we can send events to loops and they can be picked up in freedom of that loop. We can build software that scales with this pattern.
+
+Second, we can have a loop that is buffered and ticked and allows multiple events to be queued at a time.
+
+In golang and occam-pi, we can use a `select` statement to direct behaviour from a communicating process over a channel.
 
 # 198. Sharding framework
 
@@ -4376,6 +4414,8 @@ Complicated diagrams are hard to understand due to ordering problems. It's diffi
 The GUI from a real time strategy game is useful as you can see units on the screen working toward goals. And the GUI from The Sims is useful as you can queue up actions for your sim character.
 
 Could this approach be used to coordinate computers and GUIs themselves? Can we design a GUI by telling data to go into a widget? Can we tell different parts of the screen to coordinate it?
+
+# 231. 
 
 # incomplete ideas
 
