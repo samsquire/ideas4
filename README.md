@@ -3887,9 +3887,9 @@ This diagram shows how this could look. There is a set of connections that are i
 
 # 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, looping over methods
 
-We can be inspired by methods being message passing.
+This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
-Imagine if writing a multithreaded multisocket server that listens to multiple sockets in parallel being easy? The following code:
+Imagine if writing a multithreaded multisocket server that listens to multiple sockets in parallel was easy? The following example code:
 
  * Creates 10 socket handling threads which are 5 `recv` worker threads and 5 `send` worker threads.
  * When the `recv` socket receives a message, it communicates with the `send` worker thread to send a message to all the connected sockets.
