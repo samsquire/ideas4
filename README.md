@@ -3889,6 +3889,17 @@ This diagram shows how this could look. There is a set of connections that are i
 
 This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
+Imagine if the following code was seamlessly spread between multiple cores or even network machines:
+
+```
+schedule {
+  loop1 = for item in recv(socket, buf):
+     for item in send(arg1, arg2):
+  loop2 = for item in records:
+     send(item)
+}
+```
+
 Imagine if writing a multithreaded multisocket server that listens to multiple sockets in parallel was easy? The following example code:
 
  * Creates 10 socket handling threads which are 5 `recv` worker threads and 5 `send` worker threads.
