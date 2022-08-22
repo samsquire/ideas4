@@ -4348,7 +4348,7 @@ What I want is an visual software linking objects and behaviours together. When 
 This tool would have 4 separate interfaces:
 
 * **Source data tables** This is similar to spreadsheets such as Excel.
-* **Data generation script** We write imperative code to loop over the source data and insert data into a database. This is similar to the builder pattern in Java. This code is reran whenever source data or the generation code is changed and differences are detected and reconciled. This is similar to sourcecode basis for generating or manipulating data. 
+* **Data generation script** We write imperative code to loop over the source data and insert data into a database. This is similar to the builder pattern in Java. This code is reran whenever source data or the generation code is changed and differences are detected and reconciled. This is similar to sourcecode basis for generating or manipulating data. The lineage  from source data record to database record is maintained.
 * **SQL scripts** We write SQL queries to fetch data that satisfies some condition.
 * **Relationships GUI** We render the relationships as an object graph such as an UML entity diagram.
 * **Actor Behaviour** Each record is an object is a process that has an inbox and outbox. We write reactive `for loops` that loop over SQL result sets and use object orientated message passing to manage behaviour between objects. This allows the system to be spread across machines and multithreaded.
