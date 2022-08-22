@@ -3889,7 +3889,7 @@ This diagram shows how this could look. There is a set of connections that are i
 
 Loops can be servers. This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
-Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang. Imagine if each loop was schedulable between threads automatically, similar to a goroutine or a Concurrent loop.
+Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang. Imagine if each loop was schedulable between threads automatically, similar to a goroutine or a [ideas4 # 133. Concurrent loops, loops as lightweight threads, load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops).
 
 ```
 schedule {
