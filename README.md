@@ -3887,9 +3887,9 @@ This diagram shows how this could look. There is a set of connections that are i
 
 # 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, looping over methods
 
-This idea is inspired by methods being message passing as in Ruby and Smalltalk.
+Loops can be servers. This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
-Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang.
+Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang. Imagine if each loop was schedulable between threads automatically, similar to a goroutine or a Concurrent loop.
 
 ```
 schedule {
@@ -3945,7 +3945,7 @@ for connection in listener.accept() {
 }
 ```
 
-Loops can be servers. If we treat each loop as separate process and a server simultaneously, we can send events to loops and they can be picked up in freedom of that loop. We can build software that scales on multicore systems and across processes.
+If we treat each loop as separate process and a server simultaneously, we can send events to loops and they can be picked up in freedom of that loop. We can build software that scales on multicore systems and across processes.
 
 Second, we can have a loop that is buffered and ticked and allows multiple events to be queued at a time for complex event processing.
 
