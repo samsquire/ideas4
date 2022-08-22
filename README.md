@@ -4467,6 +4467,7 @@ How to atomically update a number on the network.
  * History
  * Queue
  * Aggregation
+ * Multi
 
 
 
