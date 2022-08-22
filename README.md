@@ -4439,7 +4439,9 @@ The GUI from a real time strategy game is useful as you can see units on the scr
 
 Could this approach be used to coordinate computers and GUIs themselves? Can we design a GUI by telling data to go into a widget? Can we tell different parts of the screen to coordinate it?
 
-# 231. 
+# 231. Thread swap
+
+Synchronization and thread communication is expensive. We can swap data rather than communicate it in one direction.
 
 # incomplete ideas
 
