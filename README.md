@@ -3889,14 +3889,15 @@ This diagram shows how this could look. There is a set of connections that are i
 
 This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
-Imagine if the following code was seamlessly spread between multiple cores or even network machines:
+Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang.
 
 ```
 schedule {
-  loop1 = for item in recv(socket, buf):
-     for item in send(arg1, arg2):
+  loop1 = for item in recv(socket, buf): # socket receive
+     for item in method1(arg1, arg2):
+        send(socket, buf + arg1 + arg2) # socket send
   loop2 = for item in records:
-     send(item)
+     method1(item)
 }
 ```
 
