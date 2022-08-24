@@ -4443,6 +4443,20 @@ Could this approach be used to coordinate computers and GUIs themselves? Can we 
 
 Synchronization and thread communication is expensive. We can swap data rather than communicate it in one direction.
 
+# 232. Modifiable Projection
+
+Software has a hierarchy or graph of objects and relationships between things.
+
+A GUI projects this hierarchy to a 2d surface with widgets and lists and icons.
+
+What if we could manipulate one to manipulate the other?
+
+If I project application code as a log file, can I change the log file to change the behaviour of the application?
+
+If I project the system to a tree data structure, can I modify the tree and shift things around to change the behaviour of the underlying components that the tree is a projection of?
+
+React programs don't really allow items to be shifted around without breaking things.
+
 # incomplete ideas
 
 
