@@ -4457,6 +4457,15 @@ If I project the system to a tree data structure, can I modify the tree and shif
 
 React programs don't really allow items to be shifted around without breaking things.
 
+# 233. CPU in-thread pull
+
+# 234. Just use cgroup CPU limitation and scale up
+
+Rather than writing code that uses the CPU efficiently via blocking or locking, we use cgroups to scale CPU usage based on queue length!
+
+When a service is not busy, we use 100% of a fraction of a core, with minimal latency. When the scalability needs grows, we use more and more cores.
+
+
 # incomplete ideas
 
 
