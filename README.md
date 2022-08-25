@@ -4465,6 +4465,11 @@ Rather than writing code that uses the CPU efficiently via blocking or locking, 
 
 When a service is not busy, we use 100% of a fraction of a core, with minimal latency. When the scalability needs grows, we use more and more cores.
 
+# 235. Variable speed concurrency
+
+# 236. Parallel database
+
+Every process in in parallel to every other.
 
 # incomplete ideas
 
