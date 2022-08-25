@@ -3820,7 +3820,7 @@ When people communicate, they can act as synergistic systems that multiply the f
 
 When computers communicate, usually the system as a whole benefits but not necessarily both sides of the exchange. We can change that. We often communicate to pass control flow along the network. In other words, one server receives a request and then passes many requests to other servers for each to do processing. The communication triggers the tip of execution or control flow.
 
-Imagine an eventually consistent organisation whereby every process is in parallel to every other process. Rather than updating a STATUS field and having a rigid structure or sequence of events for a case item, we could have a STATUS field that is dependent on the state of every other thing at that moment in time.
+Imagine an eventually consistent organisation whereby every process is in parallel to every other process. Rather than updating a STATUS field and having a rigid structure or sequence of events for a case item, we could have a STATUS field that is dependent on the state of every other thing at that moment in time. (See [ideas4 # 236. Parallel database](https://github.com/samsquire/ideas4/blob/main/README.md#236-parallel-database) for more on this idea.)
 
 This field can be cached of course.
 
