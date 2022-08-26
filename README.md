@@ -4467,6 +4467,10 @@ When a service is not busy, we use 100% of a fraction of a core, with minimal la
 
 # 235. Variable speed concurrency
 
+It's far easier to reason about concurrency if you think about variable speeds. Anything can change at any time.
+
+But concurrency follows the law of causality.
+
 # 236. Parallel database
 
 Every process in in parallel to every other.
