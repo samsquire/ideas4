@@ -4469,6 +4469,9 @@ When a service is not busy, we use 100% of a fraction of a core, with minimal la
 
 It's far easier to reason about concurrency if you think about variable speeds. Anything can change at any time.
 
+![concurrency](https://user-images.githubusercontent.com/1983701/187071304-e800b2a3-612a-4606-9755-b5aadeaf4a86.png)
+
+
 But concurrency follows the law of causality.
 
 # 236. Parallel database
@@ -4478,6 +4481,16 @@ Every process in in parallel to every other.
 # 237. Search by data structure
 
 # 238. Search data structures
+
+# 239. Static loop split
+
+I wrote a model checker for my parallel communicating threads algorithm. It's very simple, it simply tries every interleaving to see if the behaviour would be correct with that interleaving.
+
+Now this algorithm of the model checker isn't very efficient. I would like to statically analyse the code of all the loops and divide the loops and parallelise the code.
+
+
+
+
 
 # incomplete ideas
 
