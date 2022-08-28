@@ -4510,9 +4510,13 @@ The work tree itself can be a group of threads. You send messages to rotate left
 
 ![worktree](https://user-images.githubusercontent.com/1983701/187074147-5ada41bd-9332-4a34-b558-99037d43644b.png)
 
+These work queue threads may or not use locks or spinlocks, it depends on the rate that new work is added to the system.
+
 # 242. Thoughts on Latency
 
 # 243. Scalability and additional (multidirectional) arguments
+
+If I have one hierarchy of objects and introduce another level or a multiple, I add arguments to every other object and operation.
 
 # 244. The average program looks the same
 
