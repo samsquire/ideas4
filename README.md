@@ -4510,9 +4510,21 @@ The work tree itself can be a group of threads. You send messages to rotate left
 
 ![worktree](https://user-images.githubusercontent.com/1983701/187074147-5ada41bd-9332-4a34-b558-99037d43644b.png)
 
+# 242. Thoughts on Latency
 
+# 243. Scalability and additional (multidirectional) arguments
 
+# 244. The average program looks the same
 
+I think most programs probably look the same at the instruction level and the memory access pattern level, we can visualize the access patterns of memory as a cursor on a 2dimensional chart.
+
+We can use multidimensions to visualise the access patterns of the program. Then run an algorithm to arrange them near together.
+
+Can we plan and arrange things so that what we need is always available to us? In constant time?
+
+A state machine with a spatial map surrounding that state for each state.
+
+Serialization ordering of the memory access pattern.
 
 
 # incomplete ideas
