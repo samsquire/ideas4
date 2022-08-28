@@ -4488,6 +4488,29 @@ I wrote a model checker for my parallel communicating threads algorithm. It's ve
 
 Now this algorithm of the model checker isn't very efficient. I would like to statically analyse the code of all the loops and divide the loops and parallelise the code.
 
+# 240. Looping and modifying over collections in parallel
+
+Reading a collection shouldn't block writing threads or other reading threads, for maximum scalability.
+
+If we look at binpacking work to time, we know how the ideal schedule looks: complete usage of resources and little downtime.
+
+# 241. Work distribution to multiple threads
+
+If work is global, we need some way of distributing work to threads and synchronizing on the claim of work. If state is global, this is perfect. But it needs to be mutable to indicate ownership. We want threads to pick up work when they are ready. We might want to keep work sorted in a tree. A scheduling thread doesn't scale (look at Kubernetes for an example), every thread can do its own scheduling, but we have some shared state to maintain.
+
+We also want load balancing, so we can have work stealing/helping.
+
+Each piece of published work can be a collection of worker thread in itself that other threads communicate with that represent ownership. We can use the communication primitive! This allows global work state to be scalable. How do we balance the tree of work threads? That can be a separate thread as well! It can move around the structure using left right concurrency control, so readers can still read it in parallel to see old state. It can receive balancing requests from other threads when work is taken.
+
+The communication event can also decide whether or not the sending thread can accept the work, the work representation thread stores the owner of the thread. This is all public and visible to every thread.
+
+How to scale the balancing requests? Each branch can be its own thread that adds or removes children.
+
+The work tree itself can be a group of threads. You send messages to rotate left or rotate right.
+
+![worktree](https://user-images.githubusercontent.com/1983701/187074147-5ada41bd-9332-4a34-b558-99037d43644b.png)
+
+
 
 
 
