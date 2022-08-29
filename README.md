@@ -619,9 +619,15 @@ This would sacrifice CPU for memory latency as you fetch N keys from the btree a
 
 I think it's related to a fractal tree.
 
-# 39. Data structure mapping studio
+# 39. Data structure and mapping studio
 
 I read the Rpython documentation and it talks about the compiler's internal data structures to lower code into something the computer could understand.
+
+There's a website called Godbolt Compiler Explorer which shows you the assembly output of code produced by each selected compiler. This is awesome.
+
+I want to go a step further. The compiler or software should expose every pipeline step in processing as seen in [ideas # 42 Context as an explorable web: What can I use?](https://github.com/samsquire/ideas#42-context-as-an-explorable-web-what-can-i-use)
+
+Compilers, browsers and database servers should be publishing their internal data models and showing what the data graph looks like inside themselves at all stages of processing. So like compiler explorer I can see the internal model of the application.
 
 I also work with many devops tools that use YAML.
 
@@ -631,7 +637,6 @@ For example, each DevOps tool has some JSON or YAML that means something signifi
 
 All these representations should be built on top of eachother. I should be capable of interacting with mapping as if it the real thing. In other words, each mapping field corresponds to the real thing.
 
-Compilers, browsers and database servers should be publishing their internal data models and showing what the data graph looks like inside themselves at all stages of processing. So like compiler explorer I can see the internal model of the application.
 
 People could then learn how complicated programs work and even compose new behaviour on these data models.
 
@@ -4518,7 +4523,7 @@ These work queue threads may or not use locks or spinlocks, it depends on the ra
 
 If I have one hierarchy of objects and introduce another level or a multiple, I add arguments to every other object and operation.
 
-# 244. The average program looks the same
+# 244. The average program looks the same and program visualization
 
 I think most programs probably look the same at the instruction level and the memory access pattern level, we can visualize the access patterns of memory as a cursor on a 2dimensional chart.
 
@@ -4529,6 +4534,21 @@ Can we plan and arrange things so that what we need is always available to us? I
 A state machine with a spatial map surrounding that state for each state.
 
 Serialization ordering of the memory access pattern.
+
+# 245. Multiwork
+
+# 246. Statically generated frontend GUI framwork
+
+Which is easier?
+
+* Managing a stateful application with widgets and dataviews, grids, such as an IDE, spreadsheet software or word processor.
+* Re-rendering an entire scenegraph on each change - see React and the web
+
+What if we just generate every page separately, such as similar to a statically generated website?
+We could even do it lazily.
+
+# 247. Equivalencies
+
 
 
 # incomplete ideas
