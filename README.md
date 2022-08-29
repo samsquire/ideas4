@@ -4553,18 +4553,20 @@ We could even do it lazily. We can cache the previous screen and keep it in memo
 
 In the game Transport Tycoon and OpenTTD you can click an object and a window pops up with a portal to a game object moving around the screen. This is extremely powerful metaphor. I think IDEs should work similar to this.
 
+We can display anything in a window. Why aren't computer interfaces more adventurous?
+
 Imagine creating portals into pieces of code and watching them evaluate - from their perspective.
 
 # 249. Fragmented graph scrolling
 
-The problem with complicated visual graph editors is that they go off the screen and scrollbars are awkward, what we want to do is separate a graph into a screenful of components and enable them to be scrollable, vertically.
+The problem with complicated visual graph editors is that they go off the screen and scrollbars are awkward, what we want to do is separate a graph into a screenful of components and enable them to be scrollable, vertically and to be understandable without missing any part of the graph.
 
 So we can look at extremely large graphs by scrolling linearly through them. This implies a graph order and common labels.
 
 
 # 250. IDEs are kind of underpowered
 
-IDEs integrate source editing, file switching and task running. But they give no visibility!
+IDEs integrate source editing, file switching and task running. But they give no visibility to running code, except through an integrated debugger. Which is slow!
 
 # incomplete ideas
 
