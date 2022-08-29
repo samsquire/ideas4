@@ -4568,6 +4568,14 @@ So we can look at extremely large graphs by scrolling linearly through them. Thi
 
 IDEs integrate source editing, file switching and task running. But they give no visibility to running code, except through an integrated debugger. Which is slow!
 
+# 251. Rich component graphics
+
+My computer or mobile phone system control panel could show me a 3D render of all my components and their specifications.
+
+# 252. Code movement
+
+When code is embedded somewhere, it is difficult to move. I want a powerful refactoring that lets me move everything and pass the globals or context in.
+
 # incomplete ideas
 
 
