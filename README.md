@@ -4549,7 +4549,7 @@ We could even do it lazily. We can cache the previous screen and keep it in memo
 
 # 247. Equivalencies
 
-# 248. GUI portlets and how windows are underpowered
+# 248. GUI portlets and how we can project anything onto 2d space
 
 In the game Transport Tycoon and OpenTTD you can click an object and a window pops up with a portal to a game object moving around the screen. This is extremely powerful metaphor. I think IDEs should work similar to this.
 
