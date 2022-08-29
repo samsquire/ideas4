@@ -4549,7 +4549,13 @@ We could even do it lazily.
 
 # 247. Equivalencies
 
+# 248. GUI portlets
 
+In the game Transport Tycoon and OpenTTD you can create a window with a portal to a game object moving around the screen. This is extremely powerful metaphor. I think IDEs should work similar to this.
+
+Imagine creating portals into pieces of code and watching them evaluate.
+
+# 249. 
 
 # incomplete ideas
 
