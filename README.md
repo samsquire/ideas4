@@ -4544,18 +4544,27 @@ Which is easier?
 * Managing a stateful application with widgets and dataviews, grids, such as an IDE, spreadsheet software or word processor.
 * Re-rendering an entire scenegraph on each change - see React and the web
 
-What if we just generate every page separately, such as similar to a statically generated website?
-We could even do it lazily.
+What if we just generate every GUI screen separately, such as similar to a statically generated website?
+We could even do it lazily. We can cache the previous screen and keep it in memory before rerendering it.
 
 # 247. Equivalencies
 
-# 248. GUI portlets
+# 248. GUI portlets and how windows are underpowered
 
-In the game Transport Tycoon and OpenTTD you can create a window with a portal to a game object moving around the screen. This is extremely powerful metaphor. I think IDEs should work similar to this.
+In the game Transport Tycoon and OpenTTD you can click an object and a window pops up with a portal to a game object moving around the screen. This is extremely powerful metaphor. I think IDEs should work similar to this.
 
-Imagine creating portals into pieces of code and watching them evaluate.
+Imagine creating portals into pieces of code and watching them evaluate - from their perspective.
 
-# 249. 
+# 249. Fragmented graph scrolling
+
+The problem with complicated visual graph editors is that they go off the screen and scrollbars are awkward, what we want to do is separate a graph into a screenful of components and enable them to be scrollable, vertically.
+
+So we can look at extremely large graphs by scrolling linearly through them. This implies a graph order and common labels.
+
+
+# 250. IDEs are kind of underpowered
+
+IDEs integrate source editing, file switching and task running. But they give no visibility!
 
 # incomplete ideas
 
