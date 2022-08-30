@@ -4576,9 +4576,11 @@ My computer or mobile phone system control panel could show me a 3D render of al
 
 When code is embedded somewhere, it is difficult to move. I want a powerful refactoring that lets me move everything and pass the globals or context in.
 
-# 253. Modern software towers of Structures and asbtractions obstruct the understanding and optimisation of underlying calculation ordering
+# 253. Modern software towers of complicated Structures and asbtractions obstruct the understanding and optimisation of underlying calculation ordering, understandability and optimisability of software
 
-If most code arranges data from a source state to an output state, the calculation that actually goes on is a simple addition, addition, subtraction or movement in a loop. Programming languages create difficult to understand structures that are intractable for easy understanding.
+Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary ordering of operations, parallelism and expandable hierarchies are elements of the same underlying problem to do with finite space and reactivity to change, at the righ time. Often they are cross cutting concerns and implemented as such.
+
+If most code arranges data from a source state to an output state, the calculation that actually goes on is a simple addition, addition, subtraction or movement in a loop. Programming languages create difficult to understand structures that are intractable for easy understanding due to interactions between different components.
 
 # 254. Latency model
 
