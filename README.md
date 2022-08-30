@@ -4578,7 +4578,9 @@ When code is embedded somewhere, it is difficult to move. I want a powerful refa
 
 # 253. Modern software towers of complicated Structures and asbtractions obstruct the understanding and optimisation of underlying calculation ordering, understandability and optimisability of software
 
-Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary ordering of operations, parallelism and expandable hierarchies are elements of the same underlying problem to do with finite space and reactivity to change, at the righ time. Often they are cross cutting concerns and implemented as such.
+Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary ordering of operations, parallelism and expandable hierarchies at runtime are elements of the same underlying problem to do with finite space, placement and reactivity to change, at the right time. Often they are cross cutting concerns and implemented as such.
+
+How do you change something while it is running?
 
 If most code arranges data from a source state to an output state, the calculation that actually goes on is a simple addition, addition, subtraction or movement in a loop. Programming languages create difficult to understand structures that are intractable for easy understanding due to interactions between different components.
 
