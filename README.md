@@ -4620,6 +4620,10 @@ We want the freedom to define whether or not an object is inside or outside the 
 
 Does every system do the same things?
 
+# 259. The Standard Deployment procedure
+
+Blue/green deployment by default. Rollbacks.
+
 # incomplete ideas
 
 
