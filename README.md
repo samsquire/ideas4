@@ -3739,6 +3739,8 @@ We can duplicate all our data that we join by storing it on separate servers tha
 
 When I look at the evolution of computing over time, the abstractions we had didn't work properly or weren't powerful enough so we invented something new. Especially for network and distributed system scale computing systems.
 
+We spend a lot of time bouncing through structures to actually get the CPU to do things we want it to do.
+
 For example, we invented operating systems to manage parallel execution of programs on hardware first through cooperative scheduling then preemptive scheduling. We introduced processes and threads. Then we created virtual machines. Then we created systemd. Then we created containers. Then we created kubernetes.
 
 It seems the abstraction of deciding what to run on a computer and when that we have doesn't work completely. Especially when we have multiple devices and distributed systems.
@@ -4580,13 +4582,43 @@ When code is embedded somewhere, it is difficult to move. I want a powerful refa
 
 Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary ordering of operations, parallelism and expandable hierarchies at runtime are elements of the same underlying problem to do with finite space, placement and reactivity to change, at the right time. Often they are cross cutting concerns and implemented as such.
 
+Think of USB device behaviour and bluetooth pairing behaviour. It doesn't always work.
+
+What is placed where decides what gets executed.
+
 How do you change something while it is running?
 
 If most code arranges data from a source state to an output state, the calculation that actually goes on is a simple addition, addition, subtraction or movement in a loop. Programming languages create difficult to understand structures that are intractable for easy understanding due to interactions between different components.
 
+When you move code around, suddenly you have all sorts of things to worry about, such as state and orderings.
+
 # 254. Latency model
 
 # 254. Abundance of Single threaded code
+
+# 255. Request handles
+
+For structure simplicity, when we issue a call to an object or component, we also register events on interactions that affect that interaction, for dynamically reacting to change.
+
+# 256. Expandable hierarchies
+
+You start with 1, then you introduce many, then you introduce another object and there's a new interaction between that object and every other object. We can use message passing to configure objects.
+
+When specifications messages. These are code that should detect when something is to be done and react to it.
+
+```
+when(usb.devices.pluggedIn).do {
+  
+}
+```
+
+# 257. Inside, outside behaviours
+
+We want the freedom to define whether or not an object is inside or outside the behaviour of another object.
+
+# 258. The Core program
+
+Does every system do the same things?
 
 # incomplete ideas
 
