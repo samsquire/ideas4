@@ -4600,7 +4600,7 @@ When you move code around, suddenly you have all sorts of things to worry about,
 
 For structure simplicity, when we issue a call to an object or component, we also register events on interactions that affect that interaction, for dynamically reacting to change.
 
-# 256. Expandable hierarchies
+# 256. Expandable hierarchies, growing from one to arbitrary many items and arbitrary configurations of objects
 
 You start with 1, then you introduce many, then you introduce another object and there's a new interaction between that object and every other object. We can use message passing to configure objects.
 
