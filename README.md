@@ -4607,7 +4607,10 @@ You start with 1, then you introduce many, then you introduce another object and
 When specifications messages. These are code that should detect when something is to be done and react to it.
 
 ```
-when(usb.devices.pluggedIn).do {
+when {
+usb_device.plugged_in()
+power_level < 30
+}.do {
   
 }
 ```
