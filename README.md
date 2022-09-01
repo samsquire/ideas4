@@ -4617,6 +4617,8 @@ power_level < 30
 
 How to implement this behaviour in a data driven approach and be efficient?
 
+Stream processing, pattern matching and the expression problem solution
+
 # 257. Inside, outside behaviours
 
 We want the freedom to define whether or not an object is inside or outside the behaviour of another object.
