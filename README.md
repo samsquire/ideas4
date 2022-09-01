@@ -4604,7 +4604,9 @@ For structure simplicity, when we issue a call to an object or component, we als
 
 You start with 1, then you introduce many, then you introduce another object and there's a new interaction between that object and every other object. We can use message passing to configure objects.
 
-When specifications messages. These are code that should detect when something is to be done and react to it.
+`When specifications` messages. These are code that should detect when something is to be done and react to it.
+
+When all the facts are true, execute the associated code. This can be when a series of messages are received.
 
 ```
 when {
@@ -4615,7 +4617,7 @@ power_level < 30
 }
 ```
 
-How to implement this behaviour in a data driven approach and be efficient?
+How to implement this behaviour in a data driven approach and be efficient? It can detect all the places where the code must be inserted.
 
 Stream processing, pattern matching and the expression problem solution
 
