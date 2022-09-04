@@ -4196,7 +4196,7 @@ We can solve the expression problem with nested multidimensional matrixes and ne
 
 ![expressionproblem](https://user-images.githubusercontent.com/1983701/185339644-64c60980-8725-4159-9eb6-b64bbeef464f.png)
 
-I think the expression problem is an extremely interesting far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
+I think the expression problem is an extremely fascinating far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
 
 The expression problem put simply: "what do we do (next) (operation) given a case (data)".
 
@@ -4580,7 +4580,7 @@ When code is embedded somewhere, it is difficult to move. I want a powerful refa
 
 # 253. Modern software towers of complicated Structures and asbtractions obstruct the understanding and optimisation of underlying calculation ordering, understandability and optimisability of software
 
-Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary ordering of operations, parallelism and expandable hierarchies at runtime are elements of the same underlying problem to do with finite space, placement and reactivity to change, at the right time. Often they are cross cutting concerns and implemented as such.
+Memory management, lifetimes, immutability, garbage collection, mutability, plug and play, data structure growing, hot plugging and arbitrary (re) and out of ordering of operations, parallelism and expandable hierarchies at runtime are elements of the same underlying problem to do with finite space, placement and reactivity to change, at the right time. Often they are cross cutting concerns and implemented as such.
 
 Think of USB device behaviour and bluetooth pairing behaviour. It doesn't always work.
 
@@ -4602,16 +4602,32 @@ For structure simplicity, when we issue a call to an object or component, we als
 
 # 256. Expandable hierarchies, growing from one to arbitrary many items and arbitrary configurations of objects
 
-You start with 1, then you introduce many, then you introduce another object and there's a new interaction between that object and every other object. We can use message passing to configure objects.
+I want to solve the mutability of object structures, that is reactive to new object hierarchies.
 
-`When specifications` messages. These are code that should detect when something is to be done and react to it.
+You start with 1, then you introduce one-to-many, then you introduce another kind of object and there's a new interaction between that object and every other object. You may end up going many-to-many.
+
+ * How to handle USB devices being added/removed at runtime
+ * Bluetooth pairing (microphone, audio devices coming and going)
+ * Users connecting and disconnecting
+ * The lifecycle of a request, OSGI model, Java's JSR modules
+ * The relationship of [# 188. Tip of execution management](https://github.com/samsquire/ideas4#188-tip-of-execution-management)
+ * Linux networking, if up down
+ * Mounting filesystems
+
+I imagine a GUI editor that lets me see the hierarchy as it is at this time, and introduce splits to the existing structure.
+
+
+
+We can use message passing to configure objects and trigger object behaviour.
+
+`When specifications` are how we link object communication together. These are rules that should detect when something is to be done and react to it.
 
 When all the facts are true, execute the associated code. This can be when a series of messages are received.
 
 ```
 when {
-usb_device.plugged_in()
-power_level < 30
+    usb_device.plugged_in()
+    power_level < 30
 }.do {
   
 }
@@ -4621,9 +4637,11 @@ How to implement this behaviour in a data driven approach and be efficient? It c
 
 Stream processing, pattern matching and the expression problem solution
 
+Code Migrations
+
 # 257. Inside, outside behaviours
 
-We want the freedom to define whether or not an object is inside or outside the behaviour of another object.
+We want the freedom to define whether an object is inside or outside the behaviour of another object.
 
 # 258. The Core program
 
@@ -4632,6 +4650,50 @@ Does every system do the same things?
 # 259. The Standard Deployment procedure
 
 Blue/green deployment by default. Rollbacks.
+
+# 260. Virtual interrupts and Operating system in a programming language
+
+Lots of the ideas in this ideas document could be combined to create a model of programming that represents a runtime for loops, processes, threads and the next step is interrupts.
+
+
+
+# 261. Subthreads
+
+We kind of want threads to be doing two things at once! But they can only do one thing at once!
+
+I implemented this pattern in my parallel actors multithreaded system.
+
+Threads effectively share inboxes, so the threads process the same inbox of work. The inbox item is garbage collected with an AtomicInteger.
+
+# 262. We need thread safe iterators
+
+In my multiversion-concurrency-control repository, I designed a parallel actor communication system that has thread safe iterators.
+
+This allows over 1010000 items to be communicated at 1.1 billion iterations per second across 1100 threads. By comparison I can iterate a billion items in 2 seconds as a single process, not in a multithreaded context. Computers are fast. 
+
+# 263. Pregenerate customer data for each person on earth
+
+# 264. Decision widget feed
+
+When you dismiss a widget that asks something, that question should be persistested to a feed.
+
+# 265. Robust integrations
+
+When gluing code together from the shell, error handling usually falls by the wayside, and things don't really work properly. There is no robustness.
+
+# 266. Fast links
+
+# 267. Usually small critical details limit performance
+
+# 268. A pattern for parallelizing nested loops
+
+# 269. Multiproblem space projection
+
+A file system, malloc, an btree, a parallelization approach all have solutions. What if we could represent the problem in a generic projection and then map similar problems to the same solution?
+
+File system is similar to a binpacking or layout problem. A btree has a clause that "only this many items can exist at a certain level" and "this visual rotation operation is how you balance a tree".
+
+
 
 # incomplete ideas
 
