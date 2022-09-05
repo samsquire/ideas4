@@ -4604,7 +4604,7 @@ For structure simplicity, when we issue a call to an object or component, we als
 
 I want to solve the mutability of object structures, that is reactive to new object hierarchies.
 
-You start with 1, then you introduce one-to-many, then you introduce another kind of object and there's a new interaction between that object and every other object. You may end up going many-to-many.
+You start with 1, then you introduce one-to-many, then you introduce another kind of object and there's a new interaction between that object and every other object. You may even end up going many-to-many.
 
  * How to handle USB devices being added/removed at runtime
  * Bluetooth pairing (microphone, audio devices coming and going)
@@ -4683,15 +4683,39 @@ When gluing code together from the shell, error handling usually falls by the wa
 
 # 266. Fast links
 
+Computers have a fast path from the circuitry layer, to the instruction level execution layer to the code layer.
+
+What we need is these fast links represented in programming language abstractions.
+
 # 267. Usually small critical details limit performance
 
 # 268. A pattern for parallelizing nested loops
 
 # 269. Multiproblem space projection
 
-A file system, malloc, an btree, a parallelization approach all have solutions. What if we could represent the problem in a generic projection and then map similar problems to the same solution?
+A file system, malloc, an btree, a parallelization approach all have solutions. What if we could represent the problem in a generic visual projection and then map similar visual problems to the same solution?
 
 File system is similar to a binpacking or layout problem. A btree has a clause that "only this many items can exist at a certain level" and "this visual rotation operation is how you balance a tree".
+
+Why is this useful? We can project things down to the problem solution level. If we have a 2d visual graph and relations between things, we can map things drawn onto the visual graph to the low level solution.
+
+Select what should be added
+
+# 270. Workloads optimisation
+
+# 271. Automatic Relativity
+
+# 272. Turn a manually placed objects into a tree
+
+# 273. Unlabelled graphs
+
+# 274. Generative Wiring
+
+I have threads and microservices that are wired together similar to a circuit.
+
+We can be generative of the links between things with simple lists of objects.
+
+
 
 
 
