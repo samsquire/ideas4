@@ -251,7 +251,9 @@ I think a continuation style can be used so that the provider of the data walks 
 
 So the walking of data is continuations between collaborating servers.
 
-# 14. Data scheduling and infinite tape abstraction
+# 14. Data scheduling I and infinite tape abstraction
+
+This is the first idea for data scheduling. There is another later in this document.
 
 I read somewhere that instruction selection is less of a cause of total performance of code compared with data layout. With data driven architecture we can use arrays of structures or structures of arrays for performance.
 
@@ -3326,7 +3328,7 @@ We can process data in batches. The batch size needs to be large enough to be wo
 
 Represent all the communications between functions, move servers to where they are communicating with.
 
-# 147. Intelligent shard routing and data shift
+# 147. Intelligent shard routing and data shift or data scheduling
 
 From a very high level we want data that is relevant to be stored together, so accessing it is fast.
 
@@ -4194,6 +4196,8 @@ Each queue can be served by multiple threads.
 
 We can solve the expression problem with nested multidimensional matrixes and nested named content based queries. The problems of multiple inheritance can be solved by explicitly defining cases and subcases in tables, hence tabular metaprogramming.
 
+We can use nearest neighbour search of a multidimensional structure.
+
 ![expressionproblem](https://user-images.githubusercontent.com/1983701/185339644-64c60980-8725-4159-9eb6-b64bbeef464f.png)
 
 I think the expression problem is an extremely fascinating far reaching problem in computer science. But I think the problem can be solved with some caveats. The main caveat I am ignoring is the extending compiled code problem. I don't care if the code needs to be recompiled.
@@ -4655,15 +4659,17 @@ Blue/green deployment by default. Rollbacks.
 
 Lots of the ideas in this ideas document could be combined to create a model of programming that represents a runtime for loops, processes, threads and the next step is interrupts.
 
+The concurrent loops could be used to implement cooperative multitasking.
 
-
-# 261. Subthreads
+# 261. High performance lock free actors and Subthreads
 
 We kind of want threads to be doing two things at once! But they can only do one thing at once!
 
 I implemented this pattern in my parallel actors multithreaded system.
 
 Threads effectively share inboxes, so the threads process the same inbox of work. The inbox item is garbage collected with an AtomicInteger.
+
+![actordesign](https://raw.githubusercontent.com/samsquire/ideas4/main/UnlabelledGraph-Page-1.drawio.png)
 
 # 262. We need thread safe iterators
 
@@ -4705,7 +4711,9 @@ Select what should be added
 
 # 271. Automatic Relativity
 
-# 272. Turn a manually placed objects into a tree
+# 272. Turn a manually positioned objects into a tree
+
+Creating React applications and scenegraphs would be easy if this were possible.
 
 # 273. Unlabelled graphs
 
@@ -4715,9 +4723,109 @@ I have threads and microservices that are wired together similar to a circuit.
 
 We can be generative of the links between things with simple lists of objects.
 
+# 275. Same as, but different in this way
+
+The problem with inheritance is that is doesn't capture this basic idea that things should essentially be the same but with a few small tweaks.
+
+When writing my layout engine I created a HLayout and VLayout class.
 
 
 
+# 276. Long lasting software
+
+# 277. Map to context
+
+If I draw a microservice diagram and draw a line from one box to another, and the line is an arrow.
+
+What context is this arrow? Is it a method call of a component to another component?
+Is it a REST call? Is it a chain of control from message queue to another service?
+
+# 278. Causality and inferred communication and communication generation and relayout, dynamic arrangement
+
+This diagrams shows the desired state of computer resource usage, we also want to enable causality to be maintained between pieces of work.
+
+![causality](https://raw.githubusercontent.com/samsquire/ideas4/main/BinpackedLoops.Causalitydrawio.png)
+
+Why isn't causality explicitly maintained in a computer system?
+
+What if we represent communication as a multidimensional adjacency graph, and each node context linked together, be it a physical or virtual link where causality must be maintained. Could we insert communication events automatically?
+
+Adding an extra wire in a processor requires the large parts of the  processor to be redesigned due to layout being a combinatorial problem. We cannot move something from here to here due to this reason, other things are in the way or there are crossings.
+
+Could communication causality be multidimensional? A global or local scheduler?
+
+How do we map causality and drive the underlying implementation?
+
+We almost need scripting capability at the end of all events to get events from a global tree.
+
+If I have the following information
+
+```
+node1	process1	thread1	lightweightthread1 loop1
+node1	process1	thread2	lightweightthread2 loop2
+node1	process1	thread3	lightweightthread3 loop3
+node2	process2	thread4	lightweightthread4 loop4
+node2	process2	thread5	lightweightthread5 loop5
+```
+
+
+
+Some of the following combinations are useful and possible:
+
+```
+send from loop1 to loop2
+send from node1 to node2
+send from thread1 to thread2
+send from thread1 to node2
+send from loop2 to thread5
+```
+
+How do loops send data to eachother?
+In Kafka we have the idea of a stream which is linked together into a topology.
+
+Loops that have no items to loop over are inactive, but when an item becomes available such as a pair, they begin looping.
+
+How do you send data to a loop that is already looping?
+If loops are tickers, they process items in batches. We can append to the next batch. Loop batches can be a lockless critical section.
+So loops can transmit data to eachother.
+
+When this is finished, do this and this and this. Local causality or remote causality?
+Why not both?
+It might be cheaper to do it in the context of the initiator.
+Mark the communication as being a callback and the thread shall send a message to the originator. This is similar to continuation passing.
+
+# 279. Thoughts on understanding compilers
+
+The code should work out how to do the right thing.
+
+Moving through memory executing instructions
+Bouncing around code executing instructions
+Types of data
+Structures
+What I'm not sure I understand: Compilers
+The language of loads, stores, additions, jumps, loops
+organising a structure into loads, stores, additions, jumps
+Graph/Tree to linear instructions
+Parallelism, raw resources available, using them all efficiently, computers should never be slow
+Arrangement causes computers to be slow
+
+Find the function that corresponds to this data (type))
+
+# 280. VLIW and parallelism
+
+# 281. Bottlenecks are solved by adding more things
+
+# 282. Scaling is all about rates, ratios for scaling
+
+This code runs in 2.3 times fast as this code, so proportionally run the code!
+
+# 283. Stretchy gravity data scalability
+
+If O notation complexity increases at a rate of the input size, we want to limit the size that is processed at any given point. So we break things up into portions.
+
+And we move things nearer to where they are needed.
+
+# 284. 
 
 # incomplete ideas
 
