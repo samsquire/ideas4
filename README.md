@@ -34,7 +34,9 @@ Society is composed of ideas, let's let everyone track the ideas they like. Idea
 
 # 3. Pick up and drop
 
-Drag and drop is too hard, especially on laptop trackpads or trackpoint. What if instead we visually pick up an item up and then drop it. There would be no need to click and hold the mouse. Copy and paste APIs are usually separate from drag and drop APIs, but they don't need to be.
+Drag and drop is too hard, especially on laptop trackpads or trackpoints. What if instead we visually pick up an item up and then drop it. There would be no need to click and hold the mouse. Copy and paste APIs are usually separate from drag and drop APIs, but they don't need to be.
+
+I would have a secondary bar, above the task bar or dock for content that is copied or cross referenced. Things that are grabbed for use.
 
 # 4. Chronological news
 
@@ -118,7 +120,7 @@ A program that reads your startup configuration and then lays out files on disk 
 
 Imagine an API as a graph and define a traversal of the API to get what you want. In other words, the types between API methods should be inferred. Imagine I want to backup my files and I want to deduplicate them, compress them and encrypt them and upload them. Each of these steps takes a type. The formation of the circuit can be automatic if the types are well defined, it's a search through a graph.
 
-# 8. Server server
+# 8. Server server and multi stream parsing
 
 Creating a performant server is difficult. The lessons from Nginx and Apache and pretty much every REST framework or mail server or IRC server or server runner such as gunicorn could be taken and combined into a generic server. This server would be super performant.
 
@@ -191,7 +193,7 @@ Here are some ideas that desktop computers could do.
 
  * **Website management** Run a web site with your desktop computer. Desktop acts like a VPS, with dynamic IP hosting, web server and database.
 
- * **Object maker** Describe the properties an object should have and have them stored in a collection. Write queries to retrieve them, sort them. Drag and drop text boxes, sliders etc to create a GUI.
+ * **Object maker** Describe the properties an object should have and have them stored in a collection. Write queries to retrieve them, sort them. Drag and drop text boxes, sliders etc to create a GUI. This is similar to Access but even more accessible, should be similar to a point and click diagram What You See iS What You Get editor
 
  * **Live tree and rich GUI editor** Every window, widget, dialogue, GUI on the screen forms part of a global tree data structure which can be used to interrogate what is on the screen and automate behaviour. Think of it as a global document object model (DOM) for the desktop but is actually a scenegraph. So every widget is accounted for. Someone can copy and paste a tree branch an create an identical but separated GUI from the root and modify it with drag and drop.
 
@@ -307,9 +309,9 @@ The pattern to iterating down a tree could be inferred.
 
 The distance function is fairly straightforward if there is a path from the current data item being evaluated or searched then the system is nearer to the goal data.
 
-# 17. Core algorithms should be written in a simple to understand language
+# 17. Core algorithms should be written in a simple-to-understand language
 
-The algorithms we depend on day-to-day should be written in a simple programming language with very little barrier to entry. I suggest things like the cost based optimiser, browser internals, databases, query optimisers and the operating system scheduler be written in languages like Python and lowered to C programming language.
+The algorithms we depend on day-to-day should be written in a simple programming language with very little barrier to entry. I suggest things like the cost based optimiser, browser internals, virtual machines, databases, query optimisers and the operating system scheduler be written in languages like Python and lowered to C programming language.
 
 Why? Memory management and low level implementation details in impoverished environments matter less than the overall "what gets done and why".
 
@@ -318,6 +320,8 @@ If compilers and optimisers were written in Python you would have more people be
 As it stands to add code to these projects you need to be seriously skilled in low level programming.
 
 Sometimes the problem is understood by the "what" rather than the "how". If developers could look at systems from a high level, they might still be capable of contributing ideas to where the "how" distracts from the "what to do". You can always describe a more efficient, more scalable more performant system by defining what is to be done differently to how the system works at the moment. We don't benefit from this property of communication when writing low level projects, as there is so much detail at the "how" level that it's hard to see the forest rather than the individual trees. You obviously need to know about both, but abstractions mean we care less about trees most of the time we use computers. For example, the proportion of assembly programmers to Javascrip developers.
+
+Pypy and Rpython is probably similar to this approach.
 
 # 18. Data structure synchronization
 
@@ -328,6 +332,8 @@ If I use [Rockset Converged Indexing](https://rockset.com/blog/converged-indexin
 I propose a simple system that tracks all instances of data and keeps them integrated. This would be used between systems and keep then in sync. It would also be used within an application server or database architecture. It would also have the feature to delay updating items before returning success. So indexes can be updated passively or even asynchronously.
 
 Denormalisation solves performance including parallelism problems as in Left Right concurrency control. We need an industry standard way to keep data in synchronisation, in memory.
+
+This needs to be combined with Multiway references
 
 # 19. Merge database
 
@@ -1961,7 +1967,7 @@ Treating one thing as if it's multiple things is extremely powerful.
 
  * Multiplex N goroutines/green threads over M threads and processes. [See my preemptible-thread repository for my implementation of this.](https://github.com/samsquire/preemptible-thread) See my [multiplexing repository](HTTPS://GitHub.com/samsquire/multiplexing) for a highly parallel event architecture
  * Multiplex traffic over a connection.
- * Multiplex memory in a an memory allocator (different pages sizes)
+ * Multiplex memory in an memory allocator (different pages sizes)
  * Multiplex DOM operations over time (React)
  * Multiplex parts of queries in a database engine (query parallelization)
  * Multiplex lines and characters in a document (Rope data structure)
@@ -1972,7 +1978,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Event loops
  * Batch processing systems that use windows
  * Locking, semaphores, mutexes multiplex the CPU
- * Scheduling, assignment problem
+ * Scheduling over time, assignment problem
  * Containerisation
  * Concurrency
  * Bit torrent
@@ -1984,6 +1990,7 @@ Treating one thing as if it's multiple things is extremely powerful.
  * Load balancing
  * Compilers multiplex instructions over time
  * Compiler registry allocation (there's a limited number of things and they need to be shuffled around)
+ * Multiplex loops (see [ideas4 # 133. Concurrent loops](https://github.com/samsquire/ideas4#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops))
 
 These problems could be solved in a profoundly effective way with the right abstraction, API and used for all cases.
 
@@ -2000,16 +2007,14 @@ The tip of execution is what is being executed at this time to multiplex we need
 
 We want to change the tip of execution between multiple things.
 
-For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in kernel/sched/core.c and switch_to in process_64.c.
+For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in `kernel/sched/core.c` and `switch_to` in `process_64.c`.
 
-Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But if we are an interpreter we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows.
-
-
-The problem with this is that you need to rewrite instructions to point to correct jump locations and branches.
+Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But if we are an interpreter we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows. [I actually wrote a userspace scheduler.](https://github.com/samsquire/preemptible-thread) With my original design, it required polymorphic code to rewrite instructions to point to correct jump locations and branches. My userspace scheduler insteads manipulates loop limit variables to interrupt threads.
 
 ```
 
 ```
+How do we visually multiplex?
 
 # 98. Virtual interrupts
 
@@ -3168,6 +3173,8 @@ The product of this looks like this:
 a1
 a÷
 ```
+
+How do we avoid the cost of checking every concurrent loop on every iteration? And minimise the cost of checking for the limit?
 
 # 134. Virtual processes and scheduling
 
@@ -4809,7 +4816,7 @@ Graph/Tree to linear instructions
 Parallelism, raw resources available, using them all efficiently, computers should never be slow
 Arrangement causes computers to be slow
 
-Find the function that corresponds to this data (type))
+Find the function that corresponds to this data (type)) also called method binding
 
 # 280. VLIW and parallelism
 
@@ -4825,7 +4832,41 @@ If O notation complexity increases at a rate of the input size, we want to limit
 
 And we move things nearer to where they are needed.
 
-# 284. 
+# 284. Happening software calendar - Agile wall with scheduled tasks on it
+
+Many organisations have scheduled operations or ingestion events, let's place them somewhere they are visible, on a GUI.
+
+# 285. Structural software diagrams
+
+# 286. Dynamic business
+
+# 287. Fast deep copy
+
+Arrange data in a contiguous block of memory which is a managed allocator that acts similar to a block file system so that copies are cheap and just contiguous memory copies.
+
+# 288. Sustainable and Resilient systems - physics applied to society
+
+How do we produce life systems that are full of energy and full of potential energy? That require minimal investment but attract maximum investment? And avoid the effects of commodification?
+
+# 289. Use artificial life simulation for scheduling data near to queries
+
+Force mass equation can be used to create complicated self sustainable behaviours that resemble life.
+
+# 290. Arrangements cause things to be understandable
+
+# 291. Immediate latency time for GUIs
+
+We can render a cursor above everything and this works reliably even when CPU capacity is being completely used.
+
+Why can't GUIs react immediately to input but delay actual work until it can be completed?
+
+Can we use virtual interrupts for this?
+
+# 292. Multiway references problem
+
+In memory we often have a requirement to refer to things multiway or bidirectionally.
+
+# 293. Every problem is shallow when the context is given
 
 # incomplete ideas
 
