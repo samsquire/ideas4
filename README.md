@@ -333,7 +333,7 @@ I propose a simple system that tracks all instances of data and keeps them integ
 
 Denormalisation solves performance including parallelism problems as in Left Right concurrency control. We need an industry standard way to keep data in synchronisation, in memory.
 
-This needs to be combined with Multiway references
+This needs to be combined with [# 292. Multiway references problem](https://github.com/samsquire/ideas4#292-multiway-references-problem)
 
 # 19. Merge database
 
@@ -398,9 +398,9 @@ The invariants that need to be maintained over the data have an ordering. You mi
 
 It comes under the same theory as query optimisation and cost based planning and Object Relational Mapping.
 
-This could be combined with [Data Views](https://github.com/samsquire/ideas#90-views-of-data).
+This could be combined with [ideas # 90. Data Views](https://github.com/samsquire/ideas#90-views-of-data).
 
-This could be combined with [Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure)
+This could be combined with [ideas4 # 9. Query for data structure](https://github.com/samsquire/ideas4/blob/main/README.md#9-query-for-data-structure)
 
 # 21. Sort group tree
 
@@ -427,6 +427,8 @@ When I write a clojure threading it's often useful to refer to the history linea
 You have an object that is going through a stream and you want each stage of the pipeline to be associated or collected with future values of that data's children.
 
 We can enrich the data structure of a record travelling through the pipeline to refer to futures or promises to the preceding records have references to the outputs of early pipeline steps.
+
+I can also refer to the future and lazily calculate stuff based on the future.
 
 ```
 (defn people-calorific-requirements []
@@ -482,9 +484,11 @@ Sometimes to change the behaviour of code we want to sort the data. Rather than 
 )
 ```
 
+Sort reject is to decide not to place the object at all.
+
 # 27. Reverse pipeline and lineage finder
 
-This would be useful for machine learning. Imagine you have a complicated pipeline. What if you could feed in data at any stage and reverse the pipeline to find objects that match your inputs?
+This would be useful for machine learning. Imagine you have a complicated pipeline. What if you could feed in data at any stage and reverse the pipeline to find input objects by their output objects?
 
 # 28. Static garbage collection
 
@@ -502,7 +506,7 @@ We can take two lists and align them into sections where they differ and where t
 
 # 30. Extending code without changing it efficiently
 
-Usually to extend code we need to change it. Or add parameters everywhere. We write methods to abstract ideas, but those methods cause code to become too complicated to change if we want to create a far reaching change.
+Usually to extend code we need to change it. Or add parameters everywhere. We write methods to abstract ideas, but those methods cause code to become too complicated to change if we want to create a far-reaching change.
 
 I think there's a better thing we can do with compilers.
 
@@ -569,9 +573,11 @@ I can also decide where to insert records based on the views that are used.
 
 # 32. Schedule within/networked fork+join
 
-The chain of code I am using to deploy cloud resources should have the capability to send code to execute as if is running in the same thread.
+The chain of code I am using to deploy cloud resources should have the capability to send code to execute as if it is running in the same thread.
 
 Essentially I can use cloud resources as a fork/join.
+
+This idea requires a common opcode to be sent over the network.
 
 # 33. A generalised paging/chunking solution
 
@@ -583,7 +589,7 @@ I was reading the PolarDb paper and it talks of the database pages used by the d
 
 I recognise that many problems are simpler when broken into pages of data. For example, memory management.
 
-We need to solve all these problems with an approach that works the same for every case. Advanced pager
+We need to solve all these problems with an approach that works the same for every case. Advanced paging.
 
 # 34. Graph to query generation and sort
 
@@ -729,9 +735,9 @@ It's easier to schedule code in advance of its execution. Imagine the CPU and th
 
 The traditional software development approach to control flow of asynchronous systems is callbacks, async/await, events, SEDA or event loops.
 
-The problem with event loops is that work blocks the main thread and you don't have parallelism unless you start multiple event loops.
+The problem with event loops is that work blocks the main thread, and you don't have parallelism unless you start multiple event loops.
 
-If we batch up work to the rthythm of a clock, we can schedule directly and avoid data race conditions and race conditions to the same data.
+If we batch up work to the rhythm of a clock, we can schedule directly and avoid data race conditions and race conditions to the same data.
 
  * Direct concurrency means scheduling in advance and driving ordering explicitly.
  * Chaining together callbacks causes complexity.
@@ -745,6 +751,7 @@ If we batch up work to the rthythm of a clock, we can schedule directly and avoi
 
 ```
 
+If we accumulate events into a batch then process them on a tick, is the latency acceptable? Each concurrent task has its own rate.
 
 # 43. When language
 
@@ -856,6 +863,8 @@ Imagine you could dictate the processing or tip of execution of another computer
 Everything is available to me.
 
 The runtime should schedule things for me and know the relationships between what runs when.
+
+This requires synchronization of timestamps for operations.
 
 # 51. Rewrite synchronous code into LMAX disruptor thread pools - event loops that don't block on CPU usage
 
@@ -1168,6 +1177,8 @@ You need a program that takes a compiler code, has an interpreter and a program 
 
 We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program.
 
+We can move things from one side to the other.
+
 We need to virtually execute the program to get callstack histories. We need to understand loops.
 
 This is useful for moving things around as in code motion for efficiency.
@@ -1202,7 +1213,7 @@ class Server {
 
 When you write a complicated program you also write an accompanying scheduler.
 
-This lets you schedule memory and asynchronous and parallelism.
+This lets you schedule memory and asynchronousity and parallelism.
 
 # 59. Automatic semver
 
@@ -1221,6 +1232,8 @@ It's a state machine.
 If you have two algorithms and the callhistory of those algorithms with the same data you can merge the algorithms together.
 
 It's a matter of matching up lines of the callstacks of each algorithm. And generating code by walking the matched callstacks.
+
+Why is this idea important? If the tip of execution is not centralised and is distributed across a system, as it typically (microservices spread decision across the system) deciding what to do next is decided by the code. We can detect inconsistencies with two services on different machines undermining eachother with their logic.
 
 # 62. Call history pattern matching
 
@@ -1487,7 +1500,7 @@ There should be a standard network protocol for registering or hooking into data
 
 This way we can solve all polling issues with a single websocket implementation.
 
-# 71. Partial order scheduler
+# 71. Partial order re-scheduling
 
 Clearly we want to run multiple threads in parallel, the problem occurs when they both want to write and read to the same data structure.
 
@@ -1618,7 +1631,7 @@ So I propose a community where a utopian scenario is created.
 * Everyone can comment on a search term and talk of it, each search term is an open forum thread for open talking of the relevance of each result.
 * Content creators can accept commissions in return for money. The created content is then publicly available for purchase.
 
-# 76. Asychronous community
+# 76. Asychronous community - the app you don't uninstall
 
 Network effects means sites don't get used unless they have things on them or other users.
 
@@ -4864,9 +4877,25 @@ Can we use virtual interrupts for this?
 
 # 292. Multiway references problem
 
-In memory we often have a requirement to refer to things multiway or bidirectionally.
+In memory we often have a requirement to refer to things multiway or bidirectionally. Then we have the problem of ordering updates to the object and parallelism if we want to change ownership.
 
 # 293. Every problem is shallow when the context is given
+
+# 294. Common Operation Opcode message
+
+If we want to send operations to other computers, we need an event object that is dynamic. This event object must match with existing operations running on the computer to be routed to the right place.
+
+This is an abstraction over RPC.
+
+In effect, every computer has a dispatch method. The code supported by that machine or registered with the dispatcher is triggered.
+
+This can also be used to solve the expression problem. This is in effect an instruction set architecture `opcode`. With pattern matching facilities. 
+
+# 295. Global state
+
+# 296. Digital life systems, systems always working
+
+
 
 # incomplete ideas
 
