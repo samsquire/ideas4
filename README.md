@@ -2774,7 +2774,13 @@ Parallel while {
 
 This idea is based on the philosophy that the tip of execution should never block and when we want to create the illusion of blocking, we use an event loop in a thread, but the progression of the program as a whole is always moving forward and progressing. The frontier of execution is always processing events.
 
-# 116. Configuration addition search
+# 116. Empty screens, configuration search
+
+My problem with text editors and IDEs is that they do not really help you build stuff that doesn't exist.
+
+The screen is empty.
+
+What if we could search based on what we have? Based on the structures of what we have?
 
 # 117. Rules for concurrency and parallelism
 
@@ -2826,6 +2832,8 @@ I propose a GUI framework that uses register loop to create full cancellation tr
 
 # 121. Spreadgrid
 
+Create objects in cells, change the dimensionality of the grid.
+
 # 122. Avenues of research
 
  * Upgrading a database is very difficult to do without downtime. I feel any new database or general software should try and solve this core problem.
@@ -2843,7 +2851,7 @@ Sometimes code can be obviously wrong and sometimes it's not.
 
 I propose a plain English syntax for referring to pointers.
 
-Referring to struct Structure name** pointers would be written as array of struct pointers.
+Referring to struct structure name** pointers would be written as array of struct pointers.
 
 # 124. Complexity reduction, Re-entrancy, tip of execution hierarchy, blocking
 
@@ -4172,6 +4180,8 @@ In this manner, an API call is actually a record in a database, which is actuall
 
 In the interests of browsing into software, wouldn't it be great if you could browse into software with a special browser and search engine that searches for available docker images and lets you browse into their GUIs?
 
+Browser that is also a compiler and distributed system.
+
 # 216. Cluster gossip protocol and node download manager
 
 Browsers and torrent software has good download GUIs that let you monitor downloads across the network.
@@ -4829,7 +4839,9 @@ Graph/Tree to linear instructions
 Parallelism, raw resources available, using them all efficiently, computers should never be slow
 Arrangement causes computers to be slow
 
-Find the function that corresponds to this data (type)) also called method binding
+Find the function that corresponds to this data (type)) also called late method binding
+
+Run time and compile time, arranging memory space ahead of time or at the last minute - deciding what to do!
 
 # 280. VLIW and parallelism
 
@@ -4893,7 +4905,113 @@ This can also be used to solve the expression problem. This is in effect an inst
 
 # 295. Global state
 
-# 296. Digital life systems, systems always working
+# 296. Digital life systems, systems always working, always work to do
+
+Can run parallel simulation and have a buffer of two items for every value. Wait for everyone status to be FINISHED_READING before swapping the items around.
+
+# 297. Parallelism
+
+The math of parallelism. If the CPU is coordinating different independent threads of execution and the CPU core is doing work for multiple things across multiple out-of-order instructions at the same time, how do you calculate latency of a task? In theory if the independent tasks never interfere with eachother, the speed should be a sum of the work to do.
+
+No communication between threads, just read the state of every thread and aggregate it.
+
+Always work
+
+# 298. Data locality and the expression problem
+
+I read [The true price of virtual functions in C++](https://johnysswlab.com/the-true-price-of-virtual-functions-in-c/) and it was very interesting.
+
+The expression problem and data locality problem is also a layout problem.
+
+# 299. Profoundly effective platform
+
+Powerful primitives
+
+# 300. It's movement/arrangement that is useful
+
+It's kind of obvious but I don't think developers or society focus enough on it. Computers are arrangement Turing machines in addition to being calculators or computers that everyone thinks of them as.
+
+There is a finite region and we want to put things into places to get what we want. Society resource allocation and manufacturing is the same problem.
+
+Why is this useful to be aware of?
+
+The arrangement part of a computer is actually more useful than the calculation itself. For example, arranging data, finding it and structured processing of calculations.
+
+Strobing through instructions IS in itself a structure or arrangement.
+
+Arranging data onto the screen so that it can be understood.
+
+Physically arranging things in physical space is an unsolved problem for efficiency. The computer executes linear instructions with jumps. We can represent structures with these linear strobes and create useful behaviours of a machine. We can think of each method or region of code as being a gear that executes at a certain speed. Sometimes the gears can run in parallel or multiplexed over time (time slicing).  
+
+We can use digital life simulations to simulate this insight.
+
+# 301. Hypergenerics
+
+Any code can operate with any other code. Can we decouple data stored with behaviour of an algorihm without generics?
+
+Associate subfields of an object with another struct or variable and the code is flexible for other usages. Any code can be compatible with any other code.
+
+Can use a file system to process and store bitmaps or arrays. slots
+
+# 302. Just recompile when late binding occurs
+
+# 302. Insert between dimensions
+
+
+# 301. Thread objects where methods are called in the context of the thread that is called
+
+# 302. Bidirectional Compiler pipeline as frontend
+
+# 303. Collection objects that support multiple types
+
+# 304. Method structure
+
+# 305. Computers are very fast
+
+# 306. Avoiding algorithmic occlusion
+
+# 307. Virtual blocking
+
+This can be used to implement # 301. Thread objects where methods are called in the context of the thread that is called
+
+# 308. Memory play area
+
+Place something in memory at a location and it has a type and a set of operations that can be executed against it.
+
+# 309. What you place shall remain there until you move it
+
+Kind of obvious but is important. State is how computers work. You can take something with you for efficiency.
+
+# 310. Placing things so things are more efficient later, different to scheduling
+
+It's not parallelism and it's not scheduling. Think of NUMA. 
+
+# 311. Mutual benefit and Conway's law
+
+# 312. Parallel types
+
+I want to be capable of using any code with any other code. Unfortunately compatibility is rigid and difficult with existing type systems.
+
+With many software, the underlying implementation fulfils a goal. Some data is arranged in a certain way and calculations are executed against it.
+
+Imagine using a load balancer to load balance instructions.
+Or Bit Torrent to schedule execution.
+Or a compositor as a browser.
+Or a compiler as a browser language engine.
+
+A memory location is more than one type at a time.
+
+Imagine creating an ArrayList and adding three types 
+
+# 313. Parallel instructioning
+
+Let's talk about the future. Instructions today, can give guide of the future events, for routing and planning for the future. 
+
+# 314. Problem sizes specification
+
+# 315. Mega JIT
+
+If every line of code is seen as being executed in parallel at once, can we optimise this idea? And pause execution of some code and resume it at the time that would be efficient for the machine?
 
 
 
