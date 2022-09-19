@@ -185,7 +185,7 @@ Here are some ideas that desktop computers could do.
 
  * **Social P2P network** My desktop should connect to a federated social network, a bit like twitter where you can share things. I can create mockups for an app in my desktop environment and share it.
 
- * **Program cross-referencer** We often run multiple applications in parallel and even arrange them so we can see both of them at the same time. What if you could write queries to open applications to combine data across two applications? Or write simple loops over Spreadsheet data and interact with the browser with an API? I should be able to write joins across programs visually.
+ * **Program cross-referencer** We often run multiple applications in parallel and even arrange them, so we can see both of them at the same time. What if you could write queries sent to open applications to combine data across two applications? Or write simple loops over Spreadsheet data and interact with the browser with an API? I should be able to write joins across programs visually.
 
  * **Display Cone** It would be nice if one could control the window manager and compositing with a text API. So one could create convert a window into a custom geometry and display that. So one could create dashboards of existing programs. This would be useful for information radiators without having to run Xmonad or other tiling window manager.
 
@@ -1173,9 +1173,9 @@ We can create a sort function that hoists data to earlier positions by being a t
 
 This is an idea on how to implement zero cost abstractions.
 
-You need a program that takes a compiler code, has an interpreter and a program and code generates the combination of three and is then used by a traditional compiler to turn into a program for runtime.
+You need a program that takes a compiler code (lexer, AST generation, bytecode generation), has an interpreter (of bytecode) and a source program and a special program that weaves the three together. It generates the combination of three and is then used by a traditional compiler to turn into a program for runtime.
 
-We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program.
+We split the problem of "compile time" and "runtime" as being the same problem to solve with respect to a source program. You insert interpreter code or compiled code at every AST node.
 
 We can move things from one side to the other.
 
@@ -4238,6 +4238,25 @@ People created web frameworks, rule engines, type systems, object orientation/cl
 
 In the real world, the corollary is bureaucracy and people falling through the cracks in society. Or healthcare. Or the tax system. Bureaucracy, healthcare and politics has new cases (or data) to apply operations too all the time, since society is complicated and complex. 
 
+How do we find the method for a data type?
+
+A simple-to-understand implementation would be assume we have a multidimensional array MethodSpec specs[][] we can lookup data type in the first dimension and operation name in the second dimension.
+
+For the power of multiple dimensions, we need a different data structure. We also have order to think of.
+
+We can create an arbitrary sized list of multidimensional arrays.
+
+```
+List<MethodSpec[][]> methodSpecs = new ArrayList<>();
+```
+
+or
+
+```
+MethodSpec[][][] methodSpecs = new MethodSpec[1000][data.length][ops.length];
+```
+
+Can we model execution by looking at the code at index 0 and jumping around to different indexes?
 
 
 In effect, we match types or properties with multiple behaviours with a matrix lookup and order the behaviours. This is like a pseudo method that is just a label around code. A plain text transformation with no requirement for a new programming language.
@@ -4250,13 +4269,14 @@ The expression problem is similar to sudoku, combinatorial, rubiks cubes problem
 
 
 
-The solution to the expresion problem can handle the following problems:
+The solution to the expression problem can handle the following problems:
 
 * **Definition of graphs/trees/object structures** The expression problem is intrinsically tied to the representation of object structures and standins or object compatibility for eachother.
 
 ![image](https://user-images.githubusercontent.com/1983701/185062227-5bc1c748-664e-46ad-8aa8-85b67f9360c6.png)
 
 * **Dynamic flexible interfaces** Interfaces in Java and Golang are rather weakly powered in terms of extensibility.
+* **Copy-from implementation**
 * **Parallelism/Concurrency** We define the **what** or behaviour with a multimultidimensional matrix. We can also define what goes on in parallel to what other things. We need to represent causality in the matrix and we can therefore render synchronization events in the multimatrix.
 * **Negotiation Protocols** If you exchange the matrix with another node, you can negotiate behaviour based on what you support, which is due to the nested matrix nature of the expression problem. You can agree on the highest or lowest matching level you support.
 * **Upgrade and seamless upgrade procedure** Upgrading software **should** be easy but it rarely is.
@@ -4310,6 +4330,8 @@ The second innovation is defining a function that defines how to compare matrixe
 Two schemas are compatible if there is no ambiguity in what should go on.
 
 I propose a virtual machine that allows the matching up of variations to other variations and allows code to be applied to them.
+
+
 
 # 220. One status line coding IDE
 
@@ -4929,19 +4951,23 @@ Powerful primitives
 
 # 300. It's movement/arrangement that is useful
 
-It's kind of obvious but I don't think developers or society focus enough on it. Computers are arrangement Turing machines in addition to being calculators or computers that everyone thinks of them as.
+The arrangement part of a computer is actually more useful than the calculation itself. For example, arranging data, finding it and structured processing of calculations. The amount of code that handles computation is tiny, the amount of code that handles data movement through methods, loops, APIs and system calls and code or algorithmic organisation is enormous.
+
+It's kind of obvious, but I don't think developers or society focus enough on it. Computers are tape arrangement Turing machines in addition to being calculators or computers that everyone thinks of them as.
 
 There is a finite region and we want to put things into places to get what we want. Society resource allocation and manufacturing is the same problem.
 
+Physically arranging things in physical space is an unsolved problem for efficiency. The computer executes linear instructions with jumps. We can represent structures with these linear strobes and create useful behaviours of a machine. We can think of each method or region of code as being a gear that executes at a certain speed. Sometimes the gears can run in parallel or multiplexed over time (time slicing).
+
 Why is this useful to be aware of?
 
-The arrangement part of a computer is actually more useful than the calculation itself. For example, arranging data, finding it and structured processing of calculations.
+
 
 Strobing through instructions IS in itself a structure or arrangement.
 
 Arranging data onto the screen so that it can be understood.
 
-Physically arranging things in physical space is an unsolved problem for efficiency. The computer executes linear instructions with jumps. We can represent structures with these linear strobes and create useful behaviours of a machine. We can think of each method or region of code as being a gear that executes at a certain speed. Sometimes the gears can run in parallel or multiplexed over time (time slicing).  
+
 
 We can use digital life simulations to simulate this insight.
 
@@ -5013,11 +5039,289 @@ Let's talk about the future. Instructions today, can give guide of the future ev
 
 If every line of code is seen as being executed in parallel at once, can we optimise this idea? And pause execution of some code and resume it at the time that would be efficient for the machine?
 
+# 316. Advanced Programming Language
+
+Calculate lifetimes
+calculate Aliasing
+Calculate all usages of a method on a type
+Track the data flow of some value
+Immutability
+Every line of code is a Future
+An advanced intermediate language model of a program
+
+# 317. Concurrent event-relational based programming language
+
+
+# 318. Nth product code generation
+
+Generate an nproducts of code paths for efficiency. No dynamic code needed.
+
+# 319. An imaginary Structure programming language and its relationship to parsing
+
+Parsing has the goal of creating an internal structure from text or otherwise an arrangement of symbols in a certain structure. Parsing therefore decides what should be associated with which and its direction and what should occur next based on what is there, at a certain position in the input. The resulting structure of the AST again determines what happens next in the resulting code generation.
+
+The problem with most programming langauges is that within the programming language they define and they force the creation of complicated hierarchies and models of code execution that are rigid, they are not flexible or interoperable enough. Code is incompatible by default and cannot be integrated together.
+
+Every operation is compatible when you think of additions, subtractions and loops.
+
+* **Structural pinning** If you have a structure for a visual compositor and a layout engine which has a scene graph and a structure of framebuffers and a structure for your application software, you have 3 different structures. We can pin each part of the structure to one of the other types and multiply parts of the structure for compatibility
+* **Automatic zip**
+* **As operator** Treat one thing as another thing.
+* **Insert type Between other relationships Operator** If a scenegraph owns buffers, I can insert an additional layer of indirection between portions of the structure and the code should all work fine.
+* **Support one-to-one, one-to-many, many-to-many, many-to-one relationships for all the operators on structures.
+* **Didgets model** If links are materialized, we can query fast. 
+* **Sibling fields** We can use the possessive from English to refer to associated types in either direction of a structural pin.
+* **Free variable** When I introduce a new layer to the hiarchy such as between two existing connections, I might encounter a situation where I have a free variable to bind and associate it with something so the code can work together seamlessly.
+* **Parsing can bind to a list of valid entries** We can bind to the nearest valid type.
+* **Parsing doesn't need to be limited to left and right** parsing tokens can apply in any direction
+
+Free variable association. Compatibility. Hierarchy inversion. Movement over values. Parallel looping. Association. Association up, down, direction. Write/visualize from the hierarchies perspective
+
+We turn a textual specification of a sequential program into a tree, then back into a linear set of instructions that can be computable. The hard part is the structure!
+
+Parsing could actually be a generic problem-solving solution. It's the creation of arbitrary linkable compatible structures that is difficult. Most of the algorithm is spent working through structures and not actually doing calculations.
+
+Structures represent computational complexity, due to iteration and number of traversals.
+Define structures directly
+Structure programming language
+Structures can be added, subtracted, enumerated
+Interleaving between structures
+Computation on structures themselves
+Cache is a structure
+Structure as a whole
+Code is a data structure but not in terms of LISP.
+
+# 320. A linear language of links
+
+A1,BbA1,CbA2,DfA1,EaA1-D
+
+Focus, move a node to the front
+Modifier
+
+need examples of complicated relationships
+perhaps could analyse source code
+vectors of sourcecode
+underlying symbols AND basic building blocks of language
+
+# 321. Pattern language
+
+Represent the movement of Program Counters in linear code, render it as a diagram look for patterns
+Random Access Memory isn't random
+
+Insert instructions into instruction stream to slow the CPU down
+DRAM interrupt
+
+# 321. Structural pipeline
+
+A compiler tries to represent a pipeline with classes and objects or functions and methods.
+
+What about a structural language that models the data and happenings directly, as a pipeline of transformations? So the structures are being pipelined.
+
+# 322. Visual Stack based parallelism
+
+# 323. The Turing Test applied to computers
+
+Imagine a program that outputted responses to inputs.
+
+How would you know that the computer did what it said it did?
+
+Isn't this a simpler problem than the actual implementation?
+
+A kernel that schedules code between CPU cores can be logged. We can verify the log. The data structures are incidentary to the log itself, the log is what the program does. The structure and classes and methods of the program are immaterial compared to the log itself. The log is proof that the program does what it says it shall do. The implementation is irrelevant. If you write a program to produce the output of the log, did you implement the solution?
+
+# 324. The importance of scenarios in programming
+
+# 325. Entity Component System, parallelism and the expression problem
+
+Trees of computation
+Behaviours composed
+Combined
+Signature, what data maps to what command needs to be fairly complicated selector
+Tree of systems minipipeline
+Aho corsick string searching algorithm
+
+Types
+Operations
+Drivers
+
+
+
+Given a type, search for an operation
+
+
+
+
+# 326. Neural networks and structural learning
+
+# 327. The Linearness of software
+
+# 328. Structure processor, structure as a value
+
+Can we process all structures in the same way every time and do it efficiently?
+
+Can we understand what code does by its structure?
+
+# 329. Object orientation ontop of ECS
+
+Method calls are also entities and globally queryable or listenable. Callbacks before or after a method occurs are part of the architecture for a method call.
+
+
+
+# 330. Loop stack
+
+# 331. Inefficiencies with message passing
+
+# 332. Extremely complicated data rendering
+
+Can we simplify complicated structures with simple rules?
+
+# 332. English parsing, passing the meaning along
+
+Multiplex N lightweight threads onto M kernel threads
+
+(Verb) (Enumeration N lightweight threads) (Onto, direction right) (Enumeration M kernel threads))
+
+# 333. Optional compiled multiway links
+
+# 334. Knowledgegraph programming language
+
+Create a graph model of every possible thing that is structured in a programming language:
+ * Scopes
+ * Callframes
+ * Types
+ * Functions
+ * Methods
+ * Method calls
+ * Expressions
+ * Instances
+ * Loops
+ * Nodes
+ * Return values
+ * Expression problem
+ * ASTs including LISP
+ * Code generators for AST nodes
+
+```
+node function {
+
+}
+node callframe {
+
+}
+node returnValues {
+
+}
+node type {
+
+}
+node span {
+
+}
+node lifetime {
+
+}
+node flow {
+
+}
+node compileTime {
+
+}
+node runtime {
+
+}
+node internalStep {
+
+}
+
+```
+
+Pattern efficiency.
+
+Write an enumeration of the nodes that does code generation and inlining. Restructuring the relationships into something a machine can execute efficiently. Linearisation of the relationships
+
+ordering problem - how to generate code in order
+collapses nodes relationships into something efficient
+
+Representation problem - how to store each node at runtime and at compile time, deciding on types to store references to other things in the knowledge graph
+
+Getting something from one place to another, logistical problem
+
+# 335. OOP to entity component system
+
+# Cascading Group reaction registry, or using lists as keys
+
+I should be capable of registering events of multiple objects in any order (as a set) as a whole.
+
+# 336. Performance critical regions
+
+There's parts of code where it doesn't matter if it is slow and parts where it does.
+
+# 337. Patchable while running software
+
+Virtual interrupt can be used to park a thread that is running code, no matter where it is in processing. We can use this opportunity to patch the code at runtime.
+
+# 338. Reentrant stream processing and entity component systems
+
+# 339. Task switching generalisation
+
+The tip of execution for a scheduler is decided by what is on the stack at the end of the switch_to in the Linux kernel command.
+
+# 340. Queue theory Rate Sequencer
+
+A programming language that 
+
+# 341. Thoughts on multiple table transactions
+
+Can timestamp keys across multiple tables.
+
+# 342. Divide and reassign and regroup operator
+
+When I was writing my multithreaded actor implementation, I encountered a case where I wanted to scale message creation, with message processing and sending between threads **separately**. I create a thread for each of these tasks.
+
+I started with a very simple design:
+
+```
+int batchSize = 1;
+boolean logging = false;
+int creationThreads = 2;
+int sendThreads = 1;
+int receiveThreads = 1;
+int logicalThreads = 4;
+```
+
+
+
+And I looped over `logicalThread` count and in nested loops created creation threads, send threads and receive threads, in their respective proportions. The hierarchy is therefore the following.
+
+![actor2](https://raw.githubusercontent.com/samsquire/structural-visualization/main/graph.png)
+
+But what if I want to change the hierarchy to look similar to this?
+
+I want to share creation threads between logical threads.
+
+![actor2expanded](https://raw.githubusercontent.com/samsquire/structural-visualization/main/graph2.png)
+
+Virtual Load balancing hierarchies
+
+# 343. Hierarchical allotments, observability and grid programming
+
+We can represent structures with grids that are colour coded and shaped.
+
+![gridstructures](https://raw.githubusercontent.com/samsquire/structural-visualization/main/linksassumption.png)
+
+This is the `find` method of a btree:
+
+![btreegrid](https://raw.githubusercontent.com/samsquire/structural-visualization/main/btree.png)
+
+
+# Hierarchy blend
+
+
 
 
 # incomplete ideas
 
-
+need to look at Lua 5.0
 
 Memory set to network calls
 
