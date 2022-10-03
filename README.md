@@ -5713,7 +5713,239 @@ def coalesce(items):
 # Hierarchy blend
 
 
+# phone ideas
 
+Proof of identity
+Proof of phon number
+Proof of address
+Proof of money
+Proof of payment
+Payment
+Proof of debt
+Invest in success without money 
+Compilation and spatial maps
+In the context of
+Resilient business - self funding 
+Common Ranges keyspace
+Business IO
+Cast arbitrary objects as contiguous memory
+File system data structure
+Free memory copied too
+Fund attached to return
+Loop create thread tree do no work
+Problem solutions
+Every thing can solve a part of the problem that is exposed to itself
+Binpacking, layout algorithms
+Workloads
+Change direction is a commitment that effects the results
+Virtual ants
+Multidimensional programming - that's natural concurrency
+Available - subfields and every permutation of fields are a type
+Polymorphism
+Everything is a container type
+Everything is generics
+
+Run this code with this instead
+Algorithms can be structured as data too
+Programming as data movement, shifting from one place to another
+Recursive team Team programming API
+Program another team to do things for you,
+They can see the plan, then plan the program from their perspective
+When people management 
+Should language, what should happen with the state of everything
+Python multithreading and ref counting
+Slots - associate fields with a variable of other code. Can use any code with any code
+ Can it be compiled ?
+Yes!
+What things are is hardest problem in computing
+It's the movement of a computer that is useful.
+External hierarchy
+Classes are just arranging code in memory
+Virtual blocking - the illusion of blocking but not really, similar to a cache of queued states
+
+Toolchain
+Test grid - someone says this version combination works 
+Parallel business processes 
+Threaded server parallelism. Everything is a request handler.
+Result of API call and state of remote server  is an object pair that has an API
+
+Breadth first search matrix multiplication
+Can we join with a matrix operation?
+Build future
+Know what the future holds
+Calculate the future without executing it
+Lines
+Commodify time 
+Can neural networks represent structures and transformations
+Multimedia editor - create, edit, view
+Object spread between registers, cached and memory and disk. Coordinate between them
+Dynamic writer performance
+Method call specifications
+Probes
+Callback registration
+Many as one to other parsing relationships
+how does Select call work in Golang 
+How to unify execution model with events model
+Compile the future as you go
+Instructions are events.
+We can iterate through events
+We can check what we need to do by evaluating events
+If there isn't capacity to do something at this time we can do it later
+We assume everything runs forever and is interrupted.
+
+Computers can add up any number size in constant time
+Computers can divide any number in constant time.
+Computers can multiply in constant time
+The arrangement of computation is more complicated than the computation itself
+Number space
+Generate numbers
+Generate events that follow numberical patterns
+Numbers are composed of digits
+Each digit is a separate thing.
+Digits have directions to other digits
+I can layout with this information
+Counting separate things with separate digits
+A program is a number
+Digits correspond to operations based on their relationship to eachother
+0 1 2 3 4 5 6 7 8 9 10
+0 + 1 = 1
+1 + 2 = 3
+2 + 3 = 5
+3 + 4 = 7
+Number programming
+The relationships of numbers can be used with addition and division and subtraction to produce layouts 
+
+Movement of numbers of a program
+Interleaved numbers
+
+1 is left of 2 and 2 is right of 1
+2 is above 1
+Hierarchy of the numbers
+5374625
+Pick every combination of those indexes and render 3d chart of that number
+What kind of instructions should we introduce
+We can store any data structure parallel to the instructions
+Instructions for data structures
+MetaCompiler as an instruction
+Expression problem
+Relations
+Non linear control flow
+Orthogonality of code in the current thread or in a remote thread.
+Enqueue or jump
+Multiplexing with locks is not the right abstraction.
+State diagrams selection, override where to begin state from, such as WiFi connect loop
+Rotate code around other code
+Insert a for loop around a piece of code
+
+Begin
+pick_warehouse
+pick_product
+End
+
+How do I say I want a for loop around these two method calls?
+
+Patch code
+
+Insert For customer in customers around begin..end
+
+The code structure represents the data structure.
+Break a system into a Data structure while loops for each relation. Relations are managed by method calls which are events to the objects
+Program program
+Insert complicating association
+
+Virtual methods actually always inlined.
+Code directions, every direction does something useful
+Polymorphic data access patterns
+
+I want to arrange a list of items and polymorphically do something to them
+And statically compile them
+And order them
+Striping objects duplicate storage
+
+Inheritance of behaviours, not methods
+Defer until syntax
+Nest behaviours - relative behaviour
+Xy coordinates
+Coalescing data structures
+
+Multithreading actors cheap as a method call.
+
+Multistart threads
+Multistep
+
+Representable data structures in Rust
+Language for data race free code
+Automatic thread variables. Find overlapping modifies and reads.
+Variable semantics for lists and maps
+
+Synchronization free code regions and interference free regions
+Autolock
+Types are related to jumping around to the right locations
+
+Standard structure program
+
+
+Thread callbacks rather than trying again, wait for go ahead.
+Virtual signals
+Test if there is a thread key after x.
+If there is a key after x then delay updating x
+Wait for wake-up for x
+Can use the critical section indicator to do wake-ups
+Intention array is wake-up array
+Blocked key array
+Blocked key array only updated by other threads but read from thread to see if the key is blocked
+Modulo work claim - many threads and global work queue. Modulo the worker thread number to claim the work in one shot.
+
+Local copies of synchronized data
+Store a cache of the global value as last seen.
+Store a cache of 10 operations that are overlaid onto the global value.
+Mark the global value dirty when there is a operation
+The next full read shall refresh the global value
+Increment/decrement operations in
+
+Fork/join
+And concurrent loop
+Fork join data
+Parlanse
+Actors fork/join us
+Write synchronous looking code
+
+Tail latency cache
+Send a reference to a thread for safe access
+Can only use the data of the reference if you have the reference. Only one thread at a time can have the reference.
+How to communicate the reference? Could use Actor2.
+How to claim a reference?
+Register interest, multidimensional array receives it next
+Flow structure diagram of network and computers execution
+Uncontended write should be cheap
+The vulnerable time period of a data race is incredibly small
+Compile the future all operations submit what they want to do and then they are compiled into an order
+I can expect and detect a data race
+
+For (; thread_loops[0].index < thread_loops[0].limit ; thread_loops[0].index++) {
+
+}
+
+The thread_loops[0].index can cause a torn write.
+
+We can detect the torn write from the multiplexing thread. The value shall return to lower than the limit so we need to try setting it again.
+
+Can acknowledge the loop early end from the lightweight thread, on the fast path. Multiplexing thread can wait for that acknowledgement before skipping that thread
+
+Every thread publishes what it wants to do and then it is scheduled and ran in a batch cycle
+Compile methodcall iteration rather than be a data processing task
+
+Declarative imperative
+Result of code obvious, refers to state after each command, acts as an assertion
+
+2,160×3,840 
+
+M:N syntax wheels behind letters
+Scheduling
+
+Every line of code is followed by the expected output of the code. In memory. So you can see the data structure taking form
+
+Batched network call RPC
 
 # incomplete ideas
 
