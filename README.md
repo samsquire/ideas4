@@ -1246,7 +1246,7 @@ Write inefficient code that uses any data structure and turn it into an efficien
 ```
 for outer in db.fetch(request["query"]):
  for inner in db.fetch(outer.id):
-  do_domething_expensive(outer, inner);
+  do_something_expensive(outer, inner);
 ```
 
 We want automatic indexing (see loop indexing) and view maintenance.
@@ -3988,6 +3988,19 @@ Second, we can have a loop that is buffered and ticked and allows multiple event
 
 In golang and occam-pi, we can use a `select` statement to direct behaviour from a communicating process over a channel.
 
+How do we implement this? We need [294. Common Operation Opcode message](https://github.com/samsquire/ideas4#294-common-operation-opcode-message).
+
+* If ordering doesn't matter as much, Each method call has a buffer object which can be used to enqueue operations. A loop services each method call buffer. Each method can be independently scaled between multiple threads (subthreads) or serviced by one large thread which services each method call in turn.
+
+* Alternatively we could use one buffer and serve all method calls in that buffer for in-order processing. This uses a switch statement for opcode type.
+
+Pattern matching, we would use pattern matching on the for loop to dispatch the method call to the correct loop based on the definitional method call for loop.
+
+We can serve each method call at different rates. So a low priority methodcall does not starve a high priority methodcall. They shall all get served eventually.
+
+
+
+
 # 198. Sharding framework
 
 To change something to be faster, we can divide then multiply. First you divide the problem into pieces, then you multiply the part that does the work, replicating it to solve the problem faster and at the same time.
@@ -4745,6 +4758,12 @@ Computers have a fast path from the circuitry layer, to the instruction level ex
 
 What we need is these fast links represented in programming language abstractions.
 
+* sequential execution of instructions
+* sequential copying of data
+
+Micro task - copying a byte from one memory location to another.
+macro task - doing it to a billion bytes.
+
 # 267. Usually small critical details limit performance
 
 # 268. A pattern for parallelizing nested loops
@@ -5313,6 +5332,383 @@ This is the `find` method of a btree:
 
 ![btreegrid](https://raw.githubusercontent.com/samsquire/structural-visualization/main/btree.png)
 
+beetroot grid
+
+# 344. Parallel interpreter
+
+I implemented part of this idea. [See this repository](https://github.com/samsquire/multiversion-concurrency-control#parallel-interpreter).
+
+
+
+How do we create subinterpreters that are compatible with eachother?
+
+The single address space can support parallel interpretation depending on the design of the subinterpreter and the relationships between subinterpreters.
+
+We have fixed references to objects within the data structure of the subinterpreter.
+
+An interpreter needs a method of looking up objects. Each subinterpreter can look up objects it has itself created.
+
+The same object created in two different subinterpreters is not an identical object but is equivalent.
+
+One obvious idea is to create a shared objectspace that all subinterpreters share. But have different collections of objects inside each subinterpreter.
+
+One alternative is to have multiple object spaces but have an indicator what object space the object is in in the book keeping metadata for an object for a subinterpreter. It's a layer of indirection.
+
+What about types? Those are objects too! There is a tangled web of relationships between objects while an interpreter is running. If this object needs to be compatible with another subinterpreter, we want to avoid copying the data. We want to inform the subinterpreter to be compatible with the objects in the other subinterpreter.
+
+What about classes of the same type? Would those associations be linked?
+
+We could hash the code for a function, class or object structure. We can lookup the structure with a single value.
+
+Can we implement coroutines and concurrent loops ontop of this parallel interpreter? Can we implement [# 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, looping over methods](https://github.com/samsquire/ideas4#197-for-loop-servers-buffered-for-loops-pauseable-schedulable-loops-assignable-loops-looping-over-methods)
+
+What does a method call look like? Is it a jump? Or an event?
+What does the event look like for the callback?
+Complicated callbacks
+
+Efficiency of structures/hiearchies - pointing structures
+Equality of objects
+
+# 345. Per overlay
+
+Use an object with another object in a "per" relation.
+
+# 346. Complicated callbacks
+
+We can pattern match
+
+# 347. Every method and loop is an interrupt, interlocking code
+
+Would this be efficient enough?
+
+Loops are interruptable
+check for interrupt at end of loop
+Want an uninterrupted unjumping stream of instructions that are fast and efficient, 
+Roundabout pattern matching - what to do next based on state of everything, multiple queues. Round robin, virtual load balancing
+Buffer for each method call for complicated event processing?
+Native methods (inlined) and event methods (buffered methods) - use the right one depending on circumstance
+Interruptability graph
+
+# 348. Roundabout, compile, select instructions
+
+Golang has a `select` statement which is similar to a `select` in Occam which is another CSP language.
+
+Roundabout is a statement that checks for control flow changes and pattern matches global work.
+
+Select statement can work similar to this: We mark the channels as being dependencies on a select statement that is currently active. When someone sends on a listening channel, the select is woken up. We don't need to busy wait.
+
+At compile time, do we know what method must be called? Method Dispatcher otherwise.
+
+Closure is just a pointer to a memory location on which to jump to and an available state.
+
+# 349. How to manage stored objects is a fundamental computer science problem
+
+Object orientation, Funarg problem, stacks, memory management, garbage collection, ORM are all instances of trying to work out how to store data in memory and lay it out. And keep references between the early addresses to the later addresses and vice versa accurate.
+
+
+A program that manages other things versus instructions that do a thing are two perspectives on how to build software.
+
+Compilers write code that does a thing, it doesn't write a program to manage programs, that is, a runtime.
+
+A compiler is essentially a runtime that runs before the program runs, deciding how to lay out data and how to organise data when it is in memory.
+
+In the funarg problem, we want to maintain the lifetime of some data but also manage it as a stack.
+
+# 350. Layout and traversal is what the computer actually does
+
+Horizontally and vertically can express so much behaviour. A stack is a vertical or horizontal data structure. The program instruction stream is a horizontal or vertical stream of instructions that includes jumps.
+
+We can arrange all the things we want to do, then arrange them in a pattern that fulfils that pattern.
+
+# 351. Override symbol: types, expression problem solved in one syntax
+
+If there are no literals in the code and everything is a symbol, we can override symbols at compilation time. 
+
+We can solve the expression problem by offering an override operator which allows us to override a symbol at runtime.
+
+```
+
+rectangle:
+    width int
+    height int
+
+rectangle.area:
+return import square.area(width, height)
+  
+
+rectangle[4] as rectangle.area
+sum = 0
+repeat rectangle
+    sum += import square.area(square.width=rectangle.width, square.height=rectangle.height)
+return sum
+
+```
+
+This can be combined with `opcodes` which is not a method call on an object that represents data but an operation to be performed which refers to the data and the method to be called, similar to an instruction or event.
+
+# 352. Possessive operator
+
+Create types of multiple types but one representation with a possession operator without a need for composition
+
+Imagine we have this data structure
+
+```
+warehouse:
+    name
+    address:
+
+ 
+```
+
+We can specify a possessive relation on any field, the possessive relation is transitive.
+
+# 353. Code rotate
+
+You're overriding some behaviour of another data structure and for your data structure the operations need to be a little different. You might need to loop multiple times and have nested loops to get the right associational behaviour.
+
+What if we could maintain the semantics of the existing code but insert loops and control flow around arbitrary sections?
+
+We can effectively rotate code around.
+
+It's a semantic patch and doesn't change the underlying behaviour of the code, it just applies more behaviours around the existing behaviours
+
+Example
+
+```
+for (int i = 0 ; i < 100000; i++) {
+    pick_random_product();
+    pick_warehouse_of_product();
+    pick_customer();
+    insert_purchase_order();
+    insert_invoice();
+    collect_payment();
+}
+```
+
+![coderotate](https://raw.githubusercontent.com/samsquire/ideas4/main/StructuralCode.drawio.png)
+
+This code has the following shape
+
+# 354. Instruction performance
+
+What's the most efficient way of getting this pattern of execution?
+
+# 355. A general purpose data structure with coalescing
+
+Can we produce a data structure that has many properties that are incredibly useful?
+
+# 356. Creating a fast language
+
+* statically ahead of time compilation
+* static types
+* compile time polymorphism
+* 
+
+# 357. While loop for each object AND relation
+
+A fully reactive system has a while loop for every relation and object which processes events.
+
+# 358. Standard language benchmark
+
+# 359. Dynamic to static crystallization
+
+I've been trying to find a general purpose approach to solving a certain kind of problem with the tip of execution management. The inflexibility of type systems to handle composition cleanly.
+
+Isn't this another example of multiplexing?
+
+The computer needs to identify the tip of execution when `.area()` is called to dispatch to the right code.
+
+```
+List<T> items = new List();
+items.add(new Rectangle(10, 10));
+items.add(new Circle(5, 5));
+items.add(new Square(6, 6,));
+items.add(new Triangle());
+for (T t : items) {
+    System.out.println(t.area());
+}
+```
+Could we store the 
+
+#  360. Loop insertion
+
+I want to refer to other parts of the code seamlessly, regardless if they have executed or not. Imagine we had this loop:
+
+```
+def method1():
+    for (int i = 0; i = 100000; i++) {
+        do_something()
+    }
+
+```
+
+Then we can apply an operation to run when the iteration is a certain iteration, such as:
+
+```
+when method1().i = 2500:
+    # something to do when i is 2500
+    do_something_else(do_something().returnvalue) 
+```
+
+The computer can work out how to combine the code into something that evaluates.
+
+# 361. What should be the case
+
+It should easy to specify what should be the case. What relations should be true.
+
+# 362. Extensible integration points
+
+For code to interlock, there needs to be a different interface at the integration seam.
+
+# 363. Massive data sending
+
+We can design our system to transfer large amounts of data between threads with an assignment, not a copy.
+
+# 364. Compilers Parallelism and Data races
+
+If you target a compiler at the threaded code, it should be capable of detecting intersecting writes and reads to the same data structure.
+
+We know the code is going to be executed in different interleavings.
+
+We can turn the code lines into numbers of a certain size
+
+Shifting the code in either direction should reveal different synchronization problems.
+
+```
+0 0-3 0-3
+1 0-3
+0 0-3
+1
+2    0-3
+3    0-3
+4    0-3
+```
+
+Adding a number to another number moves it into another number. Can we use this fact to cheapen the interleaving checks?
+
+```
+def send_money_from(account_a, account_b, amount):
+    account_a.balance -= amount
+    account_b.balance += amount
+
+class AccountMover extends Thread:
+    accounts = [
+        Account(500),
+        Account(200),
+        Account(300),
+        Account(1000)
+    ]
+    while True:
+        sleep(1)
+        account_a = accounts[random(0, len(accounts))
+        account_b = accounts[random(0, len(accounts))
+        maximum = min(account_a.balance, account_b.balance)
+        send_money_from(account_a, account_b, random(1, maximum))
+
+def main():
+    for i in range(0, 10):
+        AccountMover()
+        AccountMover.start()
+    
+```
+
+# 365. Threads should be loops
+
+# 366. Hashmap operations shouldn't be methods
+
+# 367. The Perfect API
+
+# 368. Multiplexing time
+
+Time is a resource to be managed
+
+# 369. 3D Game engines are fast, let's use 3d game engines for GUIs
+
+3D interfaces
+
+A game engine can process in 16-17ms 4k resolution @ 60 frames per second 3840 pixels×2160 pixels. That's painting 497,664,000 pixels per second.
+
+A scroll event can change the render position of every item in the game world.
+
+Layout can happen in 3D dimensions.
+
+Can we take advantage of the animation and liveness of 3d environments to produce understandable complicated phonemona.
+
+Animation Labelling
+
+# 370. Benefits inbox
+
+# 371. Program program or software patterns lowered into machine code
+
+A JIT compiler can compile a hot loop code into an efficient machine representation. But most Java applications don't do hot loops on large enough lists.
+
+There's a lot of method calls between objects. Could we do a strength reduction on the average workings of a program? Replace lots of indirection with a direct for loop?
+
+Can we turn programs into automata?
+
+# 372. Structure percolation
+
+Imagine a nested loop service call:
+
+```
+for item in data:
+  for subitem in item.items:
+    do_expensive_API_call("task1", item, subitem)
+    do_expensive_API_call("task2", item, subitem)
+```
+
+What if we could percolate the intent from the depth of the loop to a handler which knows how to plan more effectively?
+
+```
+percolate (coalesce) {
+loop1 = for item in data:
+  loop2 = for subitem in item.items:
+    do_expensive_API_call("task1", item, subitem)
+    do_expensive_API_call("task2", item, subitem)
+}
+```
+
+How does the coalesce function appear?
+
+I want to turn this data structure:
+
+```
+do_expensive_API_call("task1", "item1", "subitem1")
+do_expensive_API_call("task1", "item1", "subitem2")
+do_expensive_API_call("task1", "item1", "subitem3")
+do_expensive_API_call("task2", "item1", "subitem1")
+do_expensive_API_call("task2", "item1", "subitem2")
+do_expensive_API_call("task2", "item1", "subitem3")
+do_expensive_API_call("task1", "item2", "subitem1")
+do_expensive_API_call("task1", "item2", "subitem2")
+do_expensive_API_call("task1", "item2", "subitem3")
+do_expensive_API_call("task2", "item2", "subitem1")
+do_expensive_API_call("task2", "item2", "subitem2")
+do_expensive_API_call("task2", "item2", "subitem3")
+```
+
+Into this:
+
+```
+APICall("task1",
+["item1", ["subitem1", "subitem2", "subitem3"],
+"item2", ["subitem1", "subitem2", "subitem3"]])
+APICall("task2",
+["item1", ["subitem1", "subitem2", "subitem3"],
+"item2", ["subitem1", "subitem2", "subitem3"]])
+```
+
+We also want to schedule them to  do them in parallel.
+
+```
+def coalesce(items):
+    calls = APICall(unfold(items.loop1.loop2.do_expensive_API_call.task), unfold(collect(loop1.item)), unfold(collect(loop2.subitem))
+    parallelise(calls)
+```
+
+# 373. Unfold operator
+
+
 
 # Hierarchy blend
 
@@ -5358,6 +5754,7 @@ How to atomically update a number on the network.
  * Queue
  * Aggregation
  * Multi
+ * automulti
 
 
 
