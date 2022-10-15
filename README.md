@@ -5708,6 +5708,198 @@ def coalesce(items):
 
 # 373. Unfold operator
 
+# 374. Number programming
+
+ * Computers can add up any number size in constant time
+ * Computers can divide any number in constant time.
+ * Computers can subtract in constant time.
+ * Computers can multiply in constant time
+
+Can we take advantage of these relationships to apply to more qualitative representations of programs? 
+
+Can we mean 12 to represent a program and adding 10 to it gives 22? which is also a valid worthwhile program that extends its behaviour in a useful direction?
+
+What's the direction of a program?
+
+Movement of numbers of a program
+Interleaved numbers
+
+1 is left of 2 and 2 is right of 1
+2 is above 1
+Hierarchy of the numbers
+5374625
+
+The arrangement of any computation is more complicated than the computation itself. Read any assembly for a program and it shall take you a long time before you get to the actual calculation. Look at the architecture of a CPU and you'll find the part that adds numbers together is miniscule compared to the overall silicon die.
+ 
+We can see Numbers as existing in space and have a relational relationship to eachother.
+Generate events that follow numerical patterns
+Numbers are composed of digits
+Each digit is a separate thing.
+Digits have directions to other digits
+I can layout with this information
+Counting separate things with separate digits
+A program is a number
+Digits correspond to operations based on their relationship to eachother
+0 1 2 3 4 5 6 7 8 9 10
+0 + 1 = 1
+1 + 2 = 3
+2 + 3 = 5
+3 + 4 = 7
+Number programming
+The relationships of numbers can be used with addition and division and subtraction to produce layouts
+Additional force, fitting shapes
+
+# 375. Query as computation
+
+A query should decide the computation!
+
+# 376. Intelligent placement
+
+Imaginary areas to place things into and an association operator.
+
+# 377. Serializer
+
+Can we have 3 threads that interact to provide high throughput and low latency? And serialization?
+
+* the serializer thread monitors threads desires
+* the worker threads publish their desires
+* the serializer thread marks a worker thread as good to go
+* the worker thread monitors good to go work
+* the work is done in serial with no locks and no race conditions
+
+# 378. Sort merge
+
+Sometimes I want to schedule by using a comparator and optionally merge items.
+
+# 379. Virtual collections
+
+# 380. State maps
+
+Sometimes you need to remove something at a certain time, or you need to check for it on a symmetrical relationship of an event.
+
+# 381. Scalable thread safety as part of a language
+
+# 382. Resource starvation avoidance generalisation
+
+# 383. Instruction journeys are network structures
+
+# 384. Link machine
+
+An assembly language that creates links between things.
+
+# 385. Complexity estimator
+
+# 386. Rich memory allocator + database
+
+# 387. Pattern clicker
+
+# 388. Noblocking
+
+`Noblocking` is a syntactical element used to create blocking free applications.
+
+When the `noblocking` block is executed, any blocking behaviour returns the code to the top of the nonblocking block where the code runs as fast as it can through a new iteration of the work to be done.
+
+```
+noblocking {
+    atomic {
+        DoublyLinkedList newItem = new DoublyLinkedList(value);
+
+        newItem.head = this;
+        DoublyLinkedList previous = tail;
+        if (tail != null) {
+            tail.head = newItem;
+        }
+        newItem.tail = previous;
+        tail = newItem;
+    }
+}
+```
+
+# 389. Methods should be a structural definition
+
+When thinking about the `noblocking` structural element I realised that we needed different methods to exist in the context of the `noblocking` structural element.
+
+Many languages use this syntax for methods:
+```
+fn method1(arg: String, arg2: String) {
+
+}
+```
+
+I propose we use a structural element for composability.
+
+```
+method {
+- arg1: String
+- arg2: String
+} Result {
+
+}
+
+```
+
+# 390. Caller communication ("them") and structural reference
+
+I think it would be extremely powerful to refer to the context of a caller. This is every type in all of the callstack scope of the caller.
+
+```
+def deepmethod(arg1: String, arg2: String):
+    for item in items:
+        response:Response = do_something(item)
+        response2:Response2 = do_something2(response)
+        something_else(response2)
+
+def something_else(this, them, arg1: Response):
+    match all them {
+        .Response {
+            
+        }
+    }
+```
+
+# 391. Announce serialization (atomic block tries)
+
+I wrote a thread synchronizer that broadcasts changes it desires to do before it does them. This allows it to check for interfering changes. It can perform tasks immediately if there is no contention.
+
+Can we scan code that has `atomic` blocks in it to decide how to handle them?
+
+Any code that touches `tail`, `tail.head` is unsafe to run in parallel with this code.
+
+So we need some way to efficiently check for the presence of these fields.
+
+
+
+```
+atomic {
+    DoublyLinkedList newItem = new DoublyLinkedList(value);
+
+    newItem.head = this;
+    DoublyLinkedList previous = tail;
+    if (tail != null) {
+        tail.head = newItem;
+    }
+    newItem.tail = previous;
+    tail = newItem;
+}
+
+
+```
+
+# 392. Branchless code
+
+Computers are really fast if there is no branches. Can we implement an architecture that lacks branches?
+
+ * Rather than jump, we can arrange multiple memory spaces of instructions.
+ * Setting a value copies new instructions into the instruction stream.
+ * Imagine it as a marble on a tray with holes that lead to different branches. It's difficult to see where you're going before you get there.
+ * Branched caches.
+
+# 393. Parallel language
+
+Everything is thread safe by default.
+
+# 394. Perpetual motion and blocking
+
 
 
 # Hierarchy blend
@@ -5716,7 +5908,7 @@ def coalesce(items):
 # phone ideas
 
 Proof of identity
-Proof of phon number
+Proof of phone number
 Proof of address
 Proof of money
 Proof of payment
@@ -5793,40 +5985,14 @@ We can check what we need to do by evaluating events
 If there isn't capacity to do something at this time we can do it later
 We assume everything runs forever and is interrupted.
 
-Computers can add up any number size in constant time
-Computers can divide any number in constant time.
-Computers can multiply in constant time
-The arrangement of computation is more complicated than the computation itself
-Number space
-Generate numbers
-Generate events that follow numberical patterns
-Numbers are composed of digits
-Each digit is a separate thing.
-Digits have directions to other digits
-I can layout with this information
-Counting separate things with separate digits
-A program is a number
-Digits correspond to operations based on their relationship to eachother
-0 1 2 3 4 5 6 7 8 9 10
-0 + 1 = 1
-1 + 2 = 3
-2 + 3 = 5
-3 + 4 = 7
-Number programming
-The relationships of numbers can be used with addition and division and subtraction to produce layouts 
 
-Movement of numbers of a program
-Interleaved numbers
 
-1 is left of 2 and 2 is right of 1
-2 is above 1
-Hierarchy of the numbers
-5374625
+
 Pick every combination of those indexes and render 3d chart of that number
 What kind of instructions should we introduce
 We can store any data structure parallel to the instructions
 Instructions for data structures
-MetaCompiler as an instruction
+MetaCompiler as an bytecode instruction
 Expression problem
 Relations
 Non linear control flow
@@ -5935,7 +6101,7 @@ Can acknowledge the loop early end from the lightweight thread, on the fast path
 Every thread publishes what it wants to do and then it is scheduled and ran in a batch cycle
 Compile methodcall iteration rather than be a data processing task
 
-Declarative imperative
+Declarative imperative, boundary
 Result of code obvious, refers to state after each command, acts as an assertion
 
 2,160×3,840 
