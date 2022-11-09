@@ -5332,15 +5332,13 @@ This is the `find` method of a btree:
 
 ![btreegrid](https://raw.githubusercontent.com/samsquire/structural-visualization/main/btree.png)
 
-beetroot grid
+btree grid
 
 # 344. Parallel interpreter
 
-I implemented part of this idea. [See this repository](https://github.com/samsquire/multiversion-concurrency-control#parallel-interpreter).
+I implemented an assembly based parallel interpreter based on part of this idea. [See this repository](https://github.com/samsquire/multiversion-concurrency-control#parallel-interpreter).
 
-
-
-How do we create subinterpreters that are compatible with eachother?
+How do we create subinterpreters that are compatible with eachother? In other words, how do you create interpreters that can communicate with zero or minimal data copies or marshalling?
 
 The single address space can support parallel interpretation depending on the design of the subinterpreter and the relationships between subinterpreters.
 
@@ -5348,11 +5346,13 @@ We have fixed references to objects within the data structure of the subinterpre
 
 An interpreter needs a method of looking up objects. Each subinterpreter can look up objects it has itself created.
 
+We can have two levels of hashmaps. A global hashmap and a per subinterpreter hashmap. We can do a O(1) lookup of objects in this subinterpreter and then a global lookup in the actual objects identity.
+
 The same object created in two different subinterpreters is not an identical object but is equivalent.
 
-One obvious idea is to create a shared objectspace that all subinterpreters share. But have different collections of objects inside each subinterpreter.
+One obvious idea is to create a shared objectspace that all subinterpreters share. But have different collections of objects inside each subinterpreter. One problem with this is synchronization whenever the objectspace is modified.
 
-One alternative is to have multiple object spaces but have an indicator what object space the object is in in the book keeping metadata for an object for a subinterpreter. It's a layer of indirection.
+One alternative is to have multiple object spaces but have an indicator what object space the object is in the book keeping metadata for an object for a subinterpreter. It's a layer of indirection.
 
 What about types? Those are objects too! There is a tangled web of relationships between objects while an interpreter is running. If this object needs to be compatible with another subinterpreter, we want to avoid copying the data. We want to inform the subinterpreter to be compatible with the objects in the other subinterpreter.
 
@@ -5861,7 +5861,9 @@ def something_else(this, them, arg1: Response):
 
 I wrote a thread synchronizer that broadcasts changes it desires to do before it does them. This allows it to check for interfering changes. It can perform tasks immediately if there is no contention.
 
-Can we scan code that has `atomic` blocks in it to decide how to handle them?
+Unfortunately it's half as fast as locks but has the advantage that every thread can be active even if there is contention.
+
+Can we scan code that has `atomic` blocks in it to decide how to handle them?                                                                                                                                    
 
 Any code that touches `tail`, `tail.head` is unsafe to run in parallel with this code.
 
@@ -5894,34 +5896,410 @@ Computers are really fast if there is no branches. Can we implement an architect
  * Imagine it as a marble on a tray with holes that lead to different branches. It's difficult to see where you're going before you get there.
  * Branched caches.
 
-# 393. Parallel language
+# 393. Parallel language and interleaving data structures
 
-Everything is thread safe by default.
+Everything is thread safe by default. The language generates locks and atomic blocks automatically. Everything becomes thread safe.
+
+Can we represent each individual thread and then say what code shall be running? Then work out all the interleavings?
+
+```
+thread * 25 {
+
+    atomic {
+        DoublyLinkedList newItem = new DoublyLinkedList(value);
+    
+        newItem.head = this;
+        DoublyLinkedList previous = tail;
+        if (tail != null) {
+            tail.head = newItem;
+        }
+        newItem.tail = previous;
+        tail = newItem;
+    }
+}
+
+
+```
+
+Automatic parallel data structure. We can avoid race conditions by duplicating data structures per thread and reading from other threads.
+
+
 
 # 394. Perpetual motion and blocking
 
+# 395. Explicit structured validity spans and span pairs, inside and outside
 
+Spans are extremely useful for aliasing detection, concurrency and memory management.
+
+What if when you created something you also received a pair and it wasn't valid without a pair?
+
+```
+data = malloc(1024);
+free(data);
+```
+
+# 396. Explicit context
+
+# 397. Dream services
+
+It seems every company requires these services:
+
+ * Proof of identity
+ * Proof of phone number
+ * Proof of address
+ * Proof of money
+ * Proof of payment
+ * Proof of debt
+ * Proof of eligibility
+
+# 398. Preallocation and dynamic allocation orthogonality
+
+What if the design of the code was such that you could enforce multiples on what was ran, so you know at any point how many items are valid?
+
+This could be used to create code that can either run statically allocated or dynamically adjusted at runtime.
+
+This could be a memory management strategy. At any time, you can only have a certain number of items valid at any given point.
+
+# 399. Combinative data structures
+
+[Firefox went from single threaded to multithreaded components multiple times and back to single threaded](https://bholley.net/blog/2015/must-be-this-tall-to-write-multi-threaded-code.html) and experienced problems each time.
+
+Rather than store one source of data for everything, we store multiple copies per thread.
+
+We can process sourcecode to create their own local data structures. We can also modify read code to retrieve from the all the per-thread data structures.
+
+How do we enforce thread safety when reading?
+
+
+
+# 400. Context database
+
+Every method and line of code introduces a contextual element to a database of potential places.
+
+# 401. Cast arbitrary objects as contiguous memory
+File system data structure
+
+# 402. Compilation and spatial maps
+
+# 403. Interleaved locking
+
+One problem with parallelising code is that you still have synchronization points.
+
+Let's invert the problem rather than locking individual data structures, let's run the parallel program but regularly pause threads as whole for synchronization.
+
+So introduce a synchronizer thread which acquires a lock for each other thread.
+
+
+Don't synchronize when you need to edit a variable, queue up changes and you receive consistent reads regularly.
+
+Interleaved locking can in theory be compiled into
+
+```
+thread * 1 {
+    
+}
+thread * 25 {
+
+    main {
+        
+        while (running) {
+            Account source = random(accounts);
+            Account destination = random(accounts);
+            int amount = randomInt(0, 2500);
+            source.withdraw(amount);
+            destination.deposit(amount);
+        }
+    }
+}
+```
+
+# 404. Multi Atomic locking and Virtual parallelism
+
+Imagine I have a set of locks.
+
+```
+multi {
+    for (int i = 0 ; i < writeLocks.length; i++) {
+        writeLocks[i].lock();
+    }
+}
+```
+
+# 405. Placement computer or Rich memory management
+
+# 406. Efficient "multi" datatype
+
+How do you represent the overlapping relation? Or the selection of multiple things at once?
+
+# 407. Defining parallelism and asynchrony
+
+I can define what should go on at the sametime and what should be requested by whom.
+
+I should be capable of defining a sequence.
+
+Then plotting a work chart.
+
+We can define parallelism and asynchrony globally and let the computer layout the code.
+
+```
+sametime {
+
+}
+wait {
+
+}
+after {
+
+}
+before {
+
+}
+
+
+```
+
+# 408. Structure programming
+
+Sourcecode creates a structure, but it is rarely the structure that is itself executed or that is interesting to most programmers.
+
+We can define the structure of the code as the most important thing.
+
+# 409. Object hierarchies are inputs to programs that process them, not how programs are structured
+
+The dream of object orientated programming is that we can define the object hierarchy and get behaviours for free, so what if we labelled object hiearchies with names?
+
+```
+
+```
+
+# 410. Compiler assembly mapping
+
+Write some assembly that is enriched with AST matching queries and then we have codegen for free.
+
+It's not quite templated assembly, but it's more of a mapping.
+
+Codegen
+
+# 411. Method calls between threads
+
+# 412. How to implement async/await and non-blocking promises
+
+# 413. Branch heavy code flexibility
+
+# 414. Parallelism compile time checking
+
+We can avoid data races with two parts. We can detect there is no overlap with readonly variables references ala Rust. And we can coordinate runtime synchronization at compile time.
+
+# 415. Self holding pointer
+
+When you have a reference to an object, it's not always clear if the object also refers to other objects, so it's not enough to point to the object - there's other references that go on from that memory location.
+
+# 416. Data access simplification and efficiency
+
+# 417. More powerful assignment operator and hashmaps via assignment
+
+Multiassignment
+
+# 418. Adaptive synchronization
+
+When contention rises, amortize cost of synchronization by doing it regularly but spaced out. Pay some latency for performance.
+
+
+
+# 419. Slow code
+
+# 420. Software Pipeline as a computer operating system primitive
+
+# 421. Branch optimisation
+
+
+
+# 422. SQL query in array
+
+array[SELECT .age]
+
+# 423. Situational programming or virtual returns
+
+Many early returns in a function prevents common handling of behaviour.
+State machine functions, virtual returns
+
+What applies, either whole arary or some array, masking out behaviour
+
+# 423. Expression result placement or everything returns memory locations
+
+Why are programming langauges limited in producing only one return value?
+
+# 424. Turing machines can be optimised
+
+# 425. Minimisation and maximisation applied to algorithms
+
+We want to minimize certain properties in an algorithm.
+
+For example, a memory allocator and program wants to minimize data copies, pointer chasing, unnecessary memory accesses, cache misses, contiguousity and other things.
+
+We ultimately need to arrange data in memory and we have an algorithm for retrieving it. We also need to coordinate the layout of the data in memory.
+
+These things to think of are tradeoffs against one another. We want to pull on each of them to gain the most optimal solution.
+
+# 426. Virtual unrolled loop
+
+We can unroll loops and maintain meta loops for them with additional early abort logic.
+
+# 427. Virtual machine with powerful type primitives and for computation and queries
+
+# 428. Profoundly rich and effective memory management
+
+# 429. Functional programming value maintenance
+
+Maintaining `max` `min` data values of lists.
+
+# 430. Macroprogramming, programming in the large
+
+# 431. Recursion as separate processes.
+
+Recursion can be difficult to reason about due to there being nothing on the screen that can help assist debugging or thinking of the stack.
+
+I imagine a process viewer that lets us see the recursion stack.
+
+# 432. Split object thread automation
+
+Multiversion concurrency control and split object parallelism can support high levels of concurrency with an impact in read latency.
+
+When a data structure is created in the threads block, such as this:
+
+```
+threads 25
+<start>
+function deposit(int account, int amount) {
+    accounts[account].balance += amount;
+}
+function withdraw(int account, int amount) {
+    accounts[account].balance -= amount;
+}
+set hash accounts = {
+    balance = sum
+};
+for (i = 0 ; i < 100; i++) {
+    accounts[i] = {
+        balance = randomInt(2500);
+    }
+}
+while (running) {
+    source_account = randomInt(100);
+    destination_account = randomInt(100);
+    amount = randomInt(2500);
+    withdraw(source_account, amount);
+    deposit(destination_account, amount);
+}
+```
+
+The variable `acccounts` is a what appears to be a shared data structure but it is not.
+
+The compiler replicates the hash across the threads and each maintains its own copy. We need to supply a reductive function.
+
+Each thread is associated with a range of keys for the account. This means that all transactions for an account go to the same thread. This is thread safe.
+
+Some approaches to generating thread safety include:
+
+ * The compiler can generate a remote jump instruction when `deposit` or `withdraw` refer to a remote thread. This causes a message to be sent to them for them to revaluate the function call.
+ * 
+
+Atomic version
+
+```
+threads 25
+<start>
+function transaction(int sourceAccount, int amount, int destinationAccount) {
+    transactionsId = transactions.length
+    set hash balances = {}
+    int sourceBalance = 0;
+    for (i = 0 ; i < threadCount ; i++) {
+        sourceBalance = balances + threads[i].transactions[threads[i].transactions.length-1].sourceTransaction
+        destinationBalance = balances + threads[i].transactions[threads[i].transactions.length-1].sourceTransaction
+    }
+    if (balances[sourceAccount] < amount) {
+        fail();
+    }
+    
+    transactions.add = {
+        sourceAccount: sourceAccount,
+        destinationAccount: destinationAccount
+        sourceTransaction: amount;
+        destinationTransaction: -amount;
+    }
+    commit
+}
+set list transactions = [
+    
+];
+for (i = 0 ; i < 100; i++) {
+    accounts[i] = {
+        balance = randomInt(2500);
+    }
+}
+while (running) {
+    source_account = randomInt(100);
+    destination_account = randomInt(100);
+    amount = randomInt(2500);
+    withdraw(source_account, amount);
+    deposit(destination_account, amount);
+}
+```
+
+433. Loop to structured concurrency
+
+Can we turn a nested loop into structured concurrency?
+
+```
+    for (i = 0 ; i < 100; i++) {
+        for (j = 0 ; j < 100; j++) {
+            for (k = 0 ; k < 100; k++) {
+                do_something(i, j, k);
+            }
+        }
+    }
+```
+
+This can be transformed into this:
+
+```
+    for (i = 0 ; i < 100; i++) {
+        t1 = new_task()
+        for (j = 0 ; j < 100; j++) {
+            t2 = t1.new_task();
+            for (k = 0 ; k < 100; k++) {
+                t2.new_task(do_something, i, j, k);
+            }
+            t2.exit();
+        }
+        t1.exit();
+    }
+```
+
+# 433. Multi multiversion concurrency control
+
+If we have multiple machines or threads and there is the potential for multiple transactions running in different threads. We need a thread safe way of sharing read time stamps.
+
+# 434. 
 
 # Hierarchy blend
 
 
 # phone ideas
 
-Proof of identity
-Proof of phone number
-Proof of address
-Proof of money
-Proof of payment
+Growth develop profoundly effective, the rate, the movement
+
+How is async await implemented
+
 Payment
 Proof of debt
 Invest in success without money 
-Compilation and spatial maps
+
 In the context of
 Resilient business - self funding 
 Common Ranges keyspace
 Business IO
-Cast arbitrary objects as contiguous memory
-File system data structure
+
 Free memory copied too
 Fund attached to return
 Loop create thread tree do no work
@@ -6071,7 +6449,7 @@ Increment/decrement operations in
 
 Fork/join
 And concurrent loop
-Fork join data
+Fork join data structure
 Parlanse
 Actors fork/join us
 Write synchronous looking code
