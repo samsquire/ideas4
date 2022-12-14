@@ -1,0 +1,6 @@
+digraph G {
+    threadpool -> recvthread;
+    threadpool -> sendthread;
+    socket -> recvthread;
+    socket -> sendthread;
+}

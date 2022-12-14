@@ -6246,7 +6246,7 @@ while (running) {
 }
 ```
 
-433. Loop to structured concurrency
+# 433. Loop to structured concurrency
 
 Can we turn a nested loop into structured concurrency?
 
@@ -6280,16 +6280,1905 @@ This can be transformed into this:
 
 If we have multiple machines or threads and there is the potential for multiple transactions running in different threads. We need a thread safe way of sharing read time stamps.
 
-# 434. 
+# 434. Object orientated graph programming
+
+Every combination and permutation is an actor that independently manages messages.
+
+The relationships determine which actors get instantiated. The actors get created for each pair and relationship.
+
+The actor manages the relationship and messages
+
+```
+bank {
+    account {
+    
+    }
+    system {
+    
+    }
+    atm {
+    
+    }
+}
+```
+
+Is turned into actors with the following identities:
+
+```
+bank01.account01
+bank01.system01
+bank01.atm01
+```
+
+The AST is a graph! Write code that manipulates the values of the AST
+
+# 435. Nowaiting control flow
+
+# 436. Returnto
+
+Write code that jumps back to somewhere if it fails.
+
+# 437. Accelerated readahead scan - bring forward
+
+Rather than try to coordinate the creation of expensive resources, we can scan the code and bring forward operations to the past.
+
+Think of a thread pool - managing thread pools is complicated. 
+
+# 438. Parsing is scheduling
+
+# 439. The fusion of Distributed programming, multithreading parallel programming and asynchronous programming
+
+# 440. Define the recursion stack
+
+# 441. Async language and language with 4 colours of methods
+
+Imagine a programming language that supported 5 types of functions:
+
+* coroutines (resume execution, reentrant), async methods (awaitable or promisable)
+* remote server methods (network RPC call)
+* jump methods (local execution)
+* remote thread methods (preemptively + cooperatively scheduled)
+
+The compiler can decide which method to use based on static code analysis
+
+```
+
+```
+
+# 442. Object oriented object owners - decoupled OOP and ownership
+
+Threads are running and they are assigned an object. Objects can send messages to eachother.
+
+Objects change their shape through processing, which reschedules them onto different threads.
+
+Load balancing for free.
+Scaling for free.
+Structure of the graph changes, how to schedule?
+Local method call (jump) remote method call (message+sync)
+Data structure are relations between objects
+
+# 443. Recursive scan collect horizontal/vertical
+
+When writing parsers we often want to collect tokens into a collection and process them.
+
+# 443. Standard cycle
+
+It's typical that software needs to handle the case when there is no thing there, there is a thing there but it is empty, there is a thing there and there is a thing there but it is out of date.
+
+# 444. "Doing things" orthogonality
+
+My problem with most programming languages is that "doing things" is not orthogonal.
+
+Coroutines, threading, parallelism, stackframes, recursion, garbage collection, classes, passing data between things, polymorphism, expressions, multi-platform, functional programming, object orientated programming, imperative programming, declarative programming are all intertwined
+
+Orthogonality matrix
+
+permutational 
+
+We need to define the behaviour and allow it to be customised with an orthogonal system.
+
+A rich data model where you define variations and how they should be handled.
+
+Parsing and object graphs, definitional (declarative)
+You should do that.
+
+# 445. Doing things arrays
+
+Can we represent branching and polymorphism as array processing?
+
+If we have a sequence of operations to perform. And a list of data. And we want to process the operations on the data.
+
+Branchless programming applied to arrays.
+
+```
+
+for item in items:
+    a(b(c(d(e(f(g(item))))))
+
+```
+
+```
+
+if item.something:
+    item.value *= 2
+else:
+    item.value *= 4
+```
+
+```
+dataleft = [[{value: 4}]]
+dataright = [[{value: 4}]]
+dataleft[0] *= 2
+dataright[0] *= 4
+```
+
+Where any of a,b,c,d,e,f,g can toggle data in other rows or columns.
+Do both sides of the branch
+
+How do you decide the right item to look at 
+Quicksort partition on branch pivot
+Network programming with array programming
+Noblocking calls, just weave together functions that do what you want
+
+# 446. Create asynchronous expectation with a block
+
+Callbacks are one way of doing this.
+
+# 447. Change with respect to
+
+When building layers of programming functionality, we need to layer orthogonal decisions.
+
+# 448. Promise lang, control flow in Javascript is not easy to understand
+
+Even with promises in Javascript, control flow isn't very easy to understand.
+
+What happens next follows its definition.
+
+My problem is that code is wrapped in functions or closures and they are taken as arguments to functions such as `then`.
+
+We want clear sequential code of behaviour with separations for representing callbacks.
+
+Everything is a promise.
+
+# 449. Thoughts on match statements
+
+# 450. Organising sequences of events against arrangements
+
+The core of computing seems to be arranging sequences of events (operations) to arrangements of things (data)
+
+The operations seem to be add, divide, multiply, move, append and so on.
+
+A turing machine executes instructions in a sequence. Recursion is essentially calling the same instructions sequence of instructions again but substituting the memory used to do those things. Tail call optimisation is replacing a call with a jump.
+
+Closures are essentially passed around addresses that represent functions.
+
+Expressions can represent behaviour and data.
+
+Stacks are just placing something aside for use later.
+
+# 451. Just generate the code to do the operation
+
+# 452. A language with perfect expression of flow
+
+Most programming languages don't necessarily execute in order that the code is written.
+
+This is due to callbacks, parallelism and coroutines.
+
+![graph1](graph.png)
+![graph1](graph2.png)
+
+```
+function consumerfunc():
+
+function producerfunc():
+
+producers = []
+consumers = []
+for producer in range(0, 100):
+    producer = Producer()
+    producers.append(producer)
+for consumer in range(0, 100):
+    consumer = Consumer()
+    consumers.append(consumer)
+
+for consumer in consumers:
+    for producer in producers:
+        link(producer, consumer)
+    
+
+```
+
+```
+[producer * 10] 1:1-> [consumer * 10]
+[producer * 10] 1:*-> [consumer * 10]
+[producer * 10] *:1-> [consumer * 10]
+producer -> consumer
+[producer * 10] -> consumer 
+```
+
+```
+producer1 consumer1
+producer2 consumer2
+producer3 consumer3
+producer4 consumer4
+
+```
+
+# 453. Arbitrary Sequence jointpoints - automatic GOTO and coroutines
+
+It should be possible to weave code together that is written sequentially but is scheduled by the compiler.
+
+Method calls get in the way of this idea. You shall need to split methods in half.
+
+I should be capable of placing a marker where I want points of code to synchronize and the compiler should generate the relevant machinery to synchronize them.
+
+```
+    threads = spawn (
+        {
+        for (int i = 0 ; i < 100; i++) {
+            
+        }
+        @jointpoint.send(arg1, arg2);
+        }
+    @jointpoint(arg1, arg2) {
+
+    }
+```
+
+```
+file.read(function (data) {
+    @jointpoint(aftersend) {
+        
+    }
+
+    network.send(host, function (sent) {
+    
+        syncer.log(function (response) {
+            @jointpoint.send(response);
+        
+        });
+   });
+});
+```
+
+# 454. Circular code, Stateful turning, steady state detection
+
+Does this program have a steady state? Assume `main:` blocks repeat forever.
+
+```
+program:
+    available = {}
+    assigned = {}
+    main:
+    for program in programs:
+        for available in program.available:
+            available.put(available, 1)
+            assigned.remove(available)
+        for item in requests:
+            if item in available:
+                program.answers.append(item)
+                available.remove(item)
+                assigned.put(item, 1)
+
+program:
+    for item in answers:
+        new_requests = handle(item)
+        available.put(item, 1)
+        for new_request in new_requests:
+            requests.add(new_request)
+
+```
+
+Can we invent a syntax that can be statically verified to see if the program reaches a steady state and all lines of code are evaluated eventually?
+
+```
+program:
+    available = {}
+    assigned = {}
+    main:
+    program = programs {
+       available = program.available {
+            available += (available, 1)
+            assigned - available
+        }
+        item = requests {
+            available (=) item {
+                program.answers + item
+                available - item
+                assigned + (item, 1)
+            }
+        }
+    }
+
+program:
+    requests = []
+    requests + (add, 1)
+    main:
+    item = answers {
+        new_requests = [(add, 1)]
+        available += (item, 1)
+        new_request = new_requests {
+            requests + new_request
+        }
+        
+    }
+    answers -= answers
+    
+```
+
+A project each identity as a point in a graph. Track the movement of the identity in the graph over time for each statement.
+
+
+
+How do we create something that returns to a steady state when run in a loop. For example, a program that can keep producing the correct output and leaves the state in a position that can keep going from where it left off.
+
+We want interlocking code that can spin and return to state where it is reprimed for future action.
+
+We have a program that writes state, can we detect when the program is no longer compatible with the state?
+
+Programs must be validated as circular to be valid
+
+Fold code on itself, concurrent paths
+
+can remember all the operations on each variable.
+For example:
+available.put(item) remembers that was the new state of available.
+We want to search if the state of the variables returns to steady state, there's a loop in processing!
+
+
+
+How do we verify that this program is steady state?
+
+Can represent a loop as a structured collection, a graph of relations.
+
+# 455. Machine code kernel
+
+# 456. As-lang
+
+Think of something as another kind of thing.
+
+# 457. Perfect Processing
+
+ * I want to start an action and interact with it.
+ * I want all processes to be available to me for monitoring.
+ * I want progress from processes.
+ * I want cancellation
+ * I want timeouts
+ * I want backpressure
+ * I want load shedding
+ * I want rate limiting
+ * I want queuing
+```
+
+
+```
+
+# 458. Abstraction editor
+
+# 459. Perfect imaginary API
+
+# 460. Branch merging
+
+Preprocess all the if statements to produce a single if statement which is a computed goto.
+
+Sum the test variable and generate code for each combination of code path.
+
+# 461. Hierarchy cross
+
+Useful behaviour occurs when you can manipulate hierarchies outside your own.
+
+# 462. What is not there - visual toolbox
+
+Many IDEs and development tools give you an empty screen to develop into. If you don't know what you're looking for or have any knowledge, how can you create anything?
+
+# 463. Ownership in code
+
+It seems Rust designates the method as the owner. 
+
+# 464. Template structure instantiation and AST structure merging
+ 
+Boilerplate hidden away
+
+![threads](threads.png)
+
+How do you template whole structures of behaviour?
+
+Imagine being capable of viewing the stacktrace of a program and then copying and pasting the stacktrace to change it slightly, perhaps for a different type?
+
+Cloning a hierarchy of method relationships can automatically introduce branch points at the right point in the code in each method. We can name each hierarchy so each hierarchy is an instance of a pattern. We can instantiate the hierarchy and define the branch point mergings. Merge callstacks into coroutines
+
+ * We need an elegant representation of lists that can be passed along the method pipeline. 
+ * Every variable is also potentially a list type.
+
+
+What if you could copy and paste a large structure of code and adjust it slightly to handle the new case and the code was well unified?
+
+In C++ template instantiation is an alternative to Runtime Generics as in Java. It allows us to substitute types in generated classes and variables and functions.
+
+What if I wanted to add behaviour to an application to handle a whole another sort of object but in the same general approach as another thing? Usually this problem is solved by interfaces. To implement a text editor in Mac OS you need to implement hundreds of methods.
+
+If I were to clone a region of code, what things would need to change to handle the new behaviour? Types? Would the existing code need to change? Branch points of structure.
+
+The problem with interfaces is that they are not structural - they're not trees of relationships.
+
+Structural template instantiation is to override trees of behaviour of code.
+
+I would like to be capable of changing the architecture of a multithreaded application easily with this template instantiation.
+
+```
+each thread has a ringbuffer for communication
+a listener thread listens for connections
+listener thread decides which worker to send the socket to to accept
+```
+
+Lineage of causality structure
+
+stacktraces are nested while true loops
+
+Here's a causality callstack to a multithreaded application
+
+Can we design stacktraces?
+
+Editor dropdown left and right contexts
+
+
+Weaving structures as you go
+Template structures
+
+This syntax can support coroutines and nested while True loops
+If everything has a while True in it, that's fine we can seamlessly translate the method to Coroutines across multiple method calls, merge the method calls together
+
+```
+createThreadPool()
+    submit(listenerthread)
+        
+        conn = listenerthread.accept()
+            submit(recvthread)
+                { recvthreadassign
+                    epollsetup(conn)
+                    eventloop
+            submit(sendthread)
+                { sendthreadassign
+                    epollsetup
+                    eventloop
+
+```
+
+
+
+How can I move around a program without breaking it?
+Combine sequential execution with top-down structure
+Parallel sequential execution and problem structure
+Resource claim
+Scopes structure code for scaling
+
+```
+
+```
+
+```
+createThreadPool()
+    for i=0 i < 10 i++ submit(recvthread) recvthread[i]=rb()
+    for i=0 i < 10 i++ submit(sendthread) sendthread[i]=rb()
+    submit(listenerthread)
+        listenerthread.accept()
+            recvthread[conn].send
+                { 
+                    epollsetup
+                    eventloop
+                }
+            sendthread[conn].send
+                
+                    epollsetup
+                    eventloop
+
+```
+Send computation
+Closure between lines
+Unifying execution environment
+Two sided methods
+Object orientated method calls (messages)
+Left to right and top to bottom at the same time
+Interpreter performance problem (giant switch statement)
+Per-line code details vs high level structural detail
+how to synchronize per line code details and high level structural detail
+
+```
+
+do_use_fd:
+    recv
+        -1 epoll_ctl
+        -1 push(leave)
+    send
+run_client:
+    while True:
+        announce.pop_nonblocking()
+            | add connection
+            | remove connection
+            | add connection
+        wait for fd event
+            do_use_fd
+run_server:
+    while True:
+        epoll_wait
+        thread's inbox rb.push(new socket)
+
+```
+
+How to shift around `waiting` and `data flow` and `environment` (`where` `when` code runs)
+
+Each part of the stacktrace tree potentially has a communication event from one part to another.
+
+Can parsing create expression trees of processes ASTs?
+Input/output ports link parts of AST nodes
+
+bridge structure, the parts that need to branch based on types or structure
+Tree pattern matching
+
+Time and space travelling variables
+
+```
+
+
+```
+
+```
+main
+    generateAccounts
+    loop
+        generateTransaction
+        withdraw
+        deposit
+```
+
+# 465. Sorting if statements
+
+# 466. Communicating ASTs
+
+A function declaration and function call is communication.
+
+# 467. Everything is an API
+
+Can write a language where every language feature is an API. Then orthogonality is deciding how states should interact explicitly.
+
+
+# 468. Columnular or row based parallelism
+
+According to Wikipedia:
+
+```
+There are two main approaches to parallelization of loops: pipelined multi-threading and cyclic multi-threading.[3] For example, consider a loop that on each iteration applies a hundred operations, and runs for a thousand iterations. This can be thought of as a grid of 100 columns by 1000 rows, a total of 100,000 operations. Cyclic multi-threading assigns each row to a different thread. Pipelined multi-threading assigns each column to a different thread.
+```
+
+# 469. Thoughts on polymorphism
+
+I should never need to use the `instanceof` operator or do a cast on a type. The compiler should insert all the underlying mechanism to dispatch to the right behaviour.
+
+```
+[
+Square
+Circle
+Triangle
+Hexagon
+]
+```
+
+Multivector stores each collection separately but then you lose the orderedness unless you do a mergesort at runtime when iterating.
+
+```
+[
+Square
+Square
+Square
+]
+[
+Circle
+Circle
+Circle
+]
+[
+Triangle
+Triangle
+Triangle
+]
+```
+
+Many languages do indirection on a class pointer and have a function table on the class. This is two levels of indirection to call the right behaviour.
+
+Could we store a function pointer for every item?
+
+if we wanted to call a draw method, why not just store a function pointer to the draw method in the object in the collection?
+
+This is one level of indirection.
+
+```
+Circle Circle.draw
+Circle Circle.draw
+Triangle Triangle.draw
+Triangle Triangle.draw
+Square Square.draw
+Square Square.draw
+```
+
+To remove the indirection we could do this:
+
+```
+Circle
+Circle.code
+circle
+Circle.code
+Circle
+Circle.code
+Circle
+Circle.code
+```
+
+Is there a way to map memory to a repeating location?
+We could map the memory after each item's data to the same region of memory
+
+```
+001
+Circle data
+Circle draw code
+005
+Circle data
+Circle draw code
+010
+Circle data
+Circle draw code
+015
+Circle data
+Circle draw code
+020
+Circle data
+Circle draw code
+025
+Circle data
+Circle draw code
+```
+
+# 470. Extremely intricate but understandable renderings
+
+# 471. Passing values through space and time
+
+Read about C++ and you'll read about copy and moves.
+
+# 472. Compiler machinery
+
+C++ has interesting interface for integrating with compiler internals. This should be generalised and the strategy should be applicable.
+
+For example, stack handling, orthogonality.
+
+# 473. While true everywhere, bring variables forward, backward and event handlers for interloop communication
+
+```
+loop1 = 
+while True:
+        conn_sock = accept(listener)
+        threads[connections % thread_count] <- connect(conn_sock)  
+    
+loop2 = 
+while True:
+    @rb.connect(conn_sock)
+        threads.start()
+    
+loop3 = 
+while True:
+```
+
+orthogonality
+
+# 474. Large methods
+
+Why worry about stacks and copy and move elision when you inline everything into one large method?
+
+# 475. Minilang
+
+Coroutines and threading embeddable language that is implemented in a method of another language.
+Has native interop.
+
+Has async/await support due to # 476. Stackless coroutine transpiler.
+
+# 476. Stackless coroutine transpiler
+
+Each line of code can be labelled and a virtual goto computed.
+
+Then a state machine can manage progression between states (lines of code).
+
+```
+THREAD_BEGIN()
+while True:
+    print("Starting task1")
+    value1 = await task2()
+    value3 = await task2()
+    value4 = await task3()
+    value2 = await TASK3()
+    print(value1, value2)
+
+THREAD_END()
+
+THREAD_BEGIN()
+print("Starting task2")
+while True:
+    yield y++
+    yield b++
+THREAD_END()
+
+THREAD_BEGIN()
+print("Starting task3")
+while True:
+    yield n++
+    yield x++
+THREAD_END()
+   
+```
+
+Can be rewritten into this:
+
+```
+package main;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AsyncAwait {
+    public static void main(String arg[]) {
+        // 0 means ready
+        HashMap<Integer, Integer> state = new HashMap<>();
+        state.put(0, 0);
+        state.put(1, 1);
+        state.put(2, 1);
+        HashMap<Integer, Integer> yielded = new HashMap<>();
+        state.put(0, 0);
+        state.put(1, 0);
+        state.put(2, 0);
+        HashMap<Integer, Integer> waitingFor = new HashMap<>();
+        HashMap<Integer, Integer> returnvalue = new HashMap<>();
+        List<String> taskState = new ArrayList<>();
+        taskState.add("task1.print(\"Starting task1\")"); // task1
+        taskState.add("task2.print(\"Starting task2\")"); // task2
+        taskState.add("task3.print(\"Starting task3\")"); // task3
+        HashMap<Integer, ArrayList<String>> loops = new HashMap<>();
+        HashMap<Integer, Map<Integer, String>> loopreturn = new HashMap<>();
+        ArrayList<String> innerloops = new ArrayList<>();
+        innerloops.add("task1.value1 = await task2()");
+        loops.put(0, innerloops);
+        loopreturn.put(0, new HashMap<>());
+
+        innerloops = new ArrayList<>();
+        innerloops.add("task2.preyield");
+        loops.put(1, innerloops);
+        loopreturn.put(1, new HashMap<>());
+
+        innerloops = new ArrayList<>();
+        innerloops.add("task3.preyield");
+        loops.put(2, innerloops);
+        loopreturn.put(2, new HashMap<>());
+
+        HashMap<Integer, String> returnstatement = new HashMap<>();
+        HashMap<String, Integer> variables = new HashMap<>();
+        int currenttask = 0;
+        int currentLoop = 0;
+        HashMap<Integer, Integer> loopYielding = new HashMap<>();
+        variables.put("x", 10);
+        variables.put("y", 0);
+
+
+        while (true) { // vertical
+            switch (taskState.get(currenttask)) {
+                case "task1.print(\"Starting task1\")":
+                    System.out.println("Starting task1");
+                    taskState.set(currenttask, "task1.while True");
+
+                    break;
+                case "task2.print(\"Starting task2\")":
+                    System.out.println("Starting task2");
+                    taskState.set(currenttask, "task2.while True");
+                    state.put(1, 0);
+                    break;
+                case "task3.print(\"Starting task3\")":
+                    System.out.println("Starting task3");
+                    taskState.set(currenttask, "task3.while True");
+                    state.put(2, 0);
+                    break;
+
+
+                case "task1.while True":
+//
+                    if (loops.get(0).size() == 0) {
+                        ArrayList<String> loopStart = new ArrayList<>();
+                        loops.get(0).set(0, "task1.value1 = await task2()");
+                    }
+//                    System.out.println(String.format("Loop next %s", loops.get(0).get(0)));
+                    switch (loops.get(0).get(0)) { // horizontal
+                        case "task1.value1 = await task2()":
+                            state.put(1, 0); // wake up task2
+                            waitingFor.put(0, 1);
+                            returnstatement.put(0, "task1.while True");
+                            loops.get(1).set(0, "task2.yield y++");
+                            state.put(0, 1);
+                            break;
+                        case "task1.value1":
+                            Integer value = returnvalue.get(1);
+//                            System.out.println(String.format("Setting value1 to %s", value));
+                            variables.put("value1", value);
+                            state.put(0, 0);
+                            loops.get(0).set(0, "task1.value2 = await task3()");
+                            returnstatement.put(0, "task1.while True");
+
+                            break;
+                        case "task1.value2":
+//                            System.out.println(String.format("Setting value2 %s", returnvalue.get(2)));
+
+                            variables.put("value2", returnvalue.get(2));
+                            returnstatement.put(0, "task1.while True");
+                            state.put(0, 0);
+                            loops.get(0).set(0, "task1.print(\"Hello world\", value1, value2)");
+                            break;
+                        case "task1.value2 = await task3()":
+                            state.put(2, 0); // wake up task3
+                            waitingFor.put(0, 2);
+                            returnstatement.put(0, "task1.while True");
+                            state.put(0, 1);
+                            loopreturn.get(0).put(0, "task1.print(\"Hello world\", value1, value2)");
+                            loops.get(2).set(0, "task3.yield x++");
+
+                            break;
+                        case "task1.print(\"Hello world\", value1, value2)":
+                            System.out.println(String.format("Hello World %d %d", variables.get("value1"), variables.get("value2")));
+                            returnstatement.put(0, "task1.while True");
+                            loops.get(0).set(0, "task1.value1 = await task2()");
+                            state.put(0, 0);
+
+                    }
+                    break;
+
+
+                case "task2.while True":
+                    currentLoop = 1;
+//                    System.out.println(loops.get(1).get(0));
+
+                    if (loops.get(1).size() == 0) {
+                        ArrayList<String> loopStart = new ArrayList<>();
+                        loops.get(1).set(0, "task2.yield y++");
+                    }
+                    switch (loops.get(1).get(0)) { // horizontal
+                        case "task2.preyield":
+                            state.put(1, 1); // go to sleep
+//                            System.out.println("Task 2 going to sleep preyield");
+
+                            break;
+                        case "task2.yield y++":
+                            state.put(0, 0); // wake up task1
+                            variables.put("y", variables.get("y") + 1);
+                            returnvalue.put(1, variables.get("y"));
+                            returnstatement.put(1, "task2.while True");
+                            yielded.put(1, 1);
+                            loops.get(0).set(0, "task1.value1");
+                            state.put(1, 1); // go to sleep
+//                            System.out.println("Task 2 going to sleep");
+                            loopYielding.put(0, 0);
+
+                            break;
+                    }
+                    break;
+
+
+                case "task3.while True":
+                    currentLoop = 0;
+
+                    if (loops.get(2).size() == 0) {
+                        ArrayList<String> loopStart = new ArrayList<>();
+                        loops.get(2).set(0, "task3.yield x++");
+                    }
+                    switch (loops.get(2).get(0)) { // horizontal
+                        case "task3.preyield":
+                            state.put(2, 1); // go to sleep
+//                            System.out.println("Task 3 going to sleep preyield");
+
+                            break;
+                        case "task3.yield x++":
+                            System.out.println("Task3 yield x++");
+                            state.put(0, 0); // wake up task1
+                            returnstatement.put(1, "task3.while True");
+                            variables.put("x", variables.get("x") + 1);
+                            returnvalue.put(2, variables.get("x"));
+
+                            state.put(2, 1); // go to sleep
+                            yielded.put(2, 1);
+//                            System.out.println("Task 3 going to sleep");
+                            loops.get(0).set(0, "task1.value2");
+                            loopYielding.put(0, 0);
+                            break;
+                    }
+                    break;
+
+
+            }
+
+
+            // simple scheduler
+            boolean nobody = true;
+            for (Map.Entry<Integer, Integer> entry : state.entrySet()) {
+                if (entry.getValue() == 0) { // ready to run
+                    currenttask = entry.getKey();
+                    nobody = false;
+                    break;
+                } else if (entry.getValue() == 1 &&
+                        yielded.containsKey(waitingFor.get(entry.getKey())) && yielded.get(waitingFor.get(entry.getKey())) == 1) {
+//                    System.out.println("Found a yield");
+                    nobody = false;
+                    if (loopYielding.containsKey(entry.getKey())) {
+                        // System.out.println("Yielding returning from a loop");
+                        // a yield inside a loop
+                        loops.get(entry.getKey()).set(loopYielding.get(entry.getKey()), loopreturn.get(entry.getKey()).get(loopYielding.get(entry.getKey())));
+                        currenttask = entry.getKey();
+                        loopYielding.remove(entry.getKey());
+
+                        yielded.remove(waitingFor.get(entry.getKey()));
+                        waitingFor.remove(entry.getKey());
+
+                    } else {
+                        yielded.put(waitingFor.get(entry.getKey()), 0);
+                        taskState.set(entry.getKey(), returnstatement.get(entry.getKey()));
+                        state.put(entry.getKey(), 0);
+                        currenttask = entry.getKey();
+                    }
+                    break;
+                }
+            }
+            if (nobody) {
+                break;
+            }
+
+
+
+        }
+    }
+}
+
+```
+
+# 477. Spread (over time) operator 
+
+Batch so no interference.
+
+# 478. Use any code with any other code
+
+Slots - associate fields with a variable of other code. Can use any code with any code
+Can it be compiled ?
+Yes!
+
+# 479. Types are too static
+
+# 480. Code Struture URL
+
+# 481. Common Ranges keyspace
+
+# 482. What do we really want to do in computing
+
+# 483. Two sided methods
+
+Each method receives an owner which is the context scope which is being called.
+
+I can send messages to the object graph that is facing my method call. In other words, I can send backwards.
+
+# 484. Advanced Span viewer
+
+# 485. Illusion of single threadedness
+
+# 486. Compiled pattern matching
+
+Unfortunately, a switch based interpreter can be slow.
+
+```
+branch {
+    
+}
+```
+
+The code behind an instruction can be compiled with an optimising compiler and weaved into the program. This is what Deegen and futumura projections are. 
+
+The capability of compiling pattern matching into the program efficiently.
+
+# 487. Typed structures and dynamically typed static languages
+
+Rather than worry about types of variables, we worry about the shape of code and switch between structures. The shape of code that manipulates data.
+
+This is how we write truly polymorphic code without changing any code. The code is merged together automatically.
+
+We shouldn't need to worry about designing code to be extended, it should just be extendable by default.
+
+The compiler tells us if the code would work with the existing types.
+
+```
+Renderer() {
+    render {
+        x = default(x)coordinate
+        y = default(y)coordinate
+        for child in self.children:
+            render(child)
+    }
+}
+Hlayout {
+    render(parent, x, y) {
+        default(x)coordinate = 0
+        default(y)coordinate = y
+        +render(child) < iterate(self.children) {
+          increment(x)by(child.width)  
+        }
+    }
+}
+Vlayout {
+    render(parent, x, y) {
+        default(x)coordinate = 0
+        default(y)coordinate = y
+        +render(child) < iterate(self.children) {
+          increment(x)by(child.width)  
+        }
+    }
+}
+
+
+```
+
+Inference on structures.
+
+What is the structure of this code?
+
+```
+for item in items:
+    for subitem in item.subitems
+        for inneritem in subitem:
+            do_something() 
+```
+
+This is the structure:
+```
+ITERATE(items) > ITERATE(items.subitems) > ITERATE > do_something()
+```
+
+If there were multiple lines around the loops, it would look as this:
+
+```
+for item in items:
+    outer(item)
+    for subitem in item.subitems
+        subitemouter(subitem)
+        for inneritem in subitem:
+            do_something()
+        subitemafter(subitem)
+    outerafter(item)
+```
+
+```
+ITERATE(items) > outer(item)
+ITERATE(items) > ITERATE(item.subitems) > subitemouter(subitem)
+ITERATE(items) > ITERATE(item.subitems) > ITERATE(subitem) > do_something()
+ITERATE(items) > ITERATE(item.subitems) > subitemafter(inneritem)
+ITERATE(items) > after(item)
+```
+
+Named elements
+
+```
+allItems.ITERATE(items) > outer(item)
+allItems.ITERATE(items) > ITERATE(item.subitems) > subitemouter(subitem)
+allItems.ITERATE(items) > ITERATE(item.subitems) > ITERATE(subitem) > do_something()
+allItems.ITERATE(items) > ITERATE(item.subitems) > subitemafter(inneritem)
+allItems.ITERATE(items) > after(item)
+```
+
+Compaction
+
+We prefix each line with its structural level.
+
+```
+1. 0 allItems.ITERATE(items) > outer(item)
+2. 1 ITERATE(item.subitems) > subitemouter(subitem)
+3. 2. ITERATE(subitem) > do_something()
+4. 1. subitemafter(inneritem)
+5. 1. after(item)
+
+```
+
+Even better, we name every indention level:
+
+```
+eachItem: 1. 0     ITERATE(items) > outer(item)
+eachSubitem: 2. 1       ITERATE(item.subitems) > subitemouter(subitem)
+eachInnerItem: 3. 2.        ITERATE(subitem) > do_something()
+4. 1.                   subitemafter(inneritem)
+5. 1.                   after(item)
+
+```
+
+Right to left coding:
+
+```
+outer(item)             < ITERATE(items)
+subitemouter(subitem)   < ITERATE(items)            < ITERATE(item.subitems)
+do_something()          < ITERATE(subitem)          < ITERATE(item.subitems) < ITERATE(items)
+subitemafter(inneritem) < ITERATE(item.subitems)    < ITERATE(items)
+after(item)             < ITERATE(items)
+```
+
+If statements
+
+This code:
+
+```
+for item in items:
+    change = []
+    if (index.containsKey(item.key)):
+        change = index[item.key]
+    change.append(item.value)
+    index[item.key] = change
+```
+
+Is equivalent to this:
+
+```
+
+1. 0 ITERATE(items)
+2. 1 change = []
+3. 1 change = index[item.key] < if (index.containsKey(item.key))
+4. 1 change.append(item.value)
+5. 1 index[item.key] = change
+```
+
+Branching between structures
+
+Single dispatch
+
+Code generation:
+
+All variants are valid simultaneously, it's up to the compiler to dispatch to the right code.
+
+What can the compiler use to dispatch to the right code?
+
+```
+    def hlayout_place(self, parent, layoutable, x, y):
+        print("Doing HLayout place of {}".format(self.name))
+        places = []
+        outer_place = Place(parent, layoutable, x, y, places)
+        last_x = 0
+        last_y = y
+        this_y = 0
+        max_y = 0
+        for item in self.children:
+            print("HLayout.place Doing place of {} {}".format(item.name, item))
+            this_y = y
+            this_x = last_x
+            child, new_x, new_y = item.layout(this_x, this_y, outer_place, item)
+            
+            last_x = new_x + item.size_of_dimension("x")
+            print(item.name, "is", item.size_of_dimension("x"), "is wide")
+            max_y = max(max_y, new_y)
+            last_x = new_x
+            last_y = new_y + item.size_of_dimension("y")
+
+            places.append(child)
+        
+        
+        
+        return outer_place, last_x, y
+    
+    def hlayout(self, outer_x, outer_y, parent, layoutable):
+        print("Doing HLayout layout of {}".format(self.name))
+        placed = []
+        outer_place = Place(parent, layoutable, outer_x, outer_y, placed)
+        x = 0 
+        y = 0
+        max_y = outer_y
+        new_y = 0
+        for item in self.children:
+            print("In HLayout Placing type {} {} at {} {}".format(item, item.name, x, y))
+            
+            place, new_x, new_y = item.place(outer_place, item, x, y)
+            max_y = max(max_y, new_y)
+            x = new_x 
+            y = 0
+            
+            placed.append(place)
+        print("{} y is {}".format(self.name, max_y))
+        return outer_place, x, new_y
+
+    def vlayout_place(self, parent, layoutable, x, y):
+        print("Doing VLayout of {}".format(self.name))
+        places = []
+        outer_place = Place(parent, layoutable, x, y, places)
+        last_x = x
+        last_y = 0
+        max_y = 0
+        this_y = y
+        for item in self.children:
+            print("VLayout.place Doing place of {} {}".format(item.name, item))
+            this_x = x
+            this_y = last_y
+            
+            child, new_x, new_y = item.layout(this_x, this_y, outer_place, item)
+            last_y = new_y
+            last_x = new_x
+            last_y = last_y + item.size_of_dimension("y")
+            
+            
+            print(item.name, "Item is", item.size_of_dimension("y"), "tall")
+            places.append(child)
+            
+        
+        print("{} {} last_y is {}".format(self.name, layoutable.name, last_y))
+        return outer_place, x, last_y
+    
+    def vlayout(self, outer_x, outer_y, parent, layoutable):
+        placed = []
+        x = 0
+        y = 0
+        max_y = 0
+        
+        outer_place = Place(parent, layoutable, outer_x, outer_y, placed)
+        for item in self.children:
+            print("In Vlayout Placing type {} {} at {} {}".format(item, item.name, x, y))
+            place, new_x, new_y = item.place(outer_place, item, x, y)
+            max_y = max(new_y, max_y)
+            x = new_x
+            y = new_y
+            placed.append(place)
+        return outer_place, x, new_y
+```
+
+# 488. Standard standard library
+
+Write an Interface Description Language for a standard library and allow the implementation of the standard library to exist in every language.
+
+# 489. 2d Language
+
+Every widget on the screen should do something, so we don't have an empty screen.
+
+# 490. Expression AST multiplication metaprogramming
+
+If everything is an expression and its part's AST can be referred to programmatically, can we write expressions that generate AST expressions and they are compiled at runtime.
+
+```
+// the following code
+for int i = 0 ; i < 3 ; i++ {
+    ast for int j = 0 i < 3 i++ {
+        doSomething(i, items[i])
+    }
+}
+// generates this at runtime:
+for int j = 0 i < 3 i++ {
+        doSomething(0, items[i])
+    }
+for int j = 0 i < 3 i++ {
+    doSomething(1, items[i])
+}
+for int j = 0 i < 3 i++ {
+    doSomething(2, items[i])
+}
+```
+
+AST is kept in memory ready for compilation. We should be capable of referring to outer scope or inner scope. This is similar to a Lisp macro.
+
+I envision this being used for template metaprogramming.
+
+All the code related to handling objects of type X can be multiplied with different types.
+
+
+# 491. Compiler loops and Embeddable compilers - three boundaries
+
+Imagine a programming language with 3 boundaries: compile time, runtime and parse time. Parse time is where ASTs are created and evaluated. Run time feeds into parse time.
+
+I'm imagining a programming language that has a tool for compiling:
+* the compiler compiles the compiler into the language
+* this provides runtime Expression AST multiplication metaprogramming
+* runtime codegeneration
+* linking into memory
+
+# 492. Everything is process coordination
+
+Structure of code gets in the way of coordination between things.
+
+
+
+IO and network calls represent processes.
+
+Every object is processing events in parallel.
+
+
+
+Semantics such as moves and copies and garbage collection represents proccesses. Freeing dynamically created memory represents a process.
+
+Execution plan
+
+compilation, parsing processes at runtime
+everything is an evaluable expression
+
+# 493. Rich method name parsing
+
+Imagine these parameterized method names.
+
+Rather than the method name being at the beginning, we intersperse the arguments in the method so they read as sentences.
+
+```
+Increase(x)by(amount)
+```
+
+# 494. Expression relations
+
+Move semantics in C++ and rust lifetimes mean expressions are harder to reason about.
+
+# 495. Changing object structures while maintaining OOP
+
+# 496. Low cost jump map patterns
+
+Inheritance means some jumps are efficient and easy to implement and other jumps are not.
+
+Let's create a diagram that represents the easy to follow jumps.
+
+# 497. A most advanced high level execution
+
+There's three programs for every program. There's the program that the user of the programming language sees, then there's what actually gets executed.
+
+So there's three levels of execution: the high level language, the lowered high level language (desugared) and the machine code or bytecode.
+
+Need to generalise the ordering of stack based execution so that any sequence of instructions or expressions causes the correct execution order.
+
+```
+
+```
+
+# 498. Pick up and put down machine
+
+Memory addresses, registers, Threads, coroutines, methods, objects, processes are boxes where things can go into and come out of.
+
+The structure of movement through boxes. The structure of movement through inclusion, exclusion. And independent algorithms that determine how each functions. Essentially a coroutine executor works out how to execute coroutines. But a coroutine is a block of code with associated storage.
+
+```
+pick up coroutine
+put down in executing coroutines, execute until next yield
+```
+
+```
+pushArguments();
+enterMethod();
+createStackFrameOnstack();
+
+
+```
+
+This has synergy with the idea of 3 programs for every program: a high level programming language that is turned into a high level machine that organises the progression of states.
+
+The inclusion/exclusion is a very high level to think of the problem as programs move between different states.
+
+Everything in a computer system can be abstracted to picking something up with a hand and then putting it down again, potentially elsewhere.
+
+We can write code that efficiently pick up and put down things, into more efficient placements and do job scheduling with a limited number of hands.
+
+Think of an interpreter, it picks up an instruction and then does something, then puts down another number that is greater than it was before.
+
+Expressions are the same: they pick up things and put down things in stacks.
+
+# 499. Dividing things up and singletons of multiples
+
+Think of a computer: it's divided into objects. We also want to overlay another perspective of the computer over the existing things and allow the operating system to provide services to those things.
+
+# 500. Can avoid trampoline by compiling state machine jump table everywhere it is needed - where there is a state transission
+
+Rather than jump to the right code through two jumps (a trampoline) compile the code for an entire journey from that point onwards at every decision point to avoid the unnecessary jumps.
+
+# 501. Wiring
+
+```
+producer()
+consumer()
+
+```
+
+visualizing stacks and complicated relationships
+
+# 502. Code Structural interface
+
+The code itself is the interface to program against. You write methods that can receive or send arguments
+
+```
+def apimethod():
+    do_something1()
+    do_something2()
+    do_something3()
+```
+
+```
+    @after do_something():
+        
+```
+
+Suppress behaviour
+Add behaviour
+Post behaviour
+pre behaviour
+
+# 503. Desired state
+
+# 504. The orthogonality of stacks
+
+# 505. Understanding coroutines
+
+A turing machine executes instructions one by one and jumps to the next instruction. If there's a coroutine involved, it needs to jump to within a method.
+
+Then you also have storage of local variables to worry about.
+
+Assembly is far easier to implement coroutines for.
+
+* What if you want to call a coroutine recursively
+
+# 506. Pseudo C transpiling - expression kernels
+
+Writing a programming language is hard enough.
+
+What if you wanted the performance of C but wanted to add your own style and functionality to your language?
+
+Transpiling an entire language is hard enough too.
+
+What about a middle option?
+
+Don't map your entire programming language to C, but map a subset of it and manage other parts of the language as runtime objects in a C program.
+
+
+
+It's hard to compete with the optimisation that optimising C compilers do with code.
+
+I'm imagining a programming language which defines functions, loops and expressions. The AST for loops, if statements and expressions is mapped to transpiled to C code but functions are data objects managed by the runtime written in C.
+
+This is how we get the performance of C for expressions without too much work.
+
+How do you write loops that can generalise when mapped to C? It's likely your language shall have different type semantics than C.
+
+# 507. View entire stack history
+
+Profile some running code and track the callhistory. Render the deepest stacks to the screen.
+
+# 508. Change branch heavy to a loop, Jump branch reductions and cache miss reduction
+
+When applications startup there is lots of jumping to code that isn't in cache. And this is repetitive, since each item pushes the code out of the cache.
+
+Imagine you have this code:
+
+```
+
+for item in items:
+    if condition1(item):
+    
+    if condition2(item):
+    
+    if condition3(item):
+```
+
+If items is large, this is a lot of overhead and pipeline stalls from jumping everywhere.
+
+
+
+Structure of control flow explicit structures
+
+method calls are arrangements of data into memory OR control flow or BOTH typically (assembly call ABI)
+
+Moving along a straight line can be faster than turning, since you need to slow down to turn safely. The same is true of a processor. Whenever an if statement is reached, thereis a test instruction and a jump. This causes a pipeline stall.
+
+Is it better to do some unnecessary work to avoid a pipeline stall every few (5-15) instructions or so?
+
+How do you turn branch and call heavy code into a loop?
+
+```
+struct BothBranches {
+    int *numbers;
+    int len;
+    int * testResult;
+}
+```
+
+
+Extremely fast and parallelisable
+
+This solution has the problem
+
+IO problem branchless lang
+If there's IO in a branch, then it seems it cannot be executed anyway due to sideeffects.
+IO can be collected and executed at the end.
+Nonblocking design - no statement can block
+Shouldn't really be doing IO with processing in a loop.
+
+How do store complicated objects without mutability with this approach.
+
+# 509. Instructions between data structures
+
+Render a very complicated data structure to the screen.
+
+Point and click two parts of the data structure and write the code that should be used between them.
+
+The computer works out how to loop over the data to get to that pattern of result.
+
+# 510. Sourcecode links to loops
+
+Find all references to a method from a symbol name
+
+
+
+# 511. Caselang if statement linked expression, an unnested language and HTML code
+
+What if control flow was always linked together to its causes?
+
+To write an if statement, you need to wrap the dependencies in something.
+
+```
+{
+somethingAbove = 6;
+}
+if (somethingAbove) {
+
+}
+```
+
+# 512. Parsing can be used to create paralellism points
+
+A Pratt parser naturally determines the separation between expressions based on precedence. We can use this information (and other information) to determine parallelisation points.
+
+ParaSail is a language that parallelises different expressions automatically.
+
+```
+for (int i = 0 ; i < 100 ; i++) {
+    int value = 0;
+    for (int j = 0; j < 100; j++) {
+        value += items[i].value + 2 * others[j];
+    }
+    items[i] = value;
+}
+
+```
+
+When the pratt parser encounters the second loop, it can generate a fork that is linked to the parent expression.
+
+pratt parser precedence handling can be used to handle parallelism
+
+fourier transform compatibility
+
+# 513. Callstack to parser
+
+This is my callstack at this position in the program source.
+
+Can the callstack be used to determine parsing? if I know I'm 4 expressions deep.
+
+```
+threads 25
+<start>
+set struct accounts = {
+    '1' = {
+        'balance' = '700';
+        'details' = {  # <------------------------ Here
+            'name' = 'Samuel Squire';
+        }
+    },
+    '2' = {
+        'balance' = '600';
+        'details' = {
+            'name' = 'Samuel Squire';
+        }
+    };
+};
+```
+
+``
+at main.ProgramParser.parseExpression(ProgramParser.java:586)
+at main.ProgramParser.parseExpression(ProgramParser.java:661)
+at main.ProgramParser.parseToken(ProgramParser.java:932)
+at main.ProgramParser.parseExpression(ProgramParser.java:620)
+at main.ProgramParser.parseToken(ProgramParser.java:943)
+at main.ProgramParser.parseExpression(ProgramParser.java:620)
+at main.ProgramParser.parseVariableDeclaration(ProgramParser.java:574)
+at main.ProgramParser.nextAST(ProgramParser.java:493)
+at main.ProgramParser.parse(ProgramParser.java:458)
+at main.LanguageInterpreterRunner.run(LanguageInterpreterRunner.java:64)
+at main.LanguageInterpreterRunner.main(LanguageInterpreterRunner.java:19)
+``
+
+
+
+# 514. The Power of Ordering on Behaviour
+
+Post, Pre
+
+# 515. Stacktrace and output viewer
+
+Not quite a debugger.
+
+# 516. Turing machines do little things that add up to large things
+
+# 517. Epoll for object changes and collections of objects
+
+Imagine issuing a `select` query and then monitoring the objects of the returned objects for changes.
+
+# 518. Primitive heavy language
+
+What if we could use primitives in collections arrays without boxing?
+
+Could we avoid the boxing problem by always using structures of arrays?
+
+# 519. Parallel parsers
+
+# 520. Callstack switch statement and full stop delimited pipelines, defined program by stacktrace
+
+Imagine each part of this stacktrace, each part between periods is a switch statement and routes processing to the right place.
+
+```
+at main.ProgramParser.parseExpression(ProgramParser.java:620)
+```
+
+# 521. The criticality of providing implementations or closures and futamura projections
+
+In an object orientated programming language we provide a named implementation such as at a method name on a class. In a functional language we provide first order function passed in as an argument.
+
+You can only provide one! This is a limitation. See the rule of multiplexing.
+
+What if we wanted dynanamism and efficiency of a switch statement in these implementations? How do we unify routing with implementation?
+
+What does the machine code look for this?
+```
+method (arg1, arg2, arg3) {
+    match (arg1) {
+
+    }
+    match (arg2) {
+
+    }
+    match (arg3) {
+    
+    }
+}
+```
+
+ * We can do runtime templating compilation on method calls.
+
+Closures need dynamic routing and pattern matching.
+
+Currying can be used to do pattern matching of each argument.
+
+# 522. Assembly test 
+
+# 523. Trying to orthogonalise threading: Threads are underlying the implementation
+
+I'm trying to think of a model for a language where threading is properly placed. It's difficult thinking of an orthogonal model for threading. Traditional programs coordinate and orchestrate threading explicitly, manually. They are not part of the execution environment of code. The environment that code is running in depends on the thread environment but this information is hidden from you.
+
+Some models I'm thinking of:
+
+ * Imagine if threads were invisible to the language and were automatically scheduled. You don't need to coordinate scheduling on a thread.
+
+There are CPU threads and IO threads and there is a event loop thread which coordinates them through a ringbuffer.
+
+# 524. Prolog to autoparallelize
+
+# 525. Surface program logic
+
+Relativity, reference point.
+
+# 526. Multiplexing setting format and routing operation
+
+In # 464. Template structure instantiation and AST structure merging I talked of a multithreaded system and changing the design of such either at runtime or at design time. Or having the flexibility to change the design of the system easily and cheaply. We can cheapen costs of changing a system and concurrency and parallelism by introducing abstractions and one such abstraction is queues.
+
+You're writing a complicated system. There are associations between different components. You need to create objects at certain times and associate objects with other objects. You want flexible instantiation of components and routing between components.
+
+We can define two formats and use one to route the other:
+
+The first format is the list of is how a message looks:
+
+The message has information about its environment.
+
+```
+server1.container1.process1.sendthread1
+socket1
+user1
+newmessageevent
+messagebody
+```
+
+The available environment information is used to route the message to available mailboxes. Each group of following lines is a mailbox handler and the lines represent what must match to be routed to this mailbox.
+
+```
+server1.container1.process1.sendthread1
+socket1
+user1
+
+server1.container1.process1.recvthread1
+socket1
+user1
+
+server1.container1.process1.sendthread2
+socket1
+user2
+
+server1.container1.process1.recvthread2
+socket1
+user2
+
+server1.container1.process1.sendthread2
+socket1
+user3
+```
+
+We can set up the multiplexing with this syntax, where we define ranges of keyspaces.
+
+For example, users 1 through 5000 are assigned to server1 and socket5 is handled by server2.thread1.
+
+```
+server1
+user1-user5000
+server1.thread1 socket1
+
+server2
+user5001-user10000
+server2.thread1 socket5
+
+server3
+user15001-20000
+server3.thread1 socket3
+```
+
+or more intuitively, we can use a for loop:
+
+```
+servers = ["server1", "server2", "server3"]
+containers = ["app", "database", "jobs"]
+threadTypes = ["recv", "send"]
+threads = range(0, 3)
+sockets = ["socket1", "socket2", "socket3"]
+for server in servers:
+    for container in containers:
+        for threadType in threadTypes:
+            for thread in threads:
+                associate(server, container, threadType, thread) 
+```
+
+
+
+Imagine we have a route method which accepts environment information and a message and routes to the right component. The route method is set up by a cartesian product.
+
+Every method does this:
+
+```
+def method():
+    event = GetEvent()
+    
+    switch (event) {
+        case type1:
+            responseEvent = ResponseEvent1()
+        case type1:
+            responseEvent = ResponseEvent2()
+    }
+    
+    route(responseEvent)
+```
+
+On startup, we do something such as this:
+
+```
+def main(argv):
+    environment = Environment()
+    for server in servers:
+        handle = environment.associate("server")
+        for threadType in ["recv", "send"]:
+            subthreadHandle = handle.associate(threadType)
+            for thread in range(0, 6):
+                
+                threadFactory = ThreadFactory(Environment, threadType)
+                messageHandler = MessageHandler(threadFactory)
+                subthreadHandle.associate(thread, threadFactory)
+                environment.associate(server, threadType, thread, messageHandler, threadFactory)
+     
+     for threadType ["recv", "send"]:
+        for range(0, 3):
+            Environment.create("thread.{}".format(threadType))
+    
+    # Either this:
+    threadFactory = ThreadFactory(Environment, "socketacceptor")
+    messageHandler = MessageHandler(threadFactory)
+    subthreadHandle.associate(thread, threadFactory)
+    socketAcceptor = environment.associate("socketacceptor", messageHandler, threadFactory)
+    
+    socketAcceptorThread = socketAcceptor.create()
+    socketAcceptorThread.start()
+    environment.send("socketacceptor", """
+    listen
+    """)
+    
+```
+
+The thread `run` method:
+
+```
+def run():
+    while True:
+        Event = messageHandler.GetEvent()
+        switch (Event.type) {
+            case "listen":
+                listen()
+                
+                socket = accept()
+                # If the thread isn't created, it shall be created
+                environment.send("recvthread", """
+                socketaccept socket={}
+                """.format(socket))
+                environment.send("recvthread", """
+                socketaccept socket={}
+                """.format(socket))
+                    
+        }
+```
+
+This allows many-to-many relations to be set up.
+
+
+
+There is many features we can enable with this design:
+
+ * **Multiparadigm messaging and componentry** This design allows us to link components into any layout architecture that we want with a common foundation for communications. Kafka, Java stream processing and Reactive extensions and complex event processing are useful approaches to organising data pipelines
+ * **Control loops integration** Defining what should be the case can require a series of corrective action to cause current state to match target state.
+ * **Futures, result readiness, monitoring and asynchronous communication** Can `epoll` be integrated into the design?
+ * **Object orientated programming v2** Can this idea be used as a basis for # 210. Object oriented programming v2? We might want to define behaviours across different mailboxes that overlap mailboxes.
+ * **Object Lifecycle management**
+ * **Parallelism, tasks** The model defines object lifecycles of things including threads but it would good
+ * **Pattern matching** We can use patterns to match against environments rather than a enumeration. This could be a regular expression, range of integers or sharded and keyspace
+ * **Consistent hashing** We can use consistent hashing so that given an environment it always reaches the same handler.
+ * **Data structure tries for routing** If we assume that each line of the environment is a tree data structure, we can use tries to match common elements.
+ * **Route to one to many** We can route a message to multiple message handlers and each can handle the event how it wants.
+ * **Eager matching** we can match the handlers that match the majority of the environment or a subset.
+ * **Expression problem solution** This routing can be used to implement the expression problem. Behviour can be handled by common implementations.
+ * 
+
+This is set up with a nested loop or an active cartesian product object.
+
+
+
+We can have an API for raising objects and associations.
+
+```
+Environment.create("socket")
+```
+
+We have a function that `routes` to existing or creates anew.
+
+```
+autowire({
+    "context": []
+})
+```
+
+We have an algorihm for generating available association lines.
+
+ * **Server stem cells** Servers deciding what they do based on name (string) or tags (cloud)
+ * **Inversion of authority flow** The design is similar to an inversion of authority enclosure such as Spring.
+ * **Factories**
+ * **Callbacks**
+ * **Scheduling**
+ * **Futumura projections** There's opportunity to compile the messages into a compiler.
+ * **Use of message passing**
+ * **Local and cross machine Queuing, backoff, load shedding, circuit breakers** The design can incorporate all these features.
+ * **IRC/mailserver design** Should be possible to use for backend servers such as webservers, IRC servers and mailservers.
+request/response web servers
+java application servers, tomcat, dropwizard, request context
+ * **horizontal/vertical slicing** Allows architecture to be sliced how we want it to be sliced.
+ * **Geo routing** can route requests to nearby nodes.
 
 # Hierarchy blend
 
 
 # phone ideas
 
+Strctyre
+Cuor
+
 Growth develop profoundly effective, the rate, the movement
 
-How is async await implemented
+How is async await implemented - done
 
 Payment
 Proof of debt
@@ -6297,7 +8186,7 @@ Invest in success without money
 
 In the context of
 Resilient business - self funding 
-Common Ranges keyspace
+
 Business IO
 
 Free memory copied too
@@ -6324,9 +8213,7 @@ They can see the plan, then plan the program from their perspective
 When people management 
 Should language, what should happen with the state of everything
 Python multithreading and ref counting
-Slots - associate fields with a variable of other code. Can use any code with any code
- Can it be compiled ?
-Yes!
+
 What things are is hardest problem in computing
 It's the movement of a computer that is useful.
 External hierarchy
@@ -6368,7 +8255,7 @@ We assume everything runs forever and is interrupted.
 
 Pick every combination of those indexes and render 3d chart of that number
 What kind of instructions should we introduce
-We can store any data structure parallel to the instructions
+We can store any data structure parallel to the instructions in interpreters
 Instructions for data structures
 MetaCompiler as an bytecode instruction
 Expression problem
@@ -6472,6 +8359,7 @@ For (; thread_loops[0].index < thread_loops[0].limit ; thread_loops[0].index++) 
 
 The thread_loops[0].index can cause a torn write.
 
+How to avoid data races:
 We can detect the torn write from the multiplexing thread. The value shall return to lower than the limit so we need to try setting it again.
 
 Can acknowledge the loop early end from the lightweight thread, on the fast path. Multiplexing thread can wait for that acknowledgement before skipping that thread
@@ -6540,3 +8428,5 @@ Flow control
 
 Things written as communication protocols are easier to program and reason about. Concurrency too (see go and occam pi)
 Turn the GUI into a communication problem.
+
+Interspersed algorithms
