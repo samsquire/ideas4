@@ -2059,6 +2059,8 @@ I implemented this as a multithreaded scheduler of lightweight threads multiplex
 
  * **Highly concurrent and parallel**
  * **Compiler, interpreter and virtual machine based** I want my code to run on multiple systems. So that involves some kind of compilation step or virtual machine. When we want performance, we compile. While developing, we interpret.
+ * **JIT compiler** A JIT compiler would be useful.
+ * **Rendering engine** A solid approach to rendering data to the screen.
  * **Zero downtime deployments and separation of release and deployment** PHP is easy to deploy - just upload files. But it's not easy to do an atomic deploy of PHP code as there is a risk that someone requests halfway between an FTP copy. We can use virtual dispatch tables to switch between versions of code. The virtual machine runtime can load new code atomically.
  * **Accelerated by GPU**
  * **Very few keywords**
@@ -7967,18 +7969,42 @@ In # 464. Template structure instantiation and AST structure merging I talked of
 
 You're writing a complicated system. There are associations between different components. You need to create objects at certain times and associate objects with other objects. You want flexible instantiation of components and routing between components.
 
-We can define two formats and use one to route the other:
+We can define three formats and use one to route the other:
 
 The first format is the list of is how a message looks:
 
-The message has information about its environment.
+The following two (2) messages have information about their environment included and a message body.
 
 ```
 server1.container1.process1.sendthread1
-socket1
+thread1
+newsocket socket=5
+
+server1.container1.process1.sendthread1
+socket5
 user1
 newmessageevent
 messagebody
+```
+
+The second format is a associational configuration format. Which defines what there should be separate mailboxes for.
+
+We can set up the multiplexing with this syntax, where we define ranges of keyspaces.
+
+For example, users 1 through 5000 are assigned to server1 and socket5 is handled by server2.thread1.
+
+```
+server1
+user1-user5000
+server1.thread1 socket1
+
+server2
+user5001-user10000
+server2.thread1 socket5
+
+server3
+user15001-20000
+server3.thread1 socket3
 ```
 
 The available environment information is used to route the message to available mailboxes. Each group of following lines is a mailbox handler and the lines represent what must match to be routed to this mailbox.
@@ -8003,24 +8029,6 @@ user2
 server1.container1.process1.sendthread2
 socket1
 user3
-```
-
-We can set up the multiplexing with this syntax, where we define ranges of keyspaces.
-
-For example, users 1 through 5000 are assigned to server1 and socket5 is handled by server2.thread1.
-
-```
-server1
-user1-user5000
-server1.thread1 socket1
-
-server2
-user5001-user10000
-server2.thread1 socket5
-
-server3
-user15001-20000
-server3.thread1 socket3
 ```
 
 or more intuitively, we can use a for loop:
@@ -8116,23 +8124,46 @@ def run():
 
 This allows many-to-many relations to be set up.
 
-
+loops meeting at the middle
 
 There is many features we can enable with this design:
-
+ * **High Performance messaging, embedded message queue** Can send lots of messages very fast.
+ * **Model view controller architecture**  
+ * **Traditional architectures are still possible** We can still use hexagonal architecture, onion architecture, DDD architecture with this approach.
+ * **Event topology** Fork/join, structured concurrency
+ * **Can do persistence for crash recovery**
+ * **Retry logic** 
  * **Multiparadigm messaging and componentry** This design allows us to link components into any layout architecture that we want with a common foundation for communications. Kafka, Java stream processing and Reactive extensions and complex event processing are useful approaches to organising data pipelines
  * **Control loops integration** Defining what should be the case can require a series of corrective action to cause current state to match target state.
- * **Futures, result readiness, monitoring and asynchronous communication** Can `epoll` be integrated into the design?
+ * **Futures, result readiness, monitoring and asynchronous communication** Can `epoll` `select` statement for objects be integrated into the design?
  * **Object orientated programming v2** Can this idea be used as a basis for # 210. Object oriented programming v2? We might want to define behaviours across different mailboxes that overlap mailboxes.
- * **Object Lifecycle management**
- * **Parallelism, tasks** The model defines object lifecycles of things including threads but it would good
+ * **Object Lifecycle management** The model defines object lifecycles of things including threads but it would good if it was a general purpose lifecycle management
+ * **Dual Synchrony design - both asynchronous and synchronous** We can provide an endpoint for use by other machines to report completion of an event. This is important if a `.join()` is used.
+ * **Write ahead logging and temporal.io style resumptions** If a server crashes, we want message queues to be handled seamlessly and recover.
+ * **Structured garbage collection**
+ * **Parallelism and concurrency resolved** Messages can be issued and serviced in parallel between components. Boundaries between parallel environments is handled automatically by the thread safe queues.
+ * **Structured Task hierarchies, work spidering** An event leads to a timeline of other events as one event fires another event and causes another task for another thread or coroutine. This can be thought of as work spidering. Each request causes other requests but eventually the request is fully handled. We can join on an event to wait for it to be completed. For outside listeners, this resolves when the event is fully handled. This could also work cross-machine with some plumbing.
+ * **Automatic span programming and tracing**
+ * **Decoupled CPU/IO threading environments** 
  * **Pattern matching** We can use patterns to match against environments rather than a enumeration. This could be a regular expression, range of integers or sharded and keyspace
  * **Consistent hashing** We can use consistent hashing so that given an environment it always reaches the same handler.
  * **Data structure tries for routing** If we assume that each line of the environment is a tree data structure, we can use tries to match common elements.
  * **Route to one to many** We can route a message to multiple message handlers and each can handle the event how it wants.
  * **Eager matching** we can match the handlers that match the majority of the environment or a subset.
  * **Expression problem solution** This routing can be used to implement the expression problem. Behviour can be handled by common implementations.
- * 
+ * **Server stem cells** Servers deciding what they do based on name (string) or tags (cloud)
+ * **Inversion of authority flow** The design is similar to an inversion of authority enclosure such as Spring.
+ * **Factories**
+ * **Callbacks**
+ * **Scheduling**
+ * **Futumura projections** There's opportunity to compile the messages into a compiler.
+ * **Use of message passing**
+ * **Local and cross machine Queuing, backoff, load shedding, circuit breakers** The design can incorporate all these features.
+ * **IRC/mailserver design** Should be possible to use for backend servers such as webservers, IRC servers and mailservers.
+   request/response web servers
+   java application servers, tomcat, dropwizard, request context
+ * **horizontal/vertical slicing** Allows architecture to be sliced how we want it to be sliced.
+ * **Geo routing** can route requests to nearby nodes.
 
 This is set up with a nested loop or an active cartesian product object.
 
@@ -8140,8 +8171,10 @@ This is set up with a nested loop or an active cartesian product object.
 
 We can have an API for raising objects and associations.
 
+Where `Environment.create(<kind>, <data>...)`.
+
 ```
-Environment.create("socket")
+Environment.create("socket", socketno)
 ```
 
 We have a function that `routes` to existing or creates anew.
@@ -8154,19 +8187,7 @@ autowire({
 
 We have an algorihm for generating available association lines.
 
- * **Server stem cells** Servers deciding what they do based on name (string) or tags (cloud)
- * **Inversion of authority flow** The design is similar to an inversion of authority enclosure such as Spring.
- * **Factories**
- * **Callbacks**
- * **Scheduling**
- * **Futumura projections** There's opportunity to compile the messages into a compiler.
- * **Use of message passing**
- * **Local and cross machine Queuing, backoff, load shedding, circuit breakers** The design can incorporate all these features.
- * **IRC/mailserver design** Should be possible to use for backend servers such as webservers, IRC servers and mailservers.
-request/response web servers
-java application servers, tomcat, dropwizard, request context
- * **horizontal/vertical slicing** Allows architecture to be sliced how we want it to be sliced.
- * **Geo routing** can route requests to nearby nodes.
+
 
 # Hierarchy blend
 
