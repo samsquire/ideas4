@@ -4005,11 +4005,17 @@ We can serve each method call at different rates. So a low priority methodcall d
 
 # 198. Sharding framework
 
+We can represent this with a syntax that separated by colons.
+
+For example, M:N refers to kernel threads and N lightweight threads.
+
 To change something to be faster, we can divide then multiply. First you divide the problem into pieces, then you multiply the part that does the work, replicating it to solve the problem faster and at the same time.
 
 This is slightly different to the [# 97. Multiplexing as a computer primitive, API and visual multiplexing](https://github.com/samsquire/ideas4/blob/main/README.md#97-multiplexing-as-a-computer-primitive-api-and-visual-multiplexing).
 
 We can change a thing to go from 1, to many, to nested to parallel by introducing a sharding framework that supports this as a primitive.
+
+
 
 * There's no reason why [my multiplexing userspace M:N scheduler](https://github.com/samsquire/preemptible-thread) couldn't also support my idea of concurrent loops in [# 133. Concurrent loops, loops as lightweight threads and load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops) idea to be a M:N:L scheduler. We can add sockets too so the hierarchy looks similar to this: S:M:N:L or Socket:MMachine thread:N green thread:L Concurrent Loop.
 * We can add arbitrary dimensions to the scheduler by sharding replication. A microservice can use **X** databases, **L** load balancers, **C** circuits, **T** tenants
@@ -6167,6 +6173,8 @@ I imagine a process viewer that lets us see the recursion stack.
 
 Multiversion concurrency control and split object parallelism can support high levels of concurrency with an impact in read latency.
 
+We split all local variables across threads.
+
 When a data structure is created in the threads block, such as this:
 
 ```
@@ -7726,7 +7734,9 @@ Transpiling an entire language is hard enough too.
 
 What about a middle option?
 
-Don't map your entire programming language to C, but map a subset of it and manage other parts of the language as runtime objects in a C program.
+Don't map your entire programming language to C, but map a expression rendering of it and manage other parts of the language as runtime objects in a C program.
+
+In other words, map the source transpiled language to a data structure in C You can map parts of expressions to C methods. 
 
 
 
@@ -7965,9 +7975,11 @@ Relativity, reference point.
 
 # 526. Multiplexing setting format and routing operation
 
-In # 464. Template structure instantiation and AST structure merging I talked of a multithreaded system and changing the design of such either at runtime or at design time. Or having the flexibility to change the design of the system easily and cheaply. We can cheapen costs of changing a system and concurrency and parallelism by introducing abstractions and one such abstraction is queues.
+In [# 464. Template structure instantiation and AST structure merging](https://github.com/samsquire/ideas4#464-template-structure-instantiation-and-ast-structure-merging) I talked of a multithreaded system and changing the design of such either at runtime or at design time. Or having the flexibility to change the design of the system easily and cheaply. We can cheapen costs of changing a system and updating its concurrency and parallelism by introducing abstractions and one such abstraction is queues and message passing routing between every component.
 
-You're writing a complicated system. There are associations between different components. You need to create objects at certain times and associate objects with other objects. You want flexible instantiation of components and routing between components.
+You're writing a complicated system. There are associations between different components. You need to create objects at certain times and associate objects with other objects. You want flexible instantiation of components and routing between components. You also want to multiplex.
+
+This idea defines an API for building computer system components. We define wires and handlers for different kinds of messages. We have API methods for when detecting an arbitrary sequence of captured events in a capture specification that specified arbitrarily deep into the wire hierarchy.
 
 We can define three formats and use one to route the other:
 
@@ -7996,15 +8008,21 @@ For example, users 1 through 5000 are assigned to server1 and socket5 is handled
 ```
 server1
 user1-user5000
-server1.thread1 socket1
+
+server1.thread1
+socket1
 
 server2
 user5001-user10000
-server2.thread1 socket5
+
+server2.thread1
+socket5
 
 server3
 user15001-20000
-server3.thread1 socket3
+
+server3.thread1
+socket3
 ```
 
 The available environment information is used to route the message to available mailboxes. Each group of following lines is a mailbox handler and the lines represent what must match to be routed to this mailbox.
@@ -8033,7 +8051,10 @@ user3
 
 or more intuitively, we can use a for loop:
 
+This allows many-to-many relations to be set up.  The route method is set up by a cartesian product.
+
 ```
+Environment environment = Environment()
 servers = ["server1", "server2", "server3"]
 containers = ["app", "database", "jobs"]
 threadTypes = ["recv", "send"]
@@ -8043,28 +8064,87 @@ for server in servers:
     for container in containers:
         for threadType in threadTypes:
             for thread in threads:
-                associate(server, container, threadType, thread) 
+                handler(thisEnvironment, createNewHandler())
+                environment.wire(server, container, threadType, thread)
 ```
 
 
 
-Imagine we have a route method which accepts environment information and a message and routes to the right component. The route method is set up by a cartesian product.
+
+How do we associate available actions with mailboxes?
+
+We can bind to multiple behaviours with `BindEvents()` which allows us to bind to arbitrary number of ringbuffers for noticing state changes and react to them.
+
+```
+Events[] events = BindEvents(environment.wire([
+"@newsocket",
+"@usermtod",
+"@userlogin",
+"@userloginsuccess",
+"]), "@userloggedin")
+
+for (Event event : events) {
+        case "@newsocket":
+        case "@usermtod":
+        case "@userlogin":
+        case "@userloginsuccess":
+        case "@userloggedin":
+            // all the above events happened, arbitrarily
+            responseEvents = getResponseEvents(events)
+        }
+    
+    environment.autowire(responseEvents);
+}
+```
+
+We scan the hierarchy of wires and insert taps for that kind of event to invert the direction of checkedness.
+
+```
+def BindEvents():
+    
+```
+
+Imagine we have a route method which accepts environment information and a message and routes to the right component.
 
 Every method does this:
 
 ```
-def method():
-    event = GetEvent()
+def method(environment):
+    event = environment.GetEvent()
     
     switch (event) {
         case type1:
             responseEvent = ResponseEvent1()
-        case type1:
+        case type2:
             responseEvent = ResponseEvent2()
     }
     
-    route(responseEvent)
+    environment.autowire(responseEvent)
 ```
+
+* How to create objects
+```
+environment.instantiate()
+```
+* How to define communications between components
+```
+* environment.wire()
+```
+* How to define the passing on of data.
+```
+environment.autowire()
+```
+* A handler of data
+```
+environment.handler()
+```
+* Wait for multiple data
+```
+environment.BindEvents
+```
+
+
+
 
 On startup, we do something such as this:
 
@@ -8080,7 +8160,7 @@ def main(argv):
                 threadFactory = ThreadFactory(Environment, threadType)
                 messageHandler = MessageHandler(threadFactory)
                 subthreadHandle.associate(thread, threadFactory)
-                environment.associate(server, threadType, thread, messageHandler, threadFactory)
+                environment.wire(server, threadType, thread, messageHandler, threadFactory)
      
      for threadType ["recv", "send"]:
         for range(0, 3):
@@ -8112,32 +8192,36 @@ def run():
                 
                 socket = accept()
                 # If the thread isn't created, it shall be created
-                environment.send("recvthread", """
+                environment.autowire("recvthread", """
                 socketaccept socket={}
                 """.format(socket))
-                environment.send("recvthread", """
+                environment.autowire("recvthread", """
                 socketaccept socket={}
                 """.format(socket))
                     
         }
 ```
 
-This allows many-to-many relations to be set up.
+
 
 loops meeting at the middle
 
 There is many features we can enable with this design:
+
  * **High Performance messaging, embedded message queue** Can send lots of messages very fast.
- * **Model view controller architecture**  
+ * **Model view controller architecture**
  * **Traditional architectures are still possible** We can still use hexagonal architecture, onion architecture, DDD architecture with this approach.
  * **Event topology** Fork/join, structured concurrency
  * **Can do persistence for crash recovery**
  * **Retry logic** 
+ * **Thread Runtime switch** Events processed downstream of a thread creation are executing in a particular thread context.
+ * **Coroutines** How to support coroutines?
  * **Multiparadigm messaging and componentry** This design allows us to link components into any layout architecture that we want with a common foundation for communications. Kafka, Java stream processing and Reactive extensions and complex event processing are useful approaches to organising data pipelines
  * **Control loops integration** Defining what should be the case can require a series of corrective action to cause current state to match target state.
- * **Futures, result readiness, monitoring and asynchronous communication** Can `epoll` `select` statement for objects be integrated into the design?
- * **Object orientated programming v2** Can this idea be used as a basis for # 210. Object oriented programming v2? We might want to define behaviours across different mailboxes that overlap mailboxes.
- * **Object Lifecycle management** The model defines object lifecycles of things including threads but it would good if it was a general purpose lifecycle management
+ * **Futures, result readiness, monitoring and asynchronous communication** We can implement an `epoll` `select` statement integrated into the design.
+ * **When language** Wait for multiple events to occur before firing an event.
+ * **Object orientated programming v2** Can this idea be used as a basis for [# 210. Object oriented programming v2](https://github.com/samsquire/ideas4#210-object-oriented-programming-v2)? We might want to define behaviours across different mailboxes that overlap mailboxes.
+ * **Object Lifecycle management** The model defines object lifecycles of things including threads but it would good if it was a general purpose lifecycle management. This is similar to an application server's runtime management which coordinates lifecycle of objects.
  * **Dual Synchrony design - both asynchronous and synchronous** We can provide an endpoint for use by other machines to report completion of an event. This is important if a `.join()` is used.
  * **Write ahead logging and temporal.io style resumptions** If a server crashes, we want message queues to be handled seamlessly and recover.
  * **Structured garbage collection**
@@ -8153,17 +8237,18 @@ There is many features we can enable with this design:
  * **Expression problem solution** This routing can be used to implement the expression problem. Behviour can be handled by common implementations.
  * **Server stem cells** Servers deciding what they do based on name (string) or tags (cloud)
  * **Inversion of authority flow** The design is similar to an inversion of authority enclosure such as Spring.
- * **Factories**
+ * **Factories** Similar to web frameworks that have systems for generating new instances of objects from classes such as Angular v1.
  * **Callbacks**
  * **Scheduling**
  * **Futumura projections** There's opportunity to compile the messages into a compiler.
  * **Use of message passing**
  * **Local and cross machine Queuing, backoff, load shedding, circuit breakers** The design can incorporate all these features.
- * **IRC/mailserver design** Should be possible to use for backend servers such as webservers, IRC servers and mailservers.
-   request/response web servers
+ * **IRC/mailserver design, request/response web servers** Should be possible to use for backend servers such as web servers, webservers, IRC servers and mailservers due to the communication between threads.
+ 
    java application servers, tomcat, dropwizard, request context
  * **horizontal/vertical slicing** Allows architecture to be sliced how we want it to be sliced.
  * **Geo routing** can route requests to nearby nodes.
+ * **Arbitrary registrar mappings, could also be SQL** Keeps a record of what was created for lookups. This would be useful for searching for sockets that are associated with a user.
 
 This is set up with a nested loop or an active cartesian product object.
 
@@ -8174,25 +8259,385 @@ We can have an API for raising objects and associations.
 Where `Environment.create(<kind>, <data>...)`.
 
 ```
-Environment.create("socket", socketno)
+Environment.instantiate("socket", socketno)
 ```
 
 We have a function that `routes` to existing or creates anew.
 
 ```
-autowire({
-    "context": []
+environment.autowire({
+    "context": ["newsocket"]
 })
 ```
 
-We have an algorihm for generating available association lines.
+We have an algorithm for generating available association lines.
+
+How do we match environments to mailboxes? We can use this low cost algorithm.
+
+```
+users_size = 5000
+server_size = 3
+thread_size = 4
+
+sizes = {
+    "user": users_size,
+    "server": server_size,
+    "thread": thread_size
+}
+
+def route3(routing_information):
+    buckets = {}
+    for key, value in routing_information.items():
+        buckets[key] = ceil(value / sizes[key])
+    return buckets
 
 
+print(route3(
+    { "server": 3, "user": 5607, "thread": 11}
+))
+``````
+
+How do we prevent the "submit to multiple mailbox problem". We can create a mailbox hierarchy, but this requires an additional thread. Or a different form of ringbuffer.
+
+![mailbox hierarchy](https://raw.githubusercontent.com/samsquire/mailbox/main/mailbox.png)
+
+Do we really want to check the mailboxes of each environment fact in the event loop?
+
+
+
+
+
+
+
+# 527. Static analysis N code to logarithm N code or small amount of the same time each time
+
+This design swaps a synchronous call for an asynchronous call.
+
+This is how `select` and `poll` work in the Linux kernel.
+
+
+```
+def select(items):
+    results = []
+    for item in items:
+        result = poll(item)
+        results.append(result)
+    return results
+```
+
+We would prefer to do this:
+
+```
+def epoll_create(items):
+    registrar = EpollCreate()
+    for item in items:
+        register(item, registrar)
+    return registrar
+
+def on_fd_event():
+    for epoll in fd.epolls:
+        epoll.results.extend(fd.events)
+
+def register(fd, epoll):
+    fd.epolls.append(epoll)
+```
+
+# 528. Dual synchrony
+
+Every method in a language should be possible to be used asynchronously or synchronously.
+
+# 529. Call conventions
+
+# 530. Expression semantics loop labelling
+
+# 531. Valid Expressions
+
+# 532. C type API that generalises
+
+If we're transpiling to C, wouldn't it be good to have an output style to C that is representative of higher kinded types?
+
+Hashmap with data structures inside
+
+# 533. Incidental computer explanatory power
+
+An output or input syntax that is easy to understand the structure of behaviour by reading it.
+
+# 534. Need a flat syntax or sugar for promises
+
+# 535. Expressions and structure
+
+The arrangement of expressions defines the jumping behaviour of a Turing machine. Can we represent structure as expressions?
+
+In LISP the evaluation order is a post order traversal.
+
+# 536. Readable and processable expressions
+
+# 537. Environment type mappings
+
+Imagine an IDE where every line of code was an environment with the IDE was flat. You map environments (inputs) to environments (outputs).
+
+
+# 538. Register allocation applied to more than registers
+
+The register allocation problem is a generalisation of applying a limited amount of resources to a problem and alternating who uses the resource.
+
+The solution can be generalised and used for other things too such as garbage collection and social activities.
+
+metaobjects relations
+orthogonality expression
+
+# 539. Total ordering and sharding
+
+If we separate the data to store between servers and threads, we can perform more IO on each server or thread. We increase throughput. But what about order?
+
+We can use CQRS to divide data that is ordered from data that is unordered. We can stream data and sort it into ordered blob storage this is similar to a commit log.
+
+How do we handle the firehose of data to order it? It would be slower than the data that is being processed within a node.
+
+We can use Aggregator Leaf Tailer architecture to sort data and blob storage it.
+
+Would the bank account problem be solved with this approach? We read the aggregated balance.
+
+# 540. Dream platform
+
+We have web browser platform, Java Virtual machine platform, .NET platform and native C/C++ platforms. We have Docker, application servers, WASM runtimes, Heroku and embedded interpreters such as Lua or game scripting. We also have Linux, Windows and Mac platforms. There is no shortage of choice of what to program against.
+
+I am trying to work out what would really be properties from a platform perspective that lead to long term staying power and elegance. This platform should be what everyone wants to program against.
+
+* **Expressive platform APIs** I'm not sure how effective WASI is, but the space WASI occupies is really influential with regard to software development. The problem webassembly has is that the APIs for interacting with the operating system are obfuscated. It's a lot of work to create APIs available to webassembly platforms. If you want to provide a bridge to the operating system, you need to build an API and it needs to be stable, well supported, flexible and long term.
+* **Built to be understood** Why is understanding how things work trapped in code? Why isn't there extensive guides and explanations how things work together.
+* **Capability of efficiently waiting for events** This is useful for more than just IO. Temporal.io shows that this problem is really powerful to solve.
+
+
+# 541. Data scenario explorer
+
+If everything is an AST and a database in an AST, can we write simulations of what should go on given a situation?
+
+# 542. Orthogonality ontology as a primitive and ASTs, bidirectional compilation
+
+Operating system orthogonality, programming language orthogonality is critically important to getting important work done and implementing features that are useful.
+
+When I write a type system, garbage collector, or multithreaded architecture or memory management or some of cross cutting feature, I have a model that is effective at expressing the feature I'm working on but when you need to support or think about other features, it complicates the design. Software engineers often solve this problem with abstractions and layerings.
+
+ * Calling convention (cdecl, ghc) Such as C programming language calling convention
+ * Foreign Function Interface (do you want C compatibility?)
+ * Memory management
+ * Resource Acquisition Is Initialization (freeing data when it leaves scope)
+ * Lifetime enforcement, such as Borrow checker
+ * Memory Allocators (malloc etc)
+ * Manual memory management (reference counting)
+ * Fixed memory pools
+ * Module systems (Java Modules JSR376, Python modules, Clojure's use syntax)
+ * Ahead of time compilation or Just in Time compilation
+ * Code generation
+ * Zero cost abstractions
+ * Multithreading
+ * Asynchronous programming (concurrency) What colour is your function
+ * Return values
+ * Tuples
+ * Object orientated programming
+ * Structs
+ * Closures
+ * Memory layout
+ * Functional programming (lazily evaluated thunk style ala Haskell)
+ * Typeclasses
+ * Semantic Differences between Transpiling source and transpiling target
+ * Multiplatform support (Windows, Linux, Mac and others)
+ * Stack or heap
+ * Immutability
+ * Aliasing
+ * Autovectorisation, automatic parallelisation
+ * single responsibility pattern
+ * Interop between library, platform code and your code
+ * Duck typing, Interface
+ * Runtime/Compile time function selection (CALL/jumping)
+ * Coroutines
+ * Streams (see C++ iostreams)
+ * Loop syntax
+ * Move/Copy Semantics
+
+ * Is everything an expression or is there statements?
+ * Trailing commas
+ * Iterators
+ * Generators
+ * std::algorithm
+ * Standard library structure hierarchy - Java's standard library, Scala's collection standard library
+ * Lambdas
+ * Partial application
+ * IO
+ * Monads
+ * Dependency inversion
+ * Performance
+ * Development velocity
+ * Developer productivity
+ * Practicality
+ * Non-blocking/blocking vs CPU spinning and sluggishness (non real time operating systems)
+ * Stack based/register based
+ * Generics
+ * Semicolons
+ * Braces/whitespace indention
+ * Templating
+ * Metaprogramming
+ * Generic programming
+ * Desugaring
+
+How do you implement reliable efficient orthogonality when there are interactions between different features? And they can be combined in arbitrary combinations?
+
+My approach to implementing orthogonality is ASTs. ASTs represent the model of what work is to be done for each feature.
+We need a way to map ASTs to other ASTs so that transformations between orthogonal features can be done. These AST transformations can be bidirectional too! We can have bidirectional compilation. This AST changes that AST and that AST changes this one.
+
+The AST represents an interface to program against and transform.
+
+# 543. Overlapping ASTs
+
+An AST that has alternative renderings and overlapping references.
+
+# 534. The code is the container, it should always run
+
+# 535. Integer sharding, Consistent reading and sharding
+
+We can rely on distribution law of addition to shard.
+
+If we separate account processors and they store a certain amount of balance each. Can we still implement strongly consistent reads cheaply?
+
+We want to avoid transmitting data over the network but it might be unavoidable.
+
+If any server can process transactions for any account, it debits the account with that money. The transaction is processed extremely fast since no traffic is needed. If a withdrawal is needed, we need to check if our local balance is high enough, if not, we query another server to see if they have balance.
+
+Another solution is to run two clusters - a globally consistent cluster and a sharded cluster and stream the updates from the shard to the globally consistent cluster.
+
+
+```
+Send balance check to all machines (message 1)
+Add up balances of all machines (wait)
+Divide the withdrawal amount across all the machines
+Update each balance on all machines (message 2)
+```
+
+
+
+
+# 536. Crossing Tree branches allocation and what can be scaled knowledge
+
+Can draw and plot objects into a tree. Communication across and up branches is slow.
+
+Things arranged toward the tree are extremely performant. This is inspired by VLIW architecture.
+
+# 537. Capacity planning by amount of computation
+
+Could we calculate the number of instructions used by code for a program and extrapolate?
+
+# 538. Task aggregation spawn
+
+You can spawn a task off from an app and it have it efficiently aggregated into a task which is equivalent to a cronjob.
+
+# 539. Parallel primitives
+
+Can we design primitives that scale well and then build on top of them?
+* **Data itself sharding** This is covered by # 535. Integer sharding, Consistent reading and sharding
+
+
+Need to collect work.
+
+# 540. Pipeline syntax
+
+If I have a pipeline such as:
+```
+a(b(c(d)))
+```
+This can be difficult to read. I want a syntax that lets me define what gets passed where.
+
+This is a more complicated pipeline:
+
+```
+a#1 | b#2(a#1) | c#3(b#2) | d#4(a#1, b#2)
+```
+
+* A is called with no arguments
+* b#2 is called with the output of 
+
+
+relying on people to do things
+
+# 540. Spawn off
+
+Structured concurrency programming means that spawning off processes can be dangerous.
+
+# 541. Standard structure program
+
+Many programs do CRUD, processing and communication.
+
+# 542. Output as perspective as input
+
+A compositing window manager renders pixels onto the screen. There's a relationship between pixels on the screen. 
+
+# 543. Boxless reference types
+
+Can we take advantage of structs of arrays to remove boxing?
+
+# 544. Divide & multiplication scaling
+
+Scaling can be defined by division and multiplication of a different subset.
+
+# 545. Object orientated programming and channels
+
+# 546. Structural interfaces
+
+The type is all the method calls that can be reached from a point of code.
+
+# 547. Wait for future state in a loop
+
+When writing multithreaded programs I've often wanted to wait for a scenario to be true then keep doing something. Such as when other threads did something, the traditional approaches to this are not elegant.
+
+# 548. Dynamic shell, static kernel
+
+# 549. Mesh clustering parallelism
+
+# 550. Orthogonality of keywords and expressions
+
+In async/await or golang we have two new keywords, what if these were expressions rather than keywords? Would it be easier to write compiler mechanisms for these expressions?
+
+Why is it so difficult to use expressions to support these features?
+
+# 551. Token ring parallelism
+
+If you have 11 threads all try update the same value, you'll reach a bottleneck with locks. So I've designed a different algorithm that places threads into a ring structure. The threads take turns reading or writing but only one thread can write at a time. When there is writing going on, there is no reading. All threads can read as fast as they can in between writes. There is no locks.
+
+
+
+# 552. Write logs coding
+
+# 553. Behavioural perspective programming
+
+Define the data structure and relations between data structure elements. There is 3 programs in one. there's data structure definitions, then code structure definitions, then imperative operations.
+
+# 554. Can I use?
+
+# 555. Data structure markup
+
+Is a data structure definition enough to generate code that operates on that data structure?
+
+# 556. Properties of numbers programming
+
+Define behaviour for each property of numbers you want.
+Adding the base is similar to another level.
+
+```
+
+```
+
+# 557. What is a pipeline anyway?
+
+# 558. Assign location
+
+Rather than assign values to names,
 
 # Hierarchy blend
 
 
 # phone ideas
+
+Primitives of an operating system: multiplexing, communication
 
 Strctyre
 Cuor
@@ -8334,7 +8779,7 @@ Synchronization free code regions and interference free regions
 Autolock
 Types are related to jumping around to the right locations
 
-Standard structure program
+
 
 
 Thread callbacks rather than trying again, wait for go ahead.
