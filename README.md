@@ -5989,6 +5989,8 @@ File system data structure
 
 # 402. Compilation and spatial maps
 
+Computers arrange things in memory according to a structure. Compilation is taking instructions and branches and navigating the memory. Can we study the paths in memory to work out what paths they're taking?
+
 # 403. Interleaved locking
 
 One problem with parallelising code is that you still have synchronization points.
@@ -6357,7 +6359,7 @@ The compiler can decide which method to use based on static code analysis
 
 # 442. Object oriented object owners - decoupled OOP and ownership
 
-Threads are running and they are assigned an object. Objects can send messages to eachother.
+Threads are running and they are assigned an object. An object has a home. Objects can send messages to eachother.
 
 Objects change their shape through processing, which reschedules them onto different threads.
 
@@ -8527,14 +8529,16 @@ Things arranged toward the tree are extremely performant. This is inspired by VL
 
 Could we calculate the number of instructions used by code for a program and extrapolate?
 
-# 538. Task aggregation spawn
+# 538. Task aggregation spawn off
 
-You can spawn a task off from an app and it have it efficiently aggregated into a task which is equivalent to a cronjob.
+Structured concurrency programming means that spawning off processes can be dangerous.
+
+You can spawn a task off from an app and it have it efficiently aggregated into a job tracking queue which is equivalent to a cronjob.
 
 # 539. Parallel primitives
 
 Can we design primitives that scale well and then build on top of them?
-* **Data itself sharding** This is covered by # 535. Integer sharding, Consistent reading and sharding
+* **Shard the data itself** This is covered by # 535. Integer sharding, Consistent reading and sharding
 
 
 Need to collect work.
@@ -8559,9 +8563,9 @@ a#1 | b#2(a#1) | c#3(b#2) | d#4(a#1, b#2)
 
 relying on people to do things
 
-# 540. Spawn off
+# 540.
 
-Structured concurrency programming means that spawning off processes can be dangerous.
+
 
 # 541. Standard structure program
 
@@ -8609,7 +8613,25 @@ If you have 11 threads all try update the same value, you'll reach a bottleneck 
 
 # 553. Behavioural perspective programming
 
-Define the data structure and relations between data structure elements. There is 3 programs in one. there's data structure definitions, then code structure definitions, then imperative operations.
+My async await state machine has the following nouns:
+
+* **Task** A separate schedulable sequence of instructions that can be running or not running (paused)
+* **Loops** A task is inside one or multiple loops at the same time.
+* **Fork** When a task decides to do another thing, it forks in the background.
+* **Yield** When a task decides to send a value to who forked it.
+* **Thread** A kernel managed execution environment.
+* **NextThread** The next thread in the queue.
+* **PreviousThread** The previous thread in the queue.
+* **Callbacks** How forked threads and tasks communicate between tasks.
+* **Reading mode** When threads can read and calculate the next state for that particular thread. Queues work for writing mode.
+* **Writing mode** When threads can communicate with the **NextThread**
+
+ownership of objects nouns in code structure
+vectors of correct behaviour - the code needs to refer to these things
+which are numbers
+
+Define the data structure and relations between data structure elements. There is 3 programs in one: there's data structure definitions, then code structure definitions, then imperative operations. Are they separate problems?
+
 
 # 554. Can I use?
 
@@ -8626,11 +8648,124 @@ Adding the base is similar to another level.
 
 ```
 
-# 557. What is a pipeline anyway?
+# 557. What is a pipeline anyway from assembly perspective?
 
-# 558. Assign location
+# 558. Assign location, multinames, Multiexpressions
 
-Rather than assign values to names,
+Can we define the state and progression of things with expressions?
+
+This syntax defines a thread safe progression of async/await as a nested and parallel state machine.
+
+```
+next_free_thread = 2
+task(A) thread(1) assignment(A, 1) = running_on(A, 1) | paused(A, 1)
+
+running_on(A, 1)
+thread(1)
+assignment(A, 1)
+thread_free(next_free_thread) = fork(A, B)
+                                | send_task_to_thread(B, next_free_thread)
+                                |   running_on(B, 2)
+                                    paused(B, 1)
+                                    running_on(A, 1)
+                               | { yield(B, returnvalue) | paused(B, 2) }
+                                 { await(A, B, returnvalue) | paused(A, 1) }
+                               | send_returnvalue(B, A, returnvalue)   
+```
+
+This is essentially a state machine of collections with progression between collections defined. It should be compilable efficiently and a runtime API creatable for it.
+
+I feel this should be a primitive of computer science. Rather than assign fixed values to names, we give everything two or more names and flexibly assign things to named things and the computer schedules in and out of them and the movement between them.
+
+For a hierarchy of IO/CPU interaction we might use the following state machine:
+
+```
+thread(CPU, 1) = wait_for_work | work_received(work, caller) | do_work(work) | callback(caller)
+thread(IO, 1) = wait_for_io_request | work_received(work, caller) | do_io | poll <- | callback(caller) 
+```
+
+The state machine supports reactive components, take this specification for example:
+
+```
+click(clickdata) append(click, clicks) cron("* * * * 15") = create_batch_email | 
+```
+
+
+
+
+Parser linked to a state machine.
+
+At any point, we know where everything is.
+
+Interpreters manage these resources at runtime. How does static management of these resources look and that can still be changed?
+
+* expressions
+* functions
+* Threads
+* variables
+* expressions
+* coroutines
+* methods
+* registers
+* sockets
+* processes
+* machines
+* free/used memory
+* stack
+
+These form an AST but there is also named locations for each of these things.
+
+This is designed as a query engine that pulls data through behaviours.
+
+Expression parsing as objects become identical
+relationship to machine language
+Query engine, pushpull
+Parallel state machine
+
+This syntax needs a branch and loop instruction.
+
+Pipe represents progression
+
+± represents a case statement
+@ represents named state
+
+```
+order =   { @mail_send ± email_send
+            ± fail_email_send
+                ± retry
+                ±
+            ±
+                ±
+                ±
+        }
+        {
+        ± after(email_send)
+            ±
+            ±
+                ±
+                ±
+        ±
+            ±
+            ±
+        }
+        ± 
+            ±
+            ±
+        ±
+```
+
+Message passing between states.
+Error handlings
+
+# 559. How to assign objects to threads efficiently
+
+# 560. Bloom filter or bitmask state machine
+
+# 561. Scriptable system language
+
+# 562. Moving things around
+
+# 563. Vector ideas, schematics
 
 # Hierarchy blend
 
