@@ -2022,7 +2022,7 @@ We want to change the tip of execution between multiple things.
 
 For the Linux kernel this is a hardware interrupt on a timer where each process is ordered in a tree by priority and the highest priority process is cached. The schedule() function in `kernel/sched/core.c` and `switch_to` in `process_64.c`.
 
-Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But if we are an interpreter we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows. [I actually wrote a userspace scheduler.](https://github.com/samsquire/preemptible-thread) With my original design, it required polymorphic code to rewrite instructions to point to correct jump locations and branches. My userspace scheduler insteads manipulates loop limit variables to interrupt threads.
+Unfortunately it's not really possible to prempt a thread in user space. When a thread is executing it can only be prempted by the kernel scheduler. But if we are an interpreter we can do what Golang does, we can preempt virtual threads/goroutines by having a stack per process and multiplex between processes and inserting scheduler commands when the stack grows. [I actually wrote a userspace scheduler.](https://github.com/samsquire/preemptible-thread) With my original design, it required selfmodifying code to rewrite instructions to point to correct jump locations and branches. My userspace scheduler insteads manipulates loop limit variables to interrupt threads.
 
 ```
 
@@ -8654,7 +8654,7 @@ Adding the base is similar to another level.
 
 Can we define the state and progression of things with expressions?
 
-This syntax defines a thread safe progression of async/await as a nested and parallel state machine.
+This syntax defines a thread safe expression progression of async/await as a nested and parallel state machine.
 
 ```
 next_free_thread = 2
@@ -8680,8 +8680,8 @@ I feel this should be a primitive of computer science. Rather than assign fixed 
 For a hierarchy of IO/CPU interaction we might use the following state machine:
 
 ```
-thread(CPU, 1) = wait_for_work | work_received(work, caller) | do_work(work) | callback(caller)
-thread(IO, 1) = wait_for_io_request | work_received(work, caller) | do_io | poll <- | callback(caller) 
+thread(CPU, 1) = wait_for_work add(thread_1_work_queue, item) | work_received(item, work, caller) | do_work(work) | callback(caller)
+thread(IO, 1) = wait_for_io_request add(thread_1_work_queue, item) | work_received(work, caller) | do_io | poll <- | callback(caller) 
 ```
 
 The state machine supports reactive components, take this specification for example:
@@ -8689,13 +8689,6 @@ The state machine supports reactive components, take this specification for exam
 ```
 click(clickdata) append(click, clicks) cron("* * * * 15") = create_batch_email | 
 ```
-
-
-
-
-Parser linked to a state machine.
-
-At any point, we know where everything is.
 
 Interpreters manage these resources at runtime. How does static management of these resources look and that can still be changed?
 
@@ -8754,8 +8747,13 @@ order =   { @mail_send ± email_send
         ±
 ```
 
+
+
 Message passing between states.
 Error handlings
+Parser linked to a state machine.
+
+
 
 # 559. How to assign objects to threads efficiently
 
@@ -8767,6 +8765,112 @@ Error handlings
 
 # 563. Vector ideas, schematics
 
+# 564. The illusion of being a single runner
+
+Javascript code can assume it is the only code that is manipulating its local state due to it being single threaded. 
+
+We could use multiversion concurrency control for this.
+
+# 565. Sharded struct pseudo message passing
+
+Imagine sharding was handled on your behalf, automatically for you.
+
+ * Integers are sharded
+ * Arrays can be sharded
+
+```
+sharded_struct UserAccount {
+  Transaction[] transactions;
+  Cart[] carts;
+  Invoice[] invoices;
+  int x;
+  int y;
+  sharded_int money;
+}
+```
+
+This expands to the following. Where each thread owns a particular index range.
+
+```
+struct UserAccount {
+  Transaction[][] transactions;
+  Cart[][] carts;
+  Invoice[][] invoices;
+  int[] x;
+  int[] y;
+  int[] money;
+}
+```
+
+```
+UserAccount ShardingRule = index / shardSize
+UserAccount shardingRule = consistentHash(index)
+UserAccount shardingRule = same
+```
+
+So any thread may handle requests for any user but the correct thread must be selected for the combination of data for that user.
+
+Or if you were publishing a highly popular website and there was a common feed that all users need consistent access to.
+
+```
+sharded_struct 
+```
+
+# 566. Linear data structures
+
+```
+tree_struct UserAccount {
+  Cart[][] carts
+  ->
+  Transaction[][] transactions
+  ->
+  Invoice[][] invoices;
+}
+```
+Carts are created, then transactions, then invoices.
+
+# 567. Standard language features
+
+* **Jobshop scheduling**
+
+# 568. Flat code
+
+I would like to extend the [558. Assign location, multinames, Multiexpressions]() to represent behaviours. Here's the sequential states of my compiler:
+
+parallel loop Σ
+behaviour between points
+
+```
+compile = Σ(ast, self.program)
+        | ast constants(constant, ast.findconstant())
+        | ast Σ(constant, constants, ast)
+        | constant constantgen(constant)
+        | Σ(ast, self.program)
+        | ast normalised(ast.normalise(normalised))
+        | ast ast.assignlocalvariables(self)
+        | assignregisters(normalised)
+        | ranges(liveranges(assignments))
+        | realregisters(assignrealregisters(assignments, ranges, ["eax", "ebx", "ecx", "edx"]))
+        | resolvereferences(normalised)
+    
+    eprint(normalised)
+    
+    print("main:")
+    print("pushq   %rbp")
+    print("movq    %rsp, %rbp")
+    print("subq    $32, %rsp")
+    print("movq %rdi, -24(%rbp)")                       
+    print("movl %esi, -28(%rbp)")
+    for ast in self.program:
+      ast.codegen(target, self)
+
+    
+    print("leave")
+    print("ret")  
+```
+
+
+coroutines+threads
 # Hierarchy blend
 
 
