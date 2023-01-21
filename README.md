@@ -8652,9 +8652,13 @@ Adding the base is similar to another level.
 
 # 557. What is a pipeline anyway from assembly perspective?
 
-# 558. Assign location, multinames, Multiexpressions
+How would you implement what Kafka does at the assembly layer?
 
-Can we define the state, control flow progression of things with expressions?
+# 558. Assign location, multinames and State Multiexpressions
+
+Can we define the location, state, control flow progression of things with expressions and named facts?
+
+We define facts that can be matched or not matched. The clauses before the equals symbol (=) represent what needs to match to start this state machine progression. Then each set of facts is matched before moving to the next stage.
 
 This syntax defines a thread safe expression progression of `async/await` as a nested and parallel state machine.
 
@@ -8679,9 +8683,17 @@ This is essentially a state machine of collections with progression between coll
 
 I feel this should be a primitive of computer science. Rather than assign fixed values to names, we give everything two or more names and flexibly assign things to named things and the computer schedules in and out of them and the movement between them.
 
-This can be implemented by a trie with state links for each stateline.
+This can be implemented by a trie with state links for each stateline. Each stateline represents a state that can be reached. There is an active stateline at any given point.
 
 ![flat](flat.png)
+
+For parallel states such as the following:
+
+```
+states = state1 | {state1a state1b state1c} {state2a state2b state2d} | state3
+```
+
+we have a virtual stateline that is nested for the second state in the trie.
 
 For a hierarchy of IO/CPU interaction we might use the following state machine:
 
@@ -8753,12 +8765,26 @@ order =   { @mail_send ± email_send
         ±
 ```
 
+We can use this state machine syntax to set up threads for epoll.
+
+```
+send_to_sender(sender) = !wait_for_io_response(B, response)
+send_io_request(queue, thread, setup) = !wait_for_io_setup_request(queue, thread, setup)
+thread(A) thread_type(io) = wait_for_io_setup_request(ioqueue, sender, setup) | setup_io(setup) | epoll @ wait_for_io_setup_request <- | send_to_sender(sender)
+thread(B) thread_type(worker) = receive_request(queue) | send_io_request(ioqueue, B,) | wait_for_io_response(B)
+```
+
+We can also use this state machine syntax for epoll over objects in memory.
+
+```
+account(balance > 500) join_email_clicked prizes_available = send_customer_prize
+```
 
 
 Message passing between states.
 Error handlings
 Parser linked to a state machine.
-Epoll style waits
+
 
 
 # 559. How to assign objects to threads efficiently
