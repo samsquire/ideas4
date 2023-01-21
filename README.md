@@ -7622,7 +7622,9 @@ Increase(x)by(amount)
 
 Move semantics in C++ and rust lifetimes mean expressions are harder to reason about.
 
-# 495. Changing object structures while maintaining OOP
+# 495. Changing object composition and structures while maintaining OOP
+
+Collection classes are independent of behaviour
 
 # 496. Low cost jump map patterns
 
@@ -8652,9 +8654,9 @@ Adding the base is similar to another level.
 
 # 558. Assign location, multinames, Multiexpressions
 
-Can we define the state and progression of things with expressions?
+Can we define the state, control flow progression of things with expressions?
 
-This syntax defines a thread safe expression progression of async/await as a nested and parallel state machine.
+This syntax defines a thread safe expression progression of `async/await` as a nested and parallel state machine.
 
 ```
 next_free_thread = 2
@@ -8676,6 +8678,10 @@ thread_free(next_free_thread) = fork(A, B)
 This is essentially a state machine of collections with progression between collections defined. It should be compilable efficiently and a runtime API creatable for it.
 
 I feel this should be a primitive of computer science. Rather than assign fixed values to names, we give everything two or more names and flexibly assign things to named things and the computer schedules in and out of them and the movement between them.
+
+This can be implemented by a trie with state links for each stateline.
+
+![flat](flat.png)
 
 For a hierarchy of IO/CPU interaction we might use the following state machine:
 
@@ -8752,7 +8758,7 @@ order =   { @mail_send ± email_send
 Message passing between states.
 Error handlings
 Parser linked to a state machine.
-
+Epoll style waits
 
 
 # 559. How to assign objects to threads efficiently
@@ -8835,19 +8841,30 @@ Carts are created, then transactions, then invoices.
 
 # 568. Flat code
 
-I would like to extend the [558. Assign location, multinames, Multiexpressions]() to represent behaviours. Here's the sequential states of my compiler:
+I would like to extend the [558. Assign location, multinames, Multiexpressions](https://github.com/samsquire/ideas4#558-assign-location-multinames-multiexpressions) to represent behaviours.
 
-parallel loop Σ
-behaviour between points
+Given the following loop, the Σ raises many names in item, and the next state is multiplied. The whole state line is triggered repeatedly for each name match.
 
 ```
+loop = Σ(item, items)
+        | item print(item)
+```
+
+
+The mathematical sum symbol Σ represents a loop. 
+behaviour between points
+
+Here's the sequential states of my compiler:
+
+```
+
 compile = Σ(ast, self.program)
         | ast constants(constant, ast.findconstant())
-        | ast Σ(constant, constants, ast)
+        | ast Σ(constant, constants)
         | constant constantgen(constant)
-        | Σ(ast, self.program)
-        | ast normalised(ast.normalise(normalised))
-        | ast ast.assignlocalvariables(self)
+        | Σ(ast2, self.program)
+        | ast2 normalised(ast.normalise(normalised))
+        | ast2 ast.assignlocalvariables(self)
         | assignregisters(normalised)
         | ranges(liveranges(assignments))
         | realregisters(assignrealregisters(assignments, ranges, ["eax", "ebx", "ecx", "edx"]))
@@ -8869,6 +8886,10 @@ compile = Σ(ast, self.program)
     print("ret")  
 ```
 
+How to represent this runtime. Names are collections.
+
+
+parallel
 
 coroutines+threads
 # Hierarchy blend

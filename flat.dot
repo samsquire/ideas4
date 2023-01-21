@@ -1,0 +1,14 @@
+digraph G {
+    label="root trie";
+    running_on [label="running_on(thread, task)"];
+    thread -> root; 
+    task -> root;
+    running_on -> root;
+    paused -> root;
+    subgraph cluster_0 {
+        label="stateline 1";
+        thread -> running_on;
+        task -> running_on;
+        running_on -> paused;
+    }
+}
