@@ -615,7 +615,7 @@ If you insert a run of characters that run of characters could run into another 
 
 If the range overlaps with another range that is a merge that must be resolved by a person.
 
-You want to cross reference and update the coordinates as they impact eachother. 
+You want to cross-reference and update the coordinates as they impact eachother. 
 
 If you merge one document in then all the offsets need to be updated to accommodate the new changes.
 
@@ -8698,6 +8698,8 @@ states = state1 | {state1a state1b state1c} {state2a state2b state2d} | state3
 
 we have a virtual stateline that is nested for the second state in the trie.
 
+There would be a fire method
+
 For a hierarchy of IO/CPU interaction we might use the following state machine:
 
 ```
@@ -8768,26 +8770,12 @@ order =   { @mail_send ± email_send
         ±
 ```
 
-We can use this state machine syntax to set up threads for epoll.
-
-```
-send_to_sender(sender) = !wait_for_io_response(B, response)
-send_io_request(queue, thread, setup) = !wait_for_io_setup_request(queue, thread, setup)
-thread(A) thread_type(io) = wait_for_io_setup_request(ioqueue, sender, setup) | setup_io(setup) | epoll @ wait_for_io_setup_request <- | send_to_sender(sender)
-thread(B) thread_type(worker) = receive_request(queue) | send_io_request(ioqueue, B,) | wait_for_io_response(B)
-```
-
-We can also use this state machine syntax for epoll over objects in memory.
-
-```
-account(balance > 500) join_email_clicked prizes_available = send_customer_prize
-```
 
 
 Message passing between states.
 Error handlings
 Parser linked to a state machine.
-
+Epoll style waits
 
 
 # 559. How to assign objects to threads efficiently
@@ -8867,7 +8855,6 @@ Carts are created, then transactions, then invoices.
 # 567. Standard language features
 
 * **Jobshop scheduling**
-* **Register allocation**
 
 # 568. Flat code
 
