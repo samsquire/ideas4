@@ -8867,6 +8867,9 @@ Carts are created, then transactions, then invoices.
 # 567. Standard language features
 
 * **Jobshop scheduling**
+* **Register allocation**
+* **Multiplexing** See [Multiplexing as a computer primitive, API and Visual Multiplexing](https://github.com/samsquire/ideas4#97-multiplexing-as-a-computer-primitive-api-and-visual-multiplexing)
+***State expressions** It should be possible to describe complicated state progressions with expressions [558. Assign location, multinames and State Multiexpressions](https://github.com/samsquire/ideas4#558-assign-location-multinames-and-state-multiexpressions)
 
 # 568. Flat code
 
