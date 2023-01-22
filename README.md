@@ -8541,6 +8541,7 @@ You can spawn a task off from an app and it have it efficiently aggregated into 
 
 Can we design primitives that scale well and then build on top of them?
 * **Shard the data itself** This is covered by # 535. Integer sharding, Consistent reading and sharding
+* **Token ring parallelism**
 
 
 Need to collect work.
@@ -8596,6 +8597,8 @@ The type is all the method calls that can be reached from a point of code.
 When writing multithreaded programs I've often wanted to wait for a scenario to be true then keep doing something. Such as when other threads did something, the traditional approaches to this are not elegant.
 
 # 548. Dynamic shell, static kernel
+
+What if you had a programming language where there was two syntaxes. One syntax is dynamic and slow and the other is extremely fast.
 
 # 549. Mesh clustering parallelism
 
@@ -8864,6 +8867,7 @@ Carts are created, then transactions, then invoices.
 # 567. Standard language features
 
 * **Jobshop scheduling**
+* **Register allocation**
 
 # 568. Flat code
 
