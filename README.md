@@ -623,7 +623,7 @@ If you merge one document in then all the offsets need to be updated to accommod
 
 I want to query a data structure as I might a SQL database or a graph database.
 
-If I know the field I want, I can specify the structures I want and the traversals through the code to get to them.
+If I know the field I want, I can specify the structures I want and the traversals through the code to get to them canb be generated.
 
 # 38. Dense btree
 
@@ -8732,6 +8732,18 @@ Interpreters manage these resources at runtime. How does static management of th
 These form an AST but there is also named locations for each of these things.
 
 This is designed as a query engine that pulls data through behaviours.
+
+We can use this state machine syntax to set up threads for epoll.
+```
+send_to_sender(sender) = !wait_for_io_response(B, response)
+send_io_request(queue, thread, setup) = !wait_for_io_setup_request(queue, thread, setup)
+thread(A) thread_type(io) = wait_for_io_setup_request(ioqueue, sender, setup) | setup_io(setup) | epoll @ wait_for_io_setup_request <- | send_to_sender(sender)
+thread(B) thread_type(worker) = receive_request(queue) | send_io_request(ioqueue, B,) | wait_for_io_response(B)
+```
+We can also use this state machine syntax for epoll over objects in memory.
+```
+account(balance > 500) join_email_clicked prizes_available = send_customer_prize
+```
 
 Expression parsing as objects become identical
 relationship to machine language
