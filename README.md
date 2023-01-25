@@ -8924,6 +8924,23 @@ How to represent this runtime. Names are collections.
 parallel
 
 coroutines+threads
+
+# 569. State machine progression log
+
+The future state is the union of all preceding states.
+
+# 570. Next state program from
+
+Where things are and what to do with them being there
+
+# 571. Variable value tracing
+
+See how a value gets around a system
+
+# 572. Nested REPL, see state changes
+
+When I write assembly 
+
 # Hierarchy blend
 
 
