@@ -8935,6 +8935,40 @@ Where things are and what to do with them being there
 
 # 571. Value calculus, Variable value tracing
 
+When I write the following in assembly, these commands have side effects on registers.
+
+```
+pushq %rax
+pushq %rcx
+pushq %rsi
+```
+
+Later on, this code ought to to be matched with
+
+```
+popq %rsi
+popq %rcx
+popq %rax
+```
+
+It's very difficult to keep these in synchronization when codebases are large and complicated.
+
+It would be good if we could depend on the state where an item is pushed into the register, so instead we write
+
+```
+pushq %rax | need_rax | pop %rax
+pushq %rcx | need_rcx | pop %rcx
+
+...
+
+need_rax
+need_rcx
+```
+
+This is similar to the `defer` command in Golang.
+
+Every value is tagged and can be depended upon.
+
 See how a value gets around a system.
 Value types movement
 
