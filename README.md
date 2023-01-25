@@ -8944,11 +8944,11 @@ When I write assembly
 
 # 573. Uniform access protocol
 
-Imagine I could write a structure that was network ready
+Imagine I could write a simultaneous `file` and `binary` structure that was network ready for server driven protocols.
 
 # 574. Behaviour database
 
-Sto
+Store behaviours and state machines in a database and query over runnable behaviours.
 
 # Hierarchy blend
 
