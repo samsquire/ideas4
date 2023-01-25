@@ -8933,13 +8933,22 @@ The future state is the union of all preceding states.
 
 Where things are and what to do with them being there
 
-# 571. Variable value tracing
+# 571. Value calculus, Variable value tracing
 
-See how a value gets around a system
+See how a value gets around a system.
+Value types movement
 
 # 572. Nested REPL, see state changes
 
 When I write assembly 
+
+# 573. Uniform access protocol
+
+Imagine I could write a structure that was network ready
+
+# 574. Behaviour database
+
+Sto
 
 # Hierarchy blend
 
