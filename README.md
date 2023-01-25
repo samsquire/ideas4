@@ -8935,6 +8935,10 @@ Where things are and what to do with them being there
 
 # 571. Value calculus, Variable value tracing
 
+Many programming languages track variables but not values. There are algebraic effect tracking systems.
+
+What if we tracked the effects of statements and name them with a tag and then refer to the tag when we need their side effects. And we can also define what should go on when the scope is ended.
+
 When I write the following in assembly, these commands have side effects on registers.
 
 ```
@@ -8958,16 +8962,32 @@ It would be good if we could depend on the state where an item is pushed into th
 ```
 pushq %rax | need_rax | pop %rax
 pushq %rcx | need_rcx | pop %rcx
+pushq %rsi | need_rsi | pop %rsi
 
 ...
 
 need_rax
 need_rcx
+need_rsi
 ```
 
 This is similar to the `defer` command in Golang.
 
-Every value is tagged and can be depended upon.
+I can think of a way of solving manual memory management
+
+When you do 
+
+```
+struct user user_data = malloc(sizeof(struct user));
+```
+
+You append a tag of the side effect to it and what to do when the reference is not used.
+
+```
+struct user user_data = malloc(sizeof(struct user)); | need_user_data | free(user_data)
+```
+
+
 
 See how a value gets around a system.
 Value types movement
@@ -8983,6 +9003,8 @@ Imagine I could write a simultaneous `file` and `binary` structure that was netw
 # 574. Behaviour database
 
 Store behaviours and state machines in a database and query over runnable behaviours.
+
+# 575. Reachability analysis
 
 # Hierarchy blend
 
