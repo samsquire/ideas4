@@ -8882,6 +8882,7 @@ loop = Σ(item, items)
         | item print(item)
 ```
 
+How do you raise a local variable?
 
 The mathematical sum symbol Σ represents a loop. 
 behaviour between points
@@ -8898,8 +8899,8 @@ compile = Σ(ast, self.program)
         | ast2 normalised(ast.normalise(normalised))
         | ast2 ast.assignlocalvariables(self)
         | assignregisters(normalised)
-        | ranges(liveranges(assignments))
-        | realregisters(assignrealregisters(assignments, ranges, ["eax", "ebx", "ecx", "edx"]))
+        | live_ranges as ranges(liveranges(assignments))
+        | realregisters as assignrealregisters(assignments, ranges, ["eax", "ebx", "ecx", "edx"])
         | resolvereferences(normalised)
     
     eprint(normalised)
