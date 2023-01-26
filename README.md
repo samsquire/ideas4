@@ -8972,9 +8972,10 @@ need_rcx
 need_rsi
 ```
 
+
 This is similar to the `defer` command in Golang.
 
-I can think of a way of solving manual memory management
+I can think of a way of solving manual memory management with this design too.
 
 When you do 
 
@@ -8988,7 +8989,38 @@ You append a tag of the side effect to it and what to do when the reference is n
 struct user user_data = malloc(sizeof(struct user)); | need_user_data | free(user_data)
 ```
 
+A pseudolinker shall process all the sourcecode and insert a free into the code where there is a downstream scope that is the last one to need_user_data.
 
+```
+int main() {
+  struct user* user_data = malloc(sizeof(struct user)); | need_user_data | 
+  free(user_data)
+  need_user_data
+  struct thread *thread = setup_event_handler_thread(on_request);
+  pthread_join(thread);
+  // control flow returns to here from on_request, user_data can be freed
+}
+
+int on_request(struct user_data *user_data) {
+  need_user_data
+  do_something1(user_data);
+  do_something2(user_data);
+  do_something3(user_data);
+  // user_data cannot be freed here
+}
+int do_something1(struct user *user_data) {
+  need_user_data
+  
+}
+int do_something2(struct user *user_data) {
+  need_user_data
+  
+}
+int do_something3(struct user *user_data) {
+  need_user_data
+  
+}
+```
 
 See how a value gets around a system.
 Value types movement
@@ -9006,6 +9038,8 @@ Imagine I could write a simultaneous `file` and `binary` structure that was netw
 Store behaviours and state machines in a database and query over runnable behaviours.
 
 # 575. Reachability analysis
+
+# 576. 
 
 # Hierarchy blend
 
