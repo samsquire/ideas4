@@ -8995,13 +8995,13 @@ Value types movement
 
 # 572. Nested REPL, see state changes
 
-When I write assembly 
+When I write assembly it would be nice to see the stack and registers at any line.
 
 # 573. Uniform access protocol
 
 Imagine I could write a simultaneous `file` and `binary` structure that was network ready for server driven protocols.
 
-# 574. Behaviour database
+# 574. Behaviour databaset
 
 Store behaviours and state machines in a database and query over runnable behaviours.
 
