@@ -1777,6 +1777,7 @@ Features I think browsers should have:
  * **SQL** browser engines should provide SQL APIs. SQL is industry standard approach for querying data and it can be optimised.
  * **Distributed storage** Sync should be built into the browser and any offline data should be backupable to the cloud.
  * **Seamless merge with CRDTs** Browsers should implement CRDTs ala Automerge and Yjs and Braid protocol.
+ * **Desktop widgets** Should be possible to browse into a slide editor, image editor, video editor, music editor and so on.
 
 
 
@@ -8610,7 +8611,9 @@ Why is it so difficult to use expressions to support these features?
 
 # 551. Token ring parallelism
 
-If you have 11 threads all try update the same value, you'll reach a bottleneck with locks. So I've designed a different algorithm that places threads into a ring structure. The threads take turns reading or writing but only one thread can write at a time. When there is writing going on, there is no reading. All threads can read as fast as they can in between writes. There is no locks.
+If you have 11 threads all try update the same value, you'll reach a bottleneck with locks. So I've designed a different algorithm that places threads into a ring structure. The threads take turns reading or writing but only one thread can write at a time. When there is writing going on, there is no reading. All threads can read as fast as they can in between writes. There is no locks and only semaphores. It uses spinlocks.
+
+
 
 
 
@@ -8690,7 +8693,7 @@ This can be implemented by a trie with state links for each stateline. Each stat
 
 ![flat](flat.png)
 
-For parallel states such as the following:
+For parallel states we can use the following:
 
 ```
 states = state1 | {state1a state1b state1c} {state2a state2b state2d} | state3
@@ -8791,6 +8794,8 @@ Epoll style waits
 
 
 # 559. How to assign objects to threads efficiently
+
+If I have a collection of objects, I might want to serve requests to those objects on different threads for peformance. So each object lives on a thread.
 
 # 560. Bloom filter or bitmask state machine
 
@@ -9039,7 +9044,14 @@ Store behaviours and state machines in a database and query over runnable behavi
 
 # 575. Reachability analysis
 
-# 576. 
+# 576. Argument stack
+
+What if arguments were always defined as named blocks in programming languages for easy copy and pasting?
+
+
+```
+
+```
 
 # Hierarchy blend
 
