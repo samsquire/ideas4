@@ -9058,6 +9058,10 @@ I could hast used named tuples in Python or records in Java for this purpose.
 
 ```
 
+# 577. Linear equivalent
+
+
+
 # Hierarchy blend
 
 
