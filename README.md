@@ -9060,6 +9060,13 @@ I could hast used named tuples in Python or records in Java for this purpose.
 
 # 577. Linear equivalent
 
+Computers are great at adding numbers together.
+Can the additions produce useful results
+
+
+# 578. Language as a server
+
+Start the server, send commands to it to run. Strange design but super fast.
 
 
 # Hierarchy blend
