@@ -9046,8 +9046,13 @@ Store behaviours and state machines in a database and query over runnable behavi
 
 # 576. Argument stack
 
-What if arguments were always defined as named blocks in programming languages for easy copy and pasting?
+The stack is a structure of named positional arguments.
 
+What if arguments were always defined as named blocks in programming languages for easy copy and pasting? And positional arguments were never used?
+
+When I was writing my compiler, I was often processing lists of tuples to avoid creating classes.
+
+I could hast used named tuples in Python or records in Java for this purpose.
 
 ```
 
