@@ -9068,6 +9068,11 @@ Can the additions produce useful results
 
 Start the server, send commands to it to run. Strange design but super fast.
 
+# 579. Type gymnastics
+
+The problem with SOLID is that code is closed to extension when written. We need to define our entire type and hierarchy upfront.
+
+What if we could mask types to act as other types?
 
 # Hierarchy blend
 
