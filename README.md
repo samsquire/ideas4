@@ -5296,7 +5296,7 @@ The tip of execution for a scheduler is decided by what is on the stack at the e
 
 # 340. Queue theory Rate Sequencer
 
-A programming language that 
+A programming language that organises multiple sequenced operations and times and proportions them properly so they're well proportioned and arranged to do enough work to keep other parts of the circuit occupied.
 
 # 341. Thoughts on multiple table transactions
 
@@ -9070,9 +9070,15 @@ Start the server, send commands to it to run. Strange design but super fast.
 
 # 579. Type gymnastics
 
-The problem with SOLID is that code is closed to extension when written. We need to define our entire type and hierarchy upfront.
+The problem with SOLID is that code is closed to extension when written. We need to define our entire type and hierarchy upfront. Code is therefore not very extensible.
 
 What if we could mask types to act as other types?
+
+# 580. Lateral perspective
+
+A GUI is written to handle data and move it around on the screen. We can observe the results of the data in the visual viewport. Ideally we should be capable of driving the processes behind what is visual from the visual viewport. This forms a recursive closed circuit.
+
+Can improve what you see
 
 # Hierarchy blend
 
