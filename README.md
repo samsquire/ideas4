@@ -9080,6 +9080,10 @@ A GUI is written to handle data and move it around on the screen. We can observe
 
 Can improve what you see
 
+# 581. 3d wireframe structure of code
+
+Render code as a 3d wireframe.
+
 # Hierarchy blend
 
 
