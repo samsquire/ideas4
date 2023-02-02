@@ -5956,6 +5956,7 @@ It seems every company requires these services:
  * Proof of identity
  * Proof of phone number
  * Proof of address
+ * proof of device
  * Proof of money
  * Proof of payment
  * Proof of debt
