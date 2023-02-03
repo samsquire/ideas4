@@ -9083,7 +9083,9 @@ Can improve what you see
 
 # 581. 3d wireframe structure of code
 
-Render code as a 3d wireframe.
+Render code as a 3d wireframe of relationships and animate it.
+
+It should be densely linked but we can explore it with WASD keys.
 
 # Hierarchy blend
 
