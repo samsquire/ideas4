@@ -9365,9 +9365,31 @@ Firefox moved away from XPCOM in its extension layer due to performance problems
 
 Parsing can be thought of moving boundaries around. One things becomes part of another thing, based on where the boundary is.
 
-# 603. Beginnings
+# 603. Beginnings dropdown
 
-Similar to entrypoints, but I would like to see how code begins doing a
+Similar to entrypoints, but I would like to search for a cross-cutting code thing with a dropdown list for each thing.
+
+# 604. Schematic programming
+
+Can the behaviour of a system be completely understood by just noun objects linked together in a schematic?
+
+# 605. Problem repository
+
+What if someone created a repository of common problems that need to be solved such as render text, do animation, compile bytecode.
+
+# 606. Complicated olympics
+
+Can you redesign a software application's architecture with a GUI?
+
+# 607. The Power of expressions
+
+# 608. Sharded integers
+
+If you want extreme scalability of numbers, you can split an integer by thread and handle a portion of requests per thread.
+
+In other words, thread 1-12 each store a 12th of the number. Each thread handles requests that it is large enough for, if there isn't enough inside that thread, it routes to other threads.
+
+This gives me scalability of 341-800 million requests per second for a simple bank example.
 
 
 
