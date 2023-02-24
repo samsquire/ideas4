@@ -1424,7 +1424,7 @@ While (root.isDirty() {
 
 Rete algorithm can be used if the object is complicated.
 
- 
+
 # 68. Atomic blocks
 
 Since writing this idea I learned of software transactional mem which is very similar to this idea. I even used the same scenario for updating a doubly linked list as I did in [compare and swap sort algorithm](HTTPS://GitHub.com/samsquire/compare-and-swap-sort)
@@ -1773,7 +1773,7 @@ We can optimise with this approach.
 Similar to my idea for an [Instanceable Wiki](https://github.com/samsquire/ideas2#36-instanceable-wiki) I like how browsers allow you to surf into an app without an install.
 
 Features I think browsers should have:
- 
+
  * **SQL** browser engines should provide SQL APIs. SQL is industry standard approach for querying data and it can be optimised.
  * **Distributed storage** Sync should be built into the browser and any offline data should be backupable to the cloud.
  * **Seamless merge with CRDTs** Browsers should implement CRDTs ala Automerge and Yjs and Braid protocol.
@@ -5001,7 +5001,7 @@ We can use digital life simulations to simulate this insight.
 
 # 301. Hypergenerics
 
-Any code can operate with any other code. Can we decouple data stored with behaviour of an algorihm without generics?
+Any code can operate with any other code. Can we decouple data stored with behaviour of an algorithm without generics?
 
 Associate subfields of an object with another struct or variable and the code is flexible for other usages. Any code can be compatible with any other code.
 
@@ -5011,8 +5011,9 @@ Can use a file system to process and store bitmaps or arrays. slots
 
 # 302. Insert between dimensions
 
-
 # 301. Thread objects where methods are called in the context of the thread that is called
+
+I should be capable of running Thread.function() and function runs in that Thread.
 
 # 302. Bidirectional Compiler pipeline as frontend
 
@@ -5739,7 +5740,7 @@ Hierarchy of the numbers
 5374625
 
 The arrangement of any computation is more complicated than the computation itself. Read any assembly for a program and it shall take you a long time before you get to the actual calculation. Look at the architecture of a CPU and you'll find the part that adds numbers together is miniscule compared to the overall silicon die.
- 
+
 We can see Numbers as existing in space and have a relational relationship to eachother.
 Generate events that follow numerical patterns
 Numbers are composed of digits
@@ -6690,7 +6691,7 @@ Many IDEs and development tools give you an empty screen to develop into. If you
 It seems Rust designates the method as the owner. 
 
 # 464. Template structure instantiation and AST structure merging
- 
+
 Boilerplate hidden away
 
 ![threads](threads.png)
@@ -7268,6 +7269,8 @@ Yes!
 # 479. Types are too static
 
 # 480. Code Struture URL
+
+A URL to define code structure
 
 # 481. Common Ranges keyspace
 
@@ -8250,7 +8253,7 @@ There is many features we can enable with this design:
  * **Use of message passing**
  * **Local and cross machine Queuing, backoff, load shedding, circuit breakers** The design can incorporate all these features.
  * **IRC/mailserver design, request/response web servers** Should be possible to use for backend servers such as web servers, webservers, IRC servers and mailservers due to the communication between threads.
- 
+
    java application servers, tomcat, dropwizard, request context
  * **horizontal/vertical slicing** Allows architecture to be sliced how we want it to be sliced.
  * **Geo routing** can route requests to nearby nodes.
@@ -8354,7 +8357,7 @@ Every method in a language should be possible to be used asynchronously or synch
 
 # 529. Call conventions
 
-# 530. Expression semantics loop labelling
+# 530. 
 
 # 531. Valid Expressions
 
@@ -8600,7 +8603,9 @@ When writing multithreaded programs I've often wanted to wait for a scenario to 
 
 # 548. Dynamic shell, static kernel
 
-What if you had a programming language where there was two syntaxes. One syntax is dynamic and slow and the other is extremely fast.
+What if you had a programming language where there was two syntaxes. One syntax is dynamic and slow and the other is extremely fast. A graphical toolkit needs to be fast, but there is a slow path that doesn't need to be fast. Let's optimise for writing code and go fast where necessary.
+
+How to optimise for writing for performance? We 
 
 # 549. Mesh clustering parallelism
 
@@ -8663,6 +8668,13 @@ How would you implement what Kafka does at the assembly layer?
 
 # 558. Assign location, multinames and State Multiexpressions
 
+This idea is the combination of multiple thoughts:
+
+* **Assign location** We assign something a location and pass it through different locations over time. There is a transition from one location to another location.
+* **Multinames** We can refer to something through multiple names.
+* **Scheduling** We ultimately want to schedule membership and removal of membership of states over time.
+* **State multiexpressions** We can describe the progression of states of multiple things/locations over time.
+
 Can we define the location, state, control flow progression of things with expressions and named facts?
 
 We define facts that can be matched or not matched. The clauses before the equals symbol (=) represent what needs to match to start this state machine progression. Then each set of facts is matched before moving to the next stage.
@@ -8687,6 +8699,12 @@ thread_free(next_free_thread) = fork(A, B)
 ```
 
 This is essentially a state machine of collections with progression between collections defined. It should be compilable efficiently and a runtime API creatable for it.
+
+```
+order(O) = inserted | paid | fulfilment | fulfilled | delivered
+```
+
+
 
 I feel this should be a primitive of computer science. Rather than assign fixed values to names, we give everything two or more names and flexibly assign things to named things and the computer schedules in and out of them and the movement between them.
 
@@ -8719,21 +8737,64 @@ click(clickdata) append(click, clicks) cron("* * * * 15") = create_batch_email |
 
 Interpreters manage these resources at runtime. How does static management of these resources look and that can still be changed?
 
-* expressions
-* functions
-* Threads
-* variables
-* expressions
-* coroutines
-* methods
-* registers
-* sockets
-* processes
-* machines
-* free/used memory
-* stack
+* **Expressions**: The evaluation of expressions in parallel.
+* **Functions** The presence and removal of functions at runtime.
+* **Threads** Scheduling code to run on a thread, or handling of an event.
+* **Variables** Variables go in and out of scope as the stack moves about. They refer to memory that is allocated.
+* **Coroutines** Coroutines are scheduled onto the CPU and off the CPU.
+* **Methods**
+* **registers** Registers take on values over time and are the destination of instruction outputs.
+* **sockets**
+* **processes**
+* **machines**
+* **free/used memory**
+* **stack**
+* **arbitrary collections** 
+
+For arbitrary collections, we might have the following pattern:
+
+```
+order(101, order_details)
+```
+
+Where each instance of the order fact is a separate instance. But what if we want to group things by collections?
+
+```
+threads =
+thread(1)
+thread(2)
+thread(3)
+```
+
+Are separate instances of "thread". How does this match in a state machine? A reference to the collection object, what does it mean? Does it expand to mean each item in existence? The following rule would fire if every thread(1) was also joined.
+
+```
+joined(thread, 1)
+joined(threads) = send_email
+```
+
+How do we declare a state machine stateline and types? We can use possessive apostrophe to represent ownership relationship.
+
+```
+thread(id)
+joined(thread, thread's id)
+```
+
+
+
+Collections can be database objects, such as SQL resultsets.
+
+
 
 These form an AST but there is also named locations for each of these things.
+
+How would you create the behaviour post order traversal over an AST that is assigned to different threads when they become available? |_ symbol is the post order traversal operator that traverses the ast for each of its components.
+
+```
+ast thread_free(T) = |_ ast as exp | thread_free(X) assign_ast_thread(exp, X) | execute(exp, X)
+```
+
+file with a URL to your github URL in it
 
 This is designed as a query engine that pulls data through behaviours.
 
@@ -8796,7 +8857,7 @@ Epoll style waits
 
 # 559. How to assign objects to threads efficiently
 
-If I have a collection of objects, I might want to serve requests to those objects on different threads for peformance. So each object lives on a thread.
+If I have a collection of objects, I might want to serve requests to those objects on different threads for performance. So each object lives on a thread.
 
 # 560. Bloom filter or bitmask state machine
 
@@ -8805,6 +8866,8 @@ If I have a collection of objects, I might want to serve requests to those objec
 # 562. Moving things around
 
 # 563. Vector ideas, schematics
+
+Can ideas be scaled? When we rasterize ideas they become concrete and difficult to change. What if ideas were vectors an could be scaled up and own and replicated? Can the same idea be applied to software architecture?
 
 # 564. The illusion of being a single runner
 
@@ -8875,7 +8938,8 @@ Carts are created, then transactions, then invoices.
 * **Jobshop scheduling**
 * **Register allocation**
 * **Multiplexing** See [Multiplexing as a computer primitive, API and Visual Multiplexing](https://github.com/samsquire/ideas4#97-multiplexing-as-a-computer-primitive-api-and-visual-multiplexing)
-***State expressions** It should be possible to describe complicated state progressions with expressions [558. Assign location, multinames and State Multiexpressions](https://github.com/samsquire/ideas4#558-assign-location-multinames-and-state-multiexpressions)
+* **State expressions** It should be possible to describe complicated state progressions with expressions [558. Assign location, multinames and State Multiexpressions](https://github.com/samsquire/ideas4#558-assign-location-multinames-and-state-multiexpressions)
+* **Hungarian Algorithm**
 
 # 568. Flat code
 
@@ -8934,15 +8998,55 @@ coroutines+threads
 
 # 569. State machine progression log
 
-The future state is the union of all preceding states.
+The future state is the union of all preceding states and program behaviour.
+
+If we represent program behaviour as a series of types
+
+```
+ForLoop Task Tasks LoopIndexVariable1
+ Assignment Result = DoSomething Task
+ Switch Result
+  Case Fork
+   NextThread.Tasks.Append (Task, "Fork", Result)
+  Case Yield
+   Task.Thread.Append (Task, "Yield", Result)
+  
+  
+
+```
+
+We have these types, in this order:
+
+```
+ForLoop
+	DoSomething
+	Assignment
+	Switch
+     Append
+	 Append
+```
+
+We have an intersection of variables and types between these variables and the above specification.
+
+```
+Tasks
+Result
+LoopIndexVariable1
+```
+
+
 
 # 570. Next state program from
 
-Where things are and what to do with them being there
+When writing stateful, mutation code we often produce new states that the future of the program interacts with. There are where things are and what to do with them being there. What I want to see if the lineage of an object or value over time.
+
+So imagine a runtime that traces the position of every object in memory, similar to a sliding puzzle.
 
 # 571. Value calculus, Variable value tracing
 
 Many programming languages track variables but not values. There are algebraic effect tracking systems.
+
+Let's have perfect tracking of values through sourcecode.
 
 What if we tracked the effects of statements and name them with a tag and then refer to the tag when we need their side effects. And we can also define what should go on when the scope is ended.
 
@@ -9037,9 +9141,9 @@ When I write assembly it would be nice to see the stack and registers at any lin
 
 # 573. Uniform access protocol
 
-Imagine I could write a simultaneous `file` and `binary` structure that was network ready for server driven protocols.
+Imagine I could write a structure that was simultaneously effective as a `file` and `binary` format structure that was network ready for server driven protocols such as 
 
-# 574. Behaviour databaset
+# 574. Behaviour database
 
 Store behaviours and state machines in a database and query over runnable behaviours.
 
@@ -9059,15 +9163,17 @@ I could hast used named tuples in Python or records in Java for this purpose.
 
 ```
 
-# 577. Linear equivalent
+# 577. Godel numbering over programs
 
 Computers are great at adding numbers together.
-Can the additions produce useful results
+Can the additions produce useful results that are turing complete?
 
 
 # 578. Language as a server
 
 Start the server, send commands to it to run. Strange design but super fast.
+
+This is similar to php-fpm.
 
 # 579. Type gymnastics
 
@@ -9075,9 +9181,9 @@ The problem with SOLID is that code is closed to extension when written. We need
 
 What if we could mask types to act as other types?
 
-# 580. Lateral perspective
+# 580. Lateral perspective: two parallel inputs
 
-A GUI is written to handle data and move it around on the screen. We can observe the results of the data in the visual viewport. Ideally we should be capable of driving the processes behind what is visual from the visual viewport. This forms a recursive closed circuit.
+A GUI is written to handle data and move it around on the screen. We can observe the results of the data in the visual viewport. Ideally we should be capable of driving the processes behind what is visual from the visual viewport based on relationships between things at the output level. This forms a recursive closed circuit from two dimensions.
 
 Can improve what you see
 
@@ -9087,12 +9193,191 @@ Render code as a 3d wireframe of relationships and animate it.
 
 It should be densely linked but we can explore it with WASD keys.
 
-# Hierarchy blend
+# # 582. Only one branch allowed and branch by position
 
+Could you impose a rule to programming that if a branch is taken, the same branch for future branches must be taken for the rest of the program. You could therefore generate two versions of the output and remove all branching from the execution.
+
+# 583. URL powered computer
+
+Installing software is so 1990s-2000s. Let's configure and install software by giving URLs or taking them away. Everything is a URL
+
+This is Package Management 3.0
+
+You want your computer to have a behaviour? You search for that behaviour and you add the URL of the behaviour to text file or graphical user interface.
+
+You can put your taskbar on the left, right, top or right and it would turn into a URL for copying and pasting elsewhere.
+
+config:// config start menu in bottom left
+config:// start-menu has office software
+config:// start-menu has calculator
+config:// start menu has email software
+config:// login screen appears on startup
+
+config:// my wifi is wifi network name password
+
+This URL configures DNS server.
+config:// dns server is google
+
+This URL would configure your mailclient.
+
+config:// my mail server is fastmail / username / password
+config:// my mail server is gmail / username / password
+
+
+This URL would automatically register you at halfbakery
+
+config:// i have an account at halfbakery username password sam@samsquire.com
+
+This special URL points to a file that tells your computer how to have that behaviour.
+
+it would include instructions of files to download and their dependencies. it would reconcile dependencies.
+
+Periodically the behaviour shall update itself.
+
+Some behaviours have choices of implementation, so you can decide what you want from a chooser interface. This is similar to a Google search.
+
+You want a piece of software? You tell it a URL and then it has that software installed. If you remove the URL, the software is uninstalled.
+
+I'm a software engineer and if you've ever used Github or built a modern website it's a painful mess. You have to worry about files being in the right places to compile software, for header files to be in the right location.
+
+You have to worry about Makefile scripts. You have to have a toolchain installed.
+
+Joining a software development project can take a week to setup your machine so you can do everything that other developers need to do. You need accounts for everything, you need software installed and you need
+
+# 584. Virtual thread join
+
+The thread API is very easy to work with. You start a thread and join it. But what I want is the idea of a pseudo join command that doesn't block. The thread can keep doing progress but is joined on another task. But I want timing to not factor into code execution. Code shouldn't just stop executing when a certain command is reached. The syntax is oblivious to scheduling in most languages and I feel this means code is harder to reason about. If the code is nonblocking at all times, then we can write extremely responsive applications.
+
+# 585. Servers SHOULD have GUIs
+
+This is a strange perspective from a software engineer who also is a devops software engineer. But I don't want to monitor a system from the command line, I would rather monitor a system from a panel. Setting up the server with code and command line is fine, but when it is running, I would rather monitor a rich GUI such as Grafana.
+
+# 586. Not abstracting for everyone
+
+There is a trend in computing to abstract for everyone, when someone writes some software, they try abstract the software to be used by every platform. This is extreme amounts of tedious work. I don't think it works. The abstract platforms do not entirely encapsulate the native platform properly. It's a lot of manual labour to enforce common behaviour between platforms.
+
+# 587. Channels and queues can really be shared memory
+
+You don't need to copy anything except a reference.
+
+# 588. Boilerplate code should be fun
+
+It should be fun to write boilerplate code. You should feel competent doing it. To feel effective at all times. The boilerplate code you write should feel enjoyable to write. Creating an instance of a hashmap in Java is boilerplate but in Python it's easy, just type `{}`
+
+# 589. Binary operation syntax language with documentation
+
+When there are pipelines, it is not obvious how the intermediate state looks along the pipeline. This idea would require presenting an example match for objects in the pipeline and how it looks.
+
+This could be integrated with the IDE or editor where each operation is on its own line and documentation is on a panel on the right.
+
+# 590. Programming language semantics
+
+# 591. Software design should be visualisable as a graph or tree
+
+# 592. Perfect architecture and multiple tuples, everything is a nested tuple
+
+It should be easier to create the perfect architecture than an architecture that is inefficient or improper or not fit for purpose. Why isn't this possible?
+
+I want system design to be creatable by defining facts as nested relational tuples. These tuples actually define relationships of objects in memory. It's an object orientated declaration of relationships and behaviour. How is the behaviour designated? We could use multiexpressions to define behaviours and tuples to define structure.
+
+```
+server_list(servers=[]).
+load_balancer(servers=server_list, listener=listener).
+listener(kind=tcp, port=8080).
+
+```
+
+We could define behaviours for what goes on when a field of a structure is added or when a combination of fields is changed. This is simialar to epoll for objects.
+
+Malloc structure
+
+Usually we can look at the architecture of software and realise that it would be better if it looked another manner. This change would be easy to do if the code is written in a certain manner.
+
+
+
+If everything is an AST graph, we can get behaviour we want by evaluating elements in the AST. We have ASTs for every behaviour in the system. And they can be reorganised to different communication or data flow patterns.
+
+This is effectively how React works. The JSX represents an AST of behaviour.
+
+# 593. No type inference
+
+Just specify types everywhere, for every expression.
+
+# 594. Fictional API
+
+# 595. Business programming should never touch low level code
+
+I feel that business software code should never touch low level programming ideas.
+
+* **GUIs** Writing a GUI in C or C++ programming language feels the wrong level of abstraction.
+* **Business programming** I don't think business programming should ever touch memory management or sockets or  low level operating system primitives.
+
+# 596. Tiered data scalability
+
+Depending on the volume of information you have, there is a different technical solution to scaling it.
+
+With popularity of Mastodon it is interesting that Mastodon reinvents parts of email.
+
+# 597. Rewrite shared memory variable access of remote threads into queue submission
+
+If I want to do this:
+
+```
+For Task in ThisThread.Tasks:
+ NextThread.Tasks.Append Task
+```
+
+This is a reference to NextThread. It is not safe to talk to NextThread's members directly.
+
+There is a risk of synchronization issues due to writing to a collection that is being read from by another thread. Ideally we need to rewrite the code into this:
+
+```
+While True:
+ Operation = Queue.Take
+ Switch Operation
+  TasksAppend
+   ThisThread.Tasks.Append Operation
+ For Task in ThisThread.Tasks:
+  NextThread.Tasks.Submit TasksAppend Task
+```
+
+
+
+# 597. Direct manipulation
+
+# 598. Runtime type information extraction
+
+A dynamic language that allows types to be profiled to see what types are in the variables.
+
+# 599. Environment definition
+
+Given a line of code, the code executes in a given environment, what if we could provide these environments easily to see how it behaves?
+
+# 600. Provide Substitution
+
+Represents patterns of what should stand in for each other. When parsing, there is a stack graph of how the thing to be parsed should look.
+
+# 601. JIT Compile A COM boundary
+
+Firefox moved away from XPCOM in its extension layer due to performance problems. The interop cost between C++ and Javascript was too great. How do you design an interop that is fast and can be optimised? You need to avoid copying data back-and-forth.
+
+# 602. Move boundaries around
+
+Parsing can be thought of moving boundaries around. One things becomes part of another thing, based on where the boundary is.
+
+# 603. Beginnings
+
+Similar to entrypoints, but I would like to see how code begins doing a
+
+
+
+# Hierarchy blend
 
 # phone ideas
 
-Primitives of an operating system: multiplexing, communication
+Expression semantics loop labelling
+
+Primitives of an operating system: multiplexing, communication, epoll
 
 Strctyre
 Cuor
@@ -9170,7 +9455,6 @@ We can iterate through events
 We can check what we need to do by evaluating events
 If there isn't capacity to do something at this time we can do it later
 We assume everything runs forever and is interrupted.
-
 
 
 
