@@ -3927,7 +3927,7 @@ This diagram shows how this could look. There is a set of connections that are i
 
 # 197. For loop servers, buffered for loops, pauseable schedulable loops, assignable loops, looping over methods
 
-Loops can be servers. This idea is inspired by methods being message passing as in Ruby and Smalltalk.
+Everything is a while true loop. Loops can be servers. This idea is inspired by methods being message passing as in Ruby and Smalltalk.
 
 Imagine if the following code seamlessly turned into concurrent code that dispatched calls between threads. This shows a for loop communicating with another for loop. We are looping over method calls. The runtime should detect when a method call matches the loop. This is similar to a channel in golang. Imagine if each loop was schedulable between threads automatically, similar to a goroutine or a [ideas4 # 133. Concurrent loops, loops as lightweight threads, load balancing loops](https://github.com/samsquire/ideas4/blob/main/README.md#133-concurrent-loops---loops-as-lightweight-threads-load-balancing-loops).
 
@@ -7927,13 +7927,33 @@ Could we avoid the boxing problem by always using structures of arrays?
 
 # 519. Parallel parsers
 
+We can parse data in two directions.
+
+There is communication from client to server and server to client. 
+
 # 520. Callstack switch statement and full stop delimited pipelines, defined program by stacktrace
 
 Imagine each part of this stacktrace, each part between periods is a switch statement and routes processing to the right place.
 
 ```
 at main.ProgramParser.parseExpression(ProgramParser.java:620)
+
+
 ```
+
+```
+switch (Module) {
+	ProgramParser
+		switch (parseExpression) {
+			switch (Parameter) {
+			
+			}
+		}
+
+}
+```
+
+
 
 # 521. The criticality of providing implementations or closures and futamura projections
 
@@ -7973,6 +7993,7 @@ I'm trying to think of a model for a language where threading is properly placed
 Some models I'm thinking of:
 
  * Imagine if threads were invisible to the language and were automatically scheduled. You don't need to coordinate scheduling on a thread.
+ * Everything is a while loop.
 
 There are CPU threads and IO threads and there is a event loop thread which coordinates them through a ringbuffer.
 
@@ -8666,14 +8687,36 @@ Adding the base is similar to another level.
 
 How would you implement what Kafka does at the assembly layer?
 
-# 558. Assign location, multinames and State Multiexpressions
+# 558. State machine formulation
 
 This idea is the combination of multiple thoughts:
 
 * **Assign location** We assign something a location and pass it through different locations over time. There is a transition from one location to another location.
-* **Multinames** We can refer to something through multiple names.
+
+```
+available(item) = lent_out(item) | returned(item) | restocked(item) | available(item)  
+```
+
+This item moved through the states available, lent_out, returned, restocked, available.
+
+* **Multinames** We can refer to something through multiple names. The name can be part of multiple properties at once or can be removed from the previous ones and added to the next ones.
 * **Scheduling** We ultimately want to schedule membership and removal of membership of states over time.
 * **State multiexpressions** We can describe the progression of states of multiple things/locations over time.
+* **Bidirectional relations** When there is a collection form, change to individual items that create the collection property can trigger. When all books are returned, send an email.
+* **Removal from one list, addition to another list**
+* **Lifecycles** of objects
+
+```
+returned(books) = send_email
+books = book(N)
+returned(book, 1)
+```
+
+When all books are returned, then the `returned(books)` becomes a fact. When a book is no longer returned, the fact is retracted.
+
+![books](https://raw.githubusercontent.com/samsquire/multinames/main/collections.png)
+
+Whenever a returned(book, N) occurs, the system scans to see if collection properties are fulfilled.
 
 Can we define the location, state, control flow progression of things with expressions and named facts?
 
@@ -8738,7 +8781,7 @@ click(clickdata) append(click, clicks) cron("* * * * 15") = create_batch_email |
 Interpreters manage these resources at runtime. How does static management of these resources look and that can still be changed?
 
 * **Expressions**: The evaluation of expressions in parallel.
-* **Functions** The presence and removal of functions at runtime.
+* **Functions** The presence and removal of functions at runtime. Late binding etc.
 * **Threads** Scheduling code to run on a thread, or handling of an event.
 * **Variables** Variables go in and out of scope as the stack moves about. They refer to memory that is allocated.
 * **Coroutines** Coroutines are scheduled onto the CPU and off the CPU.
@@ -8750,11 +8793,12 @@ Interpreters manage these resources at runtime. How does static management of th
 * **free/used memory**
 * **stack**
 * **arbitrary collections** 
+* **loops**
 
 For arbitrary collections, we might have the following pattern:
 
 ```
-order(101, order_details)
+order(101, "item #501", "£100")
 ```
 
 Where each instance of the order fact is a separate instance. But what if we want to group things by collections?
@@ -8853,6 +8897,10 @@ Message passing between states.
 Error handlings
 Parser linked to a state machine.
 Epoll style waits
+
+Relationship to parsing
+
+
 
 
 # 559. How to assign objects to threads efficiently
@@ -9193,7 +9241,7 @@ Render code as a 3d wireframe of relationships and animate it.
 
 It should be densely linked but we can explore it with WASD keys.
 
-# # 582. Only one branch allowed and branch by position
+# 582. Only one branch allowed and branch by position
 
 Could you impose a rule to programming that if a branch is taken, the same branch for future branches must be taken for the rest of the program. You could therefore generate two versions of the output and remove all branching from the execution.
 
@@ -9391,7 +9439,82 @@ In other words, thread 1-12 each store a 12th of the number. Each thread handles
 
 This gives me scalability of 341-800 million requests per second for a simple bank example.
 
+# 609. Reading/writing mode
 
+With token ring parallelism, we are in either reading mode or writing mode. We can queue up changes in reading mode and execute them in writing mode. We can do epoll in reading mode.
+
+# 610. Global garbage collection
+
+Garbage collection is currently focused in the small, from the perspective of individual lines of code. Not a global property of what the most efficient memory usage pattern looks.
+
+Global properties and local properties.
+
+# 611. Thoughts on Reference semantics
+
+Pointers with numbers are hard to reason about but references to objects or objects are easier to reason about. 
+
+# 612. Match + EPOLL + Select in one statement
+
+```
+when (books, budget, time_available) = {
+  book("available", cost) & budget >= cost => reserve_book(book)
+  book("not available, cost) & time_available > 1 week => pending_reserve_request(book)
+  book("damaged", cost) => deduct_loss(cost)
+  book(_, cost.changes) => update_dashboard()
+}
+```
+
+# 613. Transpiling as interop
+
+If every language transpiles to the same language, wouldn't marshalling costs be zero?
+
+# 614. Server side language
+
+I'm thinking of a server side language which parses individual files and then spins up processes for the actors inside them. In this approach this is similar to PHP.
+
+We can implement the FastCGI protocol. When the server side language server starts up, it scans the program directory for files and starts actors for each component. It also starts handlers for explicit traffic servers.
+
+We want to have persistent database connections, so the server application shall scan all files and start any actors need that starting.
+
+We want to JIT compile the code of the actors, so we need an assembler.
+
+# 616. Threading REPL
+
+Write your implementation in a notebook REPL and then **thread** the blocks together to create a program. Create a server object and interact with it, both sides. Create parsers by typing communication between sender and receiver. 
+
+# 617. Table and Text based API
+
+Use tables to drive code. Assembly language, the text is an API. Instruction name, autocomplete on registers and memory addresses.
+
+# 618. Everything is a latch, Send to the future, and send back
+
+I want to do a sleep command when a number of other things have happened. This is similar to a latch.
+
+```
+spawn {
+	listen()
+		accept() {
+			while (latch { c}.notEnded) {
+			
+			
+			latch { b }.start
+			}
+		}
+	
+}
+spawn {
+	listen()
+		accept {
+			while (latch { c }.notEnded)
+			latch { a }.start
+		}
+}
+latch { a b }.wait
+sleep(5000)
+latch { c }.end
+```
+
+Sending messages language
 
 # Hierarchy blend
 
