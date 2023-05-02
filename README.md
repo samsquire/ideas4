@@ -6329,6 +6329,8 @@ The AST is a graph! Write code that manipulates the values of the AST
 
 # 435. Nowaiting control flow
 
+No line of code blocks.
+
 # 436. Returnto
 
 Write code that jumps back to somewhere if it fails.
@@ -6692,7 +6694,30 @@ It seems Rust designates the method as the owner.
 
 # 464. Template structure instantiation and AST structure merging
 
-Boilerplate hidden away
+This idea is that we should be capable of copying the behaviour of an existing piece of code and then modify it to suit a new purpose but also handle the original purpose as well! Think of it as automatic sum types but over code behaviour rather than data types.
+
+Imagine the following stacktrace handles processing a command from a socket.
+
+```
+at  Server.handleUserData(Server.java:50)
+at  Server.recv(Server.java:100)
+at  Server.serverLoop(Server.java:200)
+```
+
+I generated this stacktrace by inserting a line of code at a point of decision making.
+
+```
+# handleUserData(Server.java:50)
+public void handleUserData(String userCommand) {
+	emit_stackTrace("user data handling")
+}
+```
+
+
+
+shape pattern programming, interact with proxies
+
+
 
 ![threads](threads.png)
 
@@ -6706,7 +6731,7 @@ Cloning a hierarchy of method relationships can automatically introduce branch p
  * Every variable is also potentially a list type.
 
 
-What if you could copy and paste a large structure of code and adjust it slightly to handle the new case and the code was well unified?
+What if you could copy and paste a large structure of code (but not the code itself) and adjust it slightly to handle the new case and the code was well unified?
 
 In C++ template instantiation is an alternative to Runtime Generics as in Java. It allows us to substitute types in generated classes and variables and functions.
 
@@ -7689,6 +7714,8 @@ Think of a computer: it's divided into objects. We also want to overlay another 
 Rather than jump to the right code through two jumps (a trampoline) compile the code for an entire journey from that point onwards at every decision point to avoid the unnecessary jumps.
 
 # 501. Wiring
+
+Wiring should not use names of who we're wiring between.
 
 ```
 producer()
@@ -9096,6 +9123,8 @@ Many programming languages track variables but not values. There are algebraic e
 
 Let's have perfect tracking of values through sourcecode.
 
+
+
 What if we tracked the effects of statements and name them with a tag and then refer to the tag when we need their side effects. And we can also define what should go on when the scope is ended.
 
 When I write the following in assembly, these commands have side effects on registers.
@@ -9488,7 +9517,7 @@ Use tables to drive code. Assembly language, the text is an API. Instruction nam
 
 # 618. Everything is a latch, Send to the future, and send back
 
-I want to do a sleep command when a number of other things have happened. This is similar to a latch.
+Imagine I have multiple threads and I want to wait for initialization of a number of things, then timeout after a duration then when a number of other things have happened before shutdown. This is similar to a latch.
 
 ```
 spawn {
@@ -9516,9 +9545,796 @@ latch { c }.end
 
 Sending messages language
 
+# 619. Multiply loops into threads, online multiplexing
+
+In Java NIO, a pattern for processing nonblocking requests is the following:
+
+```
+while ((keysAdded = acceptSelector.select()) > 0 && running)
+  while (i.hasNext)
+    while (running) # this is an infinite loop for this user
+     handle_connection()
+
+
+
+```
+
+This structure is unfortunate because the inner loop for a client prevents future clients from being processed. We want to multiplex the while (running) loops across threads. We want to multiply the while (running) {}.
+
+We can define the language that while and for loops do not block the current thread.
+
+Loops can be transparently compiled into the following:
+
+```
+toplevel:
+while ((keysAdded = acceptSelector.select()) > 0 && running)
+  thread_pool.submit(while_i_is_next);
+while_i_is_next:
+while (i.hasNext)
+  thread_pool.submit(while_running);
+while_running:
+handle_connection()
+```
+
+Where thread_pool.submit has buckets for number of items per bucket:
+
+```
+if (count > bucket_size) {
+  next_thread = (current_thread + 1) % threads.size()
+  threads[next_thread].submit(work);
+  current_thread = next_thread;
+  count = 1
+} else {
+  count++;
+  threads[current_thread].submit(work);
+}
+```
+
+
+
+
+
+# 620. Useful structures
+
+# 621. Turing complete protocols/Interpreter JIT protocols
+
+Imagine you're writing an API that needs to send data and commands back and forth. Serialization is a major cost. Round trip time is an overwhelmingly large cost to pay, so it's important to frontload all requests and computation in each call. We do not want a back-and-forth to fulfil simple requests.
+
+We can send instructions to be processed on the result of a request that are JIT compiled by the remote.
+
+# 622. Profoundly understandable software
+
+# 623. Full bore algorithms
+
+If a machine has an ingress for multiple items at once, it might be capable of processing multiple items per unit of time. Can we take the same metaphor and apply it to computing but not just at the CPU level as with SIMD but at the algorithm layer?
+
+If we design our server applications to assume they are maximally using the hardware to its full extent, how many requests per second can you get out of it? This requires a change in perspective, rather than writing code that fulfils the task and then benchmarking and profiling it and then optimising, we write code that is profoundly performant with the majority of problem sizes it is given and then load it up with tasks that it can work through extremely fast.
+
+If you have an algorithm that can process any request of size N in under 1 millisecond, then you have something that can process many requests per second.
+
+Take an internet scale CRUD application for example, it needs to store data that exceeds the capacity of any given server and it needs to broadcast data to multiple users within the application. 
+
+# 624. Inside-out-algorithm, open computation, architecture editor
+
+Expose inner workings. Breadboard.
+
+
+
+english sentence scalability
+
+# 625. Rich process runtime, ambient expansive code environment, everything is a process/actor
+
+An extremely rich data structure for defining what should go on and when. Latches, parallelism, loops, visibility, tracing, complex event processing, pausing, restart, replay. Full visibility over what the computer is doing and why, workflow, queuing.
+
+Can submit work items to an actor and be informed when they are finished, similar to a promise.
+
+Ambient expansive code environment means that the API for managing objects is extremely rich and does everything you would want.
+
+# 626. Shape programming
+
+The average website can be broken down into wireframes.
+
+# 627. The UI should not be on the hot path
+
+The important part of the UI is calculation. If it takes 30 milliseconds before the UI reflects the processing, that is fine.
+
+
+
+# 628. Why some features of Linux are hard to use
+
+Or why is it so hard to reap child processes.
+
+
+
+# 629. Import behaviours
+
+rather than extending classes.
+
+# 630. Contiguous block objects pointers
+
+A language built upon value semantics can have complicated objects and collections where all memory objects are contiguous. Even hashmaps. 
+
+# 631. Hierarchy of left-right concurrency control
+
+Left right concurrency control allows seamless speed unlimited modification of data within a thread, but what if another thread wants to read your changes?
+
+# 632. Identity changing cheapness aka changing the structure between objects aka cheap schema changes
+
+Schema changes can be designed so they are free and do not cost anything. How?
+
+# 633. Auto refresh logic part of the language
+
+Build systems, caching systems all require refresh logic.
+
+# 634. -ilibility structure overlay
+
+# 635. Notation generation
+
+# 636. Application processes - easy process creation
+
+It should be easy to create a process. 
+
+# 637. Orthogonality solution
+
+I want this post to be interesting so I want to share and start a talk about something I think is particularly interesting.
+
+I'm doing a lot of thinking about **orthogonality**. For me, the interesting part of orthogonality is the intersection of where separate features **interact** with eachother, where each feature is a line and the two lines that intersect that are not parallel.
+
+1. Calling convention (cdecl, ghc) Such as C programming language calling convention
+2. Foreign Function Interface (do you want C compatibility?)
+3. Memory management
+4. Resource Acquisition Is Initialization (freeing data when it leaves scope)
+5. Lifetime enforcement, such as Borrow checker
+6. Memory Allocators (malloc etc)
+7. Manual memory management (reference counting)
+8. Fixed memory pools
+9. Module systems (Java Modules JSR376, Python modules, Clojure's use syntax)
+10. Ahead of time compilation or Just in Time compilation
+11. Code generation
+12. Zero cost abstractions
+13. Multithreading
+14. Asynchronous programming (concurrency) What colour is your function
+15. Return values
+16. Tuples
+17. Object orientated programming
+18. Structs
+19. Closures
+20. Memory layout
+21. Functional programming (lazily evaluated thunk style ala Haskell)
+22. Typeclasses
+23. Semantic Differences between Transpiling source and transpiling target
+24. Multiplatform support (Windows, Linux, Mac and others)
+25. Stack or heap
+26. Immutability
+27. Aliasing
+28. Autovectorisation, automatic parallelisation
+29. single responsibility pattern
+30. Interop between library, platform code and your code
+31. Duck typing, Interface
+32. Runtime/Compile time function selection (CALL/jumping)
+33. Coroutines
+34. Streams (see C++ iostreams)
+35. Loop syntax
+36. Move/Copy Semantics
+37. Is everything an expression or is there statements?
+38. Trailing commas
+39. Iterators
+40. Generators
+41. std::algorithm
+42. Standard library structure hierarchy - Java's standard library, Scala's collection standard library
+43. Lambdas
+44. Partial application
+45. IO
+46. Monads
+47. Dependency inversion
+48. Performance
+49. Development velocity
+50. Developer productivity
+51. Practicality
+52. Non-blocking/blocking vs CPU spinning and sluggishness (non real time operating systems)
+53. Stack based/register based
+54. Generics
+55. Semicolons
+56. Braces/whitespace indention
+57. Templating
+58. Metaprogramming
+59. Generic programming
+60. Desugaring
+
+Between each thing in this list, there is a potential interaction or edge case that needs to be thought about for the programming language to be unsurprising or have useful behaviour with the other thing in the language. There's probably a behaviour that everybody wants, and probably a behaviour that the designers picked because it was easier.
+
+- One example of this is **static** and **final** In Java. Since data used by closures exists in local variable on the stack, it needs to be copied into the heap so it can persist after the method ends. You need to mark variables that are used by closures as immutable for them to be accessible when the closure runs. The programmer has an additional keyword to remember to prevent surprising behaviour where variables change under your feet.
+- In Java garbage collection can only occur when the JVM reaches a safepoint. All threads must enter the safepoint before garbage collection to occur. This is an involtunary block to execution. (Stop the world execution) Erlang by comparison only stops the lightweight thread/process to handle garbage collection of ***that particular processe's*** heap.
+- I think Java object allocation is thread safe **-or-** there is a per-thread Object allocation stack. Not that I think that Java object allocation is slow but if you create billions of objects in a hot loop you'll notice the performance shall not be as good.
+- Thread safety slows down code due to locks with too many waiters. There was an article about how a semaphore in Windows 10 slowed down the cursor recently, I'm still looking for the article.
+- Lack of thread safety inhibits use of cores (See Node.js scalability and Javascript in the browser)
+- When functions you call do their own memory management or allow you to provide a memory allocator. How many times did you need to override parameters to a HTTP request client that was initialised by the library for you or a memory allocator to override default behaviour or default provided implementation?
+- How much pain is caused by managing data on the heap and stack. It seems to affect everything.
+- How much pain is caused by copy/move semantics in C++.
+- When traditional parsers are used there is the [dangling else problem](https://en.wikipedia.org/wiki/Dangling_else).
+- C++ coroutines require template programming in C++ to provide specialisations. I got it kind of working.
+- Implementing coroutines in languages where they aren't designed for it. On a stack based programming language you build you own absence of a stack on top of the language or for stackful based coroutines you shift the stack pointer under the language's feet.
+
+How do you prepare features for implementation? Do you think about all your existing features and work out how to implement the feature based on all its interactions with everything else? Do some of the above worries not apply to you since your language is interpreted or compiled?
+
+Can you share interactions between your language's features that were surprising? C++ references are very difficult to read for me. But they define these details in detail.
+
+How do you solve these problems in readable, unsurprising way?
+
+I'm thinking of tools to automate thinking and fuzz combinations of the above. Imagine a very large matrix which intersects every one of the above things with every other and you need to define how they interact.
+
+A user somewhere is going to depend on some behaviour of your language.
+
+# 638. APIless Specification
+
+Import dependencies from within the code.
+
+# 639. Vector APIs, markov software
+
+Vectors in systems such as ChatGPT use vectors of relationships to connect things logically together.
+
+Programs that integrate against vectors.
+
+```python
+for item in items:
+	do_something(item)
+```
+
+Can be represented by the following vectors:
+
+```
+for 1
+iterator=item 1
+collection=items 1
+	do_something 1
+	item 1
+```
+
+Another snippet might be the following:
+
+wrap(item)
+
+With the following vectors:
+
+```
+wrap 1
+	item 1
+```
+
+
+
+# 640. Standardised debugging output
+
+Understanding complicated codebases even with debuggers is difficult. It's hard to see system behaviour. 
+
+# 641. Common structures patterns relationships
+
+Post order traversal, preorder traversal, middle traversal, dfs, bfs
+
+# 642. System Openconnect - reverse API
+
+Some people I know are working on interesting technical products but it's difficult to take advantage of what they're doing because it would require setting up complicated software, learning their build processes or poring over their documentation to learn how to use their APIs. What if I could define the API I want to use to interact with the product? Not the product decides how it works
+
+What if there was a website where software products and automations are listed.
+
+You go to a product and you like the sound of the product. You want to take advantage of it.
+
+You submit a request which describes what you want to do with the product. Your request is actually a program what is an imaginary code API of using the product. The request is public, so everyone can see the request.
+
+The API is written in a language which allows manipulation of collection classes, a bit like an Object Relational Model system such as Django or Hibernate.
+
+You can provide stub data objects as part of your request.
+
+You're essentially controlling the product with the API, even though that API doesn't actually exist yet.
+
+This is how you WANT to interact with the product.
+
+It's an example of what you WANT to do.
+
+The authors of the product see your request and program a layer that fulfils the API so the API is actually a real way to interact with the complicated software.
+
+The request creator can import the API and program against it. All the programs are tied to the original request.
+
+The platform handles versioning of the APIs and marshalling between data structures. Since the imaginary APIs are public, you can depend on any of them.
+
+This is like a platform for integrating software but APIs are designed by their users, not by their implementors.
+
+# 643. Easy refactoring
+
+# 644. Fact additive systems
+
+Behaviours additive, told when a behaviour conflicts with another.
+
+Structs of code
+
+# 645. Work warehouse
+
+Teaching how operations works
+
+# 646. Parse grid
+
+Expressions form trees can be represented in a grid. My JIT compiler represents the AST with each AST node not being a specific type but a bag of primitives.
+
+# 647. Looks correct
+
+I want a language that looks correct when it is correct. Or every program is valid and does something useful.
+
+# 648. Shape programming
+
+Much about programming is about shape fitting. Think of C structs.
+
+# 649. Boundaries of understanding future execution - structure programming
+
+When writing my JIT compiler frontend, I had problems debugging problems in the system. Debugger is the wrong tool. Type systems in low level languages don't help.
+
+There's an expected behaviour and the behaviour that actually goes on. Adding features to a complicated codebase is extremely difficult because there is so much complexity.
+
+We need a way of generating schedules that show patterns behaviour when the code is executed. Kind of like a system snapshot. Like reflecting light into a prism, the light comes out the other side and you can move the prism around to move where the light falls.
+
+The existing system components affect where data shall go, what shall be executed.
+
+Detecting the absence of behaviour is extremely difficult.
+
+# 650. Type lists
+
+An object passes through multiple types in the future.
+
+"data structure passes through code", its type changes
+
+# 651. Interference detection
+
+# 652. Expressions relations
+
+Define multiple expressions, and their relationships.
+
+The importance of ordering
+
+# 653. Log pairs
+
+When writing my JIT compiler I had problems where some behaviour in the midst of operation would cause problems at the end. Debugging behaviours that are affected by the past, with only the stacktrace of the end. I need some way to indicate what can affect an area of code. 
+
+# 654. Replace
+
+Like become in Smalltalk.
+
+# 655. Memory management is unsustainable
+
+Can't even import code from other languages without unsafety. The complexity of taking responsibility for memory management for a function call is unsustainable.
+
+# 656. Functional programming trees
+
+The useful part of functional programming is that it creates trees, where the structure of the trees are the useful information that functional languages encode but ignore.
+
+# 657. Rich knowledge known at static time
+
+# 658. File systems and memory locations are the same thing
+
+Compiled code assumes functions are at certain positions in memory to work. So do filesystems. We have a lot of pain of working out where things are on the file system with dependency management. 
+
+# 659. Robust state machines
+
+Files not found, never happens. Incomplete state, never happens.
+
+# 660. Dream operating system
+
+* **Syscall batching**
+* **Actors**
+* Fast process start times
+* Optimised for what should be cheap
+
+# 661. GUI updateable from multiple threads
+
+# 662. Unzip the stack
+
+# 663. Hide memory management features from code
+
+Write code in Rust or C or C++ then have a formatter that shows the code with memory management features hidden so you can see the general picture of what the code does.
+
+# 664. Flexible architecture
+
+# 664. The AST is the data structure
+
+# 665. There's an obvious improvement
+
+If someone defines a function that takes a string that returns a string, then there's an obvious enhancement that they can return a list of items or a tree.
+
+# 666. Square programming
+
+Computers memory is a square which is divided up.
+
+# 667. Cycles are free, most utility is navigating through spaces and arrangement of spaces
+
+Arrange spaces, infer the operation
+
+Spaces = AST
+
+# 668. Commission website
+
+# 669. Unit development
+
+Develop behaviour in units that interact. 
+
+I've forgotten what this idea means.
+
+Develop small pieces of functionality at a time.
+
+Test fixtures between arbitrary lines of code, in production.
+
+# 670. OR-mask code line
+
+Every state that is touched changes the OR mask of a line of code.
+
+Patterns through memory.
+
+# 671. Handles to memory objects
+
+We can garbage collect easier if the user never gets handle to raw pointer objects.
+
+# 672. Type the future, parallel AST
+
+Imagine I have a timeline of execution, the AST represents the timeline of the code.
+
+I can create parallel crossover lines that intercept the original timeline.
+
+Parallel AST, define merge points.
+
+# 673. Code is a protocol, since memory is the tape of a state machine
+
+# 674. Code understander IDE
+
+Help understand code by explaining concepts with a documentation interface.
+
+# 675. Database that stays up when there are migrations
+
+The database should keep serving traffic when there is migrations to the data structure.
+
+# 676. Migration language
+
+Everything is cheap to change.
+
+# 677. Rich data structure manipulation
+
+I want a profoundly good API to do things with.
+
+# 678. Invert types, logic
+
+Type the logic, not the types.
+
+# 689. Wrong tool
+
+We use the wrong tools for everything in computing. Writing assemblers or emulator instruction representation shouldn't be done with code, it should be done with an information system.
+
+# 690. How things are, successful languages
+
+More complicated software has been written in Java and C++ than any other language.
+
+# 691. Observational computing
+
+Watch the behaviour of the computer.
+
+# 692. The power of stacks, trees of functions relations
+
+There must be a simplification of register allocation and stacks synchronization in order to pass data or execution from one point to another.
+
+Place something somewhere and then need to use it.
+
+Can a compiler arrange things to be placed efficiently?
+
+# 693. Information systems are how we should interact with computers to program them
+
+Why do I need to encode facts into programming language syntax when programming language syntax is the worst format for representing facts and relations?
+
+# 694. Binary polymorphism by AST data structure determination
+
+How can we analyse ASTs of what code is called and then use that to decide on the data structure, we expect object keys to be in the same place every time. If we have an object that is the basis for all other objects, we can always find the same field in the same location.
+
+# 695. Core insight knowledgebase - High level idea implementation
+
+What is the core insight that code or an implementation implements. And can we take that lesson elsewhere. We need to think outside the box to work out what an implementation actually does.
+
+# 696. Contexts
+
+Nobody enjoys coding in an environment where they do not have rich access to APIs and functionality of a general purpose language. I've noticed I kind of want a general purpose language to describe the relations of implementations. What am I saying? That you provide a hook in your software, I want to use a general purpose code to interact with the code, not use a hook.
+
+Think of templates in C++, they're turing complete!
+
+# 697. Use a rich API to define what you want, then compile it down to something efficient
+
+# 698. Talk about behaviour as a group of interactions of structure
+
+How often do we want polymorphism?
+
+# 699. Code Logistics 
+
+Can we use logistical planning algorithms to plan code better? Such as OptaPlanner?
+
+# 700. Reading from disk or reading from the network
+
+When I thought about writing a programming language that was a language server, that is, it executed programs, do you really want to write all the code to handle network communication and disk communication?
+
+# 701. Community Idea: Foundational application framework
+
+Core concerns taken care of, I can receive from the disk, network easily, architecture is taken care of. Can cluster. Multithreading and parallelism taken care of.
+
+Similar to val town and scrapscript.
+
+# 702. Pipes are probably underused
+
+# 703. Web dev and frontend development could be a waste of time
+
+# 704. Layout algorithms are just placement algorithms
+
+This means garbage collection, allocators, file systems, binpacking algorithms, user interfaces can all be driven from the same solution.
+
+# 705. Can emergence of game of life rules be used to do something more efficiently?
+
+# 706. Programming is just more stuff
+
+# 707. Relationship format
+
+What if there was a standard format to define relations which isn't a class as in a programming langauge?
+
+```
+bussiness_unit-> department-> product -> manager
+```
+
+If I want to refactor or extend this topology, what do I do?
+
+# 708. Changing code is extremely painful
+
+# 709. Endless canvas
+
+Like a spreadsheet is very large, we can draw widgets onto and it never run out of space or memory.
+
+# 710. Real time computation
+
+ A real time strategy game that resembles computation.
+
+Loop units walk around and go to different data structures.
+
+
+
+# 711. You have to name the state
+
+I numbered every line of code and each represents a state.
+
+# 712. Type the future
+
+If we fold the future lines of code on the current line of code.
+
+ 
+
+# 713. Typing behaviour rather than data
+
+
+
+# 714. At this point of time, these registers are free
+
+# 715. Lambda calculus and software upgrades
+
+# 716. State change pair
+
+When you move data from one variable to another, that is an event and should be tracked.
+
+
+
+# 717. Community Idea: Foundational
+
+Build on eachother's work.
+
+# 718. Animate states
+
+# 719. Turn based game to file system
+
+# 720. Programmatically stack based GUIs
+
+Rather than hand designing a GUI, create a GUI framework that is useable enough that it can snap in components like Microsoft MMC. And the GUI is programmatically generated.
+
+I imagine each screen raises a new rectangle to top left of the screen and the other items are pushed downward.
+
+# 721. Extreme amounts of text lazy rendering
+
+
+
+# 722. Dynamic Codegen as a langauge feature
+
+I am thinking I often want to dynamically control existing behaviour.
+
+```
+function 
+```
+
+
+
+# 723. Platform and language provides cheap options for expensive things
+
+There's a cheaper option for an expensive thing.
+
+
+
+
+
+# 724. OTP for organisations
+
+Erlang's robustness means things don't crash.
+
+# 725. Move things around in a type checked program
+
+If everything type checks, the code forms a relationship diagram.
+
+# 726. FFI, call interface applies to REST APIs too
+
+# 727. One at a time
+
+Show relationship diagrams but limit the number of connections to a small number.
+
+# 728. Logical reasoning Assurances
+
+Can I prove that the GUI shall never block?
+
+# 729. Altgui
+
+A GUI that is a stack.
+
+# 730. Rate based load balancing
+
+Automatically load balances lightweight threads across threads depending on their rate.
+
+# 731. Timer round robin
+
+Could a distributed system be implemented so that logical clocks round robin all the servers like a heart beat.
+
+# 732. Behaviour trees, and stack pattern inference
+
+Could we represent the behaviour that we want in a LISP tree? Then write code that implements that behaviour? Then we don't need to write complicated unit tests.
+
+Objects are too granular to determine behaviours, if the objects don't implement certain methods, you cannot implement the behaviour you want.
+
+Write the stack you want, infer the code that produces it.
+
+# 733. Server game Turn based computer commander game to code
+
+Create a unit and command it to fetch data, or collect data and take it somewhere else.
+
+# 734. Parsing protocols
+
+# 735. Drawing to code
+
+# 736. Shape gallery
+
+Insert your atoms and then generate products of their relations.
+
+# 737. Distributed systems and actors, threads
+
+A language where every object is executed as if it is a distributed system.
+
+# 738. Object movement
+
+Moving data between servers should be straightforward. Should get tools for free.
+
+# 739. Tools for free
+
+# 740. Async by default
+
+For a coding interview I had to write a load balancer in C#.
+
+* I wanted the load balancer to accept requests to multiple backends in parallel.
+* The load balancer should not wait for a backend to reply before serving another concurrent, parallel request, since it can send a request to another backend.
+* 
+
+# 741. Behavioural Permutation types, the interleave GUI
+
+How do you use one class as a tool for using another class?
+
+Composing behaviour together cheaply is difficult in current programming languages. The dream of this idea is to permute the behaviour of any number of classes together.
+
+This is implicit generics. How do you interleave the behaviour of two classes?
+
+In English clauses which allow us to refer to permutations of behaviour.
+
+```
+Generate transactions in some thread and pass them to transactions executors.
+```
+
+A behavioural syntax.
+
+* All the objects on the left hand side receive messages on the right hand side.
+
+* The order of traversal is configurable.
+
+* The plurality of the data is configurable.
+
+* A behaviour accepts messages and sends messages.
+
+The behaviour looks like the following:
+
+```
+behaviour TransactionPuzzle {
+    TransactionGenerator -> Transaction Source Account Destination Account Amount
+    Transaction Source Account Destination Account -> ExecutorThread
+	Source Account Amount -> Deduct
+	Destination Account Amount -> Withdraw
+}
+```
+
+An activation of behaviour is an activation of one or more atoms.
+
+I usually end up with methods that take large numbers of parameters to do different tasks and the objects are not very composable.
+
+High level behaviour matching.
+
+# 742. Define behaviour frontend
+
+I would like to define the behaviours at a high level, from different perspectives.
+
+Then automatically serialize the code into the right places to derive the correct behaviour.
+
+# 743. Shard a game world at the same rate
+
+Rather than game loop all particles across the entire world, we shard the game world and loop over particles in a region.
+
+# 744. The ergonomics of metaprogramming
+
+metaprogramming is how we reach the composability dream, but we need to solve a few problems with existing metaprogramming solutions.
+
+# 745. Write the log upfront
+
+# 746. Left right concurrency control and bank application
+
+# 747. Scope references
+
+Refer to anything that was before the current scope.
+
+# 748. Visual Memory plotting
+
+# 749. Single writer tree
+
+Arrange you application as a tree and never have writers that need to go across branches.
+
+# 750. Consistency windows
+
+A lock an opportune time slows everything down but brings consistency.
+
+# 751. Cold/warm compute
+
+# 752. Compensatory transactions
+
+If I have a distributed system that accepts requests and is multimaster. Each request is accepted by any master. For example, a bank that is eventually consistent needs to check balance to see if there is enough money in the account. If it is determined that there is an event that would mean the transaction could not be executed, then we need to reverse the transactions caused by that transaction.
+
+We know the order of events, when the event that is raised that places events afterwards into an inconsistent state. Who raises the compensating events? They also need to be synchronized.
+
+We need to detect what events would have been impossible given a compensating event.
+
+# 753. Highlight, when was this added
+
+# 754. Reconciliation
+
+
+
+
+
+memory Plots
+programming rts
+behavioural permutations
+
+shine
+
+memory allocation as function plots
+
+stacks as function plots
+
+substitution of functions are inline, including their internal state, corecursion
+
+painting memory
+
+"spread out in time" Dijkstra in Go To Statement Considered Harmful
+
+
 # Hierarchy blend
 
 # phone ideas
+
+slice, inside
 
 Expression semantics loop labelling
 
@@ -9745,30 +10561,30 @@ How to atomically update a number on the network.
 
 # Generating ideas
 
- * marketplace
- * schedule
- * tree
- * additive/combined
- * auto
- * mesh
- * hooks
- * Pattern matching
- * Merge
- * In parallel
- * Independently
- * Refer
- * Concurrently
- * topology
- * Graph
- * Data structure
- * Traversal
- * Query
- * Correlation
- * History
- * Queue
- * Aggregation
- * Multi
- * automulti
+* marketplace
+* schedule
+* tree
+* additive/combined
+* auto
+* mesh
+* hooks
+* Pattern matching
+* Merge
+* In parallel
+* Independently
+* Refer
+* Concurrently
+* topology
+* Graph
+* Data structure
+* Traversal
+* Query
+* Correlation
+* History
+* Queue
+* Aggregation
+* Multi
+* automulti
 
 
 
