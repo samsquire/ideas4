@@ -593,7 +593,7 @@ We need to solve all these problems with an approach that works the same for eve
 
 # 34. Graph to query generation and sort
 
-Render a data structure as a visual graph and allow selections of different objects and fields and references/pointers.
+Render a data structure as a visual graph and allow mouse selections of different objects and fields and references/pointers.
 
 Work out the rule that caused everything to be selected based on user input such as an if statement like as a debugger condition or relation or mapping, then generate a query that matches that part of the data structure.
 
@@ -1030,6 +1030,8 @@ I propose a random generator of symbols and combinations of lifetimes and some h
 
 This idea is not intuitive but this idea has wide ranging impacts on efficiency and query planning.
 
+This ide: run a loop, determine the access pattern and then prepare data in that format from that point onwards.
+
 Each problem has an ideal data structure. We should define the data access pattern we want and let the computer determine the best course to get there.
 
 Imagine a special object called a relation that supports all operations that are possible with all algorithms and data structures. What data structure gets ultimately used depends on what operations are executed against the relation.
@@ -1161,7 +1163,7 @@ Rust prefers to do things at compile time. As a result it's more complicated.
 
 Dynamic features are easier to write as you put in an if statement and you're done. Problem is this if statement is usually on a hot path. Such as dynamic dispatch.
 
-We can rewrite dynamic features into static features by inserting code and transformations at the right place.
+Can we rewrite dynamic features into static features by inserting code and transformations at compile time, to generate code that needs to be compiled?
 
 # 56. Tree aware Sorting to implement data hoisting, code motion on the hot path
 
@@ -1631,7 +1633,7 @@ So I propose a community where a utopian scenario is created.
 * Everyone can comment on a search term and talk of it, each search term is an open forum thread for open talking of the relevance of each result.
 * Content creators can accept commissions in return for money. The created content is then publicly available for purchase.
 
-# 76. Asychronous community - the app you don't uninstall
+# 76. Asynchronous Community: the app you don't uninstall
 
 Network effects means sites don't get used unless they have things on them or other users.
 
@@ -1689,6 +1691,8 @@ It's not efficient to sort repeatedly, so we need some way of lowering a sort in
 How do you percolate a sort function?
 
 Sort percolation takes a sort function and tries to weave the if statements into a wider program. Whenever objects of the kind being sorted are in scope, the if statements are inserted to prioritise which comes first.
+
+This is a bit like a gradually maintained binary heap.
 
 Sort functions also have a grouping property, such as when the group changes. We also want to detect this and returning 1, 0 or -1 is not enough, we also want a sort reason from a sort function.
 
@@ -3626,6 +3630,8 @@ An error message on authentication is usually sanitized to prevent sharing infor
 
 # 174. Right maps and Investment boundary app
 
+A right map is the right way of doing something.
+
 There's a priori cause to why something went on, observable and non-observable. Businesses are exposed to market forces and the interactions of billions of people. Money movement, interest rates and other economic effects.
 
 If I'm investing money, I want some due dilligence or say how things are to be ran. Venture capital and trusts do this.
@@ -3872,7 +3878,7 @@ Can we implement window sizes for multithreaded applications, so a lock is only 
 
 # 195. Mass id generation
 
-If the whole system works in paralell, you need some method of linking data together rather than waiting for responses. We can generate every ID of every needed object in parallel.
+If the whole system works in parallel, you need some method of linking data together rather than waiting for responses. We can generate every ID of every needed object in parallel.
 
 You would need an id generation server/service that can generate massive numbers of safe id numbers that are globally unique.
 
@@ -6040,6 +6046,8 @@ multi {
 
 # 405. Placement computer or Rich memory management
 
+Memory is a sequential block of numbered locations. We don't have many good ways of visualising memory usage and patterns.
+
 # 406. Efficient "multi" datatype
 
 How do you represent the overlapping relation? Or the selection of multiple things at once?
@@ -6107,6 +6115,8 @@ We can avoid data races with two parts. We can detect there is no overlap with r
 
 When you have a reference to an object, it's not always clear if the object also refers to other objects, so it's not enough to point to the object - there's other references that go on from that memory location.
 
+
+
 # 416. Data access simplification and efficiency
 
 # 417. More powerful assignment operator and hashmaps via assignment
@@ -6115,7 +6125,7 @@ Multiassignment
 
 # 418. Adaptive synchronization
 
-When contention rises, amortize cost of synchronization by doing it regularly but spaced out. Pay some latency for performance.
+When contention rises, amortize cost of synchronization by doing it regularly but spaced out. Pay some latency for throughput performance.
 
 
 
@@ -6283,7 +6293,7 @@ This can be transformed into this:
         for (j = 0 ; j < 100; j++) {
             t2 = t1.new_task();
             for (k = 0 ; k < 100; k++) {
-                t2.new_task(do_something, i, j, k);
+                t3 = t2.new_task(do_something, i, j, k);
             }
             t2.exit();
         }
@@ -6291,9 +6301,13 @@ This can be transformed into this:
     }
 ```
 
-# 433. Multi multiversion concurrency control
+# 433. Distributed MVCC, multi-multiversion concurrency control, queries that conflict are routed to the same servers so that transactions can be cancelled
 
-If we have multiple machines or threads and there is the potential for multiple transactions running in different threads. We need a thread safe way of sharing read time stamps.
+If we have multiple machines or threads and there is the potential for multiple transactions running in different threads. We need a thread safe way of sharing read/write time stamps in MVCC.
+
+If however there is replicas of the same data and there is a modification transaction in flight, any other modification query should be routed to the same machine, in case there is a conflict.
+
+We don't need TruTime or timestamp synchronization if the queries that touch the same data are always routed to the same machine dynamically.
 
 # 434. Object orientated graph programming
 
@@ -6337,7 +6351,7 @@ Write code that jumps back to somewhere if it fails.
 
 # 437. Accelerated readahead scan - bring forward
 
-Rather than try to coordinate the creation of expensive resources, we can scan the code and bring forward operations to the past.
+Rather than try to coordinate the creation of expensive resources, we can scan the code at compile time, look for thread creation and memory allocation and bring forward operations to the past and put them in pools.
 
 Think of a thread pool - managing thread pools is complicated. 
 
@@ -6345,7 +6359,9 @@ Think of a thread pool - managing thread pools is complicated.
 
 # 439. The fusion of Distributed programming, multithreading parallel programming and asynchronous programming
 
-# 440. Define the recursion stack
+# 440. Render and define the recursion stack
+
+I sometimes need to imagine the recursive stack to understand the recursive function.
 
 # 441. Async language and language with 4 colours of methods
 
@@ -6374,9 +6390,9 @@ Structure of the graph changes, how to schedule?
 Local method call (jump) remote method call (message+sync)
 Data structure are relations between objects
 
-# 443. Recursive scan collect horizontal/vertical
+# 443. Recursive scan collect horizontal/vertical intuition
 
-When writing parsers we often want to collect tokens into a collection and process them.
+When writing parsers we often want to collect repeating lists of tokens into a collection and process them. I see this intuitively as scanning horizontally and vertically.
 
 # 443. Standard cycle
 
@@ -6676,7 +6692,7 @@ Think of something as another kind of thing.
 
 # 460. Branch merging
 
-Preprocess all the if statements to produce a single if statement which is a computed goto.
+Preprocess all the if statements to produce a single if statement addition which is a computed goto.
 
 Sum the test variable and generate code for each combination of code path.
 
@@ -6690,9 +6706,11 @@ Many IDEs and development tools give you an empty screen to develop into. If you
 
 # 463. Ownership in code
 
-It seems Rust designates the method as the owner. 
+It seems Rust designates the scope as the owner.
 
 # 464. Template structure instantiation and AST structure merging
+
+How do you template whole structures of behaviour? How do you tweak all existing behaviours to add some small piece of functionality?
 
 This idea is that we should be capable of copying the behaviour of an existing piece of code and then modify it to suit a new purpose but also handle the original purpose as well! Think of it as automatic sum types but over code behaviour rather than data types.
 
@@ -6708,9 +6726,29 @@ I generated this stacktrace by inserting a line of code at a point of decision m
 
 ```
 # handleUserData(Server.java:50)
-public void handleUserData(String userCommand) {
+public void handleUserData(User user) {
 	emit_stackTrace("user data handling")
 }
+```
+
+This line of code represents the combined state of all previous lines of code that have been executed thus far.
+
+Imagine being capable of viewing the stacktrace of a program and then copying and pasting the stacktrace to change it slightly, perhaps for a different type?
+
+I can clone this stack trace write code around the stack trace and the code falls into the right place based on the arguments used by the code.
+
+```
+	switch (user.type) {
+		case "normaluser":
+			at  Server.handleUserData(Server.java:50)
+			at  Server.recv(Server.java:100)
+			at  Server.serverLoop(Server.java:200)
+        case "adminuser":
+        	at  Server.handleUserData(Server.java:50)
+			at  Server.recv(Server.java:100)
+			at  Server.serverLoop(Server.java:200)
+	}
+
 ```
 
 
@@ -6721,11 +6759,13 @@ shape pattern programming, interact with proxies
 
 ![threads](threads.png)
 
-How do you template whole structures of behaviour?
 
-Imagine being capable of viewing the stacktrace of a program and then copying and pasting the stacktrace to change it slightly, perhaps for a different type?
 
-Cloning a hierarchy of method relationships can automatically introduce branch points at the right point in the code in each method. We can name each hierarchy so each hierarchy is an instance of a pattern. We can instantiate the hierarchy and define the branch point mergings. Merge callstacks into coroutines
+
+
+Cloning a hierarchy of method relationships can automatically introduce branch points at the right point in the code in each method. We can name each hierarchy so each hierarchy is an instance of a pattern. We can instantiate the hierarchy and define the branch point mergings.
+
+Merge callstacks into coroutines
 
  * We need an elegant representation of lists that can be passed along the method pipeline. 
  * Every variable is also potentially a list type.
@@ -6760,7 +6800,6 @@ Here's a causality callstack to a multithreaded application
 Can we design stacktraces?
 
 Editor dropdown left and right contexts
-
 
 Weaving structures as you go
 Template structures
@@ -6923,7 +6962,7 @@ Triangle
 ]
 ```
 
-Many languages do indirection on a class pointer and have a function table on the class. This is two levels of indirection to call the right behaviour.
+Many languages do indirection on a class pointer and have a virtual table on the class. This is two levels of indirection to call the right behaviour.
 
 Could we store a function pointer for every item?
 
@@ -7313,10 +7352,10 @@ I can send messages to the object graph that is facing my method call. In other 
 
 # 486. Compiled pattern matching
 
-Unfortunately, a switch based interpreter can be slow.
+Unfortunately, a switch based interpreter can be slow. This idea is that we can write a special block which means that the code is turned into machine code at runtime and appended to a buffer.
 
 ```
-branch {
+compile {
     
 }
 ```
@@ -7328,6 +7367,37 @@ The capability of compiling pattern matching into the program efficiently.
 # 487. Typed structures and dynamically typed static languages
 
 Rather than worry about types of variables, we worry about the shape of code and switch between structures. The shape of code that manipulates data.
+
+What is the structure of this code?
+
+```
+def preprocess(items):
+	things(items)
+
+def main():
+	items = [1, 2, 3]
+	preprocess(items)
+
+def things(items):
+	for item in items:
+    	for subitem in item.subitems
+        	for inneritem in subitem:
+            	do_something() 
+```
+
+This is the structure:
+
+```
+ITERATE(items) > ITERATE(items.subitems) > ITERATE > do_something()
+```
+
+If this code is called by some other code, then the type is one of the following:
+
+```
+main > preprocess > ITERATE(items) > ITERATE(items.subitems) > ITERATE > do_something()
+```
+
+ 
 
 This is how we write truly polymorphic code without changing any code. The code is merged together automatically.
 
@@ -7346,8 +7416,8 @@ Renderer() {
 }
 Hlayout {
     render(parent, x, y) {
-        default(x)coordinate = 0
-        default(y)coordinate = y
+        default(x)coordinate = x
+        default(y)coordinate = 0
         +render(child) < iterate(self.children) {
           increment(x)by(child.width)  
         }
@@ -7358,7 +7428,7 @@ Vlayout {
         default(x)coordinate = 0
         default(y)coordinate = y
         +render(child) < iterate(self.children) {
-          increment(x)by(child.width)  
+          increment(x)by(child.height)  
         }
     }
 }
@@ -7367,20 +7437,6 @@ Vlayout {
 ```
 
 Inference on structures.
-
-What is the structure of this code?
-
-```
-for item in items:
-    for subitem in item.subitems
-        for inneritem in subitem:
-            do_something() 
-```
-
-This is the structure:
-```
-ITERATE(items) > ITERATE(items.subitems) > ITERATE > do_something()
-```
 
 If there were multiple lines around the loops, it would look as this:
 
@@ -7575,9 +7631,9 @@ What can the compiler use to dispatch to the right code?
 
 Write an Interface Description Language for a standard library and allow the implementation of the standard library to exist in every language.
 
-# 489. 2d Language
+# 489. No Empty screen
 
-Every widget on the screen should do something, so we don't have an empty screen.
+When an editor is opened, it shouldn't be empty. There should be widgets on the screen and every widget on the screen should do something, so we don't have an empty screen.
 
 # 490. Expression AST multiplication metaprogramming
 
@@ -7650,7 +7706,7 @@ Increase(x)by(amount)
 
 # 494. Expression relations
 
-Move semantics in C++ and rust lifetimes mean expressions are harder to reason about.
+Move semantics in C++ and rust lifetimes mean expressions are harder to reason about. Dangling pointers.
 
 # 495. Changing object composition and structures while maintaining OOP
 
@@ -9630,9 +9686,7 @@ Can submit work items to an actor and be informed when they are finished, simila
 
 Ambient expansive code environment means that the API for managing objects is extremely rich and does everything you would want.
 
-# 626. Shape programming
-
-The average website can be broken down into wireframes.
+# 626. 
 
 # 627. The UI should not be on the hot path
 
@@ -9643,6 +9697,8 @@ The important part of the UI is calculation. If it takes 30 milliseconds before 
 # 628. Why some features of Linux are hard to use
 
 Or why is it so hard to reap child processes.
+
+I'm not against systemd, but its existence is example of the lack of the richness of APIs in operating system.
 
 
 
@@ -9675,8 +9731,6 @@ Build systems, caching systems all require refresh logic.
 It should be easy to create a process. 
 
 # 637. Orthogonality solution
-
-I want this post to be interesting so I want to share and start a talk about something I think is particularly interesting.
 
 I'm doing a lot of thinking about **orthogonality**. For me, the interesting part of orthogonality is the intersection of where separate features **interact** with eachother, where each feature is a line and the two lines that intersect that are not parallel.
 
@@ -10198,6 +10252,14 @@ Create a unit and command it to fetch data, or collect data and take it somewher
 
 # 734. Parsing protocols
 
+Write parsing in a spreadsheet
+
+# 735. Tree Heap allocator
+
+
+
+
+
 # 735. Drawing to code
 
 # 736. Shape gallery
@@ -10271,7 +10333,7 @@ Then automatically serialize the code into the right places to derive the correc
 
 # 743. Shard a game world at the same rate
 
-Rather than game loop all particles across the entire world, we shard the game world and loop over particles in a region.
+Rather than game loop all particles across the entire world, we shard the game world and loop over particles in a region from different threads.
 
 # 744. The ergonomics of metaprogramming
 
@@ -10285,11 +10347,15 @@ metaprogramming is how we reach the composability dream, but we need to solve a 
 
 Refer to anything that was before the current scope.
 
-# 748. Visual Memory plotting
+# 748. Visual Memory + state plotting and state package management
+
+in TLA+ you can determine the available distinct states of a specification.
+
+Couldn't we use this for package management?
 
 # 749. Single writer tree
 
-Arrange you application as a tree and never have writers that need to go across branches.
+Arrange you application as a tree and never have writers that need to go across branches and you get performance for free.
 
 # 750. Consistency windows
 
@@ -10307,11 +10373,260 @@ We need to detect what events would have been impossible given a compensating ev
 
 # 753. Highlight, when was this added
 
+Imagine highlighting text and then asking the computer when was this added and who was it added by? Similar to git blame but for graphical user interfaces.
+
 # 754. Reconciliation
 
+# 755. Use that as this, deconstruct behaviours
+
+It would be extremely powerful to summarise behaviours and extract them for uses elsewhere. A software is distilled into pieces that can be used as other things.
+
+* I want to use the behaviour of AWS Console with these arbitrary objects.
+
+* I want to use the load balancing algorithm of HAProxy.
+* 
+
+Why isn't there an information system that can take two insertion points and tell me what happens between them?
+
+Leftmost transaction that is between the transaction that took is below our balance.
+
+# 756. How does that do this as this
+
+# 757. If you could see it, you could see the bottlenecks and patterns
+
+# 758. Placement of things so they don't break
+
+Python package management, installing Python and Ansible was a mess.
 
 
 
+# 759. Integration promises, Integration recorder, code promise REPL
+
+Imagine at any point in my code, I can drop a statement
+
+```
+promise;
+```
+
+Then when the code gets to this line, I am dropped into my REPL into a debug session. Then when I commit my changes, they run in the original session. It is a long lived async promise that defines behaviour.
+
+# 760. Filesystem and context errors
+
+Python packaging is extremely painful.
+
+# 761 Code by painting
+
+Define what the brush means.
+
+
+
+
+
+#  
+
+# 761. Thoughts on observables
+
+How to compile observational hierarchies.
+
+# 762. Many moving boxes and patterns to the movements
+
+I think of all the data structures in memory of a computer, they're constantly moving around. The boxes aren't compatible but they ultimately cause the same APIs to be executed.
+
+# 763. Video GUI
+
+Render a GUI to a video and then page the video as the user scrolls around it. It's just pixels. Is panning and rewinding and forwarding a video around a running video stream cheaper than rendering widgets?
+
+# 764. The end goal is the same
+
+There's a large number of web and Rust GUI frameworks and they all work differently, but with inspirations from each other. This reasserts my idea that most of programming is arranging data to move around.
+
+# 765. Order and mutual states
+
+If we prevent all invalid states, the program is bug free. A value passes through a number of states.
+
+# 766. Value animation
+
+# 767. String programming
+
+Imagine elastic rope attached to values which move through a machine. We track the position of the values and the transition of a value to another value.
+
+# 768. Async scheduling and refresh logic can be part of the runtime, if code is well factored
+
+ScrapScript takes this approach.
+
+# 769. Relation picker, What's the relation?
+
+Set a breakpoint and in scope are all the local variables and method parameter state. There is connections between the various fields and instances. What is the relationship between the desired behaviour and all these fields that needs to be traversed?
+
+# 770. REPL protocol and behaviour database
+
+A REPL server for each programming language that has a REPL and the ability to coordinate the REPL from a GUI, by interacting with 
+
+# 771. IDE text input as the interface
+
+A command line prompt after each line and at the bottom of the screen.
+
+# 772. Send the message/event to objects establish the behaviour, detect all the logical type problems
+
+When coordinating complicated systems, there might be lots of detail to work out but there is an expected state of behaviour for each system at any given point. We can send messages to establish the behaviour we want.
+
+For example, if there's a crash, we should be capable of returning to previous state.
+
+# 773. Method calls and objects are both namespaced relations with fields/properties
+
+We can pattern match on method calls and data structures.
+
+Tuple matching
+
+# 774. Information system behaviour expert rule engine
+
+How do you compile the output of an information system behaviour rule engine?
+
+* Export type progressions.
+* 
+
+# 775. Message passing GUI powered by text
+
+A log format that outputs to a GUI and creates tabs, filters and diagrams. Interactable.
+
+# 776. Type space
+
+We can write profoundly reliable software if we know all the type progressions through time. The state space multiplies in half at every branch.
+
+Word equations
+
+# 777. Diagram slides
+
+A large diagram is too large to layout all in one page, so when items hit the edges, they turn into slides.
+
+# 778. Parameterized documentation namespaces
+
+Any part of the documentation is enough to instance an object and use it.
+
+# 779. IT spend rate control
+
+# 780. Restrained speed immediate mode rendering
+
+Every node records whether or not it needs rendering. But the render thread blocks if there is no work to do.
+
+
+
+# 781. Self contained widgets
+
+There's a lot of support code to get a widget to work in most frontend frameworks. 
+
+# 782. Ordered synchronization
+
+I've often wanted to wait for a number of states to become true before doing something. How to implement this efficiently?
+
+# 783. Time regions synchronization, region scheduling and static scheduling and State pattern matching
+
+A hard and slow thing about multithreading is the lack of the capability to send a synchronous signal to all threads and then tell them to do something different. The thread itself has to check something, which slows things down. We often need to wait for threads to synchronize.
+
+You have some code that mutates data and some code that needs a consistent view of the data - that it doesn't get modified underneath its feet.
+
+We want to minimize latency and maximize throughput.
+
+You want to run both as fast as you can.
+
+You might need a consistent view some of the time but not all the time. If threads are allowed to be unsynchronized, they shall go very fast.
+
+When there needs to be a consistent read or write, that is when things go slow, due to lock contention.
+
+Create a handle of data you need a consistent view and it shall be scheduled for you, at an opportune time that is safe and for the most throughput.
+
+```
+view = context.create_consistent_view(accounts, "account_balance")
+view.register(account => {
+	account.balance += amount;
+});
+
+view = context.create_consistent_view(accounts, "account_balance")
+view.register({
+	print("Account balance is " + account.balance)
+});
+
+
+```
+
+Then in the scheduler, it shall schedule consistent views so there is no two thread accessing the same data at the same time, it shall maintain the property of mutual exclusion.
+
+We can have a pattern where we try acquire a lock if it is available, if not we set a reminder that we want the lock.
+
+We can use static scheduling, so that the code in question always happens in the same order. If there are threads involved, it sounds as if synchronization is required.
+
+# 784. Parallel lazy lock tree
+
+Database software handles locks in trees elegantly.
+
+# 785. Virtual locks and lock state machines weaving
+
+Remember that you requested a lock but do other things while you wait.
+
+Weave state machine waits into top loop branches arms wait conditions.
+
+# 786. Tree and stack style development
+
+If we use RAII, there's a number of design patterns that must be followed to implement the behaviour you want.
+
+# 787. Memory causality
+
+# 788. Crystallised dynamic programming
+
+Write the a program about a program with a dynamically typed language, then compile the the essence of the running program's behaviour to statically implemented code.
+
+```
+```
+
+# 788. What you cannot see, you don't necessarily know about
+
+# 789. Code driver
+
+
+
+# 790. Process parsing
+
+Control a process with parsing technology.
+
+# 791. We need a solution to large diagram renderings
+
+# 792. The client does the sticky load balancing
+
+For an asynchronously replicated protocol, we can generate timestamps on the client and each server sends a heart beat to each client with their latest logical clock. The logical clock incorporates all changes that that server is persisted. We can therefore load balance to a server and read our own writes because we load balance to servers that have at least a timestamp equal to or greater than the one we persisted.
+
+# 793. Turning circles
+
+turning circles, of parsers each side, serialization and deserialization
+
+Stacks and parsing
+
+two sides of the same coin
+
+# 794. Change behaviours
+
+How do you change behaviours of existing code?
+
+# 795. Pauseless Core runtime
+
+A core runtime that is asynchronous.
+
+Can do things while running, no pauses
+
+# 796. Processing Topologies
+
+# 797. Interference patterns, light bounce, reflection
+
+Type progression over time, run X units into the future, what shall the state be?
+
+# 798. Microbenchmark upward
+
+# 799. Room of squares Code visualization
+
+# 800. Logistics tracking
+
+
+
+matrix multiplication and positions
 
 memory Plots
 programming rts
