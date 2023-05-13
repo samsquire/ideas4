@@ -10584,11 +10584,13 @@ Write the a program about a program with a dynamically typed language, then comp
 
 
 
-# 790. Process parsing
+# 790. Process parsing and state machines
 
-Control a process with parsing technology.
+Using Popen with Python is relatively straightforward. But I would like to feed a state machine with the input and output of another state machine, connected by parsing in between. Control a process with parsing technology.
 
 # 791. We need a solution to large diagram renderings
+
+Some diagrams are too large to understand and panning around doesn't work. So I propose different slides which so different parts of the diagram.
 
 # 792. The client does the sticky load balancing
 
@@ -10602,13 +10604,15 @@ Stacks and parsing
 
 two sides of the same coin
 
+serialization virtual machine
+
 # 794. Change behaviours
 
 How do you change behaviours of existing code?
 
 # 795. Pauseless Core runtime
 
-A core runtime that is asynchronous.
+A core runtime that is asynchronous and can resume persisted tasks.
 
 Can do things while running, no pauses
 
@@ -10620,9 +10624,51 @@ Type progression over time, run X units into the future, what shall the state be
 
 # 798. Microbenchmark upward
 
-# 799. Room of squares Code visualization
+Write microbenchmarks that perform some useful task very fast, then add features to the microbenchmark to make it a complete solution.
 
-# 800. Logistics tracking
+# 799. Room of squares Code memory visualization
+
+Colour coded memory tilemap.
+
+# 800. Data Logistics plotting, or the stack of methods is a data structure
+
+Can we represent register allocation, REST APIs data shifting and other APIs as simple transformations that try arrange data into locations?
+
+If I have a complicated method hierarchy and data needs to flow to a certain method call, there is a stack of methods that need to be called to get the data to where it needs to be.
+
+How do I programmatically fill these APIs with data?
+
+Take the following C methods to create a socket and listen and accept a connection.
+
+What if these methods were memory locations, logistical locations that we ne
+
+```
+server_fd = socket(AF_INET, SOCK_STREAM, 0)) 
+setsockopt(server_fd, SOL_SOCKET,
+                   SO_REUSEADDR | SO_REUSEPORT, &opt,
+                   sizeof(opt))
+address.sin_family = AF_INET;
+address.sin_addr.s_addr = INADDR_ANY;
+address.sin_port = htons(PORT);
+if (bind(server_fd, (struct sockaddr*)&address,
+ sizeof(address))
+    < 0) {
+    perror("bind failed");
+    exit(EXIT_FAILURE);
+}
+if (listen(server_fd, 3) < 0) {
+    perror("listen");
+    exit(EXIT_FAILURE);
+}
+if ((new_socket
+     = accept(server_fd, (struct sockaddr*)&address,
+              (socklen_t*)&addrlen))
+    < 0) {
+    perror("accept");
+    exit(EXIT_FAILURE);
+}
+valread = read(new_socket, buffer, 1024);
+```
 
 
 
