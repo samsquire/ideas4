@@ -593,6 +593,8 @@ We need to solve all these problems with an approach that works the same for eve
 
 # 34. Graph to query generation and sort
 
+This idea is "query by example" for graph data structures.
+
 Render a data structure as a visual graph and allow mouse selections of different objects and fields and references/pointers.
 
 Work out the rule that caused everything to be selected based on user input such as an if statement like as a debugger condition or relation or mapping, then generate a query that matches that part of the data structure.
@@ -2787,7 +2789,7 @@ My problem with text editors and IDEs is that they do not really help you build 
 
 The screen is empty.
 
-What if we could search based on what we have? Based on the structures of what we have?
+What if we could search based on what is available? Based on the structures of what we have?
 
 # 117. Rules for concurrency and parallelism
 
@@ -2823,7 +2825,7 @@ Document_words.union(posts_words)
 
 # 119. Read/write Ticks
 
-You don't need to worry of thread safety is everybody else is reading while you're writing and everybody is writing while you're writing.
+You don't need to worry of thread safety is everybody else is reading while you're writing and everybody is writing sequentially while you're writing.
 
 This approach uses a RingBuffer to communicate READ/WRITE tick. Threads dequeue from the RingBuffer, when every thread has dequeued from the RingBuffer, a new event is placed on the RingBuffer for the next cycle which is a READ if the last was a WRITE or WRITE if the last cycle was a READ.
 
@@ -3347,7 +3349,7 @@ I can see the flow of data between components
  * I can introduce crossroad junctions, T junctions and roundabouts
  * I can introduce motorways/highways which are fast paths and lanes which are slow paths.
 
-I would have lined represent the tip of execution.
+I would have lines represent the tip of execution.
 
 # 144. Memory hierarchy and computation flow analysis
 
@@ -4383,6 +4385,10 @@ Rather than block off time 1:1 with different people who might not be capable of
 
 What if we could block virtually? But not actually block progress? I propose threads have two inputs: other threads and an event queue.
 
+![mutual](mutual.png)
+
+
+
 A thread can write to another thread and a thread can receive events on a queue. In that thread's event loop it shall loop over both inbox items and an event queue, round robin.
 
 This keeps a thread busy. A thread can claim a piece of work on the global work queue and distribute subwork to other threads by writing to other threads.
@@ -4487,16 +4493,18 @@ What if we could call a method on an object and the object handles the message w
 
 What if we want to wait for the presence of multiple calls before doing something? Or we want to do something in a certain order?
 
-# 227. Matching halves and multiples, insertion and scheduling
+# 227. Matching halves and multiples, insertion and scheduling, stretchy halves
 
 A programming language where every block level structure is duplicated and IDEs automatically insert it.
 
  * Method calls and method call from are indicated.
+ * Insert a "malloc" a free call is put in automatically.
  * Don't need to manually comment closing curly braces for complicated control flow.
+ * Stretchy halves.
 
 # 228. Duality of ASTs, LISP and React and dynamic scenegraphs
 
-React is essentially an AST that is memoized and rerendered automatically.
+React is essentially an AST that is memoized (as virtual DOM) and rerendered automatically.
 
 Now the question is how do we create dynamic compositors? Why do we have a compositor for windows and browsers but isn't just one piece of software?
 
@@ -4532,7 +4540,7 @@ Could this approach be used to coordinate computers and GUIs themselves? Can we 
 
 # 231. Thread swap
 
-Synchronization and thread communication is expensive. We can swap data rather than communicate it in one direction.
+Synchronization and thread communication is expensive. We can always swap data for additional throughput rather than communicate it in one direction.
 
 # 232. Modifiable Projection
 
@@ -4550,9 +4558,9 @@ React programs don't really allow items to be shifted around without breaking th
 
 # 233. CPU in-thread pull
 
-# 234. Just use cgroup CPU limitation and scale up
+# 234. Profound nonblocking, Just use cgroup CPU limitation and scale up
 
-Rather than writing code that uses the CPU efficiently via blocking or locking, we use cgroups to scale CPU usage based on queue length!
+Use spinlocks everywhere. Rather than writing code that uses the CPU efficiently via blocking or locking, we use cgroups to scale CPU usage based on queue length!
 
 When a service is not busy, we use 100% of a fraction of a core, with minimal latency. When the scalability needs grows, we use more and more cores.
 
@@ -4575,7 +4583,7 @@ Every process in in parallel to every other.
 
 # 239. Static loop split
 
-I wrote a model checker for my parallel communicating threads algorithm. It's very simple, it simply tries every interleaving to see if the behaviour would be correct with that interleaving.
+I wrote a model checker for my parallel communicating threads algorithm. It's very simple, it simply tries various interleavings to see if the behaviour would be correct with that interleaving.
 
 Now this algorithm of the model checker isn't very efficient. I would like to statically analyse the code of all the loops and divide the loops and parallelise the code.
 
@@ -4607,7 +4615,7 @@ These work queue threads may or not use locks or spinlocks, it depends on the ra
 
 # 243. Scalability and additional (multidirectional) arguments
 
-If I have one hierarchy of objects and introduce another level or a multiple, I add arguments to every other object and operation.
+If I have one hierarchy of objects and introduce another level or a multiple, I add arguments to every other object and operation (method). This is tedious.
 
 # 244. The average program looks the same and program visualization
 
@@ -4761,7 +4769,9 @@ This allows over 1010000 items to be communicated at 1.1 billion iterations per 
 
 # 264. Decision widget feed
 
-When you dismiss a widget that asks something, that question should be persistested to a feed.
+When you dismiss a widget that asks something, that question should be persistested to a feed, so you can see a history of what you decided.
+
+Also it's annoying if you reject a notification and then realise you need it again.
 
 # 265. Robust integrations
 
@@ -4925,7 +4935,7 @@ Many organisations have scheduled operations or ingestion events, let's place th
 
 Arrange data in a contiguous block of memory which is a managed allocator that acts similar to a block file system so that copies are cheap and just contiguous memory copies.
 
-# 288. Sustainable and Resilient systems - physics applied to society
+# 288. Sustainable and Resilient systems - physics applied to society and software
 
 How do we produce life systems that are full of energy and full of potential energy? That require minimal investment but attract maximum investment? And avoid the effects of commodification?
 
@@ -5007,11 +5017,19 @@ We can use digital life simulations to simulate this insight.
 
 # 301. Hypergenerics
 
-Any code can operate with any other code. Can we decouple data stored with behaviour of an algorithm without generics?
+We want any code to be operable with any other code. Can we decouple data that an implementation needs so that it is stored in the same place each time.
+
+You don't have to monomorphise if the data is stored at the same offsets for different objects.
+
+Can use the same index positions in memory to correspond to the same components - common elements.
 
 Associate subfields of an object with another struct or variable and the code is flexible for other usages. Any code can be compatible with any other code.
 
-Can use a file system to process and store bitmaps or arrays. slots
+single addition offsets to common data
+
+Can use a file system to process and store bitmaps or arrays. slots for common data
+
+
 
 # 302. Just recompile when late binding occurs
 
@@ -5128,6 +5146,8 @@ Code is a data structure but not in terms of LISP.
 
 # 320. A linear language of links
 
+If you strip the symbols from programs, there is relationships between symbols that form patterns. Could we use those patterns for useful behaviours?
+
 A1,BbA1,CbA2,DfA1,EaA1-D
 
 Focus, move a node to the front
@@ -5137,6 +5157,8 @@ need examples of complicated relationships
 perhaps could analyse source code
 vectors of sourcecode
 underlying symbols AND basic building blocks of language
+
+
 
 # 321. Pattern language
 
@@ -5167,6 +5189,8 @@ A kernel that schedules code between CPU cores can be logged. We can verify the 
 # 324. The importance of scenarios in programming
 
 # 325. Entity Component System, parallelism and the expression problem
+
+Can Entity Component Systems be parallelised?
 
 Trees of computation
 Behaviours composed
@@ -5210,7 +5234,7 @@ Method calls are also entities and globally queryable or listenable. Callbacks b
 
 Can we simplify complicated structures with simple rules?
 
-# 332. English parsing, passing the meaning along
+# 332. English parsing, linear passing/turning the meaning along
 
 Multiplex N lightweight threads onto M kernel threads
 
@@ -7905,7 +7929,9 @@ The computer works out how to loop over the data to get to that pattern of resul
 
 # 510. Sourcecode links to loops
 
-Find all references to a method from a symbol name
+Find all references to a method from a symbol name.
+
+Write a loop over callsites.
 
 
 
@@ -8772,15 +8798,74 @@ How would you implement what Kafka does at the assembly layer?
 
 # 558. State machine formulation
 
-This idea is the combination of multiple thoughts:
+This idea is the idea of a state machine runtime and a syntax for defining complicated state machines.
 
-* **Assign location** We assign something a location and pass it through different locations over time. There is a transition from one location to another location.
+First I shall talk about some examples:
 
 ```
 available(item) = lent_out(item) | returned(item) | restocked(item) | available(item)  
 ```
 
-This item moved through the states available, lent_out, returned, restocked, available.
+This "item" moved through the states available, lent_out, returned, restocked, available.
+
+Each stateline is divided by a pipe symbol ("|") and they all must match before the stateline moves to the next. The state formulation runtime is thread safe. Ringbuffers are used to communicate between statelines. Computation can be scheduled where it is most efficient. A mixture of threads and  lightweight threads are used. A number of statelines are assigned to each threads and the thread multiplexes execution of the stateline.
+
+For parallel states we can use the following:
+
+```
+states = state1 | {state1a state1b state1c} {state2a state2b state2d} | state3
+```
+
+We can define multiple facts, similar to prolog in a stateline.
+
+This syntax defines a thread safe expression progression of `async/await` as a nested and parallel state machine.
+
+```
+next_free_thread = 2
+task(A) thread(1) assignment(A, 1) = running_on(A, 1) | paused(A, 1)
+
+running_on(A, 1)
+thread(1)
+assignment(A, 1)
+thread_free(next_free_thread) = fork(A, B)
+                                | send_task_to_thread(B, next_free_thread)
+                                |   running_on(B, 2)
+                                    paused(B, 1)
+                                    running_on(A, 1)
+                               | { yield(B, returnvalue) | paused(B, 2) }
+                                 { await(A, B, returnvalue) | paused(A, 1) }
+                               | send_returnvalue(B, A, returnvalue)   
+```
+
+ringbuffer state machine, coroutines
+
+full duplex multithreading,
+
+if there was full duplex multithreading between send and receive threads, we need some way of communicating between the send and receive thread, so ringbuffers can be used.
+
+```
+send_threads = send_thread_ringbuffer_pop(send_thread_id, socket, data) | send(socket, data)
+recv_threads = recv(socket) | client_thread_ringbuffer_push(client_thread_id, data)
+client_thread(client_thread_id) = recv_thread_ringbuffer_pop(client_thread_id) | handle | send_thread_ringbuffer_push(send_thread_id, data) 
+```
+
+
+
+The state machine formulation can be used to divide network IO into 5 stages. (accept/submit_recv/recv/submit_send/send/complete)
+
+Asynchronous IO activities have 3 stages (submit, handle, next)
+
+```
+accept | { submit_recv! | recv | submit_send } { submit_send! | send | submit_recv }
+```
+
+multishot accept, many, singular
+
+Need a syntax for forking and joining and replicating.
+
+This formulation idea is the combination of the following thoughts:
+
+* **Assign location** We assign something a location and pass it through different locations over time. There is a transition from one location to another location.
 
 * **Multinames** We can refer to something through multiple names. The name can be part of multiple properties at once or can be removed from the previous ones and added to the next ones.
 * **Scheduling** We ultimately want to schedule membership and removal of membership of states over time.
@@ -8805,24 +8890,7 @@ Can we define the location, state, control flow progression of things with expre
 
 We define facts that can be matched or not matched. The clauses before the equals symbol (=) represent what needs to match to start this state machine progression. Then each set of facts is matched before moving to the next stage.
 
-This syntax defines a thread safe expression progression of `async/await` as a nested and parallel state machine.
 
-```
-next_free_thread = 2
-task(A) thread(1) assignment(A, 1) = running_on(A, 1) | paused(A, 1)
-
-running_on(A, 1)
-thread(1)
-assignment(A, 1)
-thread_free(next_free_thread) = fork(A, B)
-                                | send_task_to_thread(B, next_free_thread)
-                                |   running_on(B, 2)
-                                    paused(B, 1)
-                                    running_on(A, 1)
-                               | { yield(B, returnvalue) | paused(B, 2) }
-                                 { await(A, B, returnvalue) | paused(A, 1) }
-                               | send_returnvalue(B, A, returnvalue)   
-```
 
 This is essentially a state machine of collections with progression between collections defined. It should be compilable efficiently and a runtime API creatable for it.
 
@@ -8838,15 +8906,13 @@ This can be implemented by a trie with state links for each stateline. Each stat
 
 ![flat](flat.png)
 
-For parallel states we can use the following:
-
-```
-states = state1 | {state1a state1b state1c} {state2a state2b state2d} | state3
-```
-
 we have a virtual stateline that is nested for the second state in the trie.
 
 There would be a fire method
+
+
+
+Can use evented message passing between statelines to detect when condition is met.
 
 For a hierarchy of IO/CPU interaction we might use the following state machine:
 
@@ -8985,12 +9051,32 @@ Relationship to parsing
 
 
 
+```
+while (true) {
+	for (Stateline stateline : runnableStatelines) {
+		Event popped = stateline.inbox.pop();
+		popped.apply(stateline);
+        if (stateline.fulfilled()) {
+			stateline.next.activate();
+        }
+	}
+}
+```
+
+
+
+
+
 
 # 559. How to assign objects to threads efficiently
 
 If I have a collection of objects, I might want to serve requests to those objects on different threads for performance. So each object lives on a thread.
 
+I might want to switch objects between threads or schedule multiple threads to an object.
+
 # 560. Bloom filter or bitmask state machine
+
+This idea is that we can represent lines of code as being members of a state machine.
 
 # 561. Scriptable system language
 
@@ -10375,7 +10461,9 @@ We need to detect what events would have been impossible given a compensating ev
 
 Imagine highlighting text and then asking the computer when was this added and who was it added by? Similar to git blame but for graphical user interfaces.
 
-# 754. Reconciliation
+# 754. Reconciliation and compensating transactions
+
+An idempotent write ahead log applied to every operation, so that a crash at any point can be recovered.
 
 # 755. Use that as this, deconstruct behaviours
 
@@ -10561,6 +10649,8 @@ Database software handles locks in trees elegantly.
 
 # 785. Virtual locks and lock state machines weaving
 
+I want to provide mutual exclusion through scheduling by myself. This is like a virtual lock. The good thing about virtua locks is that they compose. 
+
 Remember that you requested a lock but do other things while you wait.
 
 Weave state machine waits into top loop branches arms wait conditions.
@@ -10630,9 +10720,11 @@ Write microbenchmarks that perform some useful task very fast, then add features
 
 Colour coded memory tilemap.
 
-# 800. Data Logistics plotting, or the stack of methods is a data structure
+# 800. Data Logistics plotting, or the stack of methods is a data structure in memory and can be manipulated as memory
 
-Can we represent register allocation, REST APIs data shifting and other APIs as simple transformations that try arrange data into locations?
+Can we represent register allocation, method calls, REST APIs data shifting and other APIs as simple transformations that try arrange data into locations?
+
+Can we use A*?
 
 If I have a complicated method hierarchy and data needs to flow to a certain method call, there is a stack of methods that need to be called to get the data to where it needs to be.
 
@@ -10640,7 +10732,7 @@ How do I programmatically fill these APIs with data?
 
 Take the following C methods to create a socket and listen and accept a connection.
 
-What if these methods were memory locations, logistical locations that we ne
+What if these methods were memory locations, logistical locations that we need to transit data to.
 
 ```
 server_fd = socket(AF_INET, SOCK_STREAM, 0)) 
@@ -10684,7 +10776,7 @@ memory allocation as function plots
 
 stacks as function plots
 
-substitution of functions are inline, including their internal state, corecursion
+lambda calculus, substitution of functions are inline, including their internal state, corecursion
 
 painting memory
 
@@ -10697,12 +10789,11 @@ painting memory
 
 slice, inside
 
+doing things, as cars, scheduling
+
 Expression semantics loop labelling
 
 Primitives of an operating system: multiplexing, communication, epoll
-
-Strctyre
-Cuor
 
 Growth develop profoundly effective, the rate, the movement
 
