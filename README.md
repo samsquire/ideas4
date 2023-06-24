@@ -6823,6 +6823,8 @@ Here's a causality callstack to a multithreaded application
 
 Can we design stacktraces?
 
+Event loop and coroutines
+
 Editor dropdown left and right contexts
 
 Weaving structures as you go
@@ -8872,6 +8874,7 @@ This formulation idea is the combination of the following thoughts:
 * **State multiexpressions** We can describe the progression of states of multiple things/locations over time.
 * **Bidirectional relations** When there is a collection form, change to individual items that create the collection property can trigger. When all books are returned, send an email.
 * **Removal from one list, addition to another list**
+* **Value passing** 
 * **Lifecycles** of objects
 
 ```
@@ -9398,7 +9401,7 @@ This is similar to php-fpm.
 
 The problem with SOLID is that code is closed to extension when written. We need to define our entire type and hierarchy upfront. Code is therefore not very extensible.
 
-What if we could mask types to act as other types?
+What if we could mask types to act as other types? How to make one type work with another type
 
 # 580. Lateral perspective: two parallel inputs
 
@@ -10023,6 +10026,8 @@ An object passes through multiple types in the future.
 
 # 651. Interference detection
 
+How do you know some behaviour or logic interferes with other logic?
+
 # 652. Expressions relations
 
 Define multiple expressions, and their relationships.
@@ -10457,6 +10462,8 @@ We know the order of events, when the event that is raised that places events af
 
 We need to detect what events would have been impossible given a compensating event.
 
+Can we just tolerate and track the side effects of what would normally require 2 phase commit? J
+
 # 753. Highlight, when was this added
 
 Imagine highlighting text and then asking the computer when was this added and who was it added by? Similar to git blame but for graphical user interfaces.
@@ -10724,8 +10731,6 @@ Colour coded memory tilemap.
 
 Can we represent register allocation, method calls, REST APIs data shifting and other APIs as simple transformations that try arrange data into locations?
 
-Can we use A*?
-
 If I have a complicated method hierarchy and data needs to flow to a certain method call, there is a stack of methods that need to be called to get the data to where it needs to be.
 
 How do I programmatically fill these APIs with data?
@@ -10762,7 +10767,9 @@ if ((new_socket
 valread = read(new_socket, buffer, 1024);
 ```
 
+Instead we have registers
 
+Can we use A*?
 
 matrix multiplication and positions
 
