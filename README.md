@@ -4737,7 +4737,7 @@ We want the freedom to define whether an object is inside or outside the behavio
 
 # 258. The Core program
 
-Does every system do the same things?
+Does every system and program do the same things? CRUD
 
 # 259. The Standard Deployment procedure
 
@@ -5243,6 +5243,8 @@ Multiplex N lightweight threads onto M kernel threads
 # 333. Optional compiled multiway links
 
 # 334. Knowledgegraph programming language
+
+This idea I extended in [ideas5 350. Structured interaction programming: Trying to restrict interaction complexity and implement arbitrary software composability of abstractions ](https://github.com/samsquire/ideas5#350-structured-interaction-programming-trying-to-restrict-interaction-complexity-and-implement-arbitrary-software-composability-of-abstractions)
 
 Create a graph model of every possible thing that is structured in a programming language:
  * Scopes
@@ -10937,7 +10939,6 @@ Variable semantics for lists and maps
 Synchronization free code regions and interference free regions
 Autolock
 Types are related to jumping around to the right locations
-
 
 
 
