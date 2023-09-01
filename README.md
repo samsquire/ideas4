@@ -8700,7 +8700,7 @@ a#1 | b#2(a#1) | c#3(b#2) | d#4(a#1, b#2)
 ```
 
 * A is called with no arguments
-* b#2 is called with the output of 
+* b#2 is called with the 1st output of a.
 
 
 relying on people to do things
@@ -10349,11 +10349,15 @@ Write parsing in a spreadsheet
 
 # 735. Tree Heap allocator
 
-
+Heap can be like a tree, with structured concurrency.
 
 
 
 # 735. Drawing to code
+
+When you draw a diagram and link a line to part of a shape, that's an association point, we can treat the drawing as a vector and route around it.
+
+Use A* to plot path around diagram elements.
 
 # 736. Shape gallery
 
