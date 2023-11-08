@@ -3437,6 +3437,8 @@ This idea is an extension to how Kubernetes has an API for defining resources an
 
 The system as a whole should be overconstrained. Everything should be specified and changeable.
 
+Provide all the details including ordering.
+
 # 151. People circuitry
 
 Conway's law means that software ends up looking like the communication patterns of people who create the software. If we think of a person developer as a component of the architecture, each has IO with other people, a memory buffer of recent code, and a mind that is a central processing unit capable of rapid pattern matching and general purpose problem solving. Individual contributor's are capable of mass outputs see Linux Torvalds, Varnish developer, Guido Van Rossum, Rasmus Lerdorf. Let's take individual potential into thought of the layout of software engineering teams.
@@ -8561,68 +8563,6 @@ If everything is an AST and a database in an AST, can we write simulations of wh
 Operating system orthogonality, programming language orthogonality is critically important to getting important work done and implementing features that are useful.
 
 When I write a type system, garbage collector, or multithreaded architecture or memory management or some of cross cutting feature, I have a model that is effective at expressing the feature I'm working on but when you need to support or think about other features, it complicates the design. Software engineers often solve this problem with abstractions and layerings.
-
- * Calling convention (cdecl, ghc) Such as C programming language calling convention
- * Foreign Function Interface (do you want C compatibility?)
- * Memory management
- * Resource Acquisition Is Initialization (freeing data when it leaves scope)
- * Lifetime enforcement, such as Borrow checker
- * Memory Allocators (malloc etc)
- * Manual memory management (reference counting)
- * Fixed memory pools
- * Module systems (Java Modules JSR376, Python modules, Clojure's use syntax)
- * Ahead of time compilation or Just in Time compilation
- * Code generation
- * Zero cost abstractions
- * Multithreading
- * Asynchronous programming (concurrency) What colour is your function
- * Return values
- * Tuples
- * Object orientated programming
- * Structs
- * Closures
- * Memory layout
- * Functional programming (lazily evaluated thunk style ala Haskell)
- * Typeclasses
- * Semantic Differences between Transpiling source and transpiling target
- * Multiplatform support (Windows, Linux, Mac and others)
- * Stack or heap
- * Immutability
- * Aliasing
- * Autovectorisation, automatic parallelisation
- * single responsibility pattern
- * Interop between library, platform code and your code
- * Duck typing, Interface
- * Runtime/Compile time function selection (CALL/jumping)
- * Coroutines
- * Streams (see C++ iostreams)
- * Loop syntax
- * Move/Copy Semantics
-
- * Is everything an expression or is there statements?
- * Trailing commas
- * Iterators
- * Generators
- * std::algorithm
- * Standard library structure hierarchy - Java's standard library, Scala's collection standard library
- * Lambdas
- * Partial application
- * IO
- * Monads
- * Dependency inversion
- * Performance
- * Development velocity
- * Developer productivity
- * Practicality
- * Non-blocking/blocking vs CPU spinning and sluggishness (non real time operating systems)
- * Stack based/register based
- * Generics
- * Semicolons
- * Braces/whitespace indention
- * Templating
- * Metaprogramming
- * Generic programming
- * Desugaring
 
 How do you implement reliable efficient orthogonality when there are interactions between different features? And they can be combined in arbitrary combinations?
 
